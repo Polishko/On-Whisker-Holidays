@@ -2,8 +2,8 @@
   height: calc(100vh - 5rem);
   margin: 2.5rem;
   background-image: linear-gradient(
-      rgba(82, 105, 94, 0.8),
-      rgba(72, 85, 93, 0.8)
+      rgba(36, 42, 46, 0.8),
+      rgba(36, 42, 46, 0.8)
     ),
     url("../banner2.JPG");
   background-size: cover;

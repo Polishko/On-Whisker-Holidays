@@ -7,18 +7,16 @@ export default function Homepage() {
       <PageNav />
       <section>
         <h1>
-          Travel with your belowed non-human friends!
+          Travel with your belowed furry pals
           <br />
-          Enjoy your favorite destinations together with your furry pall.
+          and enjoy your favorite destinations together.
         </h1>
         <h2>
-          Find pet-frienly hotels using an intuitive map, check for availability
-          and reserve.
+          Find whisker frienly hotels using an intuitive map, check for
+          availability and reserve. Join the pet humans community to share your
+          adventures, rate places and more...
         </h2>
-        <h2>
-          Want to recommend your favorite place to others? Join the pet humans
-          community, share your adventures, rate places and more...
-        </h2>
+
         <button>Start you adventure now!</button>
       </section>
     </main>
