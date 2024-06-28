@@ -14,7 +14,8 @@
 .nav a:link,
 .nav a:visited {
   text-decoration: none;
-  color: var(--color-light--2);
+  /* color: var(--color-light-2);
+  background-color: var(--color-orange-2); */
   text-transform: uppercase;
   font-size: 1.5rem;
   font-weight: 600;
@@ -27,8 +28,18 @@
 
 a.ctaLink:link,
 a.ctaLink:visited {
-  background-color: var(--color-brand--2);
-  color: var(--color-dark--0);
+  /* background-color: var(--color-green-3);
+  color: var(--color-light-2); */
   padding: 0.8rem 2rem;
   border-radius: 7px;
+}
+
+.login {
+  background-color: var(--color-green-3);
+  color: var(--color-light-2);
+}
+
+.join {
+  color: var(--color-font);
+  background-color: var(--color-orange-2);
 }

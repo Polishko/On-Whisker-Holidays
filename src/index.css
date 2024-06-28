@@ -1,11 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Podkova:wght@400..800&display=swap");
 
 :root {
-  --color-dark-green: #21413f;
-  --color-light-green: #407774;
-  --color-dark-orange: #e19721;
-  --color-light-orange: #ffb000;
-  --color-background: #eef2ed;
+  --color-green-1: #21413f;
+  --color-green-2: #407774;
+  --color-green-3: #53c0bb;
+  --color-orange-1: #e19721;
+  --color-orange-2: #ffb000;
+  --color-light-1: #eef2ed;
+  --color-light-2: #fbfefa;
   --color-frames: #54433d;
   --color-font: #4b4949;
 }
