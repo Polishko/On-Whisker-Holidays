@@ -9,7 +9,7 @@ export default function Homepage() {
         <h1>
           Travel with your belowed non-human friends!
           <br />
-          Enjoy your favorite destinations together with your furry friend.
+          Enjoy your favorite destinations together with your furry pall.
         </h1>
         <h2>
           Find pet-frienly hotels using an intuitive map, check for availability
