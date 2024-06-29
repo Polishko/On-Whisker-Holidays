@@ -3,7 +3,7 @@ import styles from "./Logo.module.css";
 function Logo() {
   return (
     <img
-      src="/Logo4.png"
+      src="/Logo5.png"
       alt="OnWhiskerHolidays logo"
       className={styles.logo}
     />

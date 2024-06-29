@@ -1,3 +1,4 @@
+import Gallery from "../components/Gallery";
 import PageNav from "../components/PageNav";
 import styles from "./Homepage.module.css";
 
@@ -7,9 +8,9 @@ export default function Homepage() {
       <PageNav />
       <section>
         <h1>
-          Travel with your belowed furry pals
+          Enjoy your favorite destinations
           <br />
-          and enjoy your favorite destinations together.
+          together with your belowed furry pals.
         </h1>
         <h2>
           Find whisker frienly hotels using an intuitive map, check for
@@ -18,6 +19,7 @@ export default function Homepage() {
         </h2>
 
         <button>Start you adventure now!</button>
+        <Gallery />
       </section>
     </main>
   );

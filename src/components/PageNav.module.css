@@ -23,7 +23,7 @@
 
 /* CSS Modules feature */
 .nav a:global(.active) {
-  color: var(--color-brand--2);
+  color: var(--color-orange-2);
 }
 
 a.ctaLink:link,
@@ -34,12 +34,15 @@ a.ctaLink:visited {
   border-radius: 7px;
 }
 
+.login,
+.join {
+  color: var(--color-brown-3);
+}
+
 .login {
   background-color: var(--color-green-3);
-  color: var(--color-light-2);
 }
 
 .join {
-  color: var(--color-font);
   background-color: var(--color-orange-2);
 }
