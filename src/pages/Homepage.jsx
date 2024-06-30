@@ -14,8 +14,8 @@ export default function Homepage() {
         </h1>
         <h2>
           Find whisker frienly hotels using an intuitive map, check for
-          availability and reserve. Join the pet humans community to share your
-          adventures, rate places and more...
+          availability and reserve. <br /> Join the pet humans community to
+          share your adventures, rate places and more...
         </h2>
 
         <button>Start you adventure now!</button>

@@ -25,6 +25,9 @@
 }
 
 html {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   font-size: 62.5%;
   box-sizing: border-box;
   font-family: "Happy Monkey";
