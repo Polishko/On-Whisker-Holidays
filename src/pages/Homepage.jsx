@@ -1,5 +1,5 @@
 import Button from "../components/Button";
-import Gallery from "../components/Gallery";
+
 import PageNav from "../components/PageNav";
 import styles from "./Homepage.module.css";
 
@@ -7,6 +7,7 @@ export default function Homepage() {
   return (
     <main className={styles.homepage}>
       <PageNav />
+
       <section>
         <h1>
           Enjoy your favorite destinations
@@ -24,7 +25,6 @@ export default function Homepage() {
             Start you adventure now!
           </Button>
         </div>
-        <Gallery />
       </section>
     </main>
   );

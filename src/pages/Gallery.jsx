@@ -1,8 +1,8 @@
 import { useReducer } from "react";
 import PropTypes from "prop-types";
 import styles from "./Gallery.module.css";
-import Message from "./Message.jsx";
-import Button from "./Button.jsx";
+import Button from "../components/Button.jsx";
+import PageNav from "../components/PageNav.jsx";
 
 const slides = [
   {
@@ -28,7 +28,7 @@ Slide.propTypes = {
 };
 
 const initialState = {
-  galleryOpened: false,
+  // galleryOpened: false,
   slideIndex: 0,
 };
 
@@ -56,52 +56,39 @@ const reducer = (state, action) => {
 };
 
 function Gallery() {
-  const [{ slideIndex, galleryOpened }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ slideIndex }, dispatch] = useReducer(reducer, initialState);
   const slide = slides.at(slideIndex);
 
-  if (!galleryOpened)
-    return (
-      <div>
-        <Message
-          message={"Check the gallery for inspiration on your next holiday!"}
-          background={"dark"}
-        />
-        <Button
-          type="primary"
-          onClick={() => dispatch({ type: "openGallery" })}
-        >
-          Check
+  return (
+    <div className={styles.gallery}>
+      <PageNav />
+      <div className={styles.slides}>
+        <Button type="navigate" onClick={() => dispatch({ type: "PREV" })}>
+          ‹
+        </Button>
+
+        <Slide>
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className={styles.slideImage}
+          />
+
+          <div className={styles.slideInnerContent}>
+            <h2 className={styles.slideTitle}>{slide.title}</h2>
+          </div>
+          <Button
+            type="close"
+            onClick={() => dispatch({ type: "galleryClose" })}
+          >
+            X
+          </Button>
+        </Slide>
+
+        <Button type="navigate" onClick={() => dispatch({ type: "NEXT" })}>
+          ›
         </Button>
       </div>
-    );
-
-  return (
-    <div className={styles.slides}>
-      <Button type="navigate" onClick={() => dispatch({ type: "PREV" })}>
-        ‹
-      </Button>
-
-      <Slide>
-        <img
-          src={slide.image}
-          alt={slide.title}
-          className={styles.slideImage}
-        />
-
-        <div className={styles.slideInnerContent}>
-          <h2 className={styles.slideTitle}>{slide.title}</h2>
-        </div>
-        <Button type="close" onClick={() => dispatch({ type: "galleryClose" })}>
-          X
-        </Button>
-      </Slide>
-
-      <Button type="navigate" onClick={() => dispatch({ type: "NEXT" })}>
-        ›
-      </Button>
     </div>
   );
 }
