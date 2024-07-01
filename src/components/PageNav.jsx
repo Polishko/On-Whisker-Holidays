@@ -1,8 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Logo from "../components/Logo";
 import styles from "./PageNav.module.css";
 
 function PageNav() {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <nav className={styles.nav}>
       <Logo />
@@ -17,6 +20,16 @@ function PageNav() {
             Join the community
           </NavLink>
         </li>
+        {currentPath !== "/gallery" && (
+          <li>
+            <NavLink
+              to="/gallery"
+              className={`${styles.ctaLink} ${styles.join}`}
+            >
+              Gallery
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
