@@ -1,78 +1,42 @@
-import { useEffect, useRef, useReducer } from "react";
+import { useReducer } from "react";
 import PropTypes from "prop-types";
 import styles from "./Gallery.module.css";
+import Message from "./Message.jsx";
+import Button from "./Button.jsx";
 
 const slides = [
   {
-    title: "Machu Picchu",
-    subtitle: "Peru",
-    description: "Adventure is never far away",
+    title: "Amazing mountain views",
     image: "../mountain_stay.jpeg",
   },
   {
-    title: "Chamonix",
-    subtitle: "France",
-    description: "Let your dreams come true",
-    image: "../mountain_stay.jpeg",
+    title: "Fun on the beach",
+    image: "../Eksi-and-Badi.jpg",
   },
-  // ... other slides
+  {
+    title: "Making friends",
+    image: "../pals.jpg",
+  },
 ];
 
-function Slide({ slide, offset }) {
-  const active = offset === 0 ? true : null;
-  // const ref = useTilt(active);
-
-  return (
-    <div
-      // ref={ref}
-      className={styles.slide}
-      data-active={active}
-      style={{
-        "--offset": offset,
-        "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1,
-      }}
-    >
-      <div
-        className={styles.slideBackground}
-        // style={{
-        //   backgroundImage: `url('${slide.image}')`,
-        // }}
-      >
-        {" "}
-        <img src={`${slide.image}`} alt="" />
-        {/* <div
-        className={styles.slideContent}
-        style={{
-          backgroundImage: `url('${slide.image}')`,
-        }}
-      > */}
-        <div className={styles.slideContentInner}>
-          <h2 className={styles.slideTitle}>{slide.title}</h2>
-          <h3 className={styles.slideSubtitle}>{slide.subtitle}</h3>
-          <p className={styles.slideDescription}>{slide.description}</p>
-        </div>
-      </div>
-    </div>
-  );
+function Slide({ children }) {
+  return <div className={styles.slide}>{children}</div>;
 }
 
-// Define prop types for Slide component
 Slide.propTypes = {
-  slide: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-  }).isRequired,
-  offset: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const initialState = {
+  galleryOpened: false,
   slideIndex: 0,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "openGallery":
+      return { ...state, galleryOpened: true };
+
     case "NEXT":
       return {
         ...state,
@@ -84,27 +48,60 @@ const reducer = (state, action) => {
         slideIndex:
           state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1,
       };
+    case "galleryClose":
+      return { ...state, galleryOpened: false };
     default:
       throw new Error("Unknown action");
   }
 };
 
 function Gallery() {
-  const [{ slideIndex }, dispatch] = useReducer(reducer, initialState);
+  const [{ slideIndex, galleryOpened }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
+  const slide = slides.at(slideIndex);
+
+  if (!galleryOpened)
+    return (
+      <div>
+        <Message
+          message={"Check the gallery for inspiration on your next holiday!"}
+          background={"dark"}
+        />
+        <Button
+          type="primary"
+          onClick={() => dispatch({ type: "openGallery" })}
+        >
+          Check
+        </Button>
+      </div>
+    );
 
   return (
     <div className={styles.slides}>
-      <button onClick={() => dispatch({ type: "PREV" })}>‹</button>
+      <Button type="navigate" onClick={() => dispatch({ type: "PREV" })}>
+        ‹
+      </Button>
 
-      {slides.map((slide, i) => {
-        // Display only the slide with the current slideIndex
-        if (i === slideIndex) {
-          return <Slide slide={slide} offset={0} key={i} />;
-        }
-        return null; // Hide other slides
-      })}
+      <Slide>
+        <img
+          src={slide.image}
+          alt={slide.title}
+          className={styles.slideImage}
+        />
 
-      <button onClick={() => dispatch({ type: "NEXT" })}>›</button>
+        <div className={styles.slideInnerContent}>
+          <h2 className={styles.slideTitle}>{slide.title}</h2>
+        </div>
+        <Button type="close" onClick={() => dispatch({ type: "galleryClose" })}>
+          X
+        </Button>
+      </Slide>
+
+      <Button type="navigate" onClick={() => dispatch({ type: "NEXT" })}>
+        ›
+      </Button>
     </div>
   );
 }

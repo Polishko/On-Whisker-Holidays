@@ -1,3 +1,4 @@
+import Button from "../components/Button";
 import Gallery from "../components/Gallery";
 import PageNav from "../components/PageNav";
 import styles from "./Homepage.module.css";
@@ -18,7 +19,11 @@ export default function Homepage() {
           share your adventures, rate places and more...
         </h2>
 
-        <button>Start you adventure now!</button>
+        <div className={styles.goToApp}>
+          <Button type={"primary"} background={"dark"}>
+            Start you adventure now!
+          </Button>
+        </div>
         <Gallery />
       </section>
     </main>
