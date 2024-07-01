@@ -11,12 +11,12 @@
   --color-orange-2: #ffd657;
   --color-light-2: #eef2ed;
   /* --color-light-2: #fbfefa; */
-  /* --color-light-2: #fff9f3; */
+  --color-light-3: #fff9f3;
   --color-light-1: #fff9f3bb;
   --color-brown-1: #54433d;
   --color-brown-2: #4b4949;
   --color-brown-3: #2b3425;
-  /* --color-font: #AB8742; */
+  --color-brown-4: #ab8742;
 }
 
 * {
@@ -37,6 +37,8 @@ html {
 body {
   font-weight: 400;
   line-height: 1.6;
+  background-color: var(--color-light-1);
+  padding: 2.5rem 5rem;
 }
 
 h1,
@@ -61,7 +63,7 @@ textarea {
   font-size: 1.6rem;
   border: none;
   border-radius: 5px;
-  background-color: var(--color-light--3);
+  background-color: var(--color-light-1);
   transition: all 0.2s;
 }
 

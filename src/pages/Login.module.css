@@ -1,0 +1,40 @@
+.login {
+  margin: 2.5rem;
+  padding: 2.5rem 5rem;
+  min-height: calc(100vh - 5rem);
+}
+
+.forms {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0rem 10rem;
+}
+
+.login-form {
+  background-color: var(--color-green-3);
+}
+
+.register-form {
+  background-color: var(--color-brown-4);
+}
+
+.form {
+  border-radius: 7px;
+  padding: 5rem 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-basis: 30%;
+
+  /* Different from other form */
+  width: 48rem;
+  margin: 8rem auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

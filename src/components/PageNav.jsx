@@ -8,18 +8,18 @@ function PageNav() {
 
   return (
     <nav className={styles.nav}>
-      <Logo />
+      <Logo background={currentPath === "/" ? "dark" : "light"} />
       <ul>
         <li>
           <NavLink to="/login" className={`${styles.ctaLink} ${styles.login}`}>
             Login
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/join" className={`${styles.ctaLink} ${styles.join}`}>
             Join the community
           </NavLink>
-        </li>
+        </li> */}
         {currentPath !== "/gallery" && (
           <li>
             <NavLink
