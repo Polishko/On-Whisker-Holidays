@@ -21,9 +21,7 @@ export default function Homepage() {
         </h2>
 
         <div className={styles.goToApp}>
-          <Button type={"primary"} background={"dark"}>
-            Start you adventure now!
-          </Button>
+          <Button type={"primary"}>Start you adventure now!</Button>
         </div>
       </section>
     </main>

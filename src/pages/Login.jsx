@@ -1,3 +1,4 @@
+import Button from "../components/Button";
 import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
 
@@ -5,40 +6,46 @@ function Login() {
   return (
     <main className={styles.login}>
       <PageNav />
-      <div className={styles.forms}>
-        <form className={`${styles.form} ${styles["login-form"]}`}>
-          <div className={styles.row}>
-            <label htmlFor="email" id="email">
-              Enter your email
-            </label>
-            <input type="email" />
+
+      <form className={`${styles.form} ${styles["login-form"]}`}>
+        <div className={styles["login-header"]}>
+          <span>Have an account?</span>
+          <header>Login</header>
+        </div>
+        <div className={styles.row}>
+          <label htmlFor="email">Enter your email</label>
+          <div className={styles.inputContainer}>
+            <i className={`bx bx-user ${styles.icon}`}></i>
+            <input type="email" id="email" placeholder="Username" />
           </div>
-          <div className={styles.row}>
-            <label htmlFor="password" id="email">
-              Enter your password
-            </label>
-            <input type="password" />
+        </div>
+        <div className={styles.row}>
+          <label htmlFor="password">Enter your password</label>
+          <div className={styles.inputContainer}>
+            <i className={`bx bx-lock ${styles.icon}`}></i>
+            <input type="password" id="password" placeholder="Password" />
           </div>
-        </form>
-        {/* <form className={`${styles.form} ${styles["register-form"]}`}>
-          <div className={styles.row}>
-            <label htmlFor="email" id="email">
-              Enter your email
-            </label>
-            <input type="email" />
+        </div>
+        <div className={styles.bottom}>
+          <div className={styles.left}>
+            <input type="checkbox" id="check" className={styles.checkbox} />
+            <label htmlFor="check"> Remember Me</label>
           </div>
-          <div className={styles.row}>
-            <label htmlFor="password" id="email">
-              Enter your password
+          <div className={styles.right}>
+            <label>
+              <a href="#">Forgot password?</a>
             </label>
-            <input type="password" />
-            <label htmlFor="password" id="email">
-              Repeat password
-            </label>
-            <input type="password" />
           </div>
-        </form> */}
-      </div>
+        </div>
+        <Button type={"primary"} className={styles["button-style"]}>
+          Login
+        </Button>
+        <div className={styles["register-invite"]}>
+          <span>
+            Don&apos;t have an account? <a href="#">Register here</a>
+          </span>
+        </div>
+      </form>
     </main>
   );
 }

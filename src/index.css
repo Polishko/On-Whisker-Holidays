@@ -26,9 +26,6 @@
 }
 
 html {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   font-size: 62.5%;
   box-sizing: border-box;
   font-family: "Happy Monkey";
@@ -52,18 +49,18 @@ h6 {
 
 label {
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 input,
 textarea {
-  width: 100%;
+  /* width: 100%; */
   padding: 0.8rem 1.2rem;
   font-family: inherit;
   font-size: 1.6rem;
   border: none;
   border-radius: 5px;
-  background-color: var(--color-light-1);
+
   transition: all 0.2s;
 }
 
@@ -75,8 +72,8 @@ input:focus {
 .cta:link,
 .cta:visited {
   display: inline-block;
-  background-color: var(--color-brand--2);
-  color: var(--color-dark--1);
+  background-color: var(--color-light--2);
+  color: var(--color-green--1);
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.6rem;
