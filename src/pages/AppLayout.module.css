@@ -1,42 +1,50 @@
-/* AppLayout.module.css */
-.container {
-  display: flex;
-  /* flex-direction: column; */
-  height: 100vh;
-}
-
 .app {
-  flex: 1;
   padding: 2.4rem;
   margin: 0 10rem;
   overscroll-behavior-y: none;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-
-  border: 1px solid blue;
+  flex-wrap: wrap;
+  gap: 1em;
+  color: var(--color-brown-1);
 }
 
 .container {
+  height: calc(100vh - 30rem);
   display: flex;
   flex: 1;
+  gap: 2em;
 }
 
 .left,
 .right {
-  /* flex: 1; */
   display: flex;
   flex-direction: column;
   flex-basis: 50%;
+  border-radius: 0.9rem;
+  overflow: scroll;
+  position: relative;
+}
+
+.left::-webkit-scrollbar,
+.left::-webkit-scrollbar,
+.right::-webkit-scrollbar,
+.right::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
+.left {
+  background-color: var(--color-light-4);
 }
 
 .right {
   display: flex;
-  /* flex-direction: column; */
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-grow: 1;
+  /* flex-wrap: wrap; */
+  gap: 1em;
 }
 
-.searchbar {
-  width: 100%;
-  line-height: 1;
+.right > * {
+  background-color: var(--color-light-4);
 }

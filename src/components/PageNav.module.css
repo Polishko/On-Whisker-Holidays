@@ -28,8 +28,6 @@
 
 a.ctaLink:link,
 a.ctaLink:visited {
-  /* background-color: var(--color-green-3);
-  color: var(--color-light-2); */
   padding: 0.8rem 2rem;
   border-radius: 7px;
 }
@@ -40,9 +38,9 @@ a.ctaLink:visited {
 }
 
 .login {
-  background-color: var(--color-green-3);
+  background-color: var(--color-green-5);
 }
 
 .join {
-  background-color: var(--color-orange-2);
+  background-color: var(--color-orange-1);
 }

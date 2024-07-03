@@ -1,4 +1,9 @@
 .map {
-  flex-grow: 1;
-  border: 1px solid orange;
+  flex: 1;
+  border: none;
+  padding: 1.1rem 1.6rem;
+  font-size: 1.8rem;
+  border-radius: 0.7rem;
+  width: 100%;
+  transition: all 0.3s;
 }

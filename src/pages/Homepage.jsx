@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Button from "../components/Button";
 
 import PageNav from "../components/PageNav";
@@ -21,7 +22,9 @@ export default function Homepage() {
         </h2>
 
         <div className={styles.goToApp}>
-          <Button type={"primary"}>Start you adventure now!</Button>
+          <NavLink to="/app">
+            <Button type={"primary"}>Start you adventure now!</Button>
+          </NavLink>
         </div>
       </section>
     </main>

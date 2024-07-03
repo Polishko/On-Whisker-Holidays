@@ -1,4 +1,3 @@
 .hotel-list {
-  flex-grow: 100%;
-  border: 1px solid green;
+  height: 100%;
 }

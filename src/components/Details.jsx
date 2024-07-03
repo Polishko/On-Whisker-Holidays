@@ -4,7 +4,11 @@ import Message from "./Message";
 function Details() {
   return (
     <div className={styles.details}>
-      <Message message={"Click to an hotel to find out more!"} />
+      <p>X hotels found</p>
+      <Message
+        message={"Click to an hotel to find out more!"}
+        background={"light"}
+      />
     </div>
   );
 }
