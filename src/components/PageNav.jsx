@@ -15,11 +15,6 @@ function PageNav() {
             Login
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/join" className={`${styles.ctaLink} ${styles.join}`}>
-            Join the community
-          </NavLink>
-        </li> */}
         {currentPath !== "/gallery" && (
           <li>
             <NavLink
@@ -27,6 +22,13 @@ function PageNav() {
               className={`${styles.ctaLink} ${styles.join}`}
             >
               Gallery
+            </NavLink>
+          </li>
+        )}
+        {currentPath !== "/app" && (
+          <li>
+            <NavLink to="/app" className={`${styles.ctaLink} ${styles.join}`}>
+              Search Hotels
             </NavLink>
           </li>
         )}
