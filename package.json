@@ -7,7 +7,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start-server": "node server.js"
+    "server": "node server.js"
   },
   "dependencies": {
     "boxicons": "^2.1.4",

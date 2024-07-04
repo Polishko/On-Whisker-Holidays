@@ -19,18 +19,20 @@
   ],
   "hotels": [
     {
-      "id": 1,
-      "title": "Sunanini House",
+      "id": "Sunanini House",
+      "hotelName": "Sunanini House",
       "country": "Bulgaria",
+      "countryCode": "BG",
       "city": "Sapareva Banya",
       "img": "./sunnini.jpeg",
       "web": "https://susanini.wordpress.com/",
       "detail": "A cozy little house in Saparyeva Banya, situated at the foot of the mountain. Your furry friends will enjoy the big garden."
     },
     {
-      "id": 2,
-      "title": "Sunanini House",
+      "id": "Sunanini House",
+      "hotelName": "Sunanini House",
       "country": "Bulgaria",
+      "countryCode": "BG",
       "city": "Sapareva Banya",
       "img": "./sunnini.jpeg",
       "web": "https://susanini.wordpress.com/",
