@@ -11,9 +11,11 @@ const initialState = {
   isLoading: false,
   currentHotel: {
     hotelName: "",
-    emoji: "",
+    countryCode: "",
     city: "",
     country: "",
+    type: [],
+    position: {},
     img: "",
     web: "",
     detail: "",
@@ -35,7 +37,7 @@ function reducer(state, action) {
         isLoading: false,
         hotels: [...state.hotels, action.payload],
         currentHotel: action.payload,
-      }; //added city made the active city
+      }; //added hotel made the active hotel
     case "hotel/deleted":
       return {
         ...state,
@@ -50,20 +52,20 @@ function reducer(state, action) {
   }
 }
 
-function HotelProvider({ children }) {
+function HotelsProvider({ children }) {
   const [{ hotels, isLoading, currentHotel, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
   useEffect(function () {
-    async function fetchCities() {
+    async function fetchHotels() {
       dispatch({ type: "loading" });
 
       try {
         const res = await fetch(`${BASE_URL}/hotels`);
         const data = await res.json();
-        dispatch({ type: "cities/loaded", payload: data });
+        dispatch({ type: "hotels/loaded", payload: data });
       } catch {
         dispatch({
           type: "rejected",
@@ -71,7 +73,7 @@ function HotelProvider({ children }) {
         });
       }
     }
-    fetchCities();
+    fetchHotels();
   }, []);
 
   async function getHotel(id) {
@@ -99,7 +101,7 @@ function HotelProvider({ children }) {
         body: JSON.stringify(newHotel),
         headers: { "Content-Type": "application/json" },
       });
-      const data = res.json();
+      const data = await res.json();
       dispatch({ type: "hotel/created", payload: data });
     } catch {
       dispatch({
@@ -149,4 +151,4 @@ function useHotels() {
   return context;
 }
 
-export { HotelProvider, useHotels };
+export { HotelsProvider, useHotels };

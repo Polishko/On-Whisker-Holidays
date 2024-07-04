@@ -22,21 +22,31 @@
       "id": "Sunanini House",
       "hotelName": "Sunanini House",
       "country": "Bulgaria",
-      "countryCode": "BG",
+      "countryCode": "🇧🇬",
       "city": "Sapareva Banya",
+      "type": ["mountain", "nature"],
+      "position": {
+        "lat": 42.285136416470166,
+        "lng": 23.24898059723802
+      },
       "img": "./sunnini.jpeg",
       "web": "https://susanini.wordpress.com/",
       "detail": "A cozy little house in Saparyeva Banya, situated at the foot of the mountain. Your furry friends will enjoy the big garden."
     },
     {
-      "id": "Sunanini House",
-      "hotelName": "Sunanini House",
+      "id": "Green Village Lake",
+      "hotelName": "Green Village Lake",
       "country": "Bulgaria",
-      "countryCode": "BG",
-      "city": "Sapareva Banya",
-      "img": "./sunnini.jpeg",
-      "web": "https://susanini.wordpress.com/",
-      "detail": "A cozy little house in Saparyeva Banya, situated at the foot of the mountain. Your furry friends will enjoy the big garden."
+      "countryCode": "🇧🇬",
+      "city": "Hrabarsko",
+      "type": ["nature", "water"],
+      "position": {
+        "lat": 42.817562946488636,
+        "lng": 23.091720435881278
+      },
+      "img": "./green-village.jpeg",
+      "web": "https://hrabarsko-lake.com/",
+      "detail": "Enjoy, fishing and camping near the lake. Cozy bungalovs, a restaurant and a pool awailable."
     }
   ]
 }

@@ -1,10 +1,28 @@
 import styles from "./HotelList.module.css";
+import { useHotels } from "./contexts/HotelsContext";
+import Spinner from "./Spinner";
+import Message from "./Message";
+import HotelItem from "./HotelItem";
 
 function HotelList() {
+  const { hotels, isLoading } = useHotels();
+
+  if (isLoading) return <Spinner />;
+
+  if (!hotels.length)
+    return (
+      <Message
+        message={"Currently no hotels can be found."}
+        background={"light"}
+      />
+    );
+
   return (
-    <div className={styles["hotel-list"]}>
-      <h1>Hotels list</h1>
-    </div>
+    <ul className={styles.hotelList}>
+      {hotels.map((hotel) => (
+        <HotelItem hotel={hotel} key={hotel.id} />
+      ))}
+    </ul>
   );
 }
 
