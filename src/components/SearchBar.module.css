@@ -13,13 +13,17 @@
   padding: 1em;
 }
 
-.searchbar::placeholder {
+.searchInput::placeholder {
   color: var(--color-green-2);
 }
 
-.searchbar:focus {
+.searchInput:focus {
   outline: none;
   box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
   background-color: #d1f0bd;
+}
+
+.searchInput {
+  width: 70%;
 }

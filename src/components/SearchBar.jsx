@@ -2,7 +2,12 @@ import styles from "./SearchBar.module.css";
 
 function SearchBar() {
   return (
-    <input className={styles.searchbar} placeholder="Enter search keywords" />
+    <div className={styles.searchbar}>
+      <input
+        className={styles.searchInput}
+        placeholder="Enter search keywords"
+      />
+    </div>
   );
 }
 
