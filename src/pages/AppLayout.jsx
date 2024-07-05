@@ -1,10 +1,11 @@
 import styles from "./AppLayout.module.css";
-import HotelList from "../components/Hotel/HotelList";
-import Details from "../components/Details/HotelDetails";
-import Map from "../components/Map/Map";
+import HotelList from "../components/hotel/HotelList";
+// import HotelDetails from "../components/details/HotelDetails";
+import Map from "../components/map/Map";
 import User from "../components/User";
 import PageNav from "../components/PageNav";
 import SearchBar from "../components/SearchBar";
+import HotelDetails from "../components/details/HotelDetails";
 
 function AppLayout() {
   return (
@@ -17,7 +18,7 @@ function AppLayout() {
             <HotelList />
           </div>
           <div className={styles.right}>
-            <Details />
+            <HotelDetails />
             <Map />
           </div>
         </div>

@@ -22,7 +22,7 @@ function HotelItem({ hotel }) {
         className={`${styles.hotelItem} ${
           id === currentHotel.id ? styles["hotelItem--active"] : ""
         }`}
-        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+        to={`hotels/${id}?lat=${position.lat}&lng=${position.lng}`}
       >
         <div className={styles.leftContainer}>
           <h3 className={styles.name}>{hotelName}</h3>

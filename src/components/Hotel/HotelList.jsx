@@ -1,6 +1,6 @@
 import styles from "./HotelList.module.css";
 import { useHotels } from "../contexts/HotelsContext";
-import Spinner from "../Spinner";
+import Spinner from "../Common/Spinner";
 import Message from "../Common/Message";
 import HotelItem from "./HotelItem";
 

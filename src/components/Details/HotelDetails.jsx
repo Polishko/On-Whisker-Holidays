@@ -1,13 +1,13 @@
 import styles from "./HotelDetails.module.css";
-import Message from "../Common/Message";
+
+import Hotel from "../hotel/Hotel";
+import CommentsList from "./CommentsList";
 
 function HotelDetails() {
   return (
     <div className={styles.details}>
-      <Message
-        message={"Click to a hotel to find out more!"}
-        background={"light"}
-      />
+      <Hotel />
+      <CommentsList />
     </div>
   );
 }
