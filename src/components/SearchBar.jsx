@@ -22,19 +22,23 @@ function SearchBar() {
 
   return (
     <div className={styles.searchbar}>
-      <input
-        className={styles.searchInput}
-        placeholder="Enter search keywords"
-        value={query}
-        onChange={handleInputChange}
-        ref={inputEl}
-      />
-      {query && (
-        <Button className={styles.clearButton} onClick={clearInput}>
-          &times;
-        </Button>
-      )}
-      <span>{filteredHotels.length} hotels found</span>
+      <div className={styles.inputContainer}>
+        <input
+          className={styles.searchInput}
+          placeholder="Enter search keywords"
+          value={query}
+          onChange={handleInputChange}
+          ref={inputEl}
+        />
+        {query && (
+          <Button className={styles.clearButton} onClick={clearInput}>
+            &times;
+          </Button>
+        )}
+      </div>
+      <span className={styles.filterResults}>
+        {filteredHotels.length} hotels
+      </span>
     </div>
   );
 }

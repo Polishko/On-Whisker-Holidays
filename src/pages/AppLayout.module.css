@@ -23,7 +23,6 @@
 .right {
   display: flex;
   flex-direction: column;
-  flex-basis: 50%;
   border-radius: 0.9rem;
   overflow: scroll;
   position: relative;
@@ -38,14 +37,15 @@
 }
 
 .left {
+  display: flex;
   background-color: var(--color-light-4);
+  flex-basis: 40%;
 }
 
 .right {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* flex-wrap: wrap; */
   gap: 1em;
 }
 

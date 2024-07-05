@@ -11,10 +11,9 @@ function AppLayout() {
     <div className={styles.appLayout}>
       <PageNav />
       <div className={styles.app}>
-        <SearchBar />
-
         <div className={styles.container}>
           <div className={styles.left}>
+            <SearchBar />
             <HotelList />
           </div>
           <div className={styles.right}>

@@ -1,5 +1,6 @@
 .details {
   width: 100%;
+  min-height: 55%;
   flex: 1;
   justify-self: center;
   border: none;
