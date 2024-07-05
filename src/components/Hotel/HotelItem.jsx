@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./HotelItem.module.css";
-import { useHotels } from "./contexts/HotelsContext";
-import EmojiRenderer from "./FlagRenderer";
-import SpecificsEmojis from "./SpecificsEmojis";
+import { useHotels } from "../contexts/HotelsContext";
+import EmojiRenderer from "../FlagRenderer";
+import SpecificsEmojis from "../SpecificsEmojis";
 
 function HotelItem({ hotel }) {
   const { currentHotel } = useHotels();

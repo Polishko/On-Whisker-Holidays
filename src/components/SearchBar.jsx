@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useHotels } from "./contexts/HotelsContext";
 import styles from "./SearchBar.module.css";
-import Button from "./Button";
+import Button from "./Common/Button";
 
 function SearchBar() {
   const { filteredHotels, filterHotels } = useHotels();

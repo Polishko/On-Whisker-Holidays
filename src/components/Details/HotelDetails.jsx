@@ -1,7 +1,7 @@
-import styles from "./Details.module.css";
-import Message from "./Message";
+import styles from "./HotelDetails.module.css";
+import Message from "../Common/Message";
 
-function Details() {
+function HotelDetails() {
   return (
     <div className={styles.details}>
       <Message
@@ -12,4 +12,4 @@ function Details() {
   );
 }
 
-export default Details;
+export default HotelDetails;

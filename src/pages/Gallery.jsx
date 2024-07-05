@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import PropTypes from "prop-types";
 import styles from "./Gallery.module.css";
-import Button from "../components/Button.jsx";
+import Button from "../components/Common/Button.jsx";
 import PageNav from "../components/PageNav.jsx";
 
 const slides = [

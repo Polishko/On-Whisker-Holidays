@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Button from "../components/Button";
+import Button from "../components/Common/Button";
 
 import PageNav from "../components/PageNav";
 import styles from "./Homepage.module.css";

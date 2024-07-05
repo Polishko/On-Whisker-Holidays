@@ -1,7 +1,7 @@
 import styles from "./HotelList.module.css";
-import { useHotels } from "./contexts/HotelsContext";
-import Spinner from "./Spinner";
-import Message from "./Message";
+import { useHotels } from "../contexts/HotelsContext";
+import Spinner from "../Spinner";
+import Message from "../Common/Message";
 import HotelItem from "./HotelItem";
 
 function HotelList() {
