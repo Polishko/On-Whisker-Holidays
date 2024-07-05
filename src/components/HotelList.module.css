@@ -1,6 +1,6 @@
 .hotelList {
   height: 100%;
-
+  padding: 2em;
   list-style: none;
   overflow-y: scroll;
   overflow-x: hidden;

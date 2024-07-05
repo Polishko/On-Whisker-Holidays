@@ -13,10 +13,13 @@
   --color-light-2: #eef2ed;
   --color-light-3: #fff9f3;
   --color-light-4: #f0e6db;
+  --color-light-5: #dfe6e1;
   --color-brown-1: #4b3832;
   --color-brown-2: #4b4949;
   --color-brown-3: #2b3425;
   --color-brown-4: #d3b09e;
+  --color-active-1: #f0c674;
+  --color-active-2: #8faf75;
 }
 
 * {

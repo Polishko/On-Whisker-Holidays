@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./HotelItem.module.css";
 import { useHotels } from "./contexts/HotelsContext";
-import EmojiRenderer from "./EmojiRenderer";
+import EmojiRenderer from "./FlagRenderer";
 import SpecificsEmojis from "./SpecificsEmojis";
 
 function HotelItem({ hotel }) {
@@ -23,15 +23,22 @@ function HotelItem({ hotel }) {
           id === currentHotel.id ? styles["hotelItem--active"] : ""
         }`}
         to={`${id}?lat=${position.lat}&lng=${position.lng}`}
-      />
-      <h3 className={styles.name}>{hotelName}</h3>
-      <span>
-        {city}, {country}{" "}
-      </span>
-      <span className={styles.emoji}>
-        <EmojiRenderer emoji={emoji} />
-      </span>
-      <SpecificsEmojis specifics={type} />
+      >
+        <div className={styles.leftContainer}>
+          <h3 className={styles.name}>{hotelName}</h3>
+          <span className={styles.emoji}>
+            <EmojiRenderer emoji={emoji} />
+          </span>
+        </div>
+
+        <div className={styles.rightContainer}>
+          <span>
+            {city}, {country}
+          </span>
+
+          <SpecificsEmojis specifics={type} />
+        </div>
+      </Link>
     </li>
   );
 }

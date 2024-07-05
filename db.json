@@ -39,7 +39,7 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Hrabarsko",
-      "type": ["nature", "water"],
+      "type": ["nature", "seaside"],
       "position": {
         "lat": 42.817562946488636,
         "lng": 23.091720435881278
@@ -47,6 +47,66 @@
       "img": "./green-village.jpeg",
       "web": "https://hrabarsko-lake.com/",
       "detail": "Enjoy, fishing and camping near the lake. Cozy bungalovs, a restaurant and a pool awailable."
+    },
+    {
+      "id": "Hija Rila Lakes",
+      "hotelName": "Hija Rila Lakes",
+      "country": "Bulgaria",
+      "countryCode": "🇧🇬",
+      "city": "Borovets",
+      "type": ["nature", "mountain"],
+      "position": {
+        "lat": 42.219874962786704,
+        "lng": 23.32160101072616
+      },
+      "img": "./rilski-ezera.jpeg",
+      "web": "https://rilskiezera.bg/",
+      "detail": "Go on a hiking adventure with your animal friends and enjoy the amazing Rila lakes."
+    },
+    {
+      "id": "Sorrento Sole Mare",
+      "hotelName": "Sorrento Sole Mare",
+      "country": "Bulgaria",
+      "countryCode": "🇧🇬",
+      "city": "Burgas",
+      "type": ["seaside"],
+      "position": {
+        "lat": 42.76414192026019,
+        "lng": 27.742814370268487
+      },
+      "img": "./rilski-ezera.jpeg",
+      "web": "https://www.booking.com/Share-3Oxlf7t",
+      "detail": "A cozy studio room in the Sorrento Sole Mare complex near Sveti Vlas beach."
+    },
+    {
+      "id": "Datca Lake House Camping",
+      "hotelName": "Datca Lake House Camping",
+      "country": "Turkey",
+      "countryCode": "🇹🇷",
+      "city": "Datca",
+      "type": ["seaside"],
+      "position": {
+        "lat": 36.72005396963961,
+        "lng": 27.687009625838925
+      },
+      "img": "./datca-lake-house.jpeg",
+      "web": "https://maps.app.goo.gl/X5NDz6qRjVkZB6pcA",
+      "detail": "Camp with your best furry friend near this amazing beach with the bluest water in the world."
+    },
+    {
+      "id": "Hayit Buku Bungalovs",
+      "hotelName": "Hayit Buku Bungalovs",
+      "country": "Turkey",
+      "countryCode": "🇹🇷",
+      "city": "Datca",
+      "type": ["seaside", "nature"],
+      "position": {
+        "lat": 36.68589557246077,
+        "lng": 27.57105908351027
+      },
+      "img": "./hayit-buku-bungalovs.jpeg",
+      "web": "https://maps.app.goo.gl/aY78biaVZ5cFHofp7",
+      "detail": "An amazing complex of bungalow houses near the seaside. Enjoy meals prepared with self-grown produce and cool yoga and hiking events."
     }
   ]
 }
