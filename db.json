@@ -31,7 +31,18 @@
       },
       "img": "./sunnini.jpeg",
       "web": "https://susanini.wordpress.com/",
-      "detail": "A cozy little house in Saparyeva Banya, situated at the foot of the mountain. Your furry friends will enjoy the big garden."
+      "detail": "A cozy little house in Saparyeva Banya, situated at the foot of the mountain. Your furry friends will enjoy the big garden.",
+      "keywords": [
+        "sunanini",
+        "bulgaria",
+        "sapareva",
+        "saparyeva",
+        "mountain",
+        "nature",
+        "house",
+        "garden",
+        "barbeque"
+      ]
     },
     {
       "id": "Green Village Lake",
@@ -46,7 +57,17 @@
       },
       "img": "./green-village.jpeg",
       "web": "https://hrabarsko-lake.com/",
-      "detail": "Enjoy, fishing and camping near the lake. Cozy bungalovs, a restaurant and a pool awailable."
+      "detail": "Enjoy, fishing and camping near the lake. Cozy bungalovs, a restaurant and a pool awailable.",
+      "keywords": [
+        "green village",
+        "bulgaria",
+        "hrabarsko",
+        "lake",
+        "nature",
+        "bungalov",
+        "camping",
+        "pool"
+      ]
     },
     {
       "id": "Hija Rila Lakes",
@@ -61,7 +82,18 @@
       },
       "img": "./rilski-ezera.jpeg",
       "web": "https://rilskiezera.bg/",
-      "detail": "Go on a hiking adventure with your animal friends and enjoy the amazing Rila lakes."
+      "detail": "Go on a hiking adventure with your animal friends and enjoy the amazing Rila lakes.",
+      "keywords": [
+        "rila lakes",
+        "rila",
+        "lake",
+        "lakes",
+        "mountain",
+        "borovets",
+        "bulgaria",
+        "hiking",
+        "nature"
+      ]
     },
     {
       "id": "Sorrento Sole Mare",
@@ -76,7 +108,18 @@
       },
       "img": "./rilski-ezera.jpeg",
       "web": "https://www.booking.com/Share-3Oxlf7t",
-      "detail": "A cozy studio room in the Sorrento Sole Mare complex near Sveti Vlas beach."
+      "detail": "A cozy studio room in the Sorrento Sole Mare complex near Sveti Vlas beach.",
+      "keywords": [
+        "sorrento",
+        "burgas",
+        "sea",
+        "beach",
+        "studio",
+        "room",
+        "bulgaria",
+        "pool",
+        "city"
+      ]
     },
     {
       "id": "Datca Lake House Camping",
@@ -91,7 +134,8 @@
       },
       "img": "./datca-lake-house.jpeg",
       "web": "https://maps.app.goo.gl/X5NDz6qRjVkZB6pcA",
-      "detail": "Camp with your best furry friend near this amazing beach with the bluest water in the world."
+      "detail": "Camp with your best furry friend near this amazing beach with the bluest water in the world.",
+      "keywords": ["camping", "sea", "beach", "nature", "datca", "turkey"]
     },
     {
       "id": "Hayit Buku Bungalovs",
@@ -106,7 +150,34 @@
       },
       "img": "./hayit-buku-bungalovs.jpeg",
       "web": "https://maps.app.goo.gl/aY78biaVZ5cFHofp7",
-      "detail": "An amazing complex of bungalow houses near the seaside. Enjoy meals prepared with self-grown produce and cool yoga and hiking events."
+      "detail": "An amazing complex of bungalow houses near the seaside. Enjoy meals prepared with self-grown produce and cool yoga and hiking events.",
+      "keywords": [
+        "sea",
+        "beach",
+        "bungalov",
+        "nature",
+        "datca",
+        "turkey",
+        "hiking",
+        "yoga"
+      ]
+    },
+
+    {
+      "id": "Garni Hotel Zen",
+      "hotelName": "Garni Hotel Zen",
+      "country": "Serbia",
+      "countryCode": "🇷🇸",
+      "city": "Niš",
+      "type": ["city"],
+      "position": {
+        "lat": 43.33947206096271,
+        "lng": 21.92352216844934
+      },
+      "img": "./nis.jpeg",
+      "web": "https://hotelzen.rs/en/home-13/",
+      "detail": "Stay at the heart of Nis in this pet-friendly relaxed hotel.",
+      "keywords": ["city", "pool", "nis", "serbia", "room"]
     }
   ]
 }

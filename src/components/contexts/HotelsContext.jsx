@@ -19,6 +19,7 @@ const initialState = {
     img: "",
     web: "",
     detail: "",
+    keywords: [],
   },
   error: "",
 };

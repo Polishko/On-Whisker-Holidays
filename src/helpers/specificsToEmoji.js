@@ -3,6 +3,7 @@ export const specificsToEmoji = (specifics) => {
     mountain: "🌄",
     seaside: "🌊",
     nature: "🌳",
+    city: "🌆",
   };
 
   const convertedSpecifics = specifics.map(
