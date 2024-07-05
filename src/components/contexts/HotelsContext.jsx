@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useReducer } from "react";
 import { createContext } from "react";
+import { containsAllKeywords } from "../../helpers/keywordContainCheck.js";
 
 const HotelsContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -45,6 +46,14 @@ function reducer(state, action) {
         isLoading: false,
         hotels: state.hotels.filter((hotel) => hotel.id !== action.payload),
         currentHotel: {},
+      };
+    case "hotels/filtered":
+      return {
+        ...state,
+        isLoading: false,
+        hotels: state.hotels.filter((hotel) =>
+          containsAllKeywords(hotel.keywords, action.payload)
+        ),
       };
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
@@ -128,6 +137,10 @@ function HotelsProvider({ children }) {
     }
   }
 
+  function filterHotels(keywords) {
+    dispatch({ type: "hotels/filtered", payload: keywords });
+  }
+
   return (
     <HotelsContext.Provider
       value={{
@@ -138,6 +151,7 @@ function HotelsProvider({ children }) {
         getHotel,
         createHotel,
         deleteHotel,
+        filterHotels,
       }}
     >
       {children}
