@@ -8,7 +8,7 @@ import SearchBar from "../components/SearchBar";
 
 function AppLayout() {
   return (
-    <div>
+    <div className={styles.appLayout}>
       <PageNav />
       <div className={styles.app}>
         <SearchBar />
