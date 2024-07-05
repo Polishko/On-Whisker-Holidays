@@ -26,17 +26,16 @@ function HotelItem({ hotel }) {
       >
         <div className={styles.leftContainer}>
           <h3 className={styles.name}>{hotelName}</h3>
-          <span className={styles.emoji}>
-            <EmojiRenderer emoji={emoji} />
-          </span>
+          <SpecificsEmojis specifics={type} />
         </div>
 
         <div className={styles.rightContainer}>
           <span>
             {city}, {country}
           </span>
-
-          <SpecificsEmojis specifics={type} />
+          <span className={styles.emoji}>
+            <EmojiRenderer emoji={emoji} />
+          </span>
         </div>
       </Link>
     </li>
