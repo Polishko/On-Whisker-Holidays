@@ -9,6 +9,7 @@ const BASE_URL = "http://localhost:3000";
 
 const initialState = {
   hotels: [],
+  filteredHotels: [],
   isLoading: false,
   currentHotel: {
     hotelName: "",
@@ -30,7 +31,12 @@ function reducer(state, action) {
     case "loading":
       return { ...state, isLoading: true };
     case "hotels/loaded":
-      return { ...state, isLoading: false, hotels: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        hotels: action.payload,
+        filteredHotels: action.payload,
+      };
     case "hotel/loaded":
       return { ...state, isLoading: false, currentHotel: action.payload };
     case "hotel/created":
@@ -47,14 +53,17 @@ function reducer(state, action) {
         hotels: state.hotels.filter((hotel) => hotel.id !== action.payload),
         currentHotel: {},
       };
-    case "hotels/filtered":
+    case "hotels/filtered": {
+      const filteredHotels = state.hotels.filter((hotel) =>
+        containsAllKeywords(hotel.keywords, action.payload)
+      );
+      // console.log("Filtered Hotels:", filteredHotels);
       return {
         ...state,
         isLoading: false,
-        hotels: state.hotels.filter((hotel) =>
-          containsAllKeywords(hotel.keywords, action.payload)
-        ),
+        filteredHotels: filteredHotels,
       };
+    }
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
     default:
@@ -63,10 +72,8 @@ function reducer(state, action) {
 }
 
 function HotelsProvider({ children }) {
-  const [{ hotels, isLoading, currentHotel, error }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ hotels, filteredHotels, isLoading, currentHotel, error }, dispatch] =
+    useReducer(reducer, initialState);
 
   useEffect(function () {
     async function fetchHotels() {
@@ -145,6 +152,7 @@ function HotelsProvider({ children }) {
     <HotelsContext.Provider
       value={{
         hotels,
+        filteredHotels,
         isLoading,
         currentHotel,
         error,

@@ -5,7 +5,7 @@ import Message from "./Message";
 import HotelItem from "./HotelItem";
 
 function HotelList() {
-  const { hotels, isLoading } = useHotels();
+  const { hotels, filteredHotels, isLoading } = useHotels();
 
   if (isLoading) return <Spinner />;
 
@@ -19,7 +19,7 @@ function HotelList() {
 
   return (
     <ul className={styles.hotelList}>
-      {hotels.map((hotel) => (
+      {filteredHotels.map((hotel) => (
         <HotelItem hotel={hotel} key={hotel.id} />
       ))}
     </ul>

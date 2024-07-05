@@ -1,8 +1,16 @@
-export const containsAllKeywords = (keywordList, keywordString) => {
+export function containsAllKeywords(keywordList, keywordString) {
   const keywordSet = new Set(
     keywordList.map((keyword) => keyword.toLowerCase())
   );
   const keywords = keywordString.toLowerCase().split(" ");
 
-  return keywords.every((keyword) => keywordSet.has(keyword));
-};
+  // console.log("Keyword Set:", keywordSet);
+  // console.log("Keywords to check:", keywords);
+
+  const result = keywords.every((keyword) =>
+    [...keywordSet].some((setKeyword) => setKeyword.includes(keyword))
+  );
+  // console.log("Filtering result:", result);
+
+  return result;
+}
