@@ -1,5 +1,5 @@
 .appLayout {
-  padding: 2.5rem 3rem;
+  padding: 0rem 3rem;
 }
 
 .app {
@@ -13,7 +13,7 @@
 }
 
 .container {
-  height: calc(100vh - 30rem);
+  height: calc(100vh - 35rem);
   display: flex;
   flex: 1;
   gap: 2em;
