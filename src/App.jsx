@@ -12,9 +12,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Homepage />}></Route>
-          <Route path="/gallery" element={<Gallery />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Login />}></Route>
           <Route path="/app" element={<AppLayout />}></Route>
+          <Route path="/profile" element={<Login />}></Route>
+          <Route path="/gallery" element={<Gallery />}></Route>
+          <Route path="/contact" element={<Gallery />}></Route>
         </Routes>
       </BrowserRouter>
     </HotelsProvider>
