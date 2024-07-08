@@ -83,7 +83,14 @@ function HotelsProvider({ children }) {
       try {
         const res = await fetch(`${BASE_URL}/hotels`);
         const data = await res.json();
-        dispatch({ type: "hotels/loaded", payload: data });
+
+        const sortedData = data.sort((a, b) => {
+          if (a.country < b.country) return -1;
+          if (a.country > b.country) return 1;
+          return 0;
+        });
+
+        dispatch({ type: "hotels/loaded", payload: sortedData });
       } catch {
         dispatch({
           type: "rejected",
