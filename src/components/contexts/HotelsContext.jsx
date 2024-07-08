@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useReducer } from "react";
 import { createContext } from "react";
+import { useLocation } from "react-router-dom";
+
 import { containsAllKeywords } from "../../helpers/keywordContainCheck.js";
 
 const HotelsContext = createContext();
@@ -40,13 +42,7 @@ function reducer(state, action) {
       };
     case "hotel/loaded":
       return { ...state, isLoading: false, currentHotel: action.payload };
-    case "hotel/created":
-      return {
-        ...state,
-        isLoading: false,
-        hotels: [...state.hotels, action.payload],
-        currentHotel: action.payload,
-      }; //added hotel made the active hotel
+
     case "hotel/deleted":
       return {
         ...state,
@@ -58,13 +54,15 @@ function reducer(state, action) {
       const filteredHotels = state.hotels.filter((hotel) =>
         containsAllKeywords(hotel.keywords, action.payload)
       );
-      // console.log("Filtered Hotels:", filteredHotels);
+
       return {
         ...state,
         isLoading: false,
         filteredHotels: filteredHotels,
       };
     }
+    case "hotel/reset":
+      return { ...state, currentHotel: initialState.currentHotel };
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
     default:
@@ -75,6 +73,8 @@ function reducer(state, action) {
 function HotelsProvider({ children }) {
   const [{ hotels, filteredHotels, isLoading, currentHotel, error }, dispatch] =
     useReducer(reducer, initialState);
+
+  const location = useLocation();
 
   useEffect(function () {
     async function fetchHotels() {
@@ -94,6 +94,12 @@ function HotelsProvider({ children }) {
     fetchHotels();
   }, []);
 
+  useEffect(() => {
+    if (!location.pathname.startsWith("/app/hotels/")) {
+      dispatch({ type: "hotel/reset" });
+    }
+  }, [location.pathname]);
+
   async function getHotel(id) {
     if (id === currentHotel.id) return;
     dispatch({ type: "loading" });
@@ -106,25 +112,6 @@ function HotelsProvider({ children }) {
       dispatch({
         type: "rejected",
         payload: "There was error loading the hotel.",
-      });
-    }
-  }
-
-  async function createHotel(newHotel) {
-    dispatch({ type: "loading" });
-
-    try {
-      const res = await fetch(`${BASE_URL}/hotels`, {
-        method: "POST",
-        body: JSON.stringify(newHotel),
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await res.json();
-      dispatch({ type: "hotel/created", payload: data });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was error creating the hotel.",
       });
     }
   }
@@ -158,7 +145,7 @@ function HotelsProvider({ children }) {
         currentHotel,
         error,
         getHotel,
-        createHotel,
+        // createHotel,
         deleteHotel,
         filterHotels,
       }}

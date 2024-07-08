@@ -5,42 +5,42 @@ const BASE_URL = "http://localhost:3000";
 
 const initialState = {
   users: [],
-  isLoading: false,
-  currentUser: { email: "", password: "", awatar: "", id: "" },
+  isLoadingUsers: false,
+  currentUser: { email: "", password: "", avatar: "", id: "", name: "" },
   error: "",
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
-      return { ...state, isLoading: true };
+      return { ...state, isLoadingUsers: true };
     case "users/loaded":
-      return { ...state, isLoading: false, users: action.payload };
+      return { ...state, isLoadingUsers: false, users: action.payload };
     case "user/loaded":
-      return { ...state, isLoading: false, currentUser: action.payload };
+      return { ...state, isLoadingUsers: false, currentUser: action.payload };
     case "user/created":
       return {
         ...state,
-        isLoading: false,
+        isLoadingUsers: false,
         users: [...state.users, action.payload],
         currentUser: action.payload,
-      }; //added user made the active hotel
+      }; //added user made the active user
     case "user/deleted":
       return {
         ...state,
-        isLoading: false,
+        isLoadingUsers: false,
         users: state.users.filter((user) => user.id !== action.payload),
         currentUser: {},
       };
     case "rejected":
-      return { ...state, isLoading: false, error: action.payload };
+      return { ...state, isLoadingUsers: false, error: action.payload };
     default:
       throw new Error("Unknown action");
   }
 }
 
 function UsersProvider({ children }) {
-  const [{ users, isLoading, currentUser, error }, dispatch] = useReducer(
+  const [{ users, isLoadingUsers, currentUser, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -52,7 +52,9 @@ function UsersProvider({ children }) {
       try {
         const res = await fetch(`${BASE_URL}/users`);
         const data = await res.json();
+        console.log("Fetched users:", data);
         dispatch({ type: "users/loaded", payload: data });
+        // console.log(users);
       } catch {
         dispatch({
           type: "rejected",
@@ -98,32 +100,32 @@ function UsersProvider({ children }) {
     }
   }
 
-  async function deleteUser(id) {
-    dispatch({ type: "loading" });
+  // async function deleteUser(id) {
+  //   dispatch({ type: "loading" });
 
-    try {
-      await fetch(`${BASE_URL}/users/${id}`, {
-        method: "DELETE",
-      });
-      dispatch({ type: "user/deleted", payload: id });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was error deleting the user.",
-      });
-    }
-  }
+  //   try {
+  //     await fetch(`${BASE_URL}/users/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     dispatch({ type: "user/deleted", payload: id });
+  //   } catch {
+  //     dispatch({
+  //       type: "rejected",
+  //       payload: "There was error deleting the user.",
+  //     });
+  //   }
+  // }
 
   return (
     <UsersContext.Provider
       value={{
         users,
-        isLoading,
+        isLoadingUsers,
         currentUser,
         error,
         getUser,
         createUser,
-        deleteUser,
+        // deleteUser,
       }}
     >
       {children}

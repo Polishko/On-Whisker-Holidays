@@ -19,12 +19,14 @@
     {
       "id": 1,
       "userId": 3,
+      "hotelId": "Sunanini House",
       "text": "This is a comment",
       "timestamp": "2022-01-01T00:00:00Z"
     },
     {
       "id": 2,
       "userId": 4,
+      "hotelId": "Sunanini House",
       "text": "This is another comment",
       "timestamp": "2022-01-02T00:00:00Z"
     }

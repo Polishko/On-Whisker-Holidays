@@ -1,11 +1,11 @@
+import styles from "./Hotel.module.css";
 import { useParams } from "react-router-dom";
 import { useHotels } from "../contexts/HotelsContext";
-import styles from "./Hotel.module.css";
 import { useEffect } from "react";
 import Spinner from "../Common/Spinner";
-import Message from "../Common/Message";
 import EmojiRenderer from "../FlagRenderer";
 import Facilities from "../Common/Facilities";
+import Message from "../Common/Message";
 
 function Hotel() {
   const { id } = useParams();
@@ -15,7 +15,7 @@ function Hotel() {
     function () {
       if (id) getHotel(id);
     },
-    [id]
+    [id, getHotel]
   );
 
   const {
@@ -27,15 +27,17 @@ function Hotel() {
     countryCode: emoji,
   } = currentHotel;
 
-  if (!id)
-    return (
-      <Message
-        message={"Click to a hotel to find out more!"}
-        background={"light"}
-      />
-    );
-
   if (isLoading) return <Spinner />;
+
+  if (currentHotel.hotelName === "")
+    return (
+      <div className={styles.details}>
+        <Message
+          message={"Click to a hotel to find out more!"}
+          background={"light"}
+        />
+      </div>
+    );
 
   return (
     <div className={styles.hotelCard}>

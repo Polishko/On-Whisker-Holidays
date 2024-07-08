@@ -6,30 +6,36 @@ import Gallery from "./pages/Gallery";
 import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
 import HotelList from "./components/hotel/HotelList";
-import Hotel from "./components/hotel/Hotel"; // Changed: Renamed HotelDetail to HotelDetails
+import Hotel from "./components/hotel/Hotel";
 import PageNotFound from "./pages/PageNotFound";
+import { UsersProvider } from "./components/contexts/UsersContext";
+import { CommentsProvider } from "./components/contexts/CommentsContext";
 
 function App() {
   return (
-    <HotelsProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Homepage />} />
+    <BrowserRouter>
+      <UsersProvider>
+        <CommentsProvider>
+          <HotelsProvider>
+            <Routes>
+              <Route index element={<Homepage />} />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Login />} />
-          <Route path="/app" element={<AppLayout />}>
-            <Route index element={<Navigate replace to="hotels" />} />
-            <Route path="hotels" element={<HotelList />} />
-            <Route path="hotels/:id" element={<Hotel />} />
-          </Route>
-          <Route path="/profile" element={<Login />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<Gallery />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </HotelsProvider>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Login />} />
+              <Route path="/app" element={<AppLayout />}>
+                <Route index element={<Navigate replace to="hotels" />} />
+                <Route path="hotels" element={<HotelList />} />
+                <Route path="hotels/:id" element={<Hotel />} />
+              </Route>
+              <Route path="/profile" element={<Login />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/contact" element={<Gallery />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </HotelsProvider>
+        </CommentsProvider>
+      </UsersProvider>
+    </BrowserRouter>
   );
 }
 
