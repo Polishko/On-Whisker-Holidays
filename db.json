@@ -1,21 +1,27 @@
 {
   "users": [
     {
-      "id": 1,
-      "email": "user1@example.com",
-      "password": "password1",
-      "role": "admin"
+      "email": "test@example.com",
+      "password": "$2a$10$UqiQadpJNrgp6Ok8VgfPbu18I5fJg9vYYv2eODLeQJBJsWSoJuwoe",
+      "id": 3
     },
     {
-      "id": 2,
-      "email": "user2@example.com",
-      "password": "password2",
-      "role": "user"
+      "email": "test2@example.com",
+      "password": "$2a$10$x.Bc9iFcOMxabzFvViKNg.GtRQMe1T0B8BeoSi3BKqKG5Aq0kgr6e",
+      "id": 4
     }
   ],
   "posts": [
-    { "id": 1, "title": "Post 1", "author": "user1" },
-    { "id": 2, "title": "Post 2", "author": "user2" }
+    {
+      "id": 1,
+      "title": "Post 1",
+      "author": "user1"
+    },
+    {
+      "id": 2,
+      "title": "Post 2",
+      "author": "user2"
+    }
   ],
   "hotels": [
     {
@@ -29,7 +35,7 @@
         "lat": 42.285136416470166,
         "lng": 23.24898059723802
       },
-      "img": "./sunnini.jpeg",
+      "img": "sunanini-main.jpg",
       "web": "https://susanini.wordpress.com/",
       "detail": "A cozy little house in Saparyeva Banya, situated at the foot of the mountain. Your furry friends will enjoy the big garden.",
       "keywords": [
@@ -41,8 +47,12 @@
         "nature",
         "house",
         "garden",
-        "barbeque"
-      ]
+        "barbeque",
+        "wifi",
+        "parking",
+        "airconditioner"
+      ],
+      "facilities": ["wifi", "parking", "airconditioner"]
     },
     {
       "id": "Green Village Lake",
@@ -55,7 +65,7 @@
         "lat": 42.817562946488636,
         "lng": 23.091720435881278
       },
-      "img": "./green-village.jpeg",
+      "img": "./green-village-main.jpg",
       "web": "https://hrabarsko-lake.com/",
       "detail": "Enjoy, fishing and camping near the lake. Cozy bungalovs, a restaurant and a pool awailable.",
       "keywords": [
@@ -66,8 +76,12 @@
         "nature",
         "bungalov",
         "camping",
-        "pool"
-      ]
+        "pool",
+        "wifi",
+        "parking",
+        "airconditioner"
+      ],
+      "facilities": ["wifi", "parking", "airconditioner", "pool"]
     },
     {
       "id": "Hija Rila Lakes",
@@ -92,8 +106,10 @@
         "borovets",
         "bulgaria",
         "hiking",
-        "nature"
-      ]
+        "nature",
+        "wifi"
+      ],
+      "facilities": ["wifi"]
     },
     {
       "id": "Sorrento Sole Mare",
@@ -118,8 +134,12 @@
         "room",
         "bulgaria",
         "pool",
-        "city"
-      ]
+        "city",
+        "wifi",
+        "parking",
+        "airconditioner"
+      ],
+      "facilities": ["wifi", "parking", "airconditioner", "pool"]
     },
     {
       "id": "Datca Lake House Camping",
@@ -135,7 +155,8 @@
       "img": "./datca-lake-house.jpeg",
       "web": "https://maps.app.goo.gl/X5NDz6qRjVkZB6pcA",
       "detail": "Camp with your best furry friend near this amazing beach with the bluest water in the world.",
-      "keywords": ["camping", "sea", "beach", "nature", "datca", "turkey"]
+      "keywords": ["camping", "sea", "beach", "nature", "datca", "turkey"],
+      "facilities": []
     },
     {
       "id": "Hayit Buku Bungalovs",
@@ -159,10 +180,12 @@
         "datca",
         "turkey",
         "hiking",
-        "yoga"
-      ]
+        "yoga",
+        "wifi",
+        "airconditioner"
+      ],
+      "facilities": ["wifi", "airconditioner"]
     },
-
     {
       "id": "Garni Hotel Zen",
       "hotelName": "Garni Hotel Zen",
@@ -177,7 +200,70 @@
       "img": "./nis.jpeg",
       "web": "https://hotelzen.rs/en/home-13/",
       "detail": "Stay at the heart of Nis in this pet-friendly relaxed hotel.",
-      "keywords": ["city", "pool", "nis", "serbia", "room"]
+      "keywords": [
+        "city",
+        "pool",
+        "nis",
+        "serbia",
+        "room",
+        "wifi",
+        "airconditioner",
+        "parking"
+      ],
+      "facilities": ["wifi", "airconditioner", "pool", "parking"]
+    },
+    {
+      "id": "Amalia Center Rooms",
+      "hotelName": "Amalia Center Rooms",
+      "country": "Greece",
+      "countryCode": "🇬🇷",
+      "city": "Nea Vrasna",
+      "type": ["seaside"],
+      "position": {
+        "lat": 40.71174651744706,
+        "lng": 23.70179528233691
+      },
+      "img": "./amalia-center-rooms.jpeg",
+      "web": "https://center.amaliasrooms.gr",
+      "detail": "Pamper yourself and your furry friend in this seaside hotel with breathtaking views.",
+      "keywords": [
+        "seaside",
+        "sea",
+        "nea vrasna",
+        "greece",
+        "room",
+        "wifi",
+        "airconditioner",
+        "parking"
+      ],
+      "facilities": ["wifi", "airconditioner", "parking"]
+    },
+    {
+      "id": "The Wooden Village",
+      "hotelName": "The Wooden Village",
+      "country": "Greece",
+      "countryCode": "🇬🇷",
+      "city": "Agkistro",
+      "type": ["nature", "mountain"],
+      "position": {
+        "lat": 41.36992542114511,
+        "lng": 23.433435427887517
+      },
+      "img": "./wooden-village.jpeg",
+      "web": "https://maps.app.goo.gl/wSoRtvXDkQNRN3b4A",
+      "detail": "Situated near the border of Bulgaria and Greece, this boutique hotel is perfect to have a little road rest at the mountain.",
+      "keywords": [
+        "mountain",
+        "nature",
+        "greece",
+        "border",
+        "bungalow",
+        "wifi",
+        "airconditioner",
+        "parking",
+        "pool"
+      ],
+      "facilities": ["wifi", "airconditioner", "parking", "pool"]
     }
   ]
 }

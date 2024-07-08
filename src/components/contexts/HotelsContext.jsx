@@ -22,6 +22,7 @@ const initialState = {
     web: "",
     detail: "",
     keywords: [],
+    facilities: [],
   },
   error: "",
 };

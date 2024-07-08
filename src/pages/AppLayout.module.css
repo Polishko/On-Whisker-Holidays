@@ -39,14 +39,14 @@
 .left {
   display: flex;
   background-color: var(--color-light-4);
-  flex-basis: 40%;
+  flex-basis: 35%;
 }
 
 .right {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   gap: 1em;
+  flex-basis: 65%;
 }
 
 .right > * {

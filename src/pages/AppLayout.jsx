@@ -5,7 +5,7 @@ import Map from "../components/map/Map";
 import User from "../components/User";
 import PageNav from "../components/PageNav";
 import SearchBar from "../components/SearchBar";
-import HotelDetails from "../components/details/HotelDetails";
+import Details from "../components/details/Details";
 
 function AppLayout() {
   return (
@@ -18,7 +18,7 @@ function AppLayout() {
             <HotelList />
           </div>
           <div className={styles.right}>
-            <HotelDetails />
+            <Details />
             <Map />
           </div>
         </div>

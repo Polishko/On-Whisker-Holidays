@@ -1,9 +1,9 @@
-import styles from "./HotelDetails.module.css";
+import styles from "./Details.module.css";
 
 import Hotel from "../hotel/Hotel";
 import CommentsList from "./CommentsList";
 
-function HotelDetails() {
+function Details() {
   return (
     <div className={styles.details}>
       <Hotel />
@@ -12,4 +12,4 @@ function HotelDetails() {
   );
 }
 
-export default HotelDetails;
+export default Details;

@@ -5,11 +5,20 @@
   flex: 1;
   justify-self: center;
   border: none;
-  padding: 1.1rem 1.6rem;
+  border-radius: 0.7rem;
   font-size: 1.8rem;
   transition: all 0.3s;
 }
 
 .details > * {
+  background-color: #f0e6db;
   flex-basis: 50%;
+}
+
+.details > *:nth-child(1) {
+  margin: 1em;
+}
+
+.details > *:nth-child(2) {
+  margin: 1em 1em 1em 0;
 }
