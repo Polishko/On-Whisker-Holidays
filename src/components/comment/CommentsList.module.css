@@ -1,9 +1,32 @@
 .commentList {
   background-color: var(--color-light-3);
   border-radius: 1em;
+  overflow: hidden;
+  height: 90%;
 }
 
 .commentsInner {
+  height: calc(100% - 2em);
   padding: 1em;
   margin: 1em;
+  list-style: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.commentsInner::-webkit-scrollbar {
+  width: 1em;
+}
+
+.commentsInner::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 6px;
+}
+
+.commentsInner::-webkit-scrollbar-track {
+  background: lightgrey;
+  /* padding: 0.5em 0; */
 }

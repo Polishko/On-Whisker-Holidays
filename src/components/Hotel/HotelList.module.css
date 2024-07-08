@@ -2,12 +2,12 @@
   height: 100%;
   padding: 2em;
   list-style: none;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
-
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+  height: calc(100% - 2em);
 }
 
 .hotelList::-webkit-scrollbar {

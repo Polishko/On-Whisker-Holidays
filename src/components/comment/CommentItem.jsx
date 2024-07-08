@@ -1,11 +1,15 @@
 import styles from "./CommentItem.module.css";
 
 function CommentItem({ comment, user }) {
-  console.log(user.name);
+  const time = new Date(comment.timestamp);
   return (
     <div className={styles.commentItem}>
-      <p>{user.name}</p>
-      <p>{comment.text}</p>
+      <p className={styles.user}>{user.name}</p>
+      <p className={styles.text}>{comment.text}</p>
+      <p className={styles.time}>{time.toLocaleDateString()}</p>
+      <p className={styles.trash}>
+        <i className="fa-solid fa-trash-can"></i>
+      </p>
     </div>
   );
 }
