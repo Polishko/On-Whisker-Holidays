@@ -43,7 +43,7 @@ function Hotel() {
     <div className={styles.hotelCard}>
       <section className={styles.left}>
         <div className={styles.imageContainer}>
-          <img src={`../../sunanini/${img}`} alt="Hotel" />
+          <img src={`../../${img}`} alt="hotel" />
         </div>
         <div className={styles.aveRating}>ave rating</div>
         <div className={styles.rate}>rate</div>

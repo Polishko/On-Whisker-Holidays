@@ -39,9 +39,11 @@
 }
 
 .imageContainer {
+  min-width: 150px;
   position: relative;
   padding-top: 56.25%;
-  flex-basis: 70%;
+  min-height: 70%;
+  /* flex-basis: 70%; */
   margin-top: 0.5em;
 }
 
