@@ -3,12 +3,30 @@
     {
       "email": "test@example.com",
       "password": "$2a$10$UqiQadpJNrgp6Ok8VgfPbu18I5fJg9vYYv2eODLeQJBJsWSoJuwoe",
+      "avatar": "https://example.com/avatar1.png",
+      "name": "user1",
       "id": 3
     },
     {
       "email": "test2@example.com",
       "password": "$2a$10$x.Bc9iFcOMxabzFvViKNg.GtRQMe1T0B8BeoSi3BKqKG5Aq0kgr6e",
+      "avatar": "https://example.com/avatar2.png",
+      "name": "user2",
       "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "userId": 3,
+      "text": "This is a comment",
+      "timestamp": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 4,
+      "text": "This is another comment",
+      "timestamp": "2022-01-02T00:00:00Z"
     }
   ],
   "posts": [
@@ -67,7 +85,7 @@
       },
       "img": "./green-village-main.jpg",
       "web": "https://hrabarsko-lake.com/",
-      "detail": "Enjoy, fishing and camping near the lake. Cozy bungalovs, a restaurant and a pool awailable.",
+      "detail": "Enjoy, fishing and camping near this lake-side facility, only 30km away from Sofia. Cozy bungalovs, a restaurant and a pool awailable.",
       "keywords": [
         "green village",
         "bulgaria",
