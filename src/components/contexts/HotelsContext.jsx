@@ -108,11 +108,15 @@ function HotelsProvider({ children }) {
   }, [location.pathname]);
 
   async function getHotel(id) {
+    const controller = new AbortController();
+
     if (id === currentHotel.id) return;
     dispatch({ type: "loading" });
 
     try {
-      const res = await fetch(`${BASE_URL}/hotels/${id}`);
+      const res = await fetch(`${BASE_URL}/hotels/${id}`, {
+        signal: controller.signal,
+      });
       const data = await res.json();
       dispatch({ type: "hotel/loaded", payload: data });
     } catch {
@@ -120,6 +124,8 @@ function HotelsProvider({ children }) {
         type: "rejected",
         payload: "There was error loading the hotel.",
       });
+    } finally {
+      controller.abort();
     }
   }
 
