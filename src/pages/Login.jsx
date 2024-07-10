@@ -4,11 +4,18 @@ import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
 
 function Login() {
+  function handleLogin(e) {
+    e.preventDefault();
+  }
+
   return (
     <main className={styles.login}>
       <PageNav />
 
-      <form className={`${styles.form} ${styles["login-form"]}`}>
+      <form
+        className={`${styles.form} ${styles["login-form"]}`}
+        onSubmit={handleLogin}
+      >
         <div className={styles["login-header"]}>
           <span>Have an account?</span>
           <header>Login</header>
@@ -38,7 +45,7 @@ function Login() {
             </label>
           </div> */}
         </div>
-        <Button type={"primary"} className={styles["button-style"]}>
+        <Button type={"submit"} className={styles["button-style"]}>
           Login
         </Button>
         <div className={styles["register-invite"]}>
