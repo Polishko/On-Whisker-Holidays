@@ -100,22 +100,6 @@ function UsersProvider({ children }) {
     }
   }
 
-  // async function deleteUser(id) {
-  //   dispatch({ type: "loading" });
-
-  //   try {
-  //     await fetch(`${BASE_URL}/users/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     dispatch({ type: "user/deleted", payload: id });
-  //   } catch {
-  //     dispatch({
-  //       type: "rejected",
-  //       payload: "There was error deleting the user.",
-  //     });
-  //   }
-  // }
-
   return (
     <UsersContext.Provider
       value={{
@@ -125,7 +109,6 @@ function UsersProvider({ children }) {
         error,
         getUser,
         createUser,
-        // deleteUser,
       }}
     >
       {children}

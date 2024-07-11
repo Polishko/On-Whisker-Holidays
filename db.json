@@ -27,6 +27,20 @@
       "name": "user4",
       "avatar": "../public/avatar/dog1.png",
       "id": 6
+    },
+    {
+      "email": "user5@user5.com",
+      "password": "$2a$10$/Nl9rmOINTDFA2iH/cj9..sgAtS1kjuT7W5KAkvPwiC7pTb8BhWIS",
+      "name": "user5",
+      "avatar": "/avatar/dog3.png",
+      "id": 7
+    },
+    {
+      "email": "user7@user7.com",
+      "password": "$2a$10$sAbCMwuUhTMdF6YXbFiuaOLkrwvH3/xCZP8iF4K2RvbPMPU5IAVoW",
+      "name": "user7",
+      "avatar": "/avatar/cat3.png",
+      "id": 8
     }
   ],
   "comments": [

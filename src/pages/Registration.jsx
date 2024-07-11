@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
 import { useUsers } from "../components/contexts/UsersContext";
 import AvatarSelection from "../components/Common/AvatarSelection";
 import styles from "./Registration.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useKey } from "../hooks/useKey";
 
 function Registration() {
   const avatars = [
@@ -24,17 +25,32 @@ function Registration() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser } = useUsers();
+  const { createUser, error } = useUsers();
+
+  useEffect(
+    function () {
+      if (error) {
+        alert(error);
+      } else {
+        alert("User registered successfully");
+      }
+    },
+    [error]
+  );
 
   async function handleRegister(e) {
     e.preventDefault();
-    await createUser({
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-      avatar: `/avatar/${formData.selectedAvatar}.png`,
-    });
-    alert("User registered successfully");
+    try {
+      await createUser({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        avatar: `/avatar/${formData.selectedAvatar}.png`,
+      });
+      alert("User registered successfully");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleChange(e) {
@@ -53,6 +69,15 @@ function Registration() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   }
 
+  const submitForm = () => {
+    document
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+  };
+
+  // Use the useKey hook to call submitForm when Enter is pressed
+  useKey("Enter", submitForm);
+
   return (
     <main className={styles.registration}>
       <PageNav />
@@ -61,14 +86,13 @@ function Registration() {
         <header>Register here</header>
 
         <div className={styles.row}>
-          <label htmlFor="name" name="name">
-            Enter username
-          </label>
+          <label htmlFor="name">Enter username</label>
           <div className={styles.inputContainer}>
             <i className={`bx bx-user ${styles.icon}`}></i>
             <input
               type="text"
               id="name"
+              name="name"
               placeholder="Username"
               value={formData.name}
               onChange={handleChange}
@@ -77,14 +101,13 @@ function Registration() {
         </div>
 
         <div className={styles.row}>
-          <label htmlFor="email" name="email">
-            Enter your email
-          </label>
+          <label htmlFor="email">Enter your email</label>
           <div className={styles.inputContainer}>
             <i className={`bx bx-envelope ${styles.icon}`}></i>
             <input
               type="email"
               id="email"
+              name="email"
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
@@ -93,14 +116,13 @@ function Registration() {
         </div>
 
         <div className={styles.row}>
-          <label htmlFor="password" name="password">
-            Enter a strong password
-          </label>
+          <label htmlFor="password">Enter a strong password</label>
           <div className={styles.inputContainer}>
             <i className={`bx bx-lock ${styles.icon}`}></i>
             <input
               type="password"
               id="password"
+              name="password"
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
