@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
-import styles from "./Registration.module.css";
 import { useUsers } from "../components/contexts/UsersContext";
 import AvatarSelection from "../components/Common/AvatarSelection";
+import styles from "./Registration.module.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Registration() {
   const avatars = [
@@ -19,6 +20,7 @@ function Registration() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState("cat1");
+  const [showPassword, setShowPassword] = useState(false);
   const { createUser } = useUsers();
 
   async function handleRegister(e) {
@@ -34,6 +36,10 @@ function Registration() {
 
   function handleAvatarChange(e) {
     setSelectedAvatar(e.target.value);
+  }
+
+  function toggleShowPassword() {
+    setShowPassword(!showPassword);
   }
 
   return (
@@ -88,6 +94,9 @@ function Registration() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <span onClick={toggleShowPassword} className={styles.eyeIcon}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
         </div>
 
@@ -95,7 +104,7 @@ function Registration() {
 
         <div className={styles.bottom}>
           <div className={styles.left}>
-            <p>Choose avatar</p>
+            <p>Choose an avatar</p>
             <AvatarSelection
               avatars={avatars}
               selectedAvatar={selectedAvatar}

@@ -35,7 +35,7 @@
 
   /* Different from other form */
   width: 48rem;
-  margin: 10rem auto;
+  margin: 5rem auto;
 }
 
 .form header {
@@ -125,4 +125,10 @@
 .left {
   display: flex;
   flex-direction: column;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
 }
