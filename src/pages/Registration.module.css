@@ -2,15 +2,9 @@
   margin: 2.5rem;
   padding: 2rem 5rem;
   min-height: calc(100vh - 5rem);
-  /* background: linear-gradient(
-      180deg,
-      rgba(1238, 231, 215, 0.2) 0%,
-      rgba(90, 99, 36, 0.4) 68%,
-      rgba(178, 151, 108, 0.5) 100%
-    ), */
   background: linear-gradient(
       175deg,
-      rgba(102, 151, 210, 0.4) 0%,
+      rgba(192, 212, 237, 0.4) 0%,
       rgba(28, 35, 35, 0.4) 82%,
       rgba(225, 221, 210, 0.4) 100%,
       rgba(229, 225, 214, 0.4) 100%
@@ -20,7 +14,7 @@
   background-position: center;
 }
 
-.registration-header {
+.header {
   display: flex;
   flex-direction: column;
   font-size: 3rem;
@@ -37,47 +31,44 @@
   gap: 2rem;
   flex-basis: 30%;
   background: rgba(49, 55, 20, 0.6);
+  color: var(--color-light-2);
 
   /* Different from other form */
   width: 48rem;
   margin: 10rem auto;
 }
 
-.row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.form header {
+  font-size: 2.5em;
+  text-align: center;
 }
 
-.registration-form {
-  color: var(--color-light-2);
-}
-
-.registration-form header {
-  font-size: 1.5em;
-}
-
-.registration-form span {
+.form span {
   font-size: 0.7em;
   margin-bottom: 1em;
 }
 
-.registration-form input {
+.form input {
   background-color: rgba(1238, 231, 215, 0.4);
   border: none;
   outline: none;
   border-radius: 1em;
 }
 
-.registration-form input::placeholder {
+.form input::placeholder {
   color: var(--color-light-3);
   font-size: 1em;
   font-weight: 150;
 }
 
-.registration-form label a {
+.form label a {
   color: #fff;
   text-decoration: none;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .inputContainer {
@@ -125,11 +116,13 @@
   font-size: 1.5em;
 }
 
-.left {
-  display: flex;
+.bottom p {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  text-align: center;
 }
 
-.checkbox {
-  cursor: pointer;
-  margin-right: 1em;
+.left {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,0 +1,16 @@
+.avatarList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.avatarList label {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.avatarList img {
+  width: 70%;
+}
