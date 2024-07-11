@@ -16,30 +16,41 @@ function Registration() {
     { id: "dog3", src: "/avatar/dog3.png" },
   ];
 
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [selectedAvatar, setSelectedAvatar] = useState("cat1");
+  const [formData, setFormData] = useState({
+    email: "",
+    name: "",
+    password: "",
+    selectedAvatar: "cat1",
+  });
+
   const [showPassword, setShowPassword] = useState(false);
   const { createUser } = useUsers();
 
   async function handleRegister(e) {
     e.preventDefault();
     await createUser({
-      name,
-      email,
-      password,
-      avatar: `../public/avatar/${selectedAvatar}.png`,
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      avatar: `/avatar/${formData.selectedAvatar}.png`,
     });
     alert("User registered successfully");
   }
 
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((oldFormData) => ({ ...oldFormData, [name]: value }));
+  }
+
   function handleAvatarChange(e) {
-    setSelectedAvatar(e.target.value);
+    setFormData((oldFormData) => ({
+      ...oldFormData,
+      selectedAvatar: e.target.value,
+    }));
   }
 
   function toggleShowPassword() {
-    setShowPassword(!showPassword);
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   }
 
   return (
@@ -59,8 +70,8 @@ function Registration() {
               type="text"
               id="name"
               placeholder="Username"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formData.name}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -75,8 +86,8 @@ function Registration() {
               type="email"
               id="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -91,8 +102,8 @@ function Registration() {
               type="password"
               id="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
             />
             <span onClick={toggleShowPassword} className={styles.eyeIcon}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -107,7 +118,7 @@ function Registration() {
             <p>Choose an avatar</p>
             <AvatarSelection
               avatars={avatars}
-              selectedAvatar={selectedAvatar}
+              selectedAvatar={formData.selectedAvatar}
               handleAvatarChange={handleAvatarChange}
             />
           </div>
