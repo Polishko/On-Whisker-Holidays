@@ -2,12 +2,20 @@
   margin: 2.5rem;
   padding: 2rem 5rem;
   min-height: calc(100vh - 5rem);
-  background: linear-gradient(
+  /* background: linear-gradient(
       180deg,
-      rgba(190, 215, 233, 0.4) 0%,
-      rgba(148, 124, 91, 0.4) 100%
+      rgba(1238, 231, 215, 0.2) 0%,
+      rgba(90, 99, 36, 0.4) 68%,
+      rgba(178, 151, 108, 0.5) 100%
+    ), */
+  background: linear-gradient(
+      175deg,
+      rgba(102, 151, 210, 0.4) 0%,
+      rgba(28, 35, 35, 0.4) 82%,
+      rgba(225, 221, 210, 0.4) 100%,
+      rgba(229, 225, 214, 0.4) 100%
     ),
-    url("../register.jpg");
+    url("../register.jpeg");
   background-size: cover;
   background-position: center;
 }
@@ -28,7 +36,7 @@
   flex-direction: column;
   gap: 2rem;
   flex-basis: 30%;
-  background: rgba(57, 64, 70, 0.4);
+  background: rgba(49, 55, 20, 0.6);
 
   /* Different from other form */
   width: 48rem;
@@ -55,7 +63,7 @@
 }
 
 .registration-form input {
-  background-color: rgba(128, 182, 243, 0.4);
+  background-color: rgba(1238, 231, 215, 0.4);
   border: none;
   outline: none;
   border-radius: 1em;

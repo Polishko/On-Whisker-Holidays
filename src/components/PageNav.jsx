@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import Logo from "../components/Logo";
+import Logo from "./Common/Logo";
 import styles from "./PageNav.module.css";
 
 function PageNav() {
@@ -8,7 +8,7 @@ function PageNav() {
 
   return (
     <nav className={styles.nav}>
-      <Logo background={currentPath === "/" ? "dark" : "light"} />
+      <Logo background={currentPath === "/app" ? "light" : "dark"} />
       <ul>
         {currentPath !== "/login" && (
           <li>
