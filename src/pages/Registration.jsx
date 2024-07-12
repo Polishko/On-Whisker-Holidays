@@ -6,6 +6,7 @@ import AvatarSelection from "../components/Common/AvatarSelection";
 import styles from "./Registration.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useKey } from "../hooks/useKey";
+import Modal from "../components/Common/Modal";
 
 function Registration() {
   const avatars = [
@@ -26,18 +27,26 @@ function Registration() {
 
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, error, success } = useUsers();
+  const [modalMessage, setModalMessage] = useState("");
 
-  useEffect(
-    function () {
-      if (error) {
-        alert(error);
-      }
-      if (success) {
-        alert("User created succesfully");
-      }
-    },
-    [error, success]
-  );
+  useEffect(() => {
+    if (error) {
+      setModalMessage(error);
+    } else if (success) {
+      setModalMessage(success);
+    }
+  }, [error, success]);
+
+  const handleEnterKey = (e) => {
+    if (modalMessage) {
+      e.preventDefault();
+      closeModal();
+    } else {
+      submitForm();
+    }
+  };
+
+  useKey("Enter", handleEnterKey);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -65,18 +74,19 @@ function Registration() {
     }));
   }
 
+  function closeModal() {
+    setModalMessage("");
+  }
+
   function toggleShowPassword() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   }
 
-  const submitForm = () => {
+  function submitForm() {
     document
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-  };
-
-  // Use the useKey hook to call submitForm when Enter is pressed
-  useKey("Enter", submitForm);
+  }
 
   return (
     <main className={styles.registration}>
@@ -150,6 +160,8 @@ function Registration() {
           Register
         </Button>
       </form>
+
+      <Modal message={modalMessage} onClose={closeModal} />
     </main>
   );
 }

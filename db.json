@@ -6,6 +6,97 @@
       "avatar": "https://example.com/avatar1.png",
       "name": "user1",
       "id": 3
+    },
+    {
+      "email": "test2@example.com",
+      "password": "$2a$10$x.Bc9iFcOMxabzFvViKNg.GtRQMe1T0B8BeoSi3BKqKG5Aq0kgr6e",
+      "avatar": "https://example.com/avatar2.png",
+      "name": "user2",
+      "id": 4
+    },
+    {
+      "email": "user3@user3.com",
+      "password": "$2a$10$24ypMuPQ.IX5uQBdD1h.9OWN/Q/myF1o5Q0NpxkKvl3wY8VNwfHiS",
+      "name": "user3",
+      "avatar": "../public/avatar/cat1.png",
+      "id": 5
+    },
+    {
+      "email": "user4@user4.com",
+      "password": "$2a$10$xVcV08.rjtVr3GRhmZnV/uZsx.otPZoOtAgwTrMemhgOmsdO9ja02",
+      "name": "user4",
+      "avatar": "../public/avatar/dog1.png",
+      "id": 6
+    },
+    {
+      "email": "user5@user5.com",
+      "password": "$2a$10$/Nl9rmOINTDFA2iH/cj9..sgAtS1kjuT7W5KAkvPwiC7pTb8BhWIS",
+      "name": "user5",
+      "avatar": "/avatar/dog3.png",
+      "id": 7
+    },
+    {
+      "email": "user7@user7.com",
+      "password": "$2a$10$sAbCMwuUhTMdF6YXbFiuaOLkrwvH3/xCZP8iF4K2RvbPMPU5IAVoW",
+      "name": "user7",
+      "avatar": "/avatar/cat3.png",
+      "id": 8
+    },
+    {
+      "email": "user8@user8.com",
+      "password": "$2a$10$GBmh8KSeD.rmHPI66Q55Z.0UiRksAVKyAsjSMU.FVRdc2hCyYscjq",
+      "name": "user8",
+      "avatar": "/avatar/cat2.png",
+      "id": 9
+    },
+    {
+      "email": "user@user.com",
+      "password": "$2a$10$Z3qJqlgHXotM21kxJgf2NOVFRRLlJZ/X60/kPMofVg/h5RxvFBIJO",
+      "name": "user",
+      "avatar": "/avatar/dog1.png",
+      "id": 10
+    },
+    {
+      "email": "user10@user.com",
+      "password": "$2a$10$fsUwC64fla.AKB.0zbbJz.rwAPskGD9qWbuVApdGtp8zyIVrzVFCy",
+      "name": "user10",
+      "avatar": "/avatar/cat1.png",
+      "id": 11
+    },
+    {
+      "email": "user11@user11.com",
+      "password": "$2a$10$URDXQEZKFjSB31fZ1h47U.Efp68LnFHMLze8e4SAecQyW9dUlcX66",
+      "name": "user11",
+      "avatar": "/avatar/cat2.png",
+      "id": 12
+    },
+    {
+      "email": "user11@user11.com",
+      "password": "$2a$10$he9YGO9kJu0V4leIkvF9Me..cIHWfv0UM.Ki/2.OZUciJeF2A0Ai6",
+      "name": "user11",
+      "avatar": "/avatar/cat2.png",
+      "id": 13
+    },
+    {
+      "email": "user2@user2.com",
+      "password": "$2a$10$xt/Vj.fqys.1FWdv5amKsuBHPwHbQtBSTtrkAgtFNfTdSnedwCUCi",
+      "name": "user2",
+      "avatar": "/avatar/dog2.png",
+      "id": 14
+    },
+    {
+      "email": "user1@user1.com",
+      "password": "$2a$10$JLaJuRko31xBVuZD42kqIOUS7//GNdjzgf2SXgkdbhcHqZulXFUGu",
+      "name": "user1",
+      "avatar": "/avatar/cat1.png",
+      "id": 15
+    },
+    {
+      "email": "user1@user1.com",
+      "password": "$2a$10$Ga7cSyExvK5MKaOy483kEeVsbGgfEXvhqmXZfgfPMxePk8X0i91Mi",
+      "name": "user1",
+      "avatar": "/avatar/cat1.png",
+      "id": 16
     }
   ],
   "comments": [
@@ -43,7 +134,10 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Sapareva Banya",
-      "type": ["mountain", "nature"],
+      "type": [
+        "mountain",
+        "nature"
+      ],
       "position": {
         "lat": 42.285136416470166,
         "lng": 23.24898059723802
@@ -65,7 +159,11 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": ["wifi", "parking", "airconditioner"]
+      "facilities": [
+        "wifi",
+        "parking",
+        "airconditioner"
+      ]
     },
     {
       "id": "Green Village Lake",
@@ -73,7 +171,10 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Hrabarsko",
-      "type": ["nature", "seaside"],
+      "type": [
+        "nature",
+        "seaside"
+      ],
       "position": {
         "lat": 42.817562946488636,
         "lng": 23.091720435881278
@@ -94,7 +195,12 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": ["wifi", "parking", "airconditioner", "pool"]
+      "facilities": [
+        "wifi",
+        "parking",
+        "airconditioner",
+        "pool"
+      ]
     },
     {
       "id": "Hija Rila Lakes",
@@ -102,7 +208,10 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Borovets",
-      "type": ["nature", "mountain"],
+      "type": [
+        "nature",
+        "mountain"
+      ],
       "position": {
         "lat": 42.219874962786704,
         "lng": 23.32160101072616
@@ -122,7 +231,9 @@
         "nature",
         "wifi"
       ],
-      "facilities": ["wifi"]
+      "facilities": [
+        "wifi"
+      ]
     },
     {
       "id": "Sorrento Sole Mare",
@@ -130,7 +241,9 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Burgas",
-      "type": ["seaside"],
+      "type": [
+        "seaside"
+      ],
       "position": {
         "lat": 42.76414192026019,
         "lng": 27.742814370268487
@@ -152,7 +265,12 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": ["wifi", "parking", "airconditioner", "pool"]
+      "facilities": [
+        "wifi",
+        "parking",
+        "airconditioner",
+        "pool"
+      ]
     },
     {
       "id": "Datca Lake House Camping",
@@ -160,7 +278,9 @@
       "country": "Turkey",
       "countryCode": "🇹🇷",
       "city": "Datca",
-      "type": ["seaside"],
+      "type": [
+        "seaside"
+      ],
       "position": {
         "lat": 36.72005396963961,
         "lng": 27.687009625838925
@@ -168,7 +288,14 @@
       "img": "./datca-lake-house-main.jpeg",
       "web": "https://maps.app.goo.gl/X5NDz6qRjVkZB6pcA",
       "detail": "Camp with your best furry friend near this amazing beach with the bluest water in the world.",
-      "keywords": ["camping", "sea", "beach", "nature", "datca", "turkey"],
+      "keywords": [
+        "camping",
+        "sea",
+        "beach",
+        "nature",
+        "datca",
+        "turkey"
+      ],
       "facilities": []
     },
     {
@@ -177,7 +304,10 @@
       "country": "Turkey",
       "countryCode": "🇹🇷",
       "city": "Datca",
-      "type": ["seaside", "nature"],
+      "type": [
+        "seaside",
+        "nature"
+      ],
       "position": {
         "lat": 36.68589557246077,
         "lng": 27.57105908351027
@@ -197,7 +327,10 @@
         "wifi",
         "airconditioner"
       ],
-      "facilities": ["wifi", "airconditioner"]
+      "facilities": [
+        "wifi",
+        "airconditioner"
+      ]
     },
     {
       "id": "Garni Hotel Zen",
@@ -205,7 +338,9 @@
       "country": "Serbia",
       "countryCode": "🇷🇸",
       "city": "Niš",
-      "type": ["city"],
+      "type": [
+        "city"
+      ],
       "position": {
         "lat": 43.33947206096271,
         "lng": 21.92352216844934
@@ -223,7 +358,12 @@
         "airconditioner",
         "parking"
       ],
-      "facilities": ["wifi", "airconditioner", "pool", "parking"]
+      "facilities": [
+        "wifi",
+        "airconditioner",
+        "pool",
+        "parking"
+      ]
     },
     {
       "id": "Amalia Center Rooms",
@@ -231,7 +371,9 @@
       "country": "Greece",
       "countryCode": "🇬🇷",
       "city": "Nea Vrasna",
-      "type": ["seaside"],
+      "type": [
+        "seaside"
+      ],
       "position": {
         "lat": 40.71174651744706,
         "lng": 23.70179528233691
@@ -249,7 +391,11 @@
         "airconditioner",
         "parking"
       ],
-      "facilities": ["wifi", "airconditioner", "parking"]
+      "facilities": [
+        "wifi",
+        "airconditioner",
+        "parking"
+      ]
     },
     {
       "id": "The Wooden Village",
@@ -257,7 +403,10 @@
       "country": "Greece",
       "countryCode": "🇬🇷",
       "city": "Agkistro",
-      "type": ["nature", "mountain"],
+      "type": [
+        "nature",
+        "mountain"
+      ],
       "position": {
         "lat": 41.36992542114511,
         "lng": 23.433435427887517
@@ -276,7 +425,12 @@
         "parking",
         "pool"
       ],
-      "facilities": ["wifi", "airconditioner", "parking", "pool"]
+      "facilities": [
+        "wifi",
+        "airconditioner",
+        "parking",
+        "pool"
+      ]
     }
   ]
 }
