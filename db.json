@@ -20,6 +20,13 @@
       "name": "user2",
       "avatar": "/avatar/cat2.png",
       "id": 7
+    },
+    {
+      "email": "user4@user4.com",
+      "password": "$2a$10$UQV7gGcqg7GAMQKG28hAlu7hcvvYLoFiBw5lMWYtrsJ0kZsXiqTjO",
+      "name": "user4",
+      "avatar": "/avatar/cat1.png",
+      "id": 8
     }
   ],
   "comments": [],

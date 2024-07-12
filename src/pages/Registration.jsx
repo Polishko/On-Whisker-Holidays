@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
 import { useUsers } from "../components/contexts/UsersContext";
 import AvatarSelection from "../components/Common/AvatarSelection";
 import styles from "./Registration.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useKey } from "../hooks/useKey";
 import Modal from "../components/Common/Modal";
+import { useKey } from "../hooks/useKey";
 
 function Registration() {
   const avatars = [
@@ -26,27 +27,39 @@ function Registration() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, error, success } = useUsers();
+  const { createUser, error, resetState, currentUser } = useUsers();
   const [modalMessage, setModalMessage] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (error) {
       setModalMessage(error);
-    } else if (success) {
-      setModalMessage(success);
+      resetForm();
     }
-  }, [error, success]);
+  }, [error]);
 
-  const handleEnterKey = (e) => {
-    if (modalMessage) {
-      e.preventDefault();
-      closeModal();
-    } else {
-      submitForm();
+  useEffect(() => {
+    if (currentUser.name) {
+      resetState();
+      navigate("/login", { replace: true });
     }
-  };
+  }, [currentUser.name, navigate, resetState]);
 
-  useKey("Enter", handleEnterKey);
+  function resetForm() {
+    setFormData({
+      email: "",
+      name: "",
+      password: "",
+      selectedAvatar: "cat1",
+    });
+  }
+
+  function closeModal() {
+    setModalMessage("");
+  }
+
+  useKey("Escape", closeModal);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -74,25 +87,20 @@ function Registration() {
     }));
   }
 
-  function closeModal() {
-    setModalMessage("");
-  }
-
   function toggleShowPassword() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
-  }
-
-  function submitForm() {
-    document
-      .querySelector("form")
-      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
   }
 
   return (
     <main className={styles.registration}>
       <PageNav />
 
-      <form className={`${styles.form}`} onSubmit={handleRegister}>
+      <form
+        className={`${styles.form}`}
+        onSubmit={(e) => {
+          handleRegister(e);
+        }}
+      >
         <header>Register here</header>
 
         <div className={styles.row}>

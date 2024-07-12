@@ -34,6 +34,8 @@ function reducer(state, action) {
         users: state.users.filter((user) => user.id !== action.payload),
         currentUser: {},
       };
+    case "reset":
+      return { ...initialState };
     case "rejected":
       return { ...state, isLoadingUsers: false, error: action.payload };
     default:
@@ -121,6 +123,7 @@ function UsersProvider({ children }) {
         success,
         getUser,
         createUser,
+        resetState: () => dispatch({ type: "reset" }),
       }}
     >
       {children}

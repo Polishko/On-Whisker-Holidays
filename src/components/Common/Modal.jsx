@@ -8,7 +8,7 @@ function Modal({ message, onClose }) {
       <div className={styles.modalContent}>
         <p>{message}</p>
         <p className={styles.close} onClick={onClose}>
-          OK
+          Back
         </p>
       </div>
     </div>
