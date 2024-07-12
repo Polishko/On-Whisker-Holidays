@@ -7,13 +7,14 @@ const initialState = {
   users: [],
   isLoadingUsers: false,
   currentUser: { email: "", password: "", avatar: "", id: "", name: "" },
-  error: "",
+  error: null,
+  success: null,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
-      return { ...state, isLoadingUsers: true };
+      return { ...state, isLoadingUsers: true, error: null, success: null };
     case "users/loaded":
       return { ...state, isLoadingUsers: false, users: action.payload };
     case "user/loaded":
@@ -24,6 +25,7 @@ function reducer(state, action) {
         isLoadingUsers: false,
         users: [...state.users, action.payload],
         currentUser: action.payload,
+        success: "The user was created successfully",
       }; //added user made the active user
     case "user/deleted":
       return {
@@ -40,10 +42,8 @@ function reducer(state, action) {
 }
 
 function UsersProvider({ children }) {
-  const [{ users, isLoadingUsers, currentUser, error }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ users, isLoadingUsers, currentUser, error, success }, dispatch] =
+    useReducer(reducer, initialState);
 
   useEffect(function () {
     async function fetchUsers() {
@@ -90,8 +90,19 @@ function UsersProvider({ children }) {
         body: JSON.stringify(newUser),
         headers: { "Content-Type": "application/json" },
       });
+
+      if (!res.ok) {
+        const error = await res.json();
+        dispatch({
+          type: "rejected",
+          payload: error.message || "There was an error creating the user.",
+        });
+      }
+
       const data = await res.json();
-      dispatch({ type: "user/created", payload: data });
+      const { accessToken, user } = data;
+      localStorage.setItem("accessToken", accessToken);
+      dispatch({ type: "user/created", payload: user });
     } catch {
       dispatch({
         type: "rejected",
@@ -107,6 +118,7 @@ function UsersProvider({ children }) {
         isLoadingUsers,
         currentUser,
         error,
+        success,
         getUser,
         createUser,
       }}

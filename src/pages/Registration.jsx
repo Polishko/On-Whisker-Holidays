@@ -25,17 +25,18 @@ function Registration() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, error } = useUsers();
+  const { createUser, error, success } = useUsers();
 
   useEffect(
     function () {
       if (error) {
         alert(error);
-      } else {
-        alert("User registered successfully");
+      }
+      if (success) {
+        alert("User created succesfully");
       }
     },
-    [error]
+    [error, success]
   );
 
   async function handleRegister(e) {
@@ -47,7 +48,6 @@ function Registration() {
         password: formData.password,
         avatar: `/avatar/${formData.selectedAvatar}.png`,
       });
-      alert("User registered successfully");
     } catch (error) {
       console.log(error);
     }
