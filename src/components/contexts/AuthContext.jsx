@@ -19,7 +19,7 @@ function AuthProvider({ children }) {
 
     const data = await res.json();
     const { accessToken, user } = data;
-    setUser(user.user);
+    setUser(user);
     localStorage.setItem("accessToken", accessToken);
   }
 

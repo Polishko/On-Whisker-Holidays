@@ -36,6 +36,8 @@ function reducer(state, action) {
       };
     case "reset":
       return { ...initialState };
+    // case "user/logged":
+    //   return { ...state, currentUser: action.payload };
     case "rejected":
       return { ...state, isLoadingUsers: false, error: action.payload };
     default:
@@ -113,6 +115,10 @@ function UsersProvider({ children }) {
     }
   }
 
+  // function logUser(user) {
+  //   dispatch({ type: "user/logged", payload: user });
+  // }
+
   return (
     <UsersContext.Provider
       value={{
@@ -124,6 +130,7 @@ function UsersProvider({ children }) {
         getUser,
         createUser,
         resetState: () => dispatch({ type: "reset" }),
+        // logUser,
       }}
     >
       {children}

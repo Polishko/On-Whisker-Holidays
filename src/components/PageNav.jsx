@@ -1,16 +1,24 @@
 import { NavLink, useLocation } from "react-router-dom";
 import Logo from "./Common/Logo";
 import styles from "./PageNav.module.css";
+import { useAuth } from "./contexts/AuthContext";
+import User from "./user/User";
 
 function PageNav() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const { user } = useAuth();
 
   return (
     <nav className={styles.nav}>
       <Logo background={currentPath === "/app" ? "light" : "dark"} />
       <ul>
-        {currentPath !== "/login" && (
+        {user && (
+          <li>
+            <User />
+          </li>
+        )}
+        {currentPath !== "/login" && !user && (
           <li>
             <NavLink
               to="/login"
@@ -20,7 +28,7 @@ function PageNav() {
             </NavLink>
           </li>
         )}
-        {currentPath !== "/register" && (
+        {currentPath !== "/register" && !user && (
           <li>
             <NavLink
               to="/register"

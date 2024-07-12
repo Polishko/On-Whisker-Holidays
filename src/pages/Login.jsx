@@ -1,11 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
+import { useAuth } from "../components/contexts/AuthContext";
+import { useState } from "react";
 
 function Login() {
-  function handleLogin(e) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
     e.preventDefault();
+    try {
+      await login({ email, password });
+      navigate("/app");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   }
 
   return (
@@ -14,40 +27,45 @@ function Login() {
 
       <form
         className={`${styles.form} ${styles["login-form"]}`}
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit}
       >
         <div className={styles["login-header"]}>
           <span>Have an account?</span>
           <header>Login</header>
         </div>
+
         <div className={styles.row}>
           <label htmlFor="email">Enter your email</label>
           <div className={styles.inputContainer}>
             <i className={`bx bx-user ${styles.icon}`}></i>
-            <input type="email" id="email" placeholder="Username" />
+            <input
+              type="email"
+              id="email"
+              placeholder="Username"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
         </div>
+
         <div className={styles.row}>
           <label htmlFor="password">Enter your password</label>
           <div className={styles.inputContainer}>
             <i className={`bx bx-lock ${styles.icon}`}></i>
-            <input type="password" id="password" placeholder="Password" />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
         </div>
-        <div className={styles.bottom}>
-          <div className={styles.left}>
-            <input type="checkbox" id="check" className={styles.checkbox} />
-            <label htmlFor="check"> Remember Me</label>
-          </div>
-          {/* <div className={styles.right}>
-            <label>
-              <a href="#">Forgot password?</a>
-            </label>
-          </div> */}
-        </div>
+
         <Button type={"submit"} className={styles["button-style"]}>
           Login
         </Button>
+
         <div className={styles["register-invite"]}>
           <span>
             Don&apos;t have an account?{" "}

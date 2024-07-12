@@ -1,0 +1,11 @@
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  margin-left: auto;
+}
+
+.user img {
+  width: 10%;
+}
