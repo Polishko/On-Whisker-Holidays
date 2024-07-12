@@ -2,7 +2,7 @@ import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
 
 function User() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   if (!user) return null;
 
@@ -10,7 +10,7 @@ function User() {
     <div className={styles.user}>
       <img src={user.avatar} alt="User Avatar" />
       <p>{user.name}</p>
-      <button>Logout</button>
+      <button onClick={logout}>Logout</button>
     </div>
   );
 }
