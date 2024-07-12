@@ -1,20 +1,6 @@
 {
   "users": [
     {
-      "email": "test@example.com",
-      "password": "$2a$10$UqiQadpJNrgp6Ok8VgfPbu18I5fJg9vYYv2eODLeQJBJsWSoJuwoe",
-      "avatar": "https://example.com/avatar1.png",
-      "name": "user1",
-      "id": 3
-    },
-    {
-      "email": "test2@example.com",
-      "password": "$2a$10$x.Bc9iFcOMxabzFvViKNg.GtRQMe1T0B8BeoSi3BKqKG5Aq0kgr6e",
-      "avatar": "https://example.com/avatar2.png",
-      "name": "user2",
-      "id": 4
-    },
-    {
       "email": "user3@user3.com",
       "password": "$2a$10$24ypMuPQ.IX5uQBdD1h.9OWN/Q/myF1o5Q0NpxkKvl3wY8VNwfHiS",
       "name": "user3",
@@ -22,113 +8,21 @@
       "id": 5
     },
     {
-      "email": "user4@user4.com",
-      "password": "$2a$10$xVcV08.rjtVr3GRhmZnV/uZsx.otPZoOtAgwTrMemhgOmsdO9ja02",
-      "name": "user4",
-      "avatar": "../public/avatar/dog1.png",
+      "email": "user1@user1.com",
+      "password": "$2a$10$6X/4Ekg4p9nxEtFjs2KbNeYruOoeBIxRzcXc.VP8M8rMV9NZKvmJG",
+      "name": "user1",
+      "avatar": "/avatar/cat3.png",
       "id": 6
     },
     {
-      "email": "user5@user5.com",
-      "password": "$2a$10$/Nl9rmOINTDFA2iH/cj9..sgAtS1kjuT7W5KAkvPwiC7pTb8BhWIS",
-      "name": "user5",
-      "avatar": "/avatar/dog3.png",
-      "id": 7
-    },
-    {
-      "email": "user7@user7.com",
-      "password": "$2a$10$sAbCMwuUhTMdF6YXbFiuaOLkrwvH3/xCZP8iF4K2RvbPMPU5IAVoW",
-      "name": "user7",
-      "avatar": "/avatar/cat3.png",
-      "id": 8
-    },
-    {
-      "email": "user8@user8.com",
-      "password": "$2a$10$GBmh8KSeD.rmHPI66Q55Z.0UiRksAVKyAsjSMU.FVRdc2hCyYscjq",
-      "name": "user8",
-      "avatar": "/avatar/cat2.png",
-      "id": 9
-    },
-    {
-      "email": "user@user.com",
-      "password": "$2a$10$Z3qJqlgHXotM21kxJgf2NOVFRRLlJZ/X60/kPMofVg/h5RxvFBIJO",
-      "name": "user",
-      "avatar": "/avatar/dog1.png",
-      "id": 10
-    },
-    {
-      "email": "user10@user.com",
-      "password": "$2a$10$fsUwC64fla.AKB.0zbbJz.rwAPskGD9qWbuVApdGtp8zyIVrzVFCy",
-      "name": "user10",
-      "avatar": "/avatar/cat1.png",
-      "id": 11
-    },
-    {
-      "email": "user11@user11.com",
-      "password": "$2a$10$URDXQEZKFjSB31fZ1h47U.Efp68LnFHMLze8e4SAecQyW9dUlcX66",
-      "name": "user11",
-      "avatar": "/avatar/cat2.png",
-      "id": 12
-    },
-    {
-      "email": "user11@user11.com",
-      "password": "$2a$10$he9YGO9kJu0V4leIkvF9Me..cIHWfv0UM.Ki/2.OZUciJeF2A0Ai6",
-      "name": "user11",
-      "avatar": "/avatar/cat2.png",
-      "id": 13
-    },
-    {
       "email": "user2@user2.com",
-      "password": "$2a$10$xt/Vj.fqys.1FWdv5amKsuBHPwHbQtBSTtrkAgtFNfTdSnedwCUCi",
+      "password": "$2a$10$OXqOt5Oba94hMf7zsfOo1ujiF6s0XkiuKrCq0qMvb8Y6IYths5AIq",
       "name": "user2",
-      "avatar": "/avatar/dog2.png",
-      "id": 14
-    },
-    {
-      "email": "user1@user1.com",
-      "password": "$2a$10$JLaJuRko31xBVuZD42kqIOUS7//GNdjzgf2SXgkdbhcHqZulXFUGu",
-      "name": "user1",
-      "avatar": "/avatar/cat1.png",
-      "id": 15
-    },
-    {
-      "email": "user1@user1.com",
-      "password": "$2a$10$Ga7cSyExvK5MKaOy483kEeVsbGgfEXvhqmXZfgfPMxePk8X0i91Mi",
-      "name": "user1",
-      "avatar": "/avatar/cat1.png",
-      "id": 16
-    },
-    {
-      "email": "user1@alo",
-      "password": "$2a$10$/66AkZtORP7UwjnoxFs/nO1YetIlgZ/H/1uUkcYnbIzximVIXMD5u",
-      "name": "user1",
-      "avatar": "/avatar/cat1.png",
-      "id": 17
-    },
-    {
-      "email": "user1@alo",
-      "password": "$2a$10$rXBPSjiLPu8K9XYAopW/ruy2iY1fD7wr7ML.U82wuCHPYw/GSIz8i",
-      "name": "user1",
-      "avatar": "/avatar/cat1.png",
-      "id": 18
+      "avatar": "/avatar/cat2.png",
+      "id": 7
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "userId": 3,
-      "hotelId": "Sunanini House",
-      "text": "This is a comment",
-      "timestamp": "2022-01-01T00:00:00Z"
-    },
-    {
-      "id": 2,
-      "userId": 4,
-      "hotelId": "Sunanini House",
-      "text": "This is another comment",
-      "timestamp": "2022-01-02T00:00:00Z"
-    }
-  ],
+  "comments": [],
   "posts": [
     {
       "id": 1,
