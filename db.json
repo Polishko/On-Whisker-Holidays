@@ -97,6 +97,20 @@
       "name": "user1",
       "avatar": "/avatar/cat1.png",
       "id": 16
+    },
+    {
+      "email": "user1@alo",
+      "password": "$2a$10$/66AkZtORP7UwjnoxFs/nO1YetIlgZ/H/1uUkcYnbIzximVIXMD5u",
+      "name": "user1",
+      "avatar": "/avatar/cat1.png",
+      "id": 17
+    },
+    {
+      "email": "user1@alo",
+      "password": "$2a$10$rXBPSjiLPu8K9XYAopW/ruy2iY1fD7wr7ML.U82wuCHPYw/GSIz8i",
+      "name": "user1",
+      "avatar": "/avatar/cat1.png",
+      "id": 18
     }
   ],
   "comments": [
