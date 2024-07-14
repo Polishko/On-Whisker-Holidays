@@ -1,15 +1,12 @@
 import styles from "./Modal.module.css";
 
-function Modal({ message, onClose }) {
-  if (!message) return null;
-
+function Modal({ children, onClose }) {
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
-        <p>{message}</p>
-        <p className={styles.close} onClick={onClose}>
-          Back
-        </p>
+        <div className={styles.close} onClick={onClose}>
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -24,8 +24,8 @@ function reducer(state, action) {
         ...state,
         isLoadingUsers: false,
         users: [...state.users, action.payload],
-        currentUser: action.payload,
         success: "The user was created successfully",
+        error: null,
       };
     case "user/deleted":
       return {
@@ -35,7 +35,7 @@ function reducer(state, action) {
         currentUser: { email: "", password: "", avatar: "", id: "", name: "" },
       };
     case "reset":
-      return { ...initialState };
+      return initialState;
     case "rejected":
       return { ...state, isLoadingUsers: false, error: action.payload };
     default:
@@ -99,6 +99,7 @@ function UsersProvider({ children }) {
           type: "rejected",
           payload: error.message || "There was an error creating the user.",
         });
+        return;
       }
 
       const data = await res.json();
@@ -129,6 +130,10 @@ function UsersProvider({ children }) {
     }
   }
 
+  function resetState() {
+    dispatch({ type: "reset" });
+  }
+
   return (
     <UsersContext.Provider
       value={{
@@ -139,7 +144,7 @@ function UsersProvider({ children }) {
         success,
         getUser,
         createUser,
-        resetState: () => dispatch({ type: "reset" }),
+        resetState,
         deleteUser,
       }}
     >

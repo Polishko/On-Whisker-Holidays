@@ -13,7 +13,7 @@ import { UsersProvider } from "./components/contexts/UsersContext";
 import { CommentsProvider } from "./components/contexts/CommentsContext";
 import { AuthProvider } from "./components/contexts/AuthContext";
 import ProtectedRoute from "./pages/ProtectedRoute";
-import User from "./components/user/User";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -33,10 +33,10 @@ function App() {
                   <Route path="hotels/:id" element={<Hotel />} />
                   <Route
                     path="profile"
-                    element={<ProtectedRoute element={<User />} />}
+                    element={<ProtectedRoute element={<Profile />} />}
                   />
                 </Route>
-                {/* <Route path="/profile" element={<Login />} /> */}
+
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/contact" element={<Gallery />} />
                 <Route path="*" element={<PageNotFound />} />

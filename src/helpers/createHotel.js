@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 const BASE_URL = "http://localhost:3000";
 
 async function createHotel(hotelData) {
@@ -21,39 +19,4 @@ async function createHotel(hotelData) {
   }
 }
 
-// Update as necessary
-const newHotel = {
-  id: "Sunanini House",
-  hotelName: "Sunanini House",
-  country: "Bulgaria",
-  countryCode: "🇧🇬",
-  city: "Sapareva Banya",
-  type: ["mountain", "nature"],
-  position: {
-    lat: 42.285136416470166,
-    lng: 23.24898059723802,
-  },
-  img: "sunanini-main.jpg",
-  web: "https://susanini.wordpress.com/",
-  detail:
-    "A cozy little house in Saparyeva Banya, situated at the foot of the mountain. Your furry friends will enjoy the big garden.",
-  keywords: [
-    "sunanini",
-    "bulgaria",
-    "sapareva",
-    "saparyeva",
-    "mountain",
-    "nature",
-    "house",
-    "garden",
-    "barbeque",
-    "wifi",
-    "parking",
-    "airconditioner",
-  ],
-  facilities: ["wifi", "parking", "airconditioner"],
-};
-
-// Run the createHotel function
-createHotel(newHotel);
-// To run in the terminal: node createHotel.js
+module.exports = createHotel;

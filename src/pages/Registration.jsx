@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
 import { useUsers } from "../components/contexts/UsersContext";
@@ -27,24 +27,21 @@ function Registration() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, error, resetState, currentUser } = useUsers();
+  const { createUser, error, success, resetState } = useUsers();
   const [modalMessage, setModalMessage] = useState("");
-
-  const navigate = useNavigate();
+  // const [modalClosed, setModalClosed] = useState("");
 
   useEffect(() => {
+    resetForm();
     if (error) {
       setModalMessage(error);
-      resetForm();
+    } else if (success) {
+      setModalMessage(success);
     }
-  }, [error]);
-
-  useEffect(() => {
-    if (currentUser.name) {
-      resetState();
-      navigate("/login", { replace: true });
-    }
-  }, [currentUser.name, navigate, resetState]);
+    // return () => {
+    //   setModalMessage("");
+    //   resetState();
+  }, [error, success]);
 
   function resetForm() {
     setFormData({
@@ -57,6 +54,7 @@ function Registration() {
 
   function closeModal() {
     setModalMessage("");
+    resetState();
   }
 
   useKey("Escape", closeModal);
@@ -169,7 +167,13 @@ function Registration() {
         </Button>
       </form>
 
-      <Modal message={modalMessage} onClose={closeModal} />
+      {modalMessage && (
+        <Modal onClose={closeModal}>
+          <p>{modalMessage}</p>
+          {error && <p>Try again</p>}
+          {success && <Link to="/login">Go to login page</Link>}
+        </Modal>
+      )}
     </main>
   );
 }
