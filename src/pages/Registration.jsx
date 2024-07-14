@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
 import { useUsers } from "../components/contexts/UsersContext";
@@ -29,6 +29,7 @@ function Registration() {
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, error, success, resetState } = useUsers();
   const [modalMessage, setModalMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     resetForm();
@@ -36,8 +37,10 @@ function Registration() {
       setModalMessage(error);
     } else if (success) {
       setModalMessage(success);
+      navigate("/login");
     }
-  }, [error, success]);
+    return resetState();
+  }, [error, success, resetState, navigate]);
 
   function resetForm() {
     setFormData({
@@ -50,7 +53,7 @@ function Registration() {
 
   function closeModal() {
     setModalMessage("");
-    resetState();
+    // resetState();
   }
 
   useKey("Escape", closeModal);
@@ -65,7 +68,7 @@ function Registration() {
         avatar: `/avatar/${formData.selectedAvatar}.png`,
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -166,8 +169,6 @@ function Registration() {
       {modalMessage && (
         <Modal onClose={closeModal}>
           <p>{modalMessage}</p>
-          {error && <p>Try again</p>}
-          {success && <Link to="/login">Go to login page</Link>}
         </Modal>
       )}
     </main>

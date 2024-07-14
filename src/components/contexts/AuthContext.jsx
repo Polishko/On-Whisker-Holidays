@@ -7,6 +7,7 @@ const AuthContext = createContext();
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   isAuthenticated: !!localStorage.getItem("accessToken"),
+  error: null,
 };
 
 function reducer(state, action) {
@@ -15,13 +16,22 @@ function reducer(state, action) {
       return { ...state, user: action.payload, isAuthenticated: true };
     case "logout":
       return { ...state, user: null, isAuthenticated: false };
+    case "rejected":
+      return {
+        ...state,
+        user: null,
+        isAuthenticated: false,
+        error: action.payload,
+      };
+    case "reset":
+      return initialState;
     default:
       throw new Error("Unknown action");
   }
 }
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated }, dispatch] = useReducer(
+  const [{ user, isAuthenticated, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -35,31 +45,49 @@ function AuthProvider({ children }) {
   }, []);
 
   async function login(credentials) {
-    const res = await fetch(`${BASE_URL}/login`, {
-      method: "POST",
-      body: JSON.stringify(credentials),
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const res = await fetch(`${BASE_URL}/login`, {
+        method: "POST",
+        body: JSON.stringify(credentials),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (!res.ok) {
-      throw new Error("Login failed");
+      if (!res.ok) {
+        const error = await res.json();
+        dispatch({
+          type: "rejected",
+          payload: error.message || "Login failed.",
+        });
+        return;
+      }
+
+      const data = await res.json();
+      const { accessToken, user } = data;
+      dispatch({ type: "login", payload: user });
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("user", JSON.stringify(user));
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There was error logging the user.",
+      });
     }
-
-    const data = await res.json();
-    const { accessToken, user } = data;
-    dispatch({ type: "login", payload: user });
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("user", JSON.stringify(user)); // Save user to localStorage
   }
 
   function logout() {
     dispatch({ type: "logout" });
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("user"); // Remove user from localStorage
+    localStorage.removeItem("user");
+  }
+
+  function resetState() {
+    dispatch({ type: "reset" });
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated }}>
+    <AuthContext.Provider
+      value={{ user, login, logout, isAuthenticated, error, resetState }}
+    >
       {children}
     </AuthContext.Provider>
   );

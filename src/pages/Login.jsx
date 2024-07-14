@@ -4,27 +4,57 @@ import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect, useState } from "react";
+import Modal from "../components/Common/Modal";
+import { useKey } from "../hooks/useKey";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, error, resetState } = useAuth();
   const navigate = useNavigate();
+
+  const [modalMessage, setModalMessage] = useState("");
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    resetForm();
+    if (error) {
+      setModalMessage(error);
+    }
+  }, [error]);
+
+  function resetForm() {
+    setFormData({
+      email: "",
+      password: "",
+    });
+  }
+
+  function closeModal() {
+    setModalMessage("");
+  }
+
+  useKey("Escape", closeModal);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await login({ email, password });
+      await login({ email: formData.email, password: formData.password });
     } catch (error) {
-      console.error("Login failed:", error);
+      // console.error("Login failed:", error);
     }
   }
 
   useEffect(
     function () {
-      if (isAuthenticated === true) navigate("/hotels", { replace: true });
+      if (isAuthenticated === true) {
+        navigate("/hotels", { replace: true });
+      }
+      return resetState();
     },
-    [isAuthenticated, navigate]
+    [isAuthenticated, navigate, resetState]
   );
 
   return (
@@ -48,8 +78,10 @@ function Login() {
               type="email"
               id="email"
               placeholder="Username"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
         </div>
@@ -62,8 +94,10 @@ function Login() {
               type="password"
               id="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
             />
           </div>
         </div>
@@ -79,6 +113,13 @@ function Login() {
           </span>
         </div>
       </form>
+
+      {modalMessage && (
+        <Modal onClose={closeModal}>
+          <p>{modalMessage}</p>
+          {error && <p>Try again</p>}
+        </Modal>
+      )}
     </main>
   );
 }

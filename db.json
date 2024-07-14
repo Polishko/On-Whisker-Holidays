@@ -27,6 +27,13 @@
       "name": "user4",
       "avatar": "/avatar/cat1.png",
       "id": 8
+    },
+    {
+      "email": "user5@user5.com",
+      "password": "$2a$10$tKUQgja2TAG6S8WeMHLtlO3Xw4qLTooivRpTHCQ8RRh0ZJDlePNZa",
+      "name": "user5",
+      "avatar": "/avatar/cat3.png",
+      "id": 9
     }
   ],
   "comments": [],
