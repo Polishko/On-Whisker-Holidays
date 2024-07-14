@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
 
-function User() {
+function User({ setIsModalOpen }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -11,6 +11,7 @@ function User() {
   function openProfile(e) {
     e.preventDefault();
     navigate("profile", { state: { modal: true } });
+    setIsModalOpen(true);
   }
 
   return (

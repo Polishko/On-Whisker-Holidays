@@ -9,24 +9,28 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "../components/Common/Modal";
 import Profile from "./Profile";
 import { useAuth } from "../components/contexts/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(`isAuth: ${isAuthenticated}`);
-  // console.log(user.name);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === "/hotels/profile" && !isAuthenticated) {
+    if (location.pathname === "/profile" && !isAuthenticated) {
       navigate("/login");
-    }
-  }, [location.pathname, isAuthenticated, navigate]);
+    } else if (
+      location.pathname === "/profile" &&
+      isAuthenticated &&
+      !isModalOpen
+    )
+      navigate("/hotels");
+  }, [location.pathname, isAuthenticated, navigate, isModalOpen]);
 
   function closeModal() {
     navigate("/hotels");
-    console.log(`isAuth: ${isAuthenticated}`);
+    setIsModalOpen(false);
   }
 
   const isProfileModal = location.state && location.state.modal;
@@ -48,7 +52,7 @@ function AppLayout() {
       </div>
       {user && (
         <li>
-          <User />
+          <User setIsModalOpen={setIsModalOpen} />
         </li>
       )}
       {isProfileModal && (
