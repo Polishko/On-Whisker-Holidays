@@ -29,7 +29,6 @@ function Registration() {
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, error, success, resetState } = useUsers();
   const [modalMessage, setModalMessage] = useState("");
-  // const [modalClosed, setModalClosed] = useState("");
 
   useEffect(() => {
     resetForm();
@@ -38,9 +37,6 @@ function Registration() {
     } else if (success) {
       setModalMessage(success);
     }
-    // return () => {
-    //   setModalMessage("");
-    //   resetState();
   }, [error, success]);
 
   function resetForm() {

@@ -10,7 +10,7 @@ function PageNav() {
 
   return (
     <nav className={styles.nav}>
-      <Logo background={currentPath === "/app" ? "light" : "dark"} />
+      <Logo background={currentPath === "/hotels" ? "light" : "dark"} />
       <ul>
         {currentPath !== "/login" && !user && (
           <li>
@@ -42,9 +42,12 @@ function PageNav() {
             </NavLink>
           </li>
         )}
-        {currentPath !== "/app" && (
+        {currentPath !== "/hotels" && (
           <li>
-            <NavLink to="/app" className={`${styles.ctaLink} ${styles.join}`}>
+            <NavLink
+              to="/hotels"
+              className={`${styles.ctaLink} ${styles.join}`}
+            >
               Search Hotels
             </NavLink>
           </li>

@@ -22,7 +22,7 @@ export default function Homepage() {
         </h2>
 
         <div className={styles.goToApp}>
-          <NavLink to="/app">
+          <NavLink to="/app/hotels">
             <Button type={"primary"}>Start you adventure now!</Button>
           </NavLink>
         </div>

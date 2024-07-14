@@ -27,14 +27,13 @@ function App() {
 
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Registration />} />
-                <Route path="/app" element={<AppLayout />}>
+                <Route path="/" element={<AppLayout />}>
                   <Route index element={<Navigate replace to="hotels" />} />
                   <Route path="hotels" element={<HotelList />} />
                   <Route path="hotels/:id" element={<Hotel />} />
-                  <Route
-                    path="profile"
-                    element={<ProtectedRoute element={<Profile />} />}
-                  />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="profile" element={<Profile />} />
+                  </Route>
                 </Route>
 
                 <Route path="/gallery" element={<Gallery />} />

@@ -10,7 +10,7 @@ function User() {
 
   function openProfile(e) {
     e.preventDefault();
-    navigate("/app/profile", { state: { modal: true } });
+    navigate("profile", { state: { modal: true } });
   }
 
   return (
@@ -19,7 +19,7 @@ function User() {
       <p>{user.name}</p>
       <button onClick={logout}>Logout</button>
       <NavLink
-        to="/app/profile"
+        to="/profile"
         onClick={openProfile}
         className={`${styles.ctaLink} ${styles.profile}`}
       >

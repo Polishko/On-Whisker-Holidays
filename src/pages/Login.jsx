@@ -3,23 +3,29 @@ import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
 import { useAuth } from "../components/contexts/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       await login({ email, password });
-      navigate("/app");
     } catch (error) {
       console.error("Login failed:", error);
     }
   }
+
+  useEffect(
+    function () {
+      if (isAuthenticated === true) navigate("/hotels", { replace: true });
+    },
+    [isAuthenticated, navigate]
+  );
 
   return (
     <main className={styles.login}>

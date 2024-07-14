@@ -9,12 +9,27 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "../components/Common/Modal";
 import Profile from "./Profile";
 import { useAuth } from "../components/contexts/AuthContext";
+import { useEffect } from "react";
 
 function AppLayout() {
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const location = useLocation();
-  const isProfileModal = location.state && location.state.modal;
   const navigate = useNavigate();
+  console.log(`isAuth: ${isAuthenticated}`);
+  // console.log(user.name);
+
+  useEffect(() => {
+    if (location.pathname === "/hotels/profile" && !isAuthenticated) {
+      navigate("/login");
+    }
+  }, [location.pathname, isAuthenticated, navigate]);
+
+  function closeModal() {
+    navigate("/hotels");
+    console.log(`isAuth: ${isAuthenticated}`);
+  }
+
+  const isProfileModal = location.state && location.state.modal;
 
   return (
     <div className={styles.appLayout}>
@@ -31,14 +46,13 @@ function AppLayout() {
           </div>
         </div>
       </div>
-
       {user && (
         <li>
           <User />
         </li>
       )}
       {isProfileModal && (
-        <Modal onClose={() => navigate(-1)}>
+        <Modal onClose={closeModal}>
           <Profile />
         </Modal>
       )}
