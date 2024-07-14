@@ -8,11 +8,9 @@ import Modal from "../components/Common/Modal";
 import { useKey } from "../hooks/useKey";
 
 function Login() {
-  const { login, isAuthenticated, error, resetState } = useAuth();
+  const { login, error, isAuthenticated, resetError } = useAuth();
   const navigate = useNavigate();
-
   const [modalMessage, setModalMessage] = useState("");
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -23,7 +21,19 @@ function Login() {
     if (error) {
       setModalMessage(error);
     }
-  }, [error]);
+  }, [error, setModalMessage]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/hotels", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    return () => {
+      resetError();
+    };
+  }, []);
 
   function resetForm() {
     setFormData({
@@ -46,16 +56,6 @@ function Login() {
       // console.error("Login failed:", error);
     }
   }
-
-  useEffect(
-    function () {
-      if (isAuthenticated === true) {
-        navigate("/hotels", { replace: true });
-      }
-      return resetState();
-    },
-    [isAuthenticated, navigate, resetState]
-  );
 
   return (
     <main className={styles.login}>
@@ -117,7 +117,6 @@ function Login() {
       {modalMessage && (
         <Modal onClose={closeModal}>
           <p>{modalMessage}</p>
-          {error && <p>Try again</p>}
         </Modal>
       )}
     </main>

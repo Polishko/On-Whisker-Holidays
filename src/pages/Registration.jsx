@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
 import PageNav from "../components/PageNav";
 import { useUsers } from "../components/contexts/UsersContext";
@@ -53,7 +53,6 @@ function Registration() {
 
   function closeModal() {
     setModalMessage("");
-    // resetState();
   }
 
   useKey("Escape", closeModal);

@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -8,30 +14,47 @@ const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   isAuthenticated: !!localStorage.getItem("accessToken"),
   error: null,
+  success: null,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "login":
-      return { ...state, user: action.payload, isAuthenticated: true };
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        error: null,
+        success: "Sucessfull login",
+      };
     case "logout":
-      return { ...state, user: null, isAuthenticated: false };
+      return {
+        ...state,
+        user: null,
+        isAuthenticated: false,
+        error: null,
+        success: null,
+      };
     case "rejected":
       return {
         ...state,
         user: null,
         isAuthenticated: false,
         error: action.payload,
+        success: null,
       };
-    case "reset":
-      return initialState;
+    case "reset/error":
+      return {
+        ...state,
+        error: null,
+      };
     default:
       throw new Error("Unknown action");
   }
 }
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated, error }, dispatch] = useReducer(
+  const [{ user, isAuthenticated, error, success }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -80,13 +103,25 @@ function AuthProvider({ children }) {
     localStorage.removeItem("user");
   }
 
-  function resetState() {
-    dispatch({ type: "reset" });
-  }
+  // function resetError() {
+  //   dispatch({ type: "reset/error" });
+  // }
+
+  const resetError = useCallback(() => {
+    dispatch({ type: "reset/error" });
+  }, []);
 
   return (
     <AuthContext.Provider
-      value={{ user, login, logout, isAuthenticated, error, resetState }}
+      value={{
+        user,
+        login,
+        logout,
+        isAuthenticated,
+        error,
+        success,
+        resetError,
+      }}
     >
       {children}
     </AuthContext.Provider>

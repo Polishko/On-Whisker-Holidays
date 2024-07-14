@@ -16,6 +16,8 @@ function AppLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  console.log(user);
+  console.log(isAuthenticated);
 
   useEffect(() => {
     if (location.pathname === "/profile" && !isAuthenticated) {
