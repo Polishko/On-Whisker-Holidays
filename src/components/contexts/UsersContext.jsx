@@ -26,18 +26,16 @@ function reducer(state, action) {
         users: [...state.users, action.payload],
         currentUser: action.payload,
         success: "The user was created successfully",
-      }; //added user made the active user
+      };
     case "user/deleted":
       return {
         ...state,
         isLoadingUsers: false,
         users: state.users.filter((user) => user.id !== action.payload),
-        currentUser: {},
+        currentUser: { email: "", password: "", avatar: "", id: "", name: "" },
       };
     case "reset":
       return { ...initialState };
-    // case "user/logged":
-    //   return { ...state, currentUser: action.payload };
     case "rejected":
       return { ...state, isLoadingUsers: false, error: action.payload };
     default:
@@ -115,9 +113,21 @@ function UsersProvider({ children }) {
     }
   }
 
-  // function logUser(user) {
-  //   dispatch({ type: "user/logged", payload: user });
-  // }
+  async function deleteUser(id) {
+    dispatch({ type: "loading" });
+
+    try {
+      await fetch(`${BASE_URL}/users/${id}`, {
+        method: "DELETE",
+      });
+      dispatch({ type: "hotel/deleted", payload: id });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There was error deleting the user.",
+      });
+    }
+  }
 
   return (
     <UsersContext.Provider
@@ -130,7 +140,7 @@ function UsersProvider({ children }) {
         getUser,
         createUser,
         resetState: () => dispatch({ type: "reset" }),
-        // logUser,
+        deleteUser,
       }}
     >
       {children}
