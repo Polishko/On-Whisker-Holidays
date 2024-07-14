@@ -33,7 +33,7 @@ function Login() {
     return () => {
       resetError();
     };
-  }, []);
+  }, [resetError]);
 
   function resetForm() {
     setFormData({
