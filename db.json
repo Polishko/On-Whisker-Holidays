@@ -37,35 +37,20 @@
     },
     {
       "email": "gizmo@gizmo.com",
-      "password": "$2a$10$5QdXCvvhZl0N7S8KdLR3Gethi0lNcXgpuQdiqMlHFcjzuCGly5fba",
+      "password": "$2a$10$gwazyiqloqNiDX3dyci3veT6qq3idr2PEWJT0sAI/2o7mxGQ1j2ZS",
       "name": "gizmo",
       "avatar": "/avatar/cat1.png",
-      "id": 11
-    },
-    {
-      "email": "polen@polen.com",
-      "password": "$2a$10$VmuMWDwuF1h3THN/5fDLcuoxXGDWzOnY4sYX1zb0qc5ZGuS429X7e",
-      "name": "polen",
-      "avatar": "/avatar/dog2.png",
-      "id": 12
+      "id": 13
     }
   ],
   "comments": [
     {
-      "text": "Cool things",
-      "userId": 11,
+      "text": "A great place to stay",
+      "userId": 13,
       "userName": "gizmo",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-15T16:27:18.924Z",
+      "timestamp": "2024-07-15T16:59:05.509Z",
       "id": 1
-    },
-    {
-      "text": "yessss",
-      "userId": 12,
-      "userName": "polen",
-      "hotelId": "Sunanini House",
-      "timestamp": "2024-07-15T16:29:05.600Z",
-      "id": 2
     }
   ],
   "posts": [

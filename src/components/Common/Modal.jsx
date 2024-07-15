@@ -4,20 +4,23 @@ import styles from "./Modal.module.css";
 
 function Modal({ children, onClose, customClass }) {
   return ReactDOM.createPortal(
-    <div className={styles.modal}>
-      <div className={styles.modalContent}>
-        <Button
-          onClick={onClose}
-          type="secondary"
-          className={`${styles.modalButton} ${
-            customClass ? styles[customClass] : ""
-          }`}
-        >
-          &times;
-        </Button>
-        {children}
+    <>
+      <div className={styles.backdrop} onClick={onClose}></div>
+      <div className={styles.modal}>
+        <div className={styles.modalContent}>
+          <Button
+            onClick={onClose}
+            type="secondary"
+            className={`${styles.modalButton} ${
+              customClass ? styles[customClass] : ""
+            }`}
+          >
+            &times;
+          </Button>
+          {children}
+        </div>
       </div>
-    </div>,
+    </>,
     document.getElementById("modal-root")
   );
 }
