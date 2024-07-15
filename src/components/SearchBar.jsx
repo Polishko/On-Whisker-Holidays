@@ -10,6 +10,7 @@ function SearchBar() {
 
   const handleInputChange = (e) => {
     const newQuery = e.target.value;
+    console.log("Search query:", newQuery); // Log the search query
     setQuery(newQuery);
     filterHotels(newQuery);
   };
@@ -29,6 +30,7 @@ function SearchBar() {
           value={query}
           onChange={handleInputChange}
           ref={inputEl}
+          autoComplete="off"
         />
         {query && (
           <Button className={styles.clearButton} onClick={clearInput}>

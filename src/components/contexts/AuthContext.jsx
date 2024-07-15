@@ -35,6 +35,8 @@ function reducer(state, action) {
         error: null,
         success: null,
       };
+    case "updateUser":
+      return { ...state, user: action.payload };
     case "rejected":
       return {
         ...state,
@@ -103,6 +105,11 @@ function AuthProvider({ children }) {
     localStorage.removeItem("user");
   }
 
+  function updateAuthUser(updatedUser) {
+    dispatch({ type: "updateUser", payload: updatedUser });
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  }
+
   // function resetError() {
   //   dispatch({ type: "reset/error" });
   // }
@@ -121,6 +128,7 @@ function AuthProvider({ children }) {
         error,
         success,
         resetError,
+        updateAuthUser,
       }}
     >
       {children}

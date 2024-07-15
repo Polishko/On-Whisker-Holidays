@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { useAuth } from "./AuthContext";
 
 const UsersContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -27,6 +28,17 @@ function reducer(state, action) {
         success: "The user was created successfully",
         error: null,
       };
+    case "user/updated":
+      return {
+        ...state,
+        isLoadingUsers: false,
+        users: state.users.map((user) =>
+          user.id === action.payload.id ? action.payload : user
+        ),
+        currentUser: action.payload,
+        success: "The user was updated successfully",
+        error: null,
+      };
     case "user/deleted":
       return {
         ...state,
@@ -47,23 +59,26 @@ function UsersProvider({ children }) {
   const [{ users, isLoadingUsers, currentUser, error, success }, dispatch] =
     useReducer(reducer, initialState);
 
-  useEffect(function () {
-    async function fetchUsers() {
-      dispatch({ type: "loading" });
+  const { updateAuthUser } = useAuth();
 
-      try {
-        const res = await fetch(`${BASE_URL}/users`);
-        const data = await res.json();
-        // console.log("Fetched users:", data);
-        dispatch({ type: "users/loaded", payload: data });
-        // console.log(users);
-      } catch {
-        dispatch({
-          type: "rejected",
-          payload: "There was error loading users data...",
-        });
-      }
+  async function fetchUsers() {
+    dispatch({ type: "loading" });
+
+    try {
+      const res = await fetch(`${BASE_URL}/users`);
+      const data = await res.json();
+      // console.log("Fetched users:", data);
+      dispatch({ type: "users/loaded", payload: data });
+      // console.log(users);
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There was error loading users data...",
+      });
     }
+  }
+
+  useEffect(function () {
     fetchUsers();
   }, []);
 
@@ -114,6 +129,42 @@ function UsersProvider({ children }) {
     }
   }
 
+  async function editUser(updatedUser) {
+    dispatch({ type: "loading" });
+
+    try {
+      const res = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
+        method: "PUT",
+        body: JSON.stringify(updatedUser),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        dispatch({
+          type: "rejected",
+          payload: error.message || "There was an error updating the user.",
+        });
+        return;
+      }
+
+      // Fetch the updated user data
+      const updatedRes = await fetch(`${BASE_URL}/users/${updatedUser.id}`);
+      if (!updatedRes.ok) throw new Error("Failed to fetch updated user data");
+      const updatedData = await updatedRes.json();
+
+      dispatch({ type: "user/updated", payload: updatedData });
+
+      // Update the user in AuthContext
+      updateAuthUser(updatedData);
+    } catch (error) {
+      dispatch({
+        type: "rejected",
+        payload: "There was error updating the user.",
+      });
+    }
+  }
+
   async function deleteUser(id) {
     dispatch({ type: "loading" });
 
@@ -146,6 +197,8 @@ function UsersProvider({ children }) {
         createUser,
         resetState,
         deleteUser,
+        editUser,
+        fetchUsers,
       }}
     >
       {children}

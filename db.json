@@ -37,10 +37,10 @@
     },
     {
       "email": "gizmo@gizmo.com",
-      "password": "$2a$10$gwazyiqloqNiDX3dyci3veT6qq3idr2PEWJT0sAI/2o7mxGQ1j2ZS",
       "name": "gizmo",
-      "avatar": "/avatar/cat1.png",
-      "id": 13
+      "avatar": "/avatar/dog1.png",
+      "id": 13,
+      "password": "$2a$10$nyyuQNlyEyB25MVPwUtzb.7M96iOEmHuR/QJy7JerZ8q1dSwZTG5a"
     }
   ],
   "comments": [
