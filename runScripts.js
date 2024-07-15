@@ -3,7 +3,7 @@ const deleteUser = require("./src/helpers/deleteUser");
 //Change data as needed
 
 // 1. Deleting users
-deleteUser(9);
+deleteUser(11);
 
 // 2. Creating hotels
 

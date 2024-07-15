@@ -54,7 +54,7 @@ function UsersProvider({ children }) {
       try {
         const res = await fetch(`${BASE_URL}/users`);
         const data = await res.json();
-        console.log("Fetched users:", data);
+        // console.log("Fetched users:", data);
         dispatch({ type: "users/loaded", payload: data });
         // console.log(users);
       } catch {

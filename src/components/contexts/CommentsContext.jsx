@@ -10,6 +10,7 @@ const initialState = {
   currentComment: {
     text: "",
     userId: "",
+    userName: "name",
     timestamp: "",
     id: "",
     hotelId: "",
@@ -23,12 +24,6 @@ function reducer(state, action) {
       return { ...state, isLoadingComments: true, error: "" };
     case "comments/loaded":
       return { ...state, isLoadingComments: false, comments: action.payload };
-    // case "comment/loaded":
-    //   return {
-    //     ...state,
-    //     isLoadingComments: false,
-    //     currentComment: action.payload,
-    //   };
     case "comment/created":
       return {
         ...state,
@@ -77,22 +72,6 @@ function CommentsProvider({ children }) {
     fetchComments();
   }, []);
 
-  // async function getComment(id) {
-  //   if (id === currentComment.id) return;
-  //   dispatch({ type: "loading" });
-
-  //   try {
-  //     const res = await fetch(`${BASE_URL}/comments/${id}`);
-  //     const data = await res.json();
-  //     dispatch({ type: "comment/loaded", payload: data });
-  //   } catch {
-  //     dispatch({
-  //       type: "rejected",
-  //       payload: "There was error loading the comment.",
-  //     });
-  //   }
-  // }
-
   async function createComment(commentText, hotelId) {
     dispatch({ type: "loading" });
 
@@ -100,6 +79,7 @@ function CommentsProvider({ children }) {
       const comment = {
         text: commentText.trim(),
         userId: user.id,
+        userName: user.name,
         hotelId: hotelId,
         timestamp: new Date().toISOString(),
       };
@@ -144,7 +124,6 @@ function CommentsProvider({ children }) {
         isLoadingComments,
         currentComment,
         error,
-        // getComment,
         createComment,
         deleteComment,
       }}

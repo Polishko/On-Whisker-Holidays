@@ -18,7 +18,9 @@ function CommentItem({ comment, userName }) {
   return (
     <div
       className={`${styles.commentItem} ${
-        comment.userId === user.id ? styles.userComments : styles.otherUsers
+        user && comment.userId === user.id
+          ? styles.userComments
+          : styles.otherUsers
       }`}
     >
       <div className={styles.top}>
@@ -28,7 +30,7 @@ function CommentItem({ comment, userName }) {
 
       <div className={styles.bottom}>
         <p className={styles.text}>{comment.text}</p>
-        {comment.userId === user.id && (
+        {user && comment.userId === user.id && (
           <p className={styles.trash} onClick={handleDelete}>
             <i className="fa-solid fa-trash-can"></i>
           </p>

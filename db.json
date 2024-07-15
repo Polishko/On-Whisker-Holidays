@@ -34,36 +34,38 @@
       "name": "user5",
       "avatar": "/avatar/cat3.png",
       "id": 9
+    },
+    {
+      "email": "gizmo@gizmo.com",
+      "password": "$2a$10$5QdXCvvhZl0N7S8KdLR3Gethi0lNcXgpuQdiqMlHFcjzuCGly5fba",
+      "name": "gizmo",
+      "avatar": "/avatar/cat1.png",
+      "id": 11
+    },
+    {
+      "email": "polen@polen.com",
+      "password": "$2a$10$VmuMWDwuF1h3THN/5fDLcuoxXGDWzOnY4sYX1zb0qc5ZGuS429X7e",
+      "name": "polen",
+      "avatar": "/avatar/dog2.png",
+      "id": 12
     }
   ],
   "comments": [
     {
-      "text": "An amazing little house! My dogs loved the garden.",
-      "userId": 9,
+      "text": "Cool things",
+      "userId": 11,
+      "userName": "gizmo",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-15T09:24:57.158Z",
+      "timestamp": "2024-07-15T16:27:18.924Z",
       "id": 1
     },
     {
-      "text": "Barbeque",
-      "userId": 9,
+      "text": "yessss",
+      "userId": 12,
+      "userName": "polen",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-15T09:36:07.591Z",
+      "timestamp": "2024-07-15T16:29:05.600Z",
       "id": 2
-    },
-    {
-      "text": "deneme",
-      "userId": 9,
-      "hotelId": "Amalia Center Rooms",
-      "timestamp": "2024-07-15T09:36:40.567Z",
-      "id": 3
-    },
-    {
-      "text": "A very cool place.",
-      "userId": 8,
-      "hotelId": "Green Village Lake",
-      "timestamp": "2024-07-15T11:37:48.921Z",
-      "id": 7
     }
   ],
   "posts": [
