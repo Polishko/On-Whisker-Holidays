@@ -1,8 +1,8 @@
 .commentList {
-  background-color: var(--color-light-3);
+  background-color: #fff3e6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 1em;
   overflow: hidden;
-  height: 90%;
   height: calc(100% - 2em);
   padding: 1em;
   margin: 1em;
@@ -26,28 +26,18 @@
   gap: 1.4rem;
 }
 
-/* .commentsInner::-webkit-scrollbar {
-  width: 1em;
-} */
-
-.commentsList::-webkit-scrollbar {
+.commentList::-webkit-scrollbar {
   width: 1em;
 }
 
-/* .commentsInner::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  border-radius: 6px;
+.commentList::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 1em;
+  border: 3px solid #fff3e6;
 }
 
-.commentsInner::-webkit-scrollbar-track {
-  background: lightgrey;
-} */
-
-.commentsList::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  border-radius: 6px;
-}
-
-.commentsList::-webkit-scrollbar-track {
-  background: lightgrey;
+.commentList::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 1em;
+  border: 3px solid #fff3e6;
 }

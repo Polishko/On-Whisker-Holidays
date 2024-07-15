@@ -4,13 +4,34 @@
   gap: 0.2em;
   border: none;
   border-radius: 0.5em;
-  background-color: var(--color-light-2);
-  padding: 0.5em;
+  background-color: #fff0ea;
+  padding: 0.6em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.top {
+.userComments {
+  background-color: #ffd5c2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.userComments .user {
+  font-weight: bold;
+}
+
+.otherComments {
+  background-color: #fff0ea;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.commentItem .top {
   display: flex;
   justify-content: space-between;
+  background-color: #ffe4d1;
+  padding: 0.1em 0.35em;
+  border-radius: 0.5em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .bottom {
@@ -20,7 +41,6 @@
 
 .user {
   margin-right: 1em;
-  font-weight: bold;
 }
 
 .trash {

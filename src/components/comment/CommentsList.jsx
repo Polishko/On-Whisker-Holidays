@@ -30,7 +30,13 @@ function CommentsList() {
       {/* <div className={styles.commentsInner}> */}
       {filteredComments.map((comment) => {
         const user = users.find((user) => user.id === comment.userId);
-        return <CommentItem comment={comment} key={comment.id} user={user} />;
+        return (
+          <CommentItem
+            comment={comment}
+            key={comment.id}
+            userName={user.name}
+          />
+        );
       })}
       {/* </div> */}
     </ul>
