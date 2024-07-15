@@ -12,11 +12,4 @@ function Button({ children, onClick, type, className }) {
   );
 }
 
-// Button.propTypes = {
-//   children: PropTypes.node.isRequired,
-//   onClick: PropTypes.func.isRequired,
-//   type: PropTypes.oneOf(["primary", "back", "position", "navigate", "close"])
-//     .isRequired,
-// };
-
 export default Button;

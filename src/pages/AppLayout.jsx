@@ -57,7 +57,7 @@ function AppLayout() {
       </div>
       {user && <User setIsModalOpen={setIsModalOpen} />}
       {isProfileModal && (
-        <Modal onClose={closeModal}>
+        <Modal onClose={closeModal} customClass="customModalButton">
           <Profile />
         </Modal>
       )}

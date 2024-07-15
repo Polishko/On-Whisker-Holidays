@@ -1,0 +1,36 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+  background-color: var(--color-light-5);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile .currentAvatar img {
+  width: 25%;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1em; */
+}
+
+.profileInfo label {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.profileInfo span {
+  font-size: 2em;
+}
+
+.buttons {
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+  align-self: center;
+}

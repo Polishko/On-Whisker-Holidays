@@ -41,3 +41,8 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.customModalButton {
+  padding: 1em 1, 5;
+  font-size: 1em;
+}

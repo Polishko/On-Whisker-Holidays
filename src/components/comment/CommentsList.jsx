@@ -27,7 +27,6 @@ function CommentsList() {
 
   return (
     <ul className={styles.commentList}>
-      {/* <div className={styles.commentsInner}> */}
       {filteredComments.map((comment) => {
         const user = users.find((user) => user.id === comment.userId);
         return (
@@ -38,7 +37,6 @@ function CommentsList() {
           />
         );
       })}
-      {/* </div> */}
     </ul>
   );
 }

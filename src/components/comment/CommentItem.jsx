@@ -1,9 +1,20 @@
 import styles from "./CommentItem.module.css";
 import { useAuth } from "../contexts/AuthContext";
+import { useComments } from "../contexts/CommentsContext";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
   const { user } = useAuth();
+  const { deleteComment } = useComments();
+
+  async function handleDelete() {
+    try {
+      await deleteComment(comment.id);
+    } catch (error) {
+      console.error("Failed to delete comment:", error);
+    }
+  }
+
   return (
     <div
       className={`${styles.commentItem} ${
@@ -17,9 +28,11 @@ function CommentItem({ comment, userName }) {
 
       <div className={styles.bottom}>
         <p className={styles.text}>{comment.text}</p>
-        <p className={styles.trash}>
-          <i className="fa-solid fa-trash-can"></i>
-        </p>
+        {comment.userId === user.id && (
+          <p className={styles.trash} onClick={handleDelete}>
+            <i className="fa-solid fa-trash-can"></i>
+          </p>
+        )}
       </div>
     </div>
   );

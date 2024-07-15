@@ -52,3 +52,7 @@
 .right > * {
   background-color: var(--color-light-4);
 }
+
+.profileClose {
+  padding: 4em;
+}
