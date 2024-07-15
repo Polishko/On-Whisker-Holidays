@@ -57,14 +57,15 @@ label {
 
 input,
 textarea {
-  /* width: 100%; */
+  width: 90%;
   padding: 0.8rem 1.2rem;
   font-family: inherit;
-  font-size: 1.6rem;
-  border: none;
-  border-radius: 5px;
-
+  font-size: 2rem;
+  text-align: center;
+  border: 0.5px solid lightgray;
+  border-radius: 1em;
   transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 input:focus {

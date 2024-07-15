@@ -42,7 +42,7 @@ function PageNav() {
             </NavLink>
           </li>
         )}
-        {currentPath !== "/hotels" && (
+        {/* {currentPath !== "/hotels" && (
           <li>
             <NavLink
               to="/hotels"
@@ -51,7 +51,7 @@ function PageNav() {
               Search Hotels
             </NavLink>
           </li>
-        )}
+        )} */}
       </ul>
     </nav>
   );

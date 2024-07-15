@@ -1,12 +1,14 @@
+// import Button from "./Button";
 // import styles from "./Modal.module.css";
 
 // function Modal({ children, onClose }) {
 //   return (
 //     <div className={styles.modal}>
 //       <div className={styles.modalContent}>
-//         <div className={styles.close} onClick={onClose}>
-//           {children}
-//         </div>
+//         <Button onClick={onClose} type="secondary" className={styles.modalButton}>
+//           &times;
+//         </Button>
+//         {children}
 //       </div>
 //     </div>
 //   );
@@ -14,18 +16,25 @@
 
 // export default Modal;
 
+import ReactDOM from "react-dom";
+import Button from "./Button";
 import styles from "./Modal.module.css";
 
 function Modal({ children, onClose }) {
-  return (
+  return ReactDOM.createPortal(
     <div className={styles.modal}>
       <div className={styles.modalContent}>
-        <button className={styles.close} onClick={onClose}>
+        <Button
+          onClick={onClose}
+          type="secondary"
+          className={styles.modalButton}
+        >
           &times;
-        </button>
+        </Button>
         {children}
       </div>
-    </div>
+    </div>,
+    document.getElementById("modal-root")
   );
 }
 

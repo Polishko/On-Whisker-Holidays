@@ -10,6 +10,7 @@ import Modal from "../components/Common/Modal";
 import Profile from "./Profile";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect, useState } from "react";
+import { useKey } from "../hooks/useKey";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
@@ -35,6 +36,8 @@ function AppLayout() {
     setIsModalOpen(false);
   }
 
+  useKey("Escape", closeModal);
+
   const isProfileModal = location.state && location.state.modal;
 
   return (
@@ -52,11 +55,7 @@ function AppLayout() {
           </div>
         </div>
       </div>
-      {user && (
-        <li>
-          <User setIsModalOpen={setIsModalOpen} />
-        </li>
-      )}
+      {user && <User setIsModalOpen={setIsModalOpen} />}
       {isProfileModal && (
         <Modal onClose={closeModal}>
           <Profile />

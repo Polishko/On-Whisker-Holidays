@@ -1,15 +1,28 @@
 import styles from "./Hotel.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useHotels } from "../contexts/HotelsContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "../Common/Spinner";
 import EmojiRenderer from "../FlagRenderer";
 import Facilities from "../Common/Facilities";
 import Message from "../Common/Message";
+import Button from "../Common/Button";
+import Modal from "../Common/Modal";
+import { useAuth } from "../contexts/AuthContext";
+import { useComments } from "../contexts/CommentsContext";
+import { useKey } from "../../hooks/useKey";
 
 function Hotel() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const { getHotel, currentHotel, isLoading } = useHotels();
+  const { isAuthenticated, user } = useAuth();
+  const { createComment } = useComments();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [comment, setComment] = useState("");
+  const [charCount, setCharCount] = useState(0);
 
   useEffect(
     function () {
@@ -17,6 +30,12 @@ function Hotel() {
     },
     [id, getHotel]
   );
+
+  useEffect(() => {
+    return () => {
+      setIsModalOpen(false);
+    };
+  }, [navigate]);
 
   const {
     hotelName,
@@ -26,6 +45,40 @@ function Hotel() {
     web,
     countryCode: emoji,
   } = currentHotel;
+
+  function handleAddComment() {
+    setIsModalOpen(true);
+  }
+
+  function handleCommentChange(e) {
+    const value = e.target.value;
+    if (value.length <= 100) {
+      setComment(value);
+      setCharCount(value.length);
+    }
+  }
+
+  async function handleCommentSubmit(e) {
+    e.preventDefault();
+    const trimmedComment = comment.trim();
+    if (trimmedComment.length === 0) {
+      return;
+    }
+    try {
+      await createComment(trimmedComment);
+      handleCloseModal();
+    } catch (error) {
+      // console.log(error)
+    }
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+    setComment("");
+    setCharCount(0);
+  }
+
+  useKey("Escape", handleCloseModal);
 
   if (isLoading) return <Spinner />;
 
@@ -52,7 +105,7 @@ function Hotel() {
       <section className={styles.right}>
         <h3 className={styles.hotelTitle}>
           <p className={styles.hotelName}>{hotelName}</p>
-          <span className={styles.temperature}>Current temp</span>
+          <span className={styles.temperature}>temp</span>
         </h3>
 
         <div className={styles.location}>
@@ -70,9 +123,37 @@ function Hotel() {
           <p>
             <strong>Website:</strong> {web}
           </p>
-          <Facilities hotel={currentHotel} />
+          <div className={styles.bottom}>
+            <Facilities hotel={currentHotel} />
+            {isAuthenticated && (
+              <Button
+                className={styles.addComment}
+                type="primary"
+                onClick={handleAddComment}
+              >
+                Add comment
+              </Button>
+            )}
+          </div>
         </div>
       </section>
+
+      {isModalOpen && (
+        <Modal onClose={handleCloseModal}>
+          <div className={styles.modalContent}>
+            <textarea
+              value={comment}
+              onChange={handleCommentChange}
+              maxLength="100"
+              placeholder="Write your comment here..."
+            />
+            <p className={styles.charCount}>{charCount}/100 characters</p>
+            <Button type="primary" onClick={handleCommentSubmit}>
+              Submit
+            </Button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }

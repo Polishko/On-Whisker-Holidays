@@ -115,9 +115,7 @@ function Login() {
       </form>
 
       {modalMessage && (
-        <Modal onClose={closeModal}>
-          <p>{modalMessage}</p>
-        </Modal>
+        <Modal onClose={closeModal}>{/* <p>{modalMessage}</p> */}</Modal>
       )}
     </main>
   );

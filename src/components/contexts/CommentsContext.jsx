@@ -19,22 +19,22 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
-      return { ...state, isLoadingComments: true };
+      return { ...state, isLoadingComments: true, error: "" };
     case "comments/loaded":
       return { ...state, isLoadingComments: false, comments: action.payload };
-    case "comment/loaded":
-      return {
-        ...state,
-        isLoadingComments: false,
-        currentComment: action.payload,
-      };
+    // case "comment/loaded":
+    //   return {
+    //     ...state,
+    //     isLoadingComments: false,
+    //     currentComment: action.payload,
+    //   };
     case "comment/created":
       return {
         ...state,
         isLoadingComments: false,
         comments: [...state.comments, action.payload],
         currentComment: action.payload,
-      }; //added comment made the active comment
+      };
     case "comment/deleted":
       return {
         ...state,
@@ -61,9 +61,10 @@ function CommentsProvider({ children }) {
 
       try {
         const res = await fetch(`${BASE_URL}/comments`);
+        if (!res.ok) throw new Error("Failed to fetch comments");
         const data = await res.json();
         dispatch({ type: "comments/loaded", payload: data });
-      } catch {
+      } catch (error) {
         dispatch({
           type: "rejected",
           payload: "There was error loading comments data...",
@@ -73,34 +74,40 @@ function CommentsProvider({ children }) {
     fetchComments();
   }, []);
 
-  async function getComment(id) {
-    if (id === currentComment.id) return;
+  // async function getComment(id) {
+  //   if (id === currentComment.id) return;
+  //   dispatch({ type: "loading" });
+
+  //   try {
+  //     const res = await fetch(`${BASE_URL}/comments/${id}`);
+  //     const data = await res.json();
+  //     dispatch({ type: "comment/loaded", payload: data });
+  //   } catch {
+  //     dispatch({
+  //       type: "rejected",
+  //       payload: "There was error loading the comment.",
+  //     });
+  //   }
+  // }
+
+  async function createComment(commentText) {
     dispatch({ type: "loading" });
 
     try {
-      const res = await fetch(`${BASE_URL}/comments/${id}`);
-      const data = await res.json();
-      dispatch({ type: "comment/loaded", payload: data });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was error loading the comment.",
-      });
-    }
-  }
+      const comment = {
+        ...commentText,
+        timestamp: new Date().toISOString(),
+      };
 
-  async function createComment(newComment) {
-    dispatch({ type: "loading" });
-
-    try {
       const res = await fetch(`${BASE_URL}/comments`, {
         method: "POST",
-        body: JSON.stringify(newComment),
+        body: JSON.stringify(comment),
         headers: { "Content-Type": "application/json" },
       });
+      if (!res.ok) throw new Error("Failed to create comment");
       const data = await res.json();
       dispatch({ type: "comment/created", payload: data });
-    } catch {
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was error creating the comment.",
@@ -112,11 +119,12 @@ function CommentsProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
-      await fetch(`${BASE_URL}/comments/${id}`, {
+      const res = await fetch(`${BASE_URL}/comments/${id}`, {
         method: "DELETE",
       });
+      if (!res.ok) throw new Error("Failed to delete comment");
       dispatch({ type: "comment/deleted", payload: id });
-    } catch {
+    } catch (err) {
       dispatch({
         type: "rejected",
         payload: "There was error deleting the comment.",
@@ -131,7 +139,7 @@ function CommentsProvider({ children }) {
         isLoadingComments,
         currentComment,
         error,
-        getComment,
+        // getComment,
         createComment,
         deleteComment,
       }}

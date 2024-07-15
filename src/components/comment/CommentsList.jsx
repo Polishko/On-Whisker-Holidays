@@ -1,14 +1,16 @@
-import Message from "../Common/Message";
+import styles from "./CommentsList.module.css";
 import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
 import { useUsers } from "../contexts/UsersContext";
+import { useAuth } from "../contexts/AuthContext";
+import Message from "../Common/Message";
 import CommentItem from "./CommentItem";
-import styles from "./CommentsList.module.css";
 
 function CommentsList() {
   const { comments } = useComments();
   const { users } = useUsers();
   const { currentHotel } = useHotels();
+  const { isAuthenticated, user } = useAuth();
 
   const filteredComments = comments.filter(
     (comment) => comment.hotelId === currentHotel.id
