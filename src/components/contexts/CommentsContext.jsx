@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { useAuth } from "./AuthContext";
 
 const CommentsContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -11,7 +12,7 @@ const initialState = {
     userId: "",
     timestamp: "",
     id: "",
-    commentId: "",
+    hotelId: "",
   },
   error: "",
 };
@@ -55,6 +56,8 @@ function CommentsProvider({ children }) {
   const [{ comments, isLoadingComments, currentComment, error }, dispatch] =
     useReducer(reducer, initialState);
 
+  const { user } = useAuth();
+
   useEffect(function () {
     async function fetchComments() {
       dispatch({ type: "loading" });
@@ -90,12 +93,14 @@ function CommentsProvider({ children }) {
   //   }
   // }
 
-  async function createComment(commentText) {
+  async function createComment(commentText, hotelId) {
     dispatch({ type: "loading" });
 
     try {
       const comment = {
-        ...commentText,
+        text: commentText.trim(),
+        userId: user.id,
+        hotelId: hotelId,
         timestamp: new Date().toISOString(),
       };
 

@@ -1,10 +1,26 @@
 .commentItem {
   display: flex;
-  gap: 1em;
+  flex-direction: column;
+  gap: 0.2em;
+  border: none;
+  border-radius: 0.5em;
+  background-color: var(--color-light-2);
+  padding: 0.5em;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
 }
 
 .user {
   margin-right: 1em;
+  font-weight: bold;
 }
 
 .trash {

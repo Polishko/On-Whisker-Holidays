@@ -17,7 +17,7 @@ function Hotel() {
   const navigate = useNavigate();
 
   const { getHotel, currentHotel, isLoading } = useHotels();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { createComment } = useComments();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,7 +52,7 @@ function Hotel() {
 
   function handleCommentChange(e) {
     const value = e.target.value;
-    if (value.length <= 100) {
+    if (value.length <= 80) {
       setComment(value);
       setCharCount(value.length);
     }
@@ -60,15 +60,11 @@ function Hotel() {
 
   async function handleCommentSubmit(e) {
     e.preventDefault();
-    const trimmedComment = comment.trim();
-    if (trimmedComment.length === 0) {
-      return;
-    }
     try {
-      await createComment(trimmedComment);
+      await createComment(comment, id);
       handleCloseModal();
     } catch (error) {
-      // console.log(error)
+      // console.error(error);
     }
   }
 
@@ -144,10 +140,10 @@ function Hotel() {
             <textarea
               value={comment}
               onChange={handleCommentChange}
-              maxLength="100"
+              maxLength="80"
               placeholder="Write your comment here..."
             />
-            <p className={styles.charCount}>{charCount}/100 characters</p>
+            <p className={styles.charCount}>{charCount}/80 characters</p>
             <Button type="primary" onClick={handleCommentSubmit}>
               Submit
             </Button>
