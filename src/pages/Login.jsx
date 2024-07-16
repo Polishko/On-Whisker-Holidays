@@ -79,6 +79,7 @@ function Login() {
               id="email"
               placeholder="Username"
               value={formData.email}
+              autoComplete="off"
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
@@ -95,6 +96,7 @@ function Login() {
               id="password"
               placeholder="Password"
               value={formData.password}
+              autoComplete="new-password"
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }

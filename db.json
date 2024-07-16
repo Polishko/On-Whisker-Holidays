@@ -38,9 +38,9 @@
     {
       "email": "gizmo@gizmo.com",
       "name": "gizmo",
-      "avatar": "/avatar/dog1.png",
+      "avatar": "/avatar/cat1.png",
       "id": 13,
-      "password": "$2a$10$nyyuQNlyEyB25MVPwUtzb.7M96iOEmHuR/QJy7JerZ8q1dSwZTG5a"
+      "password": "$2a$10$u7QMvPF///aJ8nfcdyDYXeYv6xRPL/8.Q6HslGFkcsjl11usDlu8."
     }
   ],
   "comments": [

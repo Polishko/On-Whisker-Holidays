@@ -31,6 +31,8 @@ function SearchBar() {
           onChange={handleInputChange}
           ref={inputEl}
           autoComplete="off"
+          name={`search_${Math.random().toString(36).substring(2)}`}
+          id={`search_${Math.random().toString(36).substring(2)}`}
         />
         {query && (
           <Button className={styles.clearButton} onClick={clearInput}>

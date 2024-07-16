@@ -188,6 +188,8 @@ function Profile({ onClose }) {
               value={password}
               onChange={handlePasswordChange}
               placeholder="Password"
+              autoComplete="new-password"
+              name={`modal-password_${Math.random().toString(36).substring(2)}`}
             />
             <div className={styles.modalButtons}>
               <Button onClick={handleSaveChanges} type="primary">
