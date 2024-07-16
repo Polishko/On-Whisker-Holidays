@@ -47,4 +47,36 @@
 .trash {
   margin-left: auto;
   color: var(--color-brown-1);
+  margin-top: 0.3em;
+}
+
+.iconContainer {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 1em;
+}
+
+.tooltipText {
+  visibility: hidden;
+  width: 10em;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5em;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  margin-left: -8em;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.iconContainer:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
 }

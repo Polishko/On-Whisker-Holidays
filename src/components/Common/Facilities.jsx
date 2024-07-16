@@ -6,27 +6,30 @@ function Facilities({ hotel }) {
   return (
     <p className={styles.facilities}>
       {facilities.includes("wifi") && (
-        <span>
-          <i className="fa-solid fa-wifi"></i>
-        </span>
+        <div className={styles.iconContainer}>
+          <i className={`fa-solid fa-wifi ${styles.icon}`}></i>
+          <span className={styles.tooltipText}>WiFi</span>
+        </div>
       )}
       {facilities.includes("airconditioner") && (
-        <span>
-          <i className="fa-regular fa-snowflake"></i>
-          <i className="fa-solid fa-temperature-quarter"></i>
-        </span>
+        <div className={styles.iconContainer}>
+          <i className={`fa-solid fa-fan ${styles.icon}`}></i>
+          <span className={styles.tooltipText}>Air conditioner</span>
+        </div>
       )}
 
       {facilities.includes("parking") && (
-        <span>
-          <i className="fa-solid fa-square-parking"></i>
-        </span>
+        <div className={styles.iconContainer}>
+          <i className={`fa-solid fa-square-parking ${styles.icon}`}></i>
+          <span className={styles.tooltipText}>Parking</span>
+        </div>
       )}
 
       {facilities.includes("pool") && (
-        <span>
-          <i className="fa-solid fa-water-ladder"></i>
-        </span>
+        <div className={styles.iconContainer}>
+          <i className={`fa-solid fa-water-ladder ${styles.icon}`}></i>
+          <span className={styles.tooltipText}>Pool</span>
+        </div>
       )}
     </p>
   );

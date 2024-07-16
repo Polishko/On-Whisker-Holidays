@@ -31,9 +31,12 @@ function CommentItem({ comment, userName }) {
       <div className={styles.bottom}>
         <p className={styles.text}>{comment.text}</p>
         {user && comment.userId === user.id && (
-          <p className={styles.trash} onClick={handleDelete}>
-            <i className="fa-solid fa-trash-can"></i>
-          </p>
+          <div className={styles.trash} onClick={handleDelete}>
+            <div className={styles.iconContainer}>
+              <i className={`fa-solid fa-trash-can ${styles.icon}`}></i>
+              <span className={styles.tooltipText}>Delete comment</span>
+            </div>
+          </div>
         )}
       </div>
     </div>

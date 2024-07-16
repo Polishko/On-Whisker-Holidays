@@ -38,6 +38,14 @@
       "hotelId": "Sorrento Sole Mare",
       "timestamp": "2024-07-16T11:18:19.282Z",
       "id": 3
+    },
+    {
+      "text": "The bluest sea.",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Hayit Buku Bungalovs",
+      "timestamp": "2024-07-16T13:41:14.890Z",
+      "id": 4
     }
   ],
   "posts": [
