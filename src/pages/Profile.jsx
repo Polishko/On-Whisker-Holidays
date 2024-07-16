@@ -69,8 +69,12 @@ function Profile({ onClose }) {
   }
 
   function openPasswordModal() {
-    if (selectedAvatar === user.avatar) {
-      alert("Select an avatar or a different avatar than current!");
+    const selectedAvatarPath = avatars.find(
+      (avatar) => avatar.id === selectedAvatar
+    )?.src;
+
+    if (selectedAvatarPath === user.avatar) {
+      alert("Select a different avatar than the current one!");
       return;
     }
     setIsPasswordModalOpen(true);

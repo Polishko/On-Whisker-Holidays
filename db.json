@@ -16,10 +16,10 @@
     },
     {
       "email": "kaju@kaju.com",
-      "password": "$2a$10$.iQ8AF/HRA3l.T3znxCncO9ak07kLSoVVDIG4o9qsYPXPseFXmOvG",
       "name": "kaju",
-      "avatar": "/avatar/cat1.png",
-      "id": 16
+      "avatar": "/avatar/cat3.png",
+      "id": 16,
+      "password": "$2a$10$i/ahCvgGkhdI.ywDeXRWmOxx88W63TxlhS757v4EdEGOIoAyFJTTG"
     }
   ],
   "comments": [
