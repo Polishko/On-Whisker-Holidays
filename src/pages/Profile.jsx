@@ -13,7 +13,6 @@ function Profile({ onClose }) {
   const [selectedAvatar, setSelectedAvatar] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState("");
-  const currentAvatar = user.avatar;
 
   const avatars = [
     { id: "cat1", src: "/avatar/cat1.png" },
