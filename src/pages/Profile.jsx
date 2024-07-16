@@ -8,7 +8,7 @@ import Modal from "../components/Common/Modal";
 import { useKey } from "../hooks/useKey";
 
 function Profile({ onClose }) {
-  const { user, logout, deleteUser } = useAuth();
+  const { user, logout } = useAuth();
   const { editUser, validatePassword } = useUsers();
   const [selectedAvatar, setSelectedAvatar] = useState(user.avatar);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -62,10 +62,6 @@ function Profile({ onClose }) {
     }
   }
 
-  function handleDeleteAccount() {
-    deleteUser(user.id);
-  }
-
   function openPasswordModal() {
     if (selectedAvatar === user.avatar) {
       alert("Select different avatar!");
@@ -113,9 +109,6 @@ function Profile({ onClose }) {
       <div className={styles.buttons}>
         <Button onClick={openPasswordModal} type="primary">
           Save Changes
-        </Button>
-        <Button onClick={handleDeleteAccount} type="secondary">
-          Delete Account
         </Button>
         <Button onClick={handleLogoutClick} type="primary">
           Logout
