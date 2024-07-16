@@ -10,15 +10,12 @@ import Modal from "../components/Common/Modal";
 import Profile from "./Profile";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect, useState } from "react";
-import { useKey } from "../hooks/useKey";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // console.log(user);
-  // console.log(isAuthenticated);
 
   useEffect(() => {
     if (location.pathname === "/profile" && !isAuthenticated) {
@@ -35,8 +32,6 @@ function AppLayout() {
     navigate("/hotels");
     setIsModalOpen(false);
   }
-
-  useKey("Escape", closeModal);
 
   const isProfileModal = location.state && location.state.modal;
 

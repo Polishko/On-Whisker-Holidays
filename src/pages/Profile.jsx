@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "../components/Common/Button";
 import AvatarSelection from "../components/Common/AvatarSelection";
 import Modal from "../components/Common/Modal";
+import { useKey } from "../hooks/useKey";
 
 function Profile({ onClose }) {
   const { user, logout, deleteUser } = useAuth();
@@ -66,6 +67,10 @@ function Profile({ onClose }) {
   }
 
   function openPasswordModal() {
+    if (selectedAvatar === user.avatar) {
+      alert("Select different avatar!");
+      return;
+    }
     setIsPasswordModalOpen(true);
   }
 
@@ -76,6 +81,18 @@ function Profile({ onClose }) {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
+
+  useKey("Escape", () => {
+    if (isPasswordModalOpen) {
+      closePasswordModal();
+    } else {
+      onClose();
+    }
+  });
+
+  useKey("Enter", () => {
+    if (isPasswordModalOpen) handleSaveChanges();
+  });
 
   return (
     <div className={styles.profile}>
