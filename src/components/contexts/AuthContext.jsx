@@ -91,7 +91,7 @@ function AuthProvider({ children }) {
       dispatch({ type: "login", payload: user });
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("user", JSON.stringify(user));
-    } catch {
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was error logging the user.",

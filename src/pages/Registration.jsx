@@ -108,6 +108,8 @@ function Registration() {
               id="name"
               name="name"
               placeholder="Username"
+              autoComplete="off"
+              // name={`search_${Math.random().toString(36).substring(2)}`}
               value={formData.name}
               onChange={handleChange}
             />
@@ -124,6 +126,7 @@ function Registration() {
               name="email"
               placeholder="Email"
               value={formData.email}
+              autoComplete="off"
               onChange={handleChange}
             />
           </div>
@@ -138,6 +141,7 @@ function Registration() {
               id="password"
               name="password"
               placeholder="Password"
+              autoComplete="new-password"
               value={formData.password}
               onChange={handleChange}
             />

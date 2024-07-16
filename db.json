@@ -41,6 +41,13 @@
       "avatar": "/avatar/cat1.png",
       "id": 13,
       "password": "$2a$10$u7QMvPF///aJ8nfcdyDYXeYv6xRPL/8.Q6HslGFkcsjl11usDlu8."
+    },
+    {
+      "email": "kaju@kaju.com",
+      "name": "kaju",
+      "avatar": "/avatar/dog1.png",
+      "id": 14,
+      "password": "$2a$10$6RpVZSOP87P/IOWpudcPluh.wy05g/302eAypuG5n0/4YDfcY7Ffa"
     }
   ],
   "comments": [
@@ -51,6 +58,14 @@
       "hotelId": "Sunanini House",
       "timestamp": "2024-07-15T16:59:05.509Z",
       "id": 1
+    },
+    {
+      "text": "I liked this place a lot!",
+      "userId": 14,
+      "userName": "kaju",
+      "hotelId": "The Wooden Village",
+      "timestamp": "2024-07-16T06:48:46.033Z",
+      "id": 2
     }
   ],
   "posts": [

@@ -67,9 +67,7 @@ function UsersProvider({ children }) {
     try {
       const res = await fetch(`${BASE_URL}/users`);
       const data = await res.json();
-      // console.log("Fetched users:", data);
       dispatch({ type: "users/loaded", payload: data });
-      // console.log(users);
     } catch {
       dispatch({
         type: "rejected",
@@ -121,11 +119,41 @@ function UsersProvider({ children }) {
       const { accessToken, user } = data;
       localStorage.setItem("accessToken", accessToken);
       dispatch({ type: "user/created", payload: user });
-    } catch {
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was error creating the user.",
       });
+    }
+  }
+
+  async function validatePassword(credentials) {
+    try {
+      const res = await fetch(`${BASE_URL}/login`, {
+        method: "POST",
+        body: JSON.stringify(credentials),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        dispatch({
+          type: "rejected",
+          payload: error.message || "Wrong password.",
+        });
+        return { isValid: false, message: error.message || "Wrong password." };
+      }
+
+      return { isValid: true };
+    } catch (error) {
+      dispatch({
+        type: "rejected",
+        payload: "There was error changing the avatar.",
+      });
+      return {
+        isValid: false,
+        message: "There was error changing the avatar.",
+      };
     }
   }
 
@@ -141,21 +169,22 @@ function UsersProvider({ children }) {
 
       if (!res.ok) {
         const error = await res.json();
+        const errorMessage =
+          res.status === 401
+            ? "Wrong password."
+            : error.message || "There was an error updating the user.";
         dispatch({
           type: "rejected",
-          payload: error.message || "There was an error updating the user.",
+          payload: errorMessage,
         });
         return;
       }
 
-      // Fetch the updated user data
       const updatedRes = await fetch(`${BASE_URL}/users/${updatedUser.id}`);
       if (!updatedRes.ok) throw new Error("Failed to fetch updated user data");
       const updatedData = await updatedRes.json();
 
       dispatch({ type: "user/updated", payload: updatedData });
-
-      // Update the user in AuthContext
       updateAuthUser(updatedData);
     } catch (error) {
       dispatch({
@@ -173,7 +202,7 @@ function UsersProvider({ children }) {
         method: "DELETE",
       });
       dispatch({ type: "hotel/deleted", payload: id });
-    } catch {
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was error deleting the user.",
@@ -198,6 +227,7 @@ function UsersProvider({ children }) {
         resetState,
         deleteUser,
         editUser,
+        validatePassword,
         fetchUsers,
       }}
     >

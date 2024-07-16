@@ -80,6 +80,7 @@ function Login() {
               placeholder="Username"
               value={formData.email}
               autoComplete="off"
+              name={`search_${Math.random().toString(36).substring(2)}`}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
@@ -97,6 +98,7 @@ function Login() {
               placeholder="Password"
               value={formData.password}
               autoComplete="new-password"
+              name={`search_${Math.random().toString(36).substring(2)}`}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
