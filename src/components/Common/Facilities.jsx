@@ -4,7 +4,7 @@ function Facilities({ hotel }) {
   const { facilities } = hotel;
 
   return (
-    <p className={styles.facilities}>
+    <div className={styles.facilities}>
       {facilities.includes("wifi") && (
         <div className={styles.iconContainer}>
           <i className={`fa-solid fa-wifi ${styles.icon}`}></i>
@@ -31,7 +31,7 @@ function Facilities({ hotel }) {
           <span className={styles.tooltipText}>Pool</span>
         </div>
       )}
-    </p>
+    </div>
   );
 }
 

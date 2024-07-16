@@ -125,7 +125,11 @@ function Profile({ onClose }) {
         </Button>
       </div>
       {isPasswordModalOpen && (
-        <Modal onClose={closePasswordModal} customClass="customModalButton">
+        <Modal
+          onClose={closePasswordModal}
+          customClass="customModalButton"
+          showCloseButton={false}
+        >
           <div>
             <h3>Enter Password</h3>
             <input
