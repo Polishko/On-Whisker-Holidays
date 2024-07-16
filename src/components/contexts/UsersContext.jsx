@@ -161,15 +161,20 @@ function UsersProvider({ children }) {
       };
     }
   }
-
   async function editUser(updatedUser) {
     dispatch({ type: "loading" });
 
     try {
+      const token = localStorage.getItem("accessToken");
+
+      // PUT request to update the user
       const res = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
         method: "PUT",
         body: JSON.stringify(updatedUser),
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (!res.ok) {
@@ -185,7 +190,12 @@ function UsersProvider({ children }) {
         return;
       }
 
-      const updatedRes = await fetch(`${BASE_URL}/users/${updatedUser.id}`);
+      // GET request to fetch the updated user data
+      const updatedRes = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!updatedRes.ok) throw new Error("Failed to fetch updated user data");
       const updatedData = await updatedRes.json();
 

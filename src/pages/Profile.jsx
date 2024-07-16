@@ -10,9 +10,10 @@ import { useKey } from "../hooks/useKey";
 function Profile({ onClose }) {
   const { user, logout } = useAuth();
   const { editUser, validatePassword } = useUsers();
-  const [selectedAvatar, setSelectedAvatar] = useState(user.avatar);
+  const [selectedAvatar, setSelectedAvatar] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState("");
+  const currentAvatar = user.avatar;
 
   const avatars = [
     { id: "cat1", src: "/avatar/cat1.png" },
@@ -69,9 +70,13 @@ function Profile({ onClose }) {
   }
 
   function openPasswordModal() {
-    const selectedAvatarPath = avatars.find(
-      (avatar) => avatar.id === selectedAvatar
-    )?.src;
+    const selectedAvatarPath =
+      avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
+
+    if (selectedAvatarPath === "") {
+      alert("Select an avatar!");
+      return;
+    }
 
     if (selectedAvatarPath === user.avatar) {
       alert("Select a different avatar than the current one!");
