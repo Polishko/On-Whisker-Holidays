@@ -54,6 +54,14 @@
       "hotelId": "Sunanini House",
       "timestamp": "2024-07-16T17:38:24.221Z",
       "id": 5
+    },
+    {
+      "text": "It's great to rest here even if you don't like fishing!",
+      "userId": 15,
+      "userName": "polen",
+      "hotelId": "Green Village Lake",
+      "timestamp": "2024-07-16T19:38:48.414Z",
+      "id": 6
     }
   ],
   "posts": [

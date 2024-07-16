@@ -23,17 +23,20 @@ function CommentsList() {
     );
 
   return (
-    <ul className={styles.commentList}>
-      {filteredComments.map((comment) => {
-        return (
-          <CommentItem
-            comment={comment}
-            key={comment.id}
-            userName={comment.userName}
-          />
-        );
-      })}
-    </ul>
+    <div className={styles.commentList}>
+      <h3>Visitors&apos; comments</h3>
+      <ul>
+        {filteredComments.map((comment) => {
+          return (
+            <CommentItem
+              comment={comment}
+              key={comment.id}
+              userName={comment.userName}
+            />
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

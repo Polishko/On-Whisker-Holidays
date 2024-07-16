@@ -1,0 +1,9 @@
+.weather {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.temperature {
+  font-size: 1.3em;
+}

@@ -11,6 +11,7 @@ import Modal from "../Common/Modal";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
+import Weather from "../Common/Weather";
 
 function Hotel() {
   const { id } = useParams();
@@ -44,6 +45,7 @@ function Hotel() {
     img,
     web,
     countryCode: emoji,
+    position: { lat: latitude, lng: longitude },
   } = currentHotel;
 
   function handleAddComment() {
@@ -101,7 +103,6 @@ function Hotel() {
       <section className={styles.right}>
         <h3 className={styles.hotelTitle}>
           <p className={styles.hotelName}>{hotelName}</p>
-          <span className={styles.temperature}>temp</span>
         </h3>
 
         <div className={styles.location}>
@@ -109,6 +110,9 @@ function Hotel() {
           <span>
             <EmojiRenderer emoji={emoji} />
           </span>
+          <div className={styles.weather}>
+            <Weather latitude={latitude} longitude={longitude} />
+          </div>
         </div>
 
         <div className={styles.detail}>
@@ -116,8 +120,11 @@ function Hotel() {
         </div>
 
         <div className={styles.moreInfo}>
-          <p>
-            <strong>Website:</strong> {web}
+          <p className={styles.webAddress}>
+            <strong>Website:</strong>{" "}
+            <a href={web} target="_blank" rel="noopener noreferrer">
+              {web}
+            </a>
           </p>
           <div className={styles.bottom}>
             <Facilities hotel={currentHotel} />
