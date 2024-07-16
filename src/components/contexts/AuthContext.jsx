@@ -110,10 +110,6 @@ function AuthProvider({ children }) {
     localStorage.setItem("user", JSON.stringify(updatedUser));
   }
 
-  // function resetError() {
-  //   dispatch({ type: "reset/error" });
-  // }
-
   const resetError = useCallback(() => {
     dispatch({ type: "reset/error" });
   }, []);

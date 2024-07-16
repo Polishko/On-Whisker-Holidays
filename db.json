@@ -1,41 +1,6 @@
 {
   "users": [
     {
-      "email": "user3@user3.com",
-      "password": "$2a$10$24ypMuPQ.IX5uQBdD1h.9OWN/Q/myF1o5Q0NpxkKvl3wY8VNwfHiS",
-      "name": "user3",
-      "avatar": "../public/avatar/cat1.png",
-      "id": 5
-    },
-    {
-      "email": "user1@user1.com",
-      "password": "$2a$10$6X/4Ekg4p9nxEtFjs2KbNeYruOoeBIxRzcXc.VP8M8rMV9NZKvmJG",
-      "name": "user1",
-      "avatar": "/avatar/cat3.png",
-      "id": 6
-    },
-    {
-      "email": "user2@user2.com",
-      "password": "$2a$10$OXqOt5Oba94hMf7zsfOo1ujiF6s0XkiuKrCq0qMvb8Y6IYths5AIq",
-      "name": "user2",
-      "avatar": "/avatar/cat2.png",
-      "id": 7
-    },
-    {
-      "email": "user4@user4.com",
-      "password": "$2a$10$UQV7gGcqg7GAMQKG28hAlu7hcvvYLoFiBw5lMWYtrsJ0kZsXiqTjO",
-      "name": "user4",
-      "avatar": "/avatar/cat1.png",
-      "id": 8
-    },
-    {
-      "email": "user5@user5.com",
-      "password": "$2a$10$tKUQgja2TAG6S8WeMHLtlO3Xw4qLTooivRpTHCQ8RRh0ZJDlePNZa",
-      "name": "user5",
-      "avatar": "/avatar/cat3.png",
-      "id": 9
-    },
-    {
       "email": "gizmo@gizmo.com",
       "name": "gizmo",
       "avatar": "/avatar/cat1.png",
@@ -45,9 +10,16 @@
     {
       "email": "kaju@kaju.com",
       "name": "kaju",
-      "avatar": "/avatar/cat1.png",
+      "avatar": "/avatar/dog1.png",
       "id": 14,
-      "password": "$2a$10$q6PZ8ABHG4c6SSRPiIuHzeA/npKXLCdjU1HcEPHBfSB4WciAabvWy"
+      "password": "$2a$10$0rrPABtl2ddXrl9qN7WkUunTUYSuoOlaU.bKkdOJIkiHZmcXulkBi"
+    },
+    {
+      "email": "polen@polen.com",
+      "password": "$2a$10$OCkDY/4CuBMIuWSTaUt67.VZAEZP24M07rokkJdWPC5C.RWBadpEu",
+      "name": "polen",
+      "avatar": "/avatar/cat3.png",
+      "id": 15
     }
   ],
   "comments": [
@@ -66,6 +38,14 @@
       "hotelId": "The Wooden Village",
       "timestamp": "2024-07-16T06:48:46.033Z",
       "id": 2
+    },
+    {
+      "text": "The beach was great! There's also a pool.",
+      "userId": 15,
+      "userName": "polen",
+      "hotelId": "Sorrento Sole Mare",
+      "timestamp": "2024-07-16T11:18:19.282Z",
+      "id": 3
     }
   ],
   "posts": [

@@ -23,6 +23,10 @@ function Profile({ onClose }) {
     { id: "dog3", src: "/avatar/dog3.png" },
   ];
 
+  function passwordFieldReset() {
+    setPassword("");
+  }
+
   function handleAvatarChange(e) {
     setSelectedAvatar(e.target.value);
   }
@@ -38,11 +42,13 @@ function Profile({ onClose }) {
       const { isValid, message } = await validatePassword(credentials);
 
       if (!password) {
-        alert("Password can't be empty");
+        passwordFieldReset();
+        alert("Password field can't be empty");
         return;
       }
 
       if (!isValid) {
+        passwordFieldReset();
         alert(message);
         return;
       }
@@ -64,7 +70,7 @@ function Profile({ onClose }) {
 
   function openPasswordModal() {
     if (selectedAvatar === user.avatar) {
-      alert("Select different avatar!");
+      alert("Select an avatar or a different avatar than current!");
       return;
     }
     setIsPasswordModalOpen(true);
@@ -74,7 +80,7 @@ function Profile({ onClose }) {
     setIsPasswordModalOpen(false);
   }
 
-  function handlePasswordChange(e) {
+  function handlePasswordSubmit(e) {
     setPassword(e.target.value);
   }
 
@@ -121,7 +127,7 @@ function Profile({ onClose }) {
             <input
               type="password"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={handlePasswordSubmit}
               placeholder="Password"
               autoComplete="new-password"
               name={`modal-password_${Math.random().toString(36).substring(2)}`}

@@ -76,44 +76,25 @@ function HotelsProvider({ children }) {
 
   const location = useLocation();
 
-  // useEffect(function () {
-  //   async function fetchHotels() {
-  //     dispatch({ type: "loading" });
-
-  //     try {
-  //       const res = await fetch(`${BASE_URL}/hotels`);
-  //       const data = await res.json();
-
-  //       const sortedData = data.sort((a, b) => {
-  //         if (a.country < b.country) return -1;
-  //         if (a.country > b.country) return 1;
-  //         return 0;
-  //       });
-
-  //       dispatch({ type: "hotels/loaded", payload: sortedData });
-  //     } catch {
-  //       dispatch({
-  //         type: "rejected",
-  //         payload: "There was error loading hotel data...",
-  //       });
-  //     }
-  //   }
-  //   fetchHotels();
-  // }, []);
-
   useEffect(function () {
+    const controller = new AbortController();
+
     async function fetchHotels() {
       dispatch({ type: "loading" });
 
       try {
-        const res = await fetch(`${BASE_URL}/hotels?_sort=country&_order=asc`);
+        const res = await fetch(`${BASE_URL}/hotels?_sort=country&_order=asc`, {
+          signal: controller.signal,
+        });
         const data = await res.json();
         dispatch({ type: "hotels/loaded", payload: data });
-      } catch {
-        dispatch({
-          type: "rejected",
-          payload: "There was error loading hotel data...",
-        });
+      } catch (error) {
+        if (error.name != "AbortError") {
+          dispatch({
+            type: "rejected",
+            payload: "There was error loading hotel data...",
+          });
+        }
       }
     }
     fetchHotels();
@@ -137,13 +118,13 @@ function HotelsProvider({ children }) {
       });
       const data = await res.json();
       dispatch({ type: "hotel/loaded", payload: data });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was error loading the hotel.",
-      });
-    } finally {
-      controller.abort();
+    } catch (error) {
+      if (error.name !== "AbortController") {
+        dispatch({
+          type: "rejected",
+          payload: "There was error loading the hotel.",
+        });
+      }
     }
   }
 

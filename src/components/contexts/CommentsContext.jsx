@@ -55,18 +55,23 @@ function CommentsProvider({ children }) {
 
   useEffect(function () {
     async function fetchComments() {
+      const controller = new AbortController();
       dispatch({ type: "loading" });
 
       try {
-        const res = await fetch(`${BASE_URL}/comments`);
+        const res = await fetch(`${BASE_URL}/comments`, {
+          signal: controller.signal,
+        });
         if (!res.ok) throw new Error("Failed to fetch comments");
         const data = await res.json();
         dispatch({ type: "comments/loaded", payload: data });
       } catch (error) {
-        dispatch({
-          type: "rejected",
-          payload: "There was error loading comments data...",
-        });
+        if (error.name != "AbortError") {
+          dispatch({
+            type: "rejected",
+            payload: "There was error loading comments data...",
+          });
+        }
       }
     }
     fetchComments();

@@ -62,17 +62,22 @@ function UsersProvider({ children }) {
   const { updateAuthUser } = useAuth();
 
   async function fetchUsers() {
+    const controller = new AbortController();
     dispatch({ type: "loading" });
 
     try {
-      const res = await fetch(`${BASE_URL}/users`);
+      const res = await fetch(`${BASE_URL}/users`, {
+        signal: controller.signal,
+      });
       const data = await res.json();
       dispatch({ type: "users/loaded", payload: data });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was error loading users data...",
-      });
+    } catch (error) {
+      if (error.name != "AbortError") {
+        dispatch({
+          type: "rejected",
+          payload: "There was error loading users data...",
+        });
+      }
     }
   }
 
