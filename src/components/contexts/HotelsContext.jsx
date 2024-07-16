@@ -101,7 +101,7 @@ function HotelsProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (!location.pathname.startsWith("/app/hotels/")) {
+    if (!location.pathname.startsWith("/hotels/")) {
       dispatch({ type: "hotel/reset" });
     }
   }, [location.pathname]);
@@ -128,22 +128,6 @@ function HotelsProvider({ children }) {
     }
   }
 
-  async function deleteHotel(id) {
-    dispatch({ type: "loading" });
-
-    try {
-      await fetch(`${BASE_URL}/hotels/${id}`, {
-        method: "DELETE",
-      });
-      dispatch({ type: "hotel/deleted", payload: id });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was error deleting the hotel.",
-      });
-    }
-  }
-
   function filterHotels(keywords) {
     dispatch({ type: "hotels/filtered", payload: keywords });
   }
@@ -157,8 +141,6 @@ function HotelsProvider({ children }) {
         currentHotel,
         error,
         getHotel,
-        // createHotel,
-        deleteHotel,
         filterHotels,
       }}
     >

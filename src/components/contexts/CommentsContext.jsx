@@ -89,12 +89,19 @@ function CommentsProvider({ children }) {
         timestamp: new Date().toISOString(),
       };
 
+      const token = localStorage.getItem("accessToken");
+
       const res = await fetch(`${BASE_URL}/comments`, {
         method: "POST",
         body: JSON.stringify(comment),
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
+
       if (!res.ok) throw new Error("Failed to create comment");
+
       const data = await res.json();
       dispatch({ type: "comment/created", payload: data });
     } catch (error) {
@@ -109,12 +116,20 @@ function CommentsProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
+      const token = localStorage.getItem("accessToken");
+
       const res = await fetch(`${BASE_URL}/comments/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
+
       if (!res.ok) throw new Error("Failed to delete comment");
+
       dispatch({ type: "comment/deleted", payload: id });
-    } catch (err) {
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was error deleting the comment.",

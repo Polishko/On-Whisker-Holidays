@@ -209,21 +209,21 @@ function UsersProvider({ children }) {
     }
   }
 
-  async function deleteUser(id) {
-    dispatch({ type: "loading" });
+  // async function deleteUser(id) {
+  //   dispatch({ type: "loading" });
 
-    try {
-      await fetch(`${BASE_URL}/users/${id}`, {
-        method: "DELETE",
-      });
-      dispatch({ type: "hotel/deleted", payload: id });
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: "There was error deleting the user.",
-      });
-    }
-  }
+  //   try {
+  //     await fetch(`${BASE_URL}/users/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     dispatch({ type: "hotel/deleted", payload: id });
+  //   } catch (error) {
+  //     dispatch({
+  //       type: "rejected",
+  //       payload: "There was error deleting the user.",
+  //     });
+  //   }
+  // }
 
   function resetState() {
     dispatch({ type: "reset" });
@@ -240,7 +240,7 @@ function UsersProvider({ children }) {
         getUser,
         createUser,
         resetState,
-        deleteUser,
+        // deleteUser,
         editUser,
         validatePassword,
         fetchUsers,

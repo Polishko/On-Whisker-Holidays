@@ -1,4 +1,5 @@
 const deleteUser = require("./src/helpers/deleteUser");
+// Disable permission requierements temporarely in server.js to be able to use these
 
 //Change data as needed
 

@@ -46,6 +46,14 @@
       "hotelId": "Hayit Buku Bungalovs",
       "timestamp": "2024-07-16T14:20:37.414Z",
       "id": 4
+    },
+    {
+      "text": "It's super cozy!",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Sunanini House",
+      "timestamp": "2024-07-16T17:38:24.221Z",
+      "id": 5
     }
   ],
   "posts": [
