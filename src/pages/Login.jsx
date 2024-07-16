@@ -77,7 +77,7 @@ function Login() {
             <input
               type="email"
               id="email"
-              placeholder="Username"
+              placeholder="Email"
               value={formData.email}
               autoComplete="off"
               name={`search_${Math.random().toString(36).substring(2)}`}
