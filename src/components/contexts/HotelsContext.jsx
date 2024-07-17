@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useReducer } from "react";
 import { createContext } from "react";
 import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { containsAllKeywords } from "../../helpers/keywordContainCheck.js";
 
@@ -75,6 +76,7 @@ function HotelsProvider({ children }) {
     useReducer(reducer, initialState);
 
   const location = useLocation();
+  const { query } = useParams();
 
   useEffect(function () {
     const controller = new AbortController();
@@ -99,6 +101,15 @@ function HotelsProvider({ children }) {
     }
     fetchHotels();
   }, []);
+
+  useEffect(() => {
+    if (location.pathname.startsWith("/search/")) {
+      const query = location.pathname.split("/search/")[1];
+      if (query) {
+        filterHotels(query);
+      }
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!location.pathname.startsWith("/hotels/")) {
