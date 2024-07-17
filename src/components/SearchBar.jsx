@@ -14,6 +14,7 @@ function SearchBar() {
     const newQuery = e.target.value;
     setQuery(newQuery);
     if (newQuery.trim() === "") {
+      filterHotels("");
       navigate("/hotels");
     } else {
       filterHotels(newQuery);
