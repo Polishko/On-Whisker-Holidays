@@ -103,13 +103,12 @@ function HotelsProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (location.pathname.startsWith("/search/")) {
-      const query = location.pathname.split("/search/")[1];
-      if (query) {
-        filterHotels(query);
-      }
+    if (query) {
+      filterHotels(query);
+    } else {
+      filterHotels("");
     }
-  }, [location.pathname]);
+  }, [query]);
 
   useEffect(() => {
     if (!location.pathname.startsWith("/hotels/")) {
