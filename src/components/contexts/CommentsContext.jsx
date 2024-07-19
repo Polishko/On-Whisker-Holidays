@@ -53,27 +53,28 @@ function CommentsProvider({ children }) {
 
   const { user } = useAuth();
 
-  useEffect(function () {
-    async function fetchComments() {
-      const controller = new AbortController();
-      dispatch({ type: "loading" });
+  const fetchComments = async function fetchComments() {
+    const controller = new AbortController();
+    dispatch({ type: "loading" });
 
-      try {
-        const res = await fetch(`${BASE_URL}/comments`, {
-          signal: controller.signal,
+    try {
+      const res = await fetch(`${BASE_URL}/comments`, {
+        signal: controller.signal,
+      });
+      if (!res.ok) throw new Error("Failed to fetch comments");
+      const data = await res.json();
+      dispatch({ type: "comments/loaded", payload: data });
+    } catch (error) {
+      if (error.name != "AbortError") {
+        dispatch({
+          type: "rejected",
+          payload: "There was error loading comments data...",
         });
-        if (!res.ok) throw new Error("Failed to fetch comments");
-        const data = await res.json();
-        dispatch({ type: "comments/loaded", payload: data });
-      } catch (error) {
-        if (error.name != "AbortError") {
-          dispatch({
-            type: "rejected",
-            payload: "There was error loading comments data...",
-          });
-        }
       }
     }
+  };
+
+  useEffect(function () {
     fetchComments();
   }, []);
 
@@ -104,6 +105,8 @@ function CommentsProvider({ children }) {
 
       const data = await res.json();
       dispatch({ type: "comment/created", payload: data });
+
+      fetchComments();
     } catch (error) {
       dispatch({
         type: "rejected",
@@ -129,6 +132,7 @@ function CommentsProvider({ children }) {
       if (!res.ok) throw new Error("Failed to delete comment");
 
       dispatch({ type: "comment/deleted", payload: id });
+      fetchComments();
     } catch (error) {
       dispatch({
         type: "rejected",
