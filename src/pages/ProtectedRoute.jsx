@@ -1,18 +1,15 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../components/contexts/AuthContext";
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute() {
   const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [isAuthenticated, navigate]);
+  if (!isAuthenticated) {
+    // Redirect to the login page or home page if the user is not authenticated
+    return <Navigate to="/login" />;
+  }
 
-  return isAuthenticated ? children : null;
+  return <Outlet />;
 }
 
 export default ProtectedRoute;
