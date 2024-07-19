@@ -39,7 +39,7 @@ function Registration() {
       setModalMessage(success);
       navigate("/login");
     }
-    return resetState();
+    // return resetState();
   }, [error, success, resetState, navigate]);
 
   function resetForm() {

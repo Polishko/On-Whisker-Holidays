@@ -25,7 +25,7 @@ function reducer(state, action) {
         user: action.payload,
         isAuthenticated: true,
         error: null,
-        success: "Sucessfull login",
+        success: "Sucessful login",
       };
     case "logout":
       return {
@@ -64,12 +64,13 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const accessToken = localStorage.getItem("accessToken");
+
     if (user && accessToken) {
       dispatch({ type: "login", payload: user });
     }
   }, []);
 
-  async function login(credentials) {
+  const login = useCallback(async (credentials) => {
     try {
       const res = await fetch(`${BASE_URL}/login`, {
         method: "POST",
@@ -94,10 +95,10 @@ function AuthProvider({ children }) {
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: "There was error logging the user.",
+        payload: "There was an error logging the user.",
       });
     }
-  }
+  }, []);
 
   function logout() {
     dispatch({ type: "logout" });

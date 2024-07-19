@@ -121,9 +121,10 @@ function UsersProvider({ children }) {
       }
 
       const data = await res.json();
-      const { accessToken, user } = data;
-      localStorage.setItem("accessToken", accessToken);
+      const { user } = data;
       dispatch({ type: "user/created", payload: user });
+
+      fetchUsers();
     } catch (error) {
       dispatch({
         type: "rejected",
@@ -201,6 +202,8 @@ function UsersProvider({ children }) {
 
       dispatch({ type: "user/updated", payload: updatedData });
       updateAuthUser(updatedData);
+
+      fetchUsers();
     } catch (error) {
       dispatch({
         type: "rejected",

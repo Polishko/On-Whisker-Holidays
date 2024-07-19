@@ -30,7 +30,7 @@ function App() {
                 <Route path="/" element={<AppLayout />}>
                   <Route index element={<Navigate replace to="hotels" />} />
                   <Route path="hotels" element={<HotelList />} />
-                  <Route path="hotels/:id/detail" element={<Hotel />} />
+                  <Route path="hotels/:id" element={<Hotel />} />
                   <Route path="search/:query" element={<HotelList />} />
                   <Route element={<ProtectedRoute />}>
                     <Route path="profile" element={<Profile />} />

@@ -16,6 +16,8 @@ function Login() {
     password: "",
   });
 
+  console.log(isAuthenticated);
+
   useEffect(() => {
     resetForm();
     if (error) {
