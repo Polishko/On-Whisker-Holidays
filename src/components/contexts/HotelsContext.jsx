@@ -1,9 +1,5 @@
-import { useContext } from "react";
-import { useEffect } from "react";
-import { useReducer } from "react";
-import { createContext } from "react";
-import { useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useReducer, createContext } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 import { containsAllKeywords } from "../../helpers/keywordContainCheck.js";
 
@@ -55,7 +51,6 @@ function reducer(state, action) {
       const filteredHotels = state.hotels.filter((hotel) =>
         containsAllKeywords(hotel.keywords, action.payload)
       );
-
       return {
         ...state,
         isLoading: false,

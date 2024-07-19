@@ -26,7 +26,6 @@ function SearchBar() {
     setQuery("");
     filterHotels("");
     inputEl.current.focus();
-    navigate(`/hotels`);
   };
 
   return (
