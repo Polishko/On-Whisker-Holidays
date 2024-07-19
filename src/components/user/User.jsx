@@ -1,12 +1,18 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
+import { useState } from "react";
+import Modal from "../common/Modal";
+import Profile from "../../pages/Profile";
 
-function User({ setIsModalOpen }) {
+function User() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!user) return null;
+  function closeModal() {
+    setIsModalOpen(false);
+  }
 
   function openProfile(e) {
     e.preventDefault();
@@ -26,6 +32,11 @@ function User({ setIsModalOpen }) {
       >
         Profile
       </NavLink>
+      {isModalOpen && (
+        <Modal onClose={closeModal} customClass="customModalButton">
+          <Profile onClose={closeModal} />
+        </Modal>
+      )}
     </div>
   );
 }

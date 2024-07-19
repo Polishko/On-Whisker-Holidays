@@ -17,9 +17,9 @@
     {
       "email": "kaju@kaju.com",
       "name": "kaju",
-      "avatar": "/avatar/dog1.png",
+      "avatar": "/avatar/cat1.png",
       "id": 16,
-      "password": "$2a$10$HNSX91PEE8JQ.7Xh2Z07Yuw/I9E2Y/FET.qGfdMVzXVdUKzT8G1EK"
+      "password": "$2a$10$fcc.70hFv1VhtX42lbcoouzXSlJy/DCGq4pneDWy/yHeXPcrdEAc6"
     },
     {
       "email": "badi@badi.com",
@@ -77,6 +77,14 @@
       "hotelId": "Garni Hotel Zen",
       "timestamp": "2024-07-19T14:52:02.066Z",
       "id": 7
+    },
+    {
+      "text": "Great escape from the city's hot summers.",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Hija Rila Lakes",
+      "timestamp": "2024-07-19T19:46:05.640Z",
+      "id": 8
     }
   ],
   "posts": [
