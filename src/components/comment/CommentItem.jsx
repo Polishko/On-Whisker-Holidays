@@ -2,8 +2,8 @@ import styles from "./CommentItem.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useState } from "react";
-import Modal from "../Common/Modal";
-import Button from "../Common/Button";
+import Modal from "../common/Modal";
+import Button from "../common/Button";
 import { useKey } from "../../hooks/useKey";
 
 function CommentItem({ comment, userName }) {

@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../components/Common/Button";
-import PageNav from "../components/PageNav";
+import Button from "../components/common/Button";
+import PageNav from "../components/common/PageNav";
 import styles from "./Login.module.css";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect, useState } from "react";
-import Modal from "../components/Common/Modal";
+import Modal from "../components/common/Modal";
 import { useKey } from "../hooks/useKey";
 
 function Login() {

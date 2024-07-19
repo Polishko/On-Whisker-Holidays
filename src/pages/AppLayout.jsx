@@ -1,12 +1,12 @@
 import styles from "./AppLayout.module.css";
 import HotelList from "../components/hotel/HotelList";
 import Map from "../components/map/Map";
-import PageNav from "../components/PageNav";
-import SearchBar from "../components/SearchBar";
+import PageNav from "../components/common/PageNav";
+import SearchBar from "../components/common/SearchBar";
 import Details from "../components/details/Details";
 import User from "../components/user/User";
 import { useLocation, useNavigate } from "react-router-dom";
-import Modal from "../components/Common/Modal";
+import Modal from "../components/common/Modal";
 import Profile from "./Profile";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect, useState } from "react";

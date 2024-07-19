@@ -2,9 +2,9 @@ import styles from "./Profile.module.css";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useUsers } from "../components/contexts/UsersContext";
 import { useState } from "react";
-import Button from "../components/Common/Button";
-import AvatarSelection from "../components/Common/AvatarSelection";
-import Modal from "../components/Common/Modal";
+import Button from "../components/common/Button";
+import AvatarSelection from "../components/common/AvatarSelection";
+import Modal from "../components/common/Modal";
 import { useKey } from "../hooks/useKey";
 
 function Profile({ onClose }) {

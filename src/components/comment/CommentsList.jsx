@@ -1,7 +1,7 @@
 import styles from "./CommentsList.module.css";
 import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
-import Message from "../Common/Message";
+import Message from "../common/Message";
 import CommentItem from "./CommentItem";
 
 function CommentsList() {

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Common/Button";
-import PageNav from "../components/PageNav";
+import Button from "../components/common/Button";
+import PageNav from "../components/common/PageNav";
 import { useUsers } from "../components/contexts/UsersContext";
-import AvatarSelection from "../components/Common/AvatarSelection";
+import AvatarSelection from "../components/common/AvatarSelection";
 import styles from "./Registration.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Modal from "../components/Common/Modal";
+import Modal from "../components/common/Modal";
 import { useKey } from "../hooks/useKey";
 
 function Registration() {

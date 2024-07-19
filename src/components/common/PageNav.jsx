@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
-import Logo from "./Common/Logo";
+import Logo from "./Logo";
 import styles from "./PageNav.module.css";
-import { useAuth } from "./contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 
 function PageNav() {
   const location = useLocation();

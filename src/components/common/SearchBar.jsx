@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useHotels } from "./contexts/HotelsContext";
+import { useHotels } from "../contexts/HotelsContext";
 import styles from "./SearchBar.module.css";
-import Button from "./Common/Button";
+import Button from "./Button";
 
 function SearchBar() {
   const { filteredHotels, filterHotels } = useHotels();

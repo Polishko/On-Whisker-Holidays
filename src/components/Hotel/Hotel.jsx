@@ -2,16 +2,16 @@ import styles from "./Hotel.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useHotels } from "../contexts/HotelsContext";
 import { useEffect, useState } from "react";
-import Spinner from "../Common/Spinner";
-import EmojiRenderer from "../FlagRenderer";
-import Facilities from "../Common/Facilities";
-import Message from "../Common/Message";
-import Button from "../Common/Button";
-import Modal from "../Common/Modal";
+import Spinner from "../common/Spinner";
+import EmojiRenderer from "../common/EmojiRenderer";
+import Facilities from "../common/Facilities";
+import Message from "../common/Message";
+import Button from "../common/Button";
+import Modal from "../common/Modal";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
-import Weather from "../Common/Weather";
+import Weather from "../common/Weather";
 
 function Hotel() {
   const { id } = useParams();

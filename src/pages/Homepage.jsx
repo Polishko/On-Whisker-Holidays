@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import Button from "../components/Common/Button";
-import PageNav from "../components/PageNav";
+import Button from "../components/common/Button";
+import PageNav from "../components/common/PageNav";
 import styles from "./Homepage.module.css";
 
 export default function Homepage() {
