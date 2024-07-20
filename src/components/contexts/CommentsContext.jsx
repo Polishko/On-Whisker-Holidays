@@ -59,6 +59,7 @@ function CommentsProvider({ children }) {
 
   const { user } = useAuth();
 
+  // fetch comments
   const fetchComments = useCallback(async () => {
     const controller = new AbortController();
     dispatch({ type: "loading" });
@@ -80,10 +81,12 @@ function CommentsProvider({ children }) {
     }
   }, []);
 
+  // get on mount
   useEffect(() => {
     fetchComments();
   }, [fetchComments]);
 
+  // create comment
   const createComment = useCallback(
     async (commentText, hotelId) => {
       if (!user) {
@@ -132,6 +135,10 @@ function CommentsProvider({ children }) {
     [fetchComments, user]
   );
 
+  // edit comment
+  // TODO
+
+  // detle comment
   const deleteComment = useCallback(
     async (id) => {
       dispatch({ type: "loading" });
