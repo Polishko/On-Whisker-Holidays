@@ -1,4 +1,10 @@
-import { useContext, useEffect, useReducer, createContext } from "react";
+import {
+  useContext,
+  useEffect,
+  useReducer,
+  createContext,
+  useCallback,
+} from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 import { containsAllKeywords } from "../../helpers/keywordContainCheck.js";
@@ -73,30 +79,36 @@ function HotelsProvider({ children }) {
   const location = useLocation();
   const { query } = useParams();
 
-  useEffect(function () {
+  const fetchHotels = useCallback(async () => {
     const controller = new AbortController();
+    dispatch({ type: "loading" });
 
-    async function fetchHotels() {
-      dispatch({ type: "loading" });
-
-      try {
-        const res = await fetch(`${BASE_URL}/hotels?_sort=country&_order=asc`, {
-          signal: controller.signal,
+    try {
+      const res = await fetch(`${BASE_URL}/hotels?_sort=country&_order=asc`, {
+        signal: controller.signal,
+      });
+      const data = await res.json();
+      dispatch({ type: "hotels/loaded", payload: data });
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        dispatch({
+          type: "rejected",
+          payload: "There was error loading hotel data...",
         });
-        const data = await res.json();
-        dispatch({ type: "hotels/loaded", payload: data });
-      } catch (error) {
-        if (error.name != "AbortError") {
-          dispatch({
-            type: "rejected",
-            payload: "There was error loading hotel data...",
-          });
-        }
       }
     }
-    fetchHotels();
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
+  // Fetch on mount
+  useEffect(() => {
+    fetchHotels();
+  }, [fetchHotels]);
+
+  // Filter
   useEffect(() => {
     if (query) {
       filterHotels(query);
@@ -105,37 +117,50 @@ function HotelsProvider({ children }) {
     }
   }, [query]);
 
+  // Reset currentHotel on location change
   useEffect(() => {
     if (!location.pathname.startsWith("/hotels/")) {
       dispatch({ type: "hotel/reset" });
     }
   }, [location.pathname]);
 
-  async function getHotel(id) {
-    const controller = new AbortController();
+  // get hotel
+  const getHotel = useCallback(
+    async (id) => {
+      const controller = new AbortController();
 
-    if (id === currentHotel.id) return;
-    dispatch({ type: "loading" });
+      if (id === currentHotel.id) return;
+      dispatch({ type: "loading" });
 
-    try {
-      const res = await fetch(`${BASE_URL}/hotels/${id}`, {
-        signal: controller.signal,
-      });
-      const data = await res.json();
-      dispatch({ type: "hotel/loaded", payload: data });
-    } catch (error) {
-      if (error.name !== "AbortController") {
-        dispatch({
-          type: "rejected",
-          payload: "There was error loading the hotel.",
+      try {
+        const res = await fetch(`${BASE_URL}/hotels/${id}`, {
+          signal: controller.signal,
         });
+        const data = await res.json();
+        dispatch({ type: "hotel/loaded", payload: data });
+      } catch (error) {
+        if (error.name !== "AbortController") {
+          dispatch({
+            type: "rejected",
+            payload: "There was error loading the hotel.",
+          });
+        }
       }
-    }
-  }
 
-  function filterHotels(keywords) {
-    dispatch({ type: "hotels/filtered", payload: keywords });
-  }
+      return () => {
+        controller.abort();
+      };
+    },
+    [currentHotel.id]
+  );
+
+  // filter hotel
+  const filterHotels = useCallback(
+    (keywords) => {
+      dispatch({ type: "hotels/filtered", payload: keywords });
+    },
+    [dispatch]
+  );
 
   return (
     <HotelsContext.Provider
