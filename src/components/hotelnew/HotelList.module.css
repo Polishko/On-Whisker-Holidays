@@ -1,0 +1,25 @@
+.hotelList {
+  height: 100%;
+  padding: 2em;
+  list-style: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  height: calc(100% - 2em);
+}
+
+.hotelList::-webkit-scrollbar {
+  width: 1em;
+}
+
+.hotelList::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 6px;
+}
+
+.hotelList::-webkit-scrollbar-track {
+  background: lightgrey;
+  padding: 0.5em 0;
+}
