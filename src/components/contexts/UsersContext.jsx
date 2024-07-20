@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useCallback,
+} from "react";
 import { useAuth } from "./AuthContext";
 
 const UsersContext = createContext();
@@ -61,7 +67,8 @@ function UsersProvider({ children }) {
 
   const { updateAuthUser } = useAuth();
 
-  async function fetchUsers() {
+  // fetch users
+  const fetchUsers = useCallback(async () => {
     const controller = new AbortController();
     dispatch({ type: "loading" });
 
@@ -72,67 +79,135 @@ function UsersProvider({ children }) {
       const data = await res.json();
       dispatch({ type: "users/loaded", payload: data });
     } catch (error) {
-      if (error.name != "AbortError") {
+      if (error.name !== "AbortError") {
         dispatch({
           type: "rejected",
           payload: "There was error loading users data...",
         });
       }
     }
-  }
 
-  useEffect(function () {
-    fetchUsers();
+    return () => {
+      controller.abort();
+    };
   }, []);
 
-  async function getUser(id) {
-    if (id === currentUser.id) return;
-    dispatch({ type: "loading" });
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
-    try {
-      const res = await fetch(`${BASE_URL}/users/${id}`);
-      const data = await res.json();
-      dispatch({ type: "user/loaded", payload: data });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was error loading the user.",
-      });
-    }
-  }
+  // get user
+  const getUser = useCallback(
+    async (id) => {
+      if (id === currentUser.id) return;
+      dispatch({ type: "loading" });
 
-  async function createUser(newUser) {
-    dispatch({ type: "loading" });
-
-    try {
-      const res = await fetch(`${BASE_URL}/users`, {
-        method: "POST",
-        body: JSON.stringify(newUser),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (!res.ok) {
-        const error = await res.json();
+      try {
+        const res = await fetch(`${BASE_URL}/users/${id}`);
+        const data = await res.json();
+        dispatch({ type: "user/loaded", payload: data });
+      } catch {
         dispatch({
           type: "rejected",
-          payload: error.message || "There was an error creating the user.",
+          payload: "There was error loading the user.",
         });
-        return;
       }
+    },
+    [currentUser.id]
+  );
 
-      const data = await res.json();
-      const { user } = data;
-      dispatch({ type: "user/created", payload: user });
+  // create user
+  const createUser = useCallback(
+    async (newUser) => {
+      dispatch({ type: "loading" });
 
-      fetchUsers();
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: "There was error creating the user.",
-      });
-    }
-  }
+      try {
+        const res = await fetch(`${BASE_URL}/users`, {
+          method: "POST",
+          body: JSON.stringify(newUser),
+          headers: { "Content-Type": "application/json" },
+        });
 
+        if (!res.ok) {
+          const error = await res.json();
+          dispatch({
+            type: "rejected",
+            payload: error.message || "There was an error creating the user.",
+          });
+          return;
+        }
+
+        const data = await res.json();
+        const { user } = data;
+        dispatch({ type: "user/created", payload: user });
+
+        fetchUsers();
+      } catch (error) {
+        dispatch({
+          type: "rejected",
+          payload: "There was error creating the user.",
+        });
+      }
+    },
+    [fetchUsers]
+  );
+
+  // edit user
+  const editUser = useCallback(
+    async (updatedUser) => {
+      dispatch({ type: "loading" });
+
+      try {
+        const token = localStorage.getItem("accessToken");
+
+        // PUT
+        const res = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
+          method: "PUT",
+          body: JSON.stringify(updatedUser),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) {
+          const error = await res.json();
+          const errorMessage =
+            res.status === 401
+              ? "Wrong password."
+              : error.message || "There was an error updating the user.";
+          dispatch({
+            type: "rejected",
+            payload: errorMessage,
+          });
+          return;
+        }
+
+        // GET updated user
+        const updatedRes = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!updatedRes.ok)
+          throw new Error("Failed to fetch updated user data");
+        const updatedData = await updatedRes.json();
+
+        dispatch({ type: "user/updated", payload: updatedData });
+        updateAuthUser(updatedData);
+
+        fetchUsers();
+      } catch (error) {
+        dispatch({
+          type: "rejected",
+          payload: "There was error updating the user.",
+        });
+      }
+    },
+    [fetchUsers, updateAuthUser]
+  );
+
+  // Credential validate
   async function validatePassword(credentials) {
     try {
       const res = await fetch(`${BASE_URL}/login`, {
@@ -162,71 +237,6 @@ function UsersProvider({ children }) {
       };
     }
   }
-  async function editUser(updatedUser) {
-    dispatch({ type: "loading" });
-
-    try {
-      const token = localStorage.getItem("accessToken");
-
-      // PUT request to update the user
-      const res = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
-        method: "PUT",
-        body: JSON.stringify(updatedUser),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.ok) {
-        const error = await res.json();
-        const errorMessage =
-          res.status === 401
-            ? "Wrong password."
-            : error.message || "There was an error updating the user.";
-        dispatch({
-          type: "rejected",
-          payload: errorMessage,
-        });
-        return;
-      }
-
-      // GET request to fetch the updated user data
-      const updatedRes = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (!updatedRes.ok) throw new Error("Failed to fetch updated user data");
-      const updatedData = await updatedRes.json();
-
-      dispatch({ type: "user/updated", payload: updatedData });
-      updateAuthUser(updatedData);
-
-      fetchUsers();
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: "There was error updating the user.",
-      });
-    }
-  }
-
-  // async function deleteUser(id) {
-  //   dispatch({ type: "loading" });
-
-  //   try {
-  //     await fetch(`${BASE_URL}/users/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     dispatch({ type: "hotel/deleted", payload: id });
-  //   } catch (error) {
-  //     dispatch({
-  //       type: "rejected",
-  //       payload: "There was error deleting the user.",
-  //     });
-  //   }
-  // }
 
   function resetState() {
     dispatch({ type: "reset" });
@@ -243,7 +253,6 @@ function UsersProvider({ children }) {
         getUser,
         createUser,
         resetState,
-        // deleteUser,
         editUser,
         validatePassword,
         fetchUsers,
