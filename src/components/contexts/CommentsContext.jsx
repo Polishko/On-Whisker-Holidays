@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useCallback,
+} from "react";
 import { useAuth } from "./AuthContext";
 
 const CommentsContext = createContext();
@@ -53,7 +59,7 @@ function CommentsProvider({ children }) {
 
   const { user } = useAuth();
 
-  const fetchComments = async function fetchComments() {
+  const fetchComments = useCallback(async () => {
     const controller = new AbortController();
     dispatch({ type: "loading" });
 
@@ -65,81 +71,95 @@ function CommentsProvider({ children }) {
       const data = await res.json();
       dispatch({ type: "comments/loaded", payload: data });
     } catch (error) {
-      if (error.name != "AbortError") {
+      if (error.name !== "AbortError") {
         dispatch({
           type: "rejected",
-          payload: "There was error loading comments data...",
+          payload: "There was an error loading comments data...",
         });
       }
     }
-  };
-
-  useEffect(function () {
-    fetchComments();
   }, []);
 
-  async function createComment(commentText, hotelId) {
-    dispatch({ type: "loading" });
+  useEffect(() => {
+    fetchComments();
+  }, [fetchComments]);
 
-    try {
-      const comment = {
-        text: commentText.trim(),
-        userId: user.id,
-        userName: user.name,
-        hotelId: hotelId,
-        timestamp: new Date().toISOString(),
-      };
+  const createComment = useCallback(
+    async (commentText, hotelId) => {
+      if (!user) {
+        dispatch({
+          type: "rejected",
+          payload: "User not authenticated",
+        });
+        return;
+      }
 
-      const token = localStorage.getItem("accessToken");
+      dispatch({ type: "loading" });
 
-      const res = await fetch(`${BASE_URL}/comments`, {
-        method: "POST",
-        body: JSON.stringify(comment),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      try {
+        const comment = {
+          text: commentText.trim(),
+          userId: user.id,
+          userName: user.name,
+          hotelId: hotelId,
+          timestamp: new Date().toISOString(),
+        };
 
-      if (!res.ok) throw new Error("Failed to create comment");
+        const token = localStorage.getItem("accessToken");
 
-      const data = await res.json();
-      dispatch({ type: "comment/created", payload: data });
+        const res = await fetch(`${BASE_URL}/comments`, {
+          method: "POST",
+          body: JSON.stringify(comment),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      fetchComments();
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: "There was error creating the comment.",
-      });
-    }
-  }
+        if (!res.ok) throw new Error("Failed to create comment");
 
-  async function deleteComment(id) {
-    dispatch({ type: "loading" });
+        const data = await res.json();
+        dispatch({ type: "comment/created", payload: data });
 
-    try {
-      const token = localStorage.getItem("accessToken");
+        fetchComments();
+      } catch (error) {
+        dispatch({
+          type: "rejected",
+          payload: "There was an error creating the comment.",
+        });
+      }
+    },
+    [fetchComments, user]
+  );
 
-      const res = await fetch(`${BASE_URL}/comments/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  const deleteComment = useCallback(
+    async (id) => {
+      dispatch({ type: "loading" });
 
-      if (!res.ok) throw new Error("Failed to delete comment");
+      try {
+        const token = localStorage.getItem("accessToken");
 
-      dispatch({ type: "comment/deleted", payload: id });
-      fetchComments();
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: "There was error deleting the comment.",
-      });
-    }
-  }
+        const res = await fetch(`${BASE_URL}/comments/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error("Failed to delete comment");
+
+        dispatch({ type: "comment/deleted", payload: id });
+        fetchComments();
+      } catch (error) {
+        dispatch({
+          type: "rejected",
+          payload: "There was an error deleting the comment.",
+        });
+      }
+    },
+    [fetchComments]
+  );
 
   return (
     <CommentsContext.Provider
@@ -160,7 +180,7 @@ function CommentsProvider({ children }) {
 function useComments() {
   const context = useContext(CommentsContext);
   if (context === undefined)
-    throw new Error("CommentsContext was outside CommentsProvider");
+    throw new Error("CommentsContext was used outside CommentsProvider");
   return context;
 }
 
