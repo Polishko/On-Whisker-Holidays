@@ -110,9 +110,9 @@ function Hotel() {
           <span>
             <EmojiRenderer emoji={emoji} />
           </span>
-          <div className={styles.weather}>
+          {/* <div className={styles.weather}>
             <Weather latitude={latitude} longitude={longitude} />
-          </div>
+          </div> */}
         </div>
 
         <div className={styles.detail}>
