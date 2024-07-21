@@ -18,7 +18,10 @@ function HotelList() {
     );
 
   return (
-    <ul className={styles.hotelList}>
+    <ul
+      style={{ height: "500px", overflowY: "scroll" }}
+      className={styles.hotelList}
+    >
       {filteredHotels.map((hotel) => (
         <HotelItem hotel={hotel} key={hotel.id} />
       ))}
