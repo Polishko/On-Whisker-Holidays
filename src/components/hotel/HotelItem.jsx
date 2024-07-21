@@ -17,7 +17,7 @@ function HotelItem({ hotel }) {
   } = hotel;
 
   return (
-    <li>
+    <li style={{ cursor: "pointer" }}>
       <Link
         className={`${styles.hotelItem} ${
           id === currentHotel.id ? styles["hotelItem--active"] : ""

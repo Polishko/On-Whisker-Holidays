@@ -23,7 +23,7 @@ function HotelList() {
       className={styles.hotelList}
     >
       {filteredHotels.map((hotel) => (
-        <HotelItem hotel={hotel} key={hotel.id} />
+        <HotelItem hotel={hotel} key={hotel.id} location={location} />
       ))}
     </ul>
   );
