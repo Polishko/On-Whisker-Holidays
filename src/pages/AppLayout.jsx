@@ -1,6 +1,6 @@
 import styles from "./AppLayout.module.css";
 import HotelList from "../components/hotel/HotelList";
-import Map from "../components/map/Map";
+// import Map from "../components/map/Map";
 import PageNav from "../components/common/PageNav";
 import SearchBar from "../components/common/SearchBar";
 import Details from "../components/details/Details";
@@ -34,7 +34,7 @@ function AppLayout() {
           </div>
           <div className={styles.right}>
             <Details />
-            <Map />
+            {/* <Map /> */}
           </div>
         </div>
       </div>

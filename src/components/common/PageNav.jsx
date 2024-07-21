@@ -10,13 +10,13 @@ function PageNav() {
 
   return (
     <nav className={styles.nav}>
-      <Logo background={currentPath === "/hotels" ? "light" : "dark"} />
+      <Logo background={currentPath === "/" ? "dark" : "light"} />
       <ul>
         {currentPath !== "/login" && !user && (
           <li>
             <NavLink
               to="/login"
-              className={`${styles.ctaLink} ${styles.login}`}
+              className={`${styles.ctaLink} ${styles.navButton}`}
             >
               Login
             </NavLink>
@@ -26,32 +26,34 @@ function PageNav() {
           <li>
             <NavLink
               to="/register"
-              className={`${styles.ctaLink} ${styles.register}`}
+              className={`${styles.ctaLink} ${styles.navButton}`}
             >
               Register
             </NavLink>
           </li>
         )}
-        {currentPath !== "/gallery" && (
+        {currentPath !== "/map" && (
           <li>
             <NavLink
-              to="/gallery"
-              className={`${styles.ctaLink} ${styles.join}`}
+              to="/map"
+              className={`${styles.ctaLink} ${styles.navButton}`}
             >
-              Gallery
+              Map
             </NavLink>
           </li>
         )}
-        {currentPath !== "/hotels" && currentPath !== "/" && (
-          <li>
-            <NavLink
-              to="/hotels"
-              className={`${styles.ctaLink} ${styles.join}`}
-            >
-              Search Hotels
-            </NavLink>
-          </li>
-        )}
+        {!currentPath.startsWith("/hotels") &&
+          !currentPath.startsWith("/search") &&
+          !currentPath !== "/" && (
+            <li>
+              <NavLink
+                to="/hotels"
+                className={`${styles.ctaLink} ${styles.navButton}`}
+              >
+                Search Hotels
+              </NavLink>
+            </li>
+          )}
       </ul>
     </nav>
   );

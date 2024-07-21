@@ -32,15 +32,7 @@ a.ctaLink:visited {
   border-radius: 7px;
 }
 
-.login,
-.join {
-  color: var(--color-brown-3);
-}
-
-.login {
-  background-color: var(--color-green-5);
-}
-
-.join {
-  background-color: var(--color-orange-1);
+.navButton {
+  background-color: var(--color-orange-2);
+  color: var(--color-brown-2);
 }

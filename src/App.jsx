@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { HotelsProvider } from "./components/contexts/HotelsContext";
 
 import Homepage from "./pages/Homepage";
-import Gallery from "./pages/Gallery";
+import Map from "./components/map/Map";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import AppLayout from "./pages/AppLayout";
@@ -37,8 +37,8 @@ function App() {
                   </Route>
                 </Route>
 
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/contact" element={<Gallery />} />
+                <Route path="/map" element={<Map />} />
+                {/* <Route path="/about" element={<About />} /> */}
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
             </HotelsProvider>

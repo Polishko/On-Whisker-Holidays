@@ -4,7 +4,6 @@
 
 .app {
   padding: 0 0 2em 0;
-  margin: 0 10rem;
   overscroll-behavior-y: none;
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +12,8 @@
 }
 
 .container {
-  height: calc(100vh - 18rem);
+  display: flex;
+  max-height: 75vh;
   display: flex;
   flex: 1;
   gap: 2em;
@@ -39,14 +39,14 @@
 .left {
   display: flex;
   background-color: var(--color-light-4);
-  flex-basis: 35%;
+  flex-basis: 40%;
 }
 
 .right {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  flex-basis: 65%;
+  flex-basis: 60%;
 }
 
 .right > * {

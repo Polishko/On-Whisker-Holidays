@@ -13,7 +13,7 @@
   flex-direction: column;
   border-top-left-radius: 1em;
   border-bottom-left-radius: 1em;
-  padding: 1em;
+  padding: 1em 2em 1em 1em;
 }
 
 .right {
@@ -23,7 +23,7 @@
   gap: 0.5em;
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
-  padding: 1em 1em 1em 0;
+  padding: 1em;
 }
 
 .hotelTitle {
@@ -39,11 +39,10 @@
 }
 
 .imageContainer {
-  min-width: 150px;
   position: relative;
   padding-top: 56.25%;
-  min-height: 70%;
-  /* flex-basis: 70%; */
+  height: 90%;
+  width: 100%;
   margin-top: 0.5em;
 }
 
@@ -51,8 +50,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  height: 90%;
+  width: auto;
   object-fit: cover;
   border-radius: 1em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

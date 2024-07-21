@@ -1,25 +1,24 @@
 .details {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  min-height: 55%;
   flex: 1;
   justify-self: center;
   border: none;
   border-radius: 0.7rem;
-  font-size: 1.8rem;
+  font-size: 160%;
   transition: all 0.3s;
 }
 
 .details > * {
   background-color: #f0e6db;
-  /* flex-basis: 50%; */
-}
-
-.details > *:nth-child(1) {
   margin: 1em;
 }
 
+.details > *:nth-child(1) {
+  flex-basis: 40%;
+}
+
 .details > *:nth-child(2) {
-  margin: 1em 1em 1em 0;
-  flex-basis: 90%;
+  flex-basis: 60%;
 }

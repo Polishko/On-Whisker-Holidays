@@ -96,8 +96,6 @@ function Hotel() {
         <div className={styles.imageContainer}>
           <img src={`../../${img}`} alt="hotel" />
         </div>
-        <div className={styles.aveRating}>ave rating</div>
-        <div className={styles.rate}>rate</div>
       </section>
 
       <section className={styles.right}>
@@ -113,6 +111,11 @@ function Hotel() {
           <div className={styles.weather}>
             <Weather latitude={latitude} longitude={longitude} />
           </div>
+        </div>
+
+        <div>
+          <div className={styles.aveRating}>ave rating</div>
+          <div className={styles.rate}>rate</div>
         </div>
 
         <div className={styles.detail}>
