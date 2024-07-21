@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { HotelsProvider } from "./components/contexts/HotelsContext";
 
 import Homepage from "./pages/Homepage";
-import Map from "./components/map/Map";
+import Map from "./pages/Map";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import AppLayout from "./pages/AppLayout";
