@@ -55,12 +55,13 @@
       "id": 4
     },
     {
-      "text": "It's super cozy!",
+      "text": "It's super cozy! Let's check date update.",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-16T17:38:24.221Z",
-      "id": 5
+      "timestamp": "2024-07-22T19:23:33.186Z",
+      "id": 5,
+      "password": "kaju"
     },
     {
       "text": "It's great to rest here even if you don't like fishing!",
@@ -87,11 +88,11 @@
       "id": 8
     },
     {
-      "text": "Trying something very old.",
+      "text": "Trying something again.",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Sorrento Sole Mare",
-      "timestamp": "2024-07-22T19:19:32.773Z",
+      "timestamp": "2024-07-22T19:22:51.678Z",
       "id": 9,
       "password": "kaju"
     }
