@@ -25,7 +25,7 @@ function HotelList() {
   //       console.log(currHotel.current.scrollTop);
   //     }
   //   },
-  //   [isItemClicked]
+  //   [isItemClicked, currentHotel.current]
   // );
 
   if (isLoading) return <Spinner />;

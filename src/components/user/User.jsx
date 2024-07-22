@@ -1,14 +1,20 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../modal/Modal";
 import Profile from "../../pages/Profile";
 
 function User() {
-  const { user, logout } = useAuth();
+  const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
 
   function closeModal() {
     setIsModalOpen(false);
