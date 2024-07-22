@@ -20,7 +20,6 @@ function Hotel() {
   const { getHotel, currentHotel, isLoading } = useHotels();
   const { isAuthenticated } = useAuth();
   const { createComment } = useComments();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [comment, setComment] = useState("");
   const [charCount, setCharCount] = useState(0);
@@ -52,7 +51,7 @@ function Hotel() {
     setIsModalOpen(true);
   }
 
-  function handleCommentChange(e) {
+  function handleCharChange(e) {
     const value = e.target.value;
     if (value.length <= 80) {
       setComment(value);
@@ -147,7 +146,7 @@ function Hotel() {
       {isModalOpen && (
         <CommentModal
           handleCloseModal={handleCloseModal}
-          handleCommentChange={handleCommentChange}
+          handleCharChange={handleCharChange}
           handleCommentSubmit={handleCommentSubmit}
           comment={comment}
           charCount={charCount}

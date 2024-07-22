@@ -30,7 +30,7 @@ function User() {
         onClick={openProfile}
         className={`${styles.ctaLink} ${styles.profile}`}
       >
-        Profile
+        Edit Profile
       </NavLink>
       {isModalOpen && (
         <Modal onClose={closeModal} customClass="customModalButton">

@@ -3,16 +3,22 @@ import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useState } from "react";
 import DeleteModal from "../modal/DeleteModal";
-import EditModal from "../modal/EditModal";
-
 import { useKey } from "../../hooks/useKey";
+import PasswordModal from "../modal/PasswordModal";
+import { useUsers } from "../contexts/UsersContext";
+import CommentModal from "../modal/CommentModal";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
   const { user } = useAuth();
-  const { deleteComment } = useComments();
+  const { validatePassword } = useUsers();
+  const { deleteComment, editComment } = useComments();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const [editedComment, setEditedComment] = useState("");
+  const [charCount, setCharCount] = useState(0);
 
   function openDeleteModal() {
     setIsDeleteModalOpen(true);
@@ -22,12 +28,35 @@ function CommentItem({ comment, userName }) {
     setIsDeleteModalOpen(false);
   }
 
-  function openEditModal() {
-    setIsEditModalOpen(true);
+  function handleEditClick() {
+    setEditedComment(comment.text);
+    setCharCount(comment.text.length);
+    setIsCommentModalOpen(true);
   }
 
-  function closeEditModal() {
-    setIsEditModalOpen(false);
+  function closeCommentModal() {
+    setIsCommentModalOpen(false);
+  }
+
+  function closePasswordModal() {
+    setPassword("");
+    setIsPasswordModalOpen(false);
+  }
+
+  function handlePasswordSubmit(e) {
+    setPassword(e.target.value);
+  }
+
+  function passwordFieldReset() {
+    setPassword("");
+  }
+
+  function handleCharChange(e) {
+    const value = e.target.value;
+    if (value.length <= 80) {
+      setEditedComment(value);
+      setCharCount(value.length);
+    }
   }
 
   async function handleDelete() {
@@ -39,25 +68,55 @@ function CommentItem({ comment, userName }) {
     }
   }
 
-  async function handleEdit() {
-    return;
+  function handleCommentSubmit() {
+    setIsPasswordModalOpen(true);
+  }
+
+  async function handleSaveChanges() {
+    try {
+      const credentials = { email: user.email, password: password };
+      const { isValid, message } = await validatePassword(credentials);
+
+      if (!password) {
+        passwordFieldReset();
+        alert("Password field can't be empty");
+        return;
+      }
+
+      if (!isValid) {
+        passwordFieldReset();
+        alert(message);
+        return;
+      }
+
+      const currentDate = new Date();
+      const newTimestamp = currentDate.toISOString();
+
+      const updatedComment = {
+        ...comment,
+        text: editedComment,
+        timestamp: newTimestamp,
+        password,
+      };
+      await editComment(updatedComment);
+      setIsPasswordModalOpen(false);
+      closeCommentModal();
+      console.log(editedComment);
+    } catch (currentError) {
+      alert("There was an error updating the comment.");
+    }
   }
 
   // Modal open close with key actions
   useKey("Escape", () => {
     if (isDeleteModalOpen) closeDeleteModal();
+    if (isCommentModalOpen) closeCommentModal();
+    if (isPasswordModalOpen) closePasswordModal();
   });
 
   useKey("Enter", () => {
     if (isDeleteModalOpen) handleDelete();
-  });
-
-  useKey("Escape", () => {
-    if (isEditModalOpen) closeEditModal();
-  });
-
-  useKey("Enter", () => {
-    if (isEditModalOpen) handleEdit();
+    if (isPasswordModalOpen) handleSaveChanges();
   });
 
   return (
@@ -79,7 +138,7 @@ function CommentItem({ comment, userName }) {
           <div className={styles.icons}>
             <div
               className={`${styles.edit} ${styles.iconContainer}`}
-              onClick={openEditModal}
+              onClick={handleEditClick}
             >
               <i className={`fas fa-edit ${styles.icon}`}></i>
               <span className={styles.tooltipText}>Edit comment</span>
@@ -102,8 +161,23 @@ function CommentItem({ comment, userName }) {
         />
       )}
 
-      {isEditModalOpen && (
-        <EditModal closeEditModal={closeEditModal} handleEdit={handleEdit} />
+      {isCommentModalOpen && (
+        <CommentModal
+          handleCloseModal={closeCommentModal}
+          handleCharChange={handleCharChange}
+          handleCommentSubmit={handleCommentSubmit}
+          comment={editedComment}
+          charCount={charCount}
+        />
+      )}
+
+      {isPasswordModalOpen && (
+        <PasswordModal
+          closePasswordModal={closePasswordModal}
+          handlePasswordSubmit={handlePasswordSubmit}
+          handleSaveChanges={handleSaveChanges}
+          password={password}
+        />
       )}
     </div>
   );

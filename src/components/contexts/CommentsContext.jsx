@@ -212,6 +212,7 @@ function CommentsProvider({ children }) {
         body: JSON.stringify(credentials),
         headers: { "Content-Type": "application/json" },
       });
+      // console.log(res);
 
       if (!res.ok) {
         const error = await res.json();

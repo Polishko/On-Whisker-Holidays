@@ -3,7 +3,7 @@ import Modal from "./Modal";
 
 function CommentModal({
   handleCloseModal,
-  handleCommentChange,
+  handleCharChange,
   handleCommentSubmit,
   comment,
   charCount,
@@ -13,7 +13,7 @@ function CommentModal({
       <div>
         <textarea
           value={comment}
-          onChange={handleCommentChange}
+          onChange={handleCharChange}
           maxLength="80"
           placeholder="Write your comment here..."
         />

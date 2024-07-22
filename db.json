@@ -87,12 +87,13 @@
       "id": 8
     },
     {
-      "text": "An interesting place.",
+      "text": "Trying something new.",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Sorrento Sole Mare",
-      "timestamp": "2024-07-22T16:31:54.839Z",
-      "id": 9
+      "timestamp": "2024-07-22T18:05:40.654Z",
+      "id": 9,
+      "password": "kaju"
     }
   ],
   "posts": [
