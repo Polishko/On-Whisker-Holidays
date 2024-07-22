@@ -37,6 +37,17 @@ function reducer(state, action) {
         comments: [...state.comments, action.payload],
         currentComment: action.payload,
       };
+    case "comment/updated":
+      return {
+        ...state,
+        isLoadingComments: false,
+        comments: state.comments.map((comment) =>
+          comment.id === action.payload.id ? action.payload : comment
+        ),
+        currentComment: action.payload,
+        success: "The comment was updated successfully",
+        error: null,
+      };
     case "comment/deleted":
       return {
         ...state,
@@ -136,9 +147,96 @@ function CommentsProvider({ children }) {
   );
 
   // edit comment
+
+  const editComment = useCallback(
+    async (updatedComment) => {
+      dispatch({ type: "loading" });
+
+      try {
+        const token = localStorage.getItem("accessToken");
+
+        // PUT
+        const res = await fetch(`${BASE_URL}/comments/${updatedComment.id}`, {
+          method: "PUT",
+          body: JSON.stringify(updatedComment),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) {
+          const error = await res.json();
+          const errorMessage =
+            res.status === 401
+              ? "Wrong password."
+              : error.message || "There was an error updating the comment.";
+          dispatch({
+            type: "rejected",
+            payload: errorMessage,
+          });
+          return;
+        }
+
+        // GET updated comment
+        const updatedRes = await fetch(
+          `${BASE_URL}/comments/${updatedComment.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (!updatedRes.ok)
+          throw new Error("Failed to fetch updated comment data");
+        const updatedData = await updatedRes.json();
+
+        dispatch({ type: "comment/updated", payload: updatedData });
+
+        fetchComments();
+      } catch (error) {
+        dispatch({
+          type: "rejected",
+          payload: "There was error updating the comment.",
+        });
+      }
+    },
+    [fetchComments]
+  );
+
+  // Credential validate
+  async function validatePassword(credentials) {
+    try {
+      const res = await fetch(`${BASE_URL}/login`, {
+        method: "POST",
+        body: JSON.stringify(credentials),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        dispatch({
+          type: "rejected",
+          payload: error.message || "Wrong password.",
+        });
+        return { isValid: false, message: error.message || "Wrong password." };
+      }
+
+      return { isValid: true };
+    } catch (error) {
+      dispatch({
+        type: "rejected",
+        payload: "There was error editing the comment.",
+      });
+      return {
+        isValid: false,
+        message: "There was error editing the comment.",
+      };
+    }
+  }
   // TODO
 
-  // detle comment
+  // delete comment
   const deleteComment = useCallback(
     async (id) => {
       dispatch({ type: "loading" });
@@ -176,6 +274,8 @@ function CommentsProvider({ children }) {
         currentComment,
         error,
         createComment,
+        editComment,
+        validatePassword,
         deleteComment,
       }}
     >

@@ -6,7 +6,7 @@ import { useUsers } from "../components/contexts/UsersContext";
 import AvatarSelection from "../components/common/AvatarSelection";
 import styles from "./Registration.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Modal from "../components/common/Modal";
+import Modal from "../components/modal/Modal";
 import { useKey } from "../hooks/useKey";
 
 function Registration() {

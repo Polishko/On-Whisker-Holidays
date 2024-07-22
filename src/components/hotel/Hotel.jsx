@@ -7,11 +7,11 @@ import EmojiRenderer from "../common/EmojiRenderer";
 import Facilities from "../common/Facilities";
 import Message from "../common/Message";
 import Button from "../common/Button";
-import Modal from "../common/Modal";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
 import Weather from "../common/Weather";
+import CommentModal from "../modal/CommentModal";
 
 function Hotel() {
   const { id } = useParams();
@@ -145,20 +145,13 @@ function Hotel() {
       </section>
 
       {isModalOpen && (
-        <Modal onClose={handleCloseModal}>
-          <div className={styles.modalContent}>
-            <textarea
-              value={comment}
-              onChange={handleCommentChange}
-              maxLength="80"
-              placeholder="Write your comment here..."
-            />
-            <p className={styles.charCount}>{charCount}/80 characters</p>
-            <Button type="primary" onClick={handleCommentSubmit}>
-              Submit
-            </Button>
-          </div>
-        </Modal>
+        <CommentModal
+          handleCloseModal={handleCloseModal}
+          handleCommentChange={handleCommentChange}
+          handleCommentSubmit={handleCommentSubmit}
+          comment={comment}
+          charCount={charCount}
+        />
       )}
     </div>
   );

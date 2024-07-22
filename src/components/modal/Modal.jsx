@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import Button from "./Button";
+import Button from "../common/Button";
 import styles from "./Modal.module.css";
 
 function Modal({ children, onClose, customClass, showCloseButton = true }) {

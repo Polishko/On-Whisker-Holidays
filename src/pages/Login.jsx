@@ -4,7 +4,7 @@ import PageNav from "../components/common/PageNav";
 import styles from "./Login.module.css";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect, useState } from "react";
-import Modal from "../components/common/Modal";
+import Modal from "../components/modal/Modal";
 import { useKey } from "../hooks/useKey";
 
 function Login() {

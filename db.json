@@ -17,9 +17,9 @@
     {
       "email": "kaju@kaju.com",
       "name": "kaju",
-      "avatar": "/avatar/cat1.png",
+      "avatar": "/avatar/dog1.png",
       "id": 16,
-      "password": "$2a$10$fcc.70hFv1VhtX42lbcoouzXSlJy/DCGq4pneDWy/yHeXPcrdEAc6"
+      "password": "$2a$10$UCVd5HtdcJGNqMcCoaZxq.ojhJje04amafG7mFCXWqbDgPud25UdO"
     },
     {
       "email": "badi@badi.com",
@@ -85,6 +85,14 @@
       "hotelId": "Hija Rila Lakes",
       "timestamp": "2024-07-19T19:46:05.640Z",
       "id": 8
+    },
+    {
+      "text": "An interesting place.",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Sorrento Sole Mare",
+      "timestamp": "2024-07-22T16:31:54.839Z",
+      "id": 9
     }
   ],
   "posts": [

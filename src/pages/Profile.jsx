@@ -4,8 +4,8 @@ import { useUsers } from "../components/contexts/UsersContext";
 import { useState } from "react";
 import Button from "../components/common/Button";
 import AvatarSelection from "../components/common/AvatarSelection";
-import Modal from "../components/common/Modal";
 import { useKey } from "../hooks/useKey";
+import PasswordModal from "../components/modal/PasswordModal";
 
 function Profile({ onClose }) {
   const { user, logout } = useAuth();
@@ -92,6 +92,7 @@ function Profile({ onClose }) {
     setPassword(e.target.value);
   }
 
+  // key press actions
   useKey("Escape", () => {
     if (isPasswordModalOpen) {
       closePasswordModal();
@@ -107,9 +108,11 @@ function Profile({ onClose }) {
   return (
     <div className={styles.profile}>
       <h2>{user.name}</h2>
+
       <div className={styles.currentAvatar}>
         <img src={user.avatar} alt="User Avatar" />
       </div>
+
       <div className={styles.profileInfo}>
         <label>
           <span>Change avatar:</span>
@@ -120,6 +123,7 @@ function Profile({ onClose }) {
           />
         </label>
       </div>
+
       <div className={styles.buttons}>
         <Button onClick={openPasswordModal} type="primary">
           Save Changes
@@ -128,32 +132,14 @@ function Profile({ onClose }) {
           Logout
         </Button>
       </div>
+
       {isPasswordModalOpen && (
-        <Modal
-          onClose={closePasswordModal}
-          customClass="customModalButton"
-          showCloseButton={false}
-        >
-          <div>
-            <h3>Enter Password</h3>
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordSubmit}
-              placeholder="Password"
-              autoComplete="new-password"
-              name={`modal-password_${Math.random().toString(36).substring(2)}`}
-            />
-            <div className={styles.modalButtons}>
-              <Button onClick={handleSaveChanges} type="primary">
-                Submit
-              </Button>
-              <Button onClick={closePasswordModal} type="secondary">
-                Cancel
-              </Button>
-            </div>
-          </div>
-        </Modal>
+        <PasswordModal
+          closePasswordModal={closePasswordModal}
+          handlePasswordSubmit={handlePasswordSubmit}
+          handleSaveChanges={handleSaveChanges}
+          password={password}
+        />
       )}
     </div>
   );
