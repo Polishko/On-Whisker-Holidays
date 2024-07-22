@@ -164,6 +164,7 @@ function CommentsProvider({ children }) {
             Authorization: `Bearer ${token}`,
           },
         });
+        // console.log(res);
 
         if (!res.ok) {
           const error = await res.json();

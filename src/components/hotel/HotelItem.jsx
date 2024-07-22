@@ -4,7 +4,7 @@ import { useHotels } from "../contexts/HotelsContext";
 import EmojiRenderer from "../common/EmojiRenderer";
 import SpecificsEmojis from "../common/SpecificsEmojis";
 
-function HotelItem({ hotel, handleItemClick }) {
+function HotelItem({ hotel }) {
   const { currentHotel } = useHotels();
   const {
     id,
@@ -17,7 +17,7 @@ function HotelItem({ hotel, handleItemClick }) {
   } = hotel;
 
   return (
-    <li style={{ cursor: "pointer" }} onClick={handleItemClick}>
+    <li style={{ cursor: "pointer" }}>
       <Link
         className={`${styles.hotelItem} ${
           id === currentHotel.id ? styles["hotelItem--active"] : ""

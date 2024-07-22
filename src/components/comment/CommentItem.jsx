@@ -101,7 +101,7 @@ function CommentItem({ comment, userName }) {
       await editComment(updatedComment);
       setIsPasswordModalOpen(false);
       closeCommentModal();
-      console.log(editedComment);
+      passwordFieldReset("");
     } catch (currentError) {
       alert("There was an error updating the comment.");
     }
@@ -117,6 +117,7 @@ function CommentItem({ comment, userName }) {
   useKey("Enter", () => {
     if (isDeleteModalOpen) handleDelete();
     if (isPasswordModalOpen) handleSaveChanges();
+    if (isCommentModalOpen) handleCommentSubmit();
   });
 
   return (
