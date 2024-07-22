@@ -4,8 +4,8 @@
 - Start the Server: npm run server
 - Start Development: npm run dev
 
-## Currently registered users: gizmo, kaju, polen, badi
-#credentials:
+## Credential information
+Currently registered users: gizmo, kaju, polen, badi
 - username: username
 - email: username@username.com
 - password: username
