@@ -3,10 +3,18 @@ import Logo from "./Logo";
 import styles from "./PageNav.module.css";
 import { useAuth } from "../contexts/AuthContext";
 
-function PageNav() {
+function PageNav({ style }) {
   const location = useLocation();
   const currentPath = location.pathname;
   const { user } = useAuth();
+
+  const defaultStyle = {
+    backgroundColor: "#ffb000",
+    color: "#21413f",
+    fontWeight: "bold",
+  };
+
+  const appliedStyle = style || defaultStyle;
 
   return (
     <nav className={styles.nav}>
@@ -15,6 +23,7 @@ function PageNav() {
         {currentPath !== "/login" && !user && (
           <li>
             <NavLink
+              style={appliedStyle}
               to="/login"
               className={`${styles.ctaLink} ${styles.navButton}`}
             >
@@ -25,6 +34,7 @@ function PageNav() {
         {currentPath !== "/register" && !user && (
           <li>
             <NavLink
+              style={appliedStyle}
               to="/register"
               className={`${styles.ctaLink} ${styles.navButton}`}
             >
@@ -35,6 +45,7 @@ function PageNav() {
         {currentPath !== "/map" && (
           <li>
             <NavLink
+              style={appliedStyle}
               to="/map"
               className={`${styles.ctaLink} ${styles.navButton}`}
             >
@@ -42,18 +53,19 @@ function PageNav() {
             </NavLink>
           </li>
         )}
-        {!currentPath.startsWith("/hotels") &&
-          !currentPath.startsWith("/search") &&
-          !currentPath !== "/" && (
-            <li>
-              <NavLink
-                to="/hotels"
-                className={`${styles.ctaLink} ${styles.navButton}`}
-              >
-                Search Hotels
-              </NavLink>
-            </li>
-          )}
+        {(currentPath === "/map" ||
+          currentPath === "/login" ||
+          currentPath === "/register") && (
+          <li>
+            <NavLink
+              style={appliedStyle}
+              to="/hotels"
+              className={`${styles.ctaLink} ${styles.navButton}`}
+            >
+              Search Hotels
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );

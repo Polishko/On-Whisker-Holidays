@@ -32,7 +32,8 @@ a.ctaLink:visited {
   border-radius: 7px;
 }
 
-.navButton {
-  background-color: var(--color-brown-4);
-  color: var(--color-brown-2);
-}
+/* .navButton {
+  background-color: var(--color-orange-1);
+  color: #21413f;
+  font-weight: bold;
+} */

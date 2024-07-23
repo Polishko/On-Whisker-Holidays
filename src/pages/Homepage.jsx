@@ -4,9 +4,15 @@ import PageNav from "../components/common/PageNav";
 import styles from "./Homepage.module.css";
 
 export default function Homepage() {
+  const colorStyle = {
+    backgroundColor: "#53c0bb",
+    color: "#eee",
+    fontWeight: "bold",
+  };
+
   return (
     <main className={styles.homepage}>
-      <PageNav />
+      <PageNav style={colorStyle} />
 
       <section>
         <h1>
