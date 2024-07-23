@@ -1,4 +1,4 @@
-// fetch collection request
+// GET collection
 export const fetchData = async (
   url,
   dispatch,
@@ -28,7 +28,7 @@ export const fetchData = async (
   };
 };
 
-//fetch item request
+//GET item by id
 export const fetchItem = async (
   url,
   id,
@@ -62,4 +62,41 @@ export const fetchItem = async (
   return () => {
     controller.abort();
   };
+};
+
+// POST item: user
+export const createUserApi = async (url, newUser, dispatch) => {
+  dispatch({ type: "loading" });
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(newUser),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      dispatch({
+        type: "rejected",
+        payload: error.message || "There was an error creating the user.",
+      });
+      return {
+        success: false,
+        message: error.message || "There was an error creating the user.",
+      };
+    }
+
+    const data = await res.json();
+    const { user } = data;
+    dispatch({ type: "user/created", payload: user });
+
+    return { success: true, message: "User created successfully" };
+  } catch (error) {
+    dispatch({
+      type: "rejected",
+      payload: "There was an error creating the user.",
+    });
+    return { success: false, message: "There was an error creating the user." };
+  }
 };

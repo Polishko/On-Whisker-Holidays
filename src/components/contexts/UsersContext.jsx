@@ -8,7 +8,7 @@ import {
 
 import { useAuth } from "./AuthContext";
 
-import { fetchData } from "../../utils/api";
+import { fetchData, createUserApi } from "../../utils/api";
 
 const UsersContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -79,60 +79,12 @@ function UsersProvider({ children }) {
     fetchUsers();
   }, [fetchUsers]);
 
-  // get user
-  // const getUser = useCallback(
-  //   async (id) => {
-  //     if (id === currentUser.id) return;
-  //     dispatch({ type: "loading" });
-
-  //     try {
-  //       const res = await fetch(`${BASE_URL}/users/${id}`);
-  //       const data = await res.json();
-  //       dispatch({ type: "user/loaded", payload: data });
-  //     } catch {
-  //       dispatch({
-  //         type: "rejected",
-  //         payload: "There was error loading the user.",
-  //       });
-  //     }
-  //   },
-  //   [currentUser.id]
-  // );
-
   // create user
   const createUser = useCallback(
     async (newUser) => {
-      dispatch({ type: "loading" });
-
-      try {
-        const res = await fetch(`${BASE_URL}/users`, {
-          method: "POST",
-          body: JSON.stringify(newUser),
-          headers: { "Content-Type": "application/json" },
-        });
-
-        if (!res.ok) {
-          const error = await res.json();
-          dispatch({
-            type: "rejected",
-            payload: error.message || "There was an error creating the user.",
-          });
-          return;
-        }
-
-        const data = await res.json();
-        const { user } = data;
-        dispatch({ type: "user/created", payload: user });
-
-        fetchUsers();
-      } catch (error) {
-        dispatch({
-          type: "rejected",
-          payload: "There was error creating the user.",
-        });
-      }
+      return await createUserApi(`${BASE_URL}/users`, newUser, dispatch);
     },
-    [fetchUsers]
+    [dispatch]
   );
 
   // edit user

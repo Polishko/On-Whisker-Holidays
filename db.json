@@ -27,6 +27,13 @@
       "avatar": "/avatar/dog2.png",
       "id": 17,
       "password": "$2a$10$OEKcraTrQzbMJ4XGvQqG8..76rBzD6PfbVhmncdbylnBHtwDA11he"
+    },
+    {
+      "email": "toti@toti.com",
+      "password": "$2a$10$Wc2UrpejS5nFHYgGBQTi7e2fq2pf5XHQpkt8kd23EKNuCSn6G3.4m",
+      "name": "toti",
+      "avatar": "/avatar/dog3.png",
+      "id": 18
     }
   ],
   "comments": [
@@ -80,12 +87,13 @@
       "id": 7
     },
     {
-      "text": "Great escape from the city's hot summers.",
+      "text": "Great escape from the city's hot summers. Yup!",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Hija Rila Lakes",
-      "timestamp": "2024-07-19T19:46:05.640Z",
-      "id": 8
+      "timestamp": "2024-07-23T18:06:42.919Z",
+      "id": 8,
+      "password": "kaju"
     },
     {
       "text": "Trying something again.",

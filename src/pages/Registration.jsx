@@ -6,8 +6,6 @@ import { useUsers } from "../components/contexts/UsersContext";
 import AvatarSelection from "../components/common/AvatarSelection";
 import styles from "./Registration.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Modal from "../components/modal/Modal";
-import { useKey } from "../hooks/useKey";
 
 function Registration() {
   const avatars = [
@@ -27,76 +25,68 @@ function Registration() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, error, success, resetState } = useUsers();
-  const [modalMessage, setModalMessage] = useState("");
+  const { createUser, resetState } = useUsers();
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const newUser = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      avatar: `/avatar/${formData.selectedAvatar}.png`,
+    };
+    const result = await createUser(newUser);
+    if (result.success) {
+      setSuccess(true);
+      alert(result.message);
+      resetForm();
+    } else {
+      setSuccess(false);
+      alert(result.message);
+      resetForm();
+    }
+  };
+
   useEffect(() => {
-    resetForm();
-    if (error) {
-      setModalMessage(error);
-    } else if (success) {
-      setModalMessage(success);
+    if (success) {
       navigate("/login");
     }
-    // return resetState();
-  }, [error, success, resetState, navigate]);
+    return resetState;
+  }, [success, navigate, resetState]);
 
-  function resetForm() {
+  const resetForm = () => {
     setFormData({
       email: "",
       name: "",
       password: "",
       selectedAvatar: "cat1",
     });
-  }
+  };
 
-  function closeModal() {
-    setModalMessage("");
-  }
-
-  useKey("Escape", closeModal);
-
-  async function handleRegister(e) {
-    e.preventDefault();
-    try {
-      await createUser({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        avatar: `/avatar/${formData.selectedAvatar}.png`,
-      });
-    } catch (error) {
-      // console.log(error);
-    }
-  }
-
-  function handleChange(e) {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((oldFormData) => ({ ...oldFormData, [name]: value }));
-  }
+  };
 
-  function handleAvatarChange(e) {
+  const handleAvatarChange = (e) => {
     setFormData((oldFormData) => ({
       ...oldFormData,
       selectedAvatar: e.target.value,
     }));
-  }
+  };
 
-  function toggleShowPassword() {
+  const toggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
-  }
+  };
 
   return (
     <main className={styles.registration}>
       <PageNav />
 
-      <form
-        className={`${styles.form}`}
-        onSubmit={(e) => {
-          handleRegister(e);
-        }}
-      >
+      <form className={styles.form} onSubmit={handleRegister}>
         <header>Register here</header>
 
         <div className={styles.row}>
@@ -109,7 +99,6 @@ function Registration() {
               name="name"
               placeholder="Username"
               autoComplete="off"
-              // name={`search_${Math.random().toString(36).substring(2)}`}
               value={formData.name}
               onChange={handleChange}
             />
@@ -137,7 +126,7 @@ function Registration() {
           <div className={styles.inputContainer}>
             <i className={`bx bx-lock ${styles.icon}`}></i>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               placeholder="Password"
@@ -151,8 +140,6 @@ function Registration() {
           </div>
         </div>
 
-        <div className={styles.row}></div>
-
         <div className={styles.bottom}>
           <div className={styles.left}>
             <p>Choose an avatar</p>
@@ -164,16 +151,10 @@ function Registration() {
           </div>
         </div>
 
-        <Button type={"submit"} className={styles["button-style"]}>
+        <Button type="submit" className={styles["button-style"]}>
           Register
         </Button>
       </form>
-
-      {modalMessage && (
-        <Modal onClose={closeModal}>
-          <p>{modalMessage}</p>
-        </Modal>
-      )}
     </main>
   );
 }
