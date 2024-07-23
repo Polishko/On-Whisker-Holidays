@@ -25,7 +25,7 @@ function Registration() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, resetState } = useUsers();
+  const { fetchUsers, createUser, resetState } = useUsers();
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
@@ -40,6 +40,7 @@ function Registration() {
     };
     const result = await createUser(newUser);
     if (result.success) {
+      await fetchUsers();
       setSuccess(true);
       alert(result.message);
       resetForm();
