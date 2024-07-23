@@ -17,9 +17,9 @@
     {
       "email": "kaju@kaju.com",
       "name": "kaju",
-      "avatar": "/avatar/dog1.png",
+      "avatar": "/avatar/cat1.png",
       "id": 16,
-      "password": "$2a$10$UCVd5HtdcJGNqMcCoaZxq.ojhJje04amafG7mFCXWqbDgPud25UdO"
+      "password": "$2a$10$UfVMXDhchS0xoAhD1EuE3.4Hv/lsKKxoJvz3Fwua.u.LPgySPT/zG"
     },
     {
       "email": "badi@badi.com",
@@ -62,11 +62,11 @@
       "id": 4
     },
     {
-      "text": "It's super cozy! Let's check date update.",
+      "text": "It's super cozy!",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-22T19:23:33.186Z",
+      "timestamp": "2024-07-23T19:47:59.671Z",
       "id": 5,
       "password": "kaju"
     },
