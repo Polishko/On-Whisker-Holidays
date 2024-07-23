@@ -5,9 +5,12 @@ import {
   createContext,
   useCallback,
 } from "react";
+
 import { useLocation, useParams } from "react-router-dom";
 
 import { containsAllKeywords } from "../../helpers/keywordContainCheck.js";
+
+import { fetchData, fetchItem } from "../../utils/api";
 
 const HotelsContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -79,36 +82,45 @@ function HotelsProvider({ children }) {
   const location = useLocation();
   const { query } = useParams();
 
+  // fetch hotels
   const fetchHotels = useCallback(async () => {
-    const controller = new AbortController();
-    dispatch({ type: "loading" });
-
-    try {
-      const res = await fetch(`${BASE_URL}/hotels?_sort=country&_order=asc`, {
-        signal: controller.signal,
-      });
-      const data = await res.json();
-      dispatch({ type: "hotels/loaded", payload: data });
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        dispatch({
-          type: "rejected",
-          payload: "There was error loading hotel data...",
-        });
-      }
-    }
-
-    return () => {
-      controller.abort();
-    };
+    return fetchData(
+      `${BASE_URL}/hotels?_sort=country&_order=asc`,
+      dispatch,
+      "hotels/loaded",
+      "hotels"
+    );
   }, []);
 
-  // Fetch on mount
+  // get hotel
+  const getHotel = useCallback(
+    (id) => {
+      return fetchItem(
+        `${BASE_URL}/hotels/${id}`,
+        id,
+        dispatch,
+        "hotel/loaded",
+        currentHotel.id,
+        "hotel"
+      );
+    },
+    [currentHotel.id]
+  );
+
+  // filter hotel (filtering on client side)
+  const filterHotels = useCallback(
+    (keywords) => {
+      dispatch({ type: "hotels/filtered", payload: keywords });
+    },
+    [dispatch]
+  );
+
+  // fetch hotels on mount
   useEffect(() => {
     fetchHotels();
   }, [fetchHotels]);
 
-  // Filter
+  // filter hotels when query
   useEffect(() => {
     if (query) {
       filterHotels(query);
@@ -117,50 +129,12 @@ function HotelsProvider({ children }) {
     }
   }, [query]);
 
-  // Reset currentHotel on location change
+  // Reset currentHotel on location change (force page to forget last rendered hotel)
   useEffect(() => {
     if (!location.pathname.startsWith("/hotels/")) {
       dispatch({ type: "hotel/reset" });
     }
   }, [location.pathname]);
-
-  // get hotel
-  const getHotel = useCallback(
-    async (id) => {
-      const controller = new AbortController();
-
-      if (id === currentHotel.id) return;
-      dispatch({ type: "loading" });
-
-      try {
-        const res = await fetch(`${BASE_URL}/hotels/${id}`, {
-          signal: controller.signal,
-        });
-        const data = await res.json();
-        dispatch({ type: "hotel/loaded", payload: data });
-      } catch (error) {
-        if (error.name !== "AbortController") {
-          dispatch({
-            type: "rejected",
-            payload: "There was error loading the hotel.",
-          });
-        }
-      }
-
-      return () => {
-        controller.abort();
-      };
-    },
-    [currentHotel.id]
-  );
-
-  // filter hotel
-  const filterHotels = useCallback(
-    (keywords) => {
-      dispatch({ type: "hotels/filtered", payload: keywords });
-    },
-    [dispatch]
-  );
 
   return (
     <HotelsContext.Provider

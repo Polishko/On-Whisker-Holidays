@@ -5,7 +5,10 @@ import {
   useReducer,
   useCallback,
 } from "react";
+
 import { useAuth } from "./AuthContext";
+
+import { fetchData } from "../../utils/api";
 
 const UsersContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -69,27 +72,7 @@ function UsersProvider({ children }) {
 
   // fetch users
   const fetchUsers = useCallback(async () => {
-    const controller = new AbortController();
-    dispatch({ type: "loading" });
-
-    try {
-      const res = await fetch(`${BASE_URL}/users`, {
-        signal: controller.signal,
-      });
-      const data = await res.json();
-      dispatch({ type: "users/loaded", payload: data });
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        dispatch({
-          type: "rejected",
-          payload: "There was error loading users data...",
-        });
-      }
-    }
-
-    return () => {
-      controller.abort();
-    };
+    return fetchData(`${BASE_URL}/users`, dispatch, "users/loaded", "users");
   }, []);
 
   useEffect(() => {
@@ -97,24 +80,24 @@ function UsersProvider({ children }) {
   }, [fetchUsers]);
 
   // get user
-  const getUser = useCallback(
-    async (id) => {
-      if (id === currentUser.id) return;
-      dispatch({ type: "loading" });
+  // const getUser = useCallback(
+  //   async (id) => {
+  //     if (id === currentUser.id) return;
+  //     dispatch({ type: "loading" });
 
-      try {
-        const res = await fetch(`${BASE_URL}/users/${id}`);
-        const data = await res.json();
-        dispatch({ type: "user/loaded", payload: data });
-      } catch {
-        dispatch({
-          type: "rejected",
-          payload: "There was error loading the user.",
-        });
-      }
-    },
-    [currentUser.id]
-  );
+  //     try {
+  //       const res = await fetch(`${BASE_URL}/users/${id}`);
+  //       const data = await res.json();
+  //       dispatch({ type: "user/loaded", payload: data });
+  //     } catch {
+  //       dispatch({
+  //         type: "rejected",
+  //         payload: "There was error loading the user.",
+  //       });
+  //     }
+  //   },
+  //   [currentUser.id]
+  // );
 
   // create user
   const createUser = useCallback(
@@ -250,7 +233,7 @@ function UsersProvider({ children }) {
         currentUser,
         error,
         success,
-        getUser,
+        // getUser,
         createUser,
         resetState,
         editUser,

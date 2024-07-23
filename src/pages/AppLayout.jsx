@@ -34,7 +34,6 @@ function AppLayout() {
           </div>
           <div className={styles.right}>
             <Details />
-            {/* <Map /> */}
           </div>
         </div>
       </div>

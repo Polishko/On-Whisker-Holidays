@@ -5,7 +5,10 @@ import {
   useReducer,
   useCallback,
 } from "react";
+
 import { useAuth } from "./AuthContext";
+
+import { fetchData } from "../../utils/api";
 
 const CommentsContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -72,24 +75,12 @@ function CommentsProvider({ children }) {
 
   // fetch comments
   const fetchComments = useCallback(async () => {
-    const controller = new AbortController();
-    dispatch({ type: "loading" });
-
-    try {
-      const res = await fetch(`${BASE_URL}/comments`, {
-        signal: controller.signal,
-      });
-      if (!res.ok) throw new Error("Failed to fetch comments");
-      const data = await res.json();
-      dispatch({ type: "comments/loaded", payload: data });
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        dispatch({
-          type: "rejected",
-          payload: "There was an error loading comments data...",
-        });
-      }
-    }
+    return fetchData(
+      `${BASE_URL}/comments`,
+      dispatch,
+      "comments/loaded",
+      "comments"
+    );
   }, []);
 
   // get on mount
