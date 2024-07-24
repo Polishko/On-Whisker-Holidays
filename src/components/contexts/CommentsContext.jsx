@@ -8,7 +8,7 @@ import {
 
 import { useAuth } from "./AuthContext";
 
-import { fetchData } from "../../utils/api";
+import { fetchData, createCommentApi } from "../../utils/api";
 
 const CommentsContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -91,50 +91,15 @@ function CommentsProvider({ children }) {
   // create comment
   const createComment = useCallback(
     async (commentText, hotelId) => {
-      if (!user) {
-        dispatch({
-          type: "rejected",
-          payload: "User not authenticated",
-        });
-        return;
-      }
-
-      dispatch({ type: "loading" });
-
-      try {
-        const comment = {
-          text: commentText.trim(),
-          userId: user.id,
-          userName: user.name,
-          hotelId: hotelId,
-          timestamp: new Date().toISOString(),
-        };
-
-        const token = localStorage.getItem("accessToken");
-
-        const res = await fetch(`${BASE_URL}/comments`, {
-          method: "POST",
-          body: JSON.stringify(comment),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!res.ok) throw new Error("Failed to create comment");
-
-        const data = await res.json();
-        dispatch({ type: "comment/created", payload: data });
-
-        fetchComments();
-      } catch (error) {
-        dispatch({
-          type: "rejected",
-          payload: "There was an error creating the comment.",
-        });
-      }
+      return await createCommentApi(
+        commentText,
+        hotelId,
+        user,
+        dispatch,
+        `${BASE_URL}/comments`
+      );
     },
-    [fetchComments, user]
+    [user, dispatch]
   );
 
   // edit comment

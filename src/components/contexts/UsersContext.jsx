@@ -185,7 +185,6 @@ function UsersProvider({ children }) {
         currentUser,
         error,
         success,
-        // getUser,
         createUser,
         resetState,
         editUser,

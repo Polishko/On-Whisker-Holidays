@@ -19,7 +19,7 @@ function Hotel() {
 
   const { getHotel, currentHotel, isLoading } = useHotels();
   const { isAuthenticated } = useAuth();
-  const { createComment } = useComments();
+  const { createComment, fetchComments } = useComments();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [comment, setComment] = useState("");
   const [charCount, setCharCount] = useState(0);
@@ -62,10 +62,15 @@ function Hotel() {
   async function handleCommentSubmit(e) {
     e.preventDefault();
     try {
-      await createComment(comment, id);
-      handleCloseModal();
+      const result = await createComment(comment, id);
+      if (result.success) {
+        handleCloseModal();
+        fetchComments();
+      } else {
+        console.error(result.message);
+      }
     } catch (error) {
-      // console.error(error);
+      console.error(error);
     }
   }
 

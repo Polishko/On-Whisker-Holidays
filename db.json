@@ -103,6 +103,14 @@
       "timestamp": "2024-07-22T19:22:51.678Z",
       "id": 9,
       "password": "kaju"
+    },
+    {
+      "text": "It was really cozy here!",
+      "userId": 15,
+      "userName": "polen",
+      "hotelId": "The Wooden Village",
+      "timestamp": "2024-07-24T03:52:37.715Z",
+      "id": 10
     }
   ],
   "posts": [
