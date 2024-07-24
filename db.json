@@ -19,7 +19,7 @@
       "name": "kaju",
       "avatar": "/avatar/cat1.png",
       "id": 16,
-      "password": "$2a$10$UfVMXDhchS0xoAhD1EuE3.4Hv/lsKKxoJvz3Fwua.u.LPgySPT/zG"
+      "password": "$2a$10$R2hDIIJyPOrthjjVXgjer./FrPoM551VngztUi5xdNqG6pu5i0u46"
     },
     {
       "email": "badi@badi.com",
@@ -87,11 +87,11 @@
       "id": 7
     },
     {
-      "text": "Great escape from the city's hot summers. Yup!",
+      "text": "Great escape from the city's hot summers. Yes!!",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Hija Rila Lakes",
-      "timestamp": "2024-07-23T18:06:42.919Z",
+      "timestamp": "2024-07-24T09:08:34.020Z",
       "id": 8,
       "password": "kaju"
     },

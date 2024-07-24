@@ -12,7 +12,7 @@ function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
   const { user } = useAuth();
   const { validatePassword } = useUsers();
-  const { deleteComment, editComment } = useComments();
+  const { deleteComment, editComment, fetchComments } = useComments();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -98,11 +98,22 @@ function CommentItem({ comment, userName }) {
         timestamp: newTimestamp,
         password,
       };
-      await editComment(updatedComment);
-      setIsPasswordModalOpen(false);
-      closeCommentModal();
+      const result = await editComment(updatedComment);
+
+      console.log("Edit Comment Result:", result);
+
+      if (result.success) {
+        alert("Comment updated successfully!");
+        setIsPasswordModalOpen(false);
+        closeCommentModal();
+        await fetchComments(); // Fetch comments after updating the comment
+      } else {
+        alert(result.message);
+      }
+
       passwordFieldReset("");
     } catch (currentError) {
+      console.error("Unexpected Error in handleSaveChanges:", currentError);
       alert("There was an error updating the comment.");
     }
   }

@@ -8,7 +8,7 @@ import {
 
 import { useAuth } from "./AuthContext";
 
-import { fetchData, createCommentApi } from "../../utils/api";
+import { fetchData, createCommentApi, editDataApi } from "../../utils/api";
 
 const CommentsContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -103,63 +103,15 @@ function CommentsProvider({ children }) {
   );
 
   // edit comment
-
-  const editComment = useCallback(
-    async (updatedComment) => {
-      dispatch({ type: "loading" });
-
-      try {
-        const token = localStorage.getItem("accessToken");
-
-        // PUT
-        const res = await fetch(`${BASE_URL}/comments/${updatedComment.id}`, {
-          method: "PUT",
-          body: JSON.stringify(updatedComment),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        // console.log(res);
-
-        if (!res.ok) {
-          const error = await res.json();
-          const errorMessage =
-            res.status === 401
-              ? "Wrong password."
-              : error.message || "There was an error updating the comment.";
-          dispatch({
-            type: "rejected",
-            payload: errorMessage,
-          });
-          return;
-        }
-
-        // GET updated comment
-        const updatedRes = await fetch(
-          `${BASE_URL}/comments/${updatedComment.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (!updatedRes.ok)
-          throw new Error("Failed to fetch updated comment data");
-        const updatedData = await updatedRes.json();
-
-        dispatch({ type: "comment/updated", payload: updatedData });
-
-        fetchComments();
-      } catch (error) {
-        dispatch({
-          type: "rejected",
-          payload: "There was error updating the comment.",
-        });
-      }
-    },
-    [fetchComments]
-  );
+  const editComment = useCallback(async (updatedComment) => {
+    return await editDataApi(
+      updatedComment,
+      dispatch,
+      `${BASE_URL}/comments/${updatedComment.id}`,
+      "comment/updated",
+      "comment"
+    );
+  }, []);
 
   // Credential validate
   async function validatePassword(credentials) {
@@ -231,6 +183,7 @@ function CommentsProvider({ children }) {
         isLoadingComments,
         currentComment,
         error,
+        fetchComments,
         createComment,
         editComment,
         validatePassword,

@@ -9,7 +9,7 @@ import PasswordModal from "../components/modal/PasswordModal";
 
 function Profile({ onClose }) {
   const { user, logout } = useAuth();
-  const { editUser, validatePassword } = useUsers();
+  const { editUser, validatePassword, fetchUsers } = useUsers();
   const [selectedAvatar, setSelectedAvatar] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState("");
@@ -58,11 +58,16 @@ function Profile({ onClose }) {
         user.avatar;
 
       const updatedUser = { ...user, avatar: updatedAvatarPath, password };
-      await editUser(updatedUser);
+      const result = await editUser(updatedUser);
 
-      alert("Avatar updated successfully!");
-      setIsPasswordModalOpen(false);
-      onClose();
+      if (result.success) {
+        alert("Avatar updated successfully!");
+        setIsPasswordModalOpen(false);
+        onClose();
+        await fetchUsers();
+      } else {
+        alert(result.message);
+      }
     } catch (currentError) {
       alert("There was an error updating the avatar.");
     }

@@ -8,7 +8,7 @@ import {
 
 import { useAuth } from "./AuthContext";
 
-import { fetchData, createUserApi } from "../../utils/api";
+import { fetchData, createUserApi, editDataApi } from "../../utils/api";
 
 const UsersContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -90,56 +90,19 @@ function UsersProvider({ children }) {
   // edit user
   const editUser = useCallback(
     async (updatedUser) => {
-      dispatch({ type: "loading" });
-
-      try {
-        const token = localStorage.getItem("accessToken");
-
-        // PUT
-        const res = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
-          method: "PUT",
-          body: JSON.stringify(updatedUser),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!res.ok) {
-          const error = await res.json();
-          const errorMessage =
-            res.status === 401
-              ? "Wrong password."
-              : error.message || "There was an error updating the user.";
-          dispatch({
-            type: "rejected",
-            payload: errorMessage,
-          });
-          return;
-        }
-
-        // GET updated user
-        const updatedRes = await fetch(`${BASE_URL}/users/${updatedUser.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!updatedRes.ok)
-          throw new Error("Failed to fetch updated user data");
-        const updatedData = await updatedRes.json();
-
-        dispatch({ type: "user/updated", payload: updatedData });
-        updateAuthUser(updatedData);
-
-        fetchUsers();
-      } catch (error) {
-        dispatch({
-          type: "rejected",
-          payload: "There was error updating the user.",
-        });
+      const result = await editDataApi(
+        updatedUser,
+        dispatch,
+        `${BASE_URL}/users/${updatedUser.id}`,
+        "user/updated",
+        "user"
+      );
+      if (result.success) {
+        updateAuthUser(result.data);
       }
+      return result;
     },
-    [fetchUsers, updateAuthUser]
+    [updateAuthUser]
   );
 
   // Credential validate

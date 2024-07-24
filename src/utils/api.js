@@ -3,7 +3,7 @@ export const fetchData = async (
   url,
   dispatch,
   successType,
-  dataType,
+  dataName,
   transformData = (data) => data
 ) => {
   const controller = new AbortController();
@@ -18,7 +18,7 @@ export const fetchData = async (
     if (error.name !== "AbortError") {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading ${dataType} data...`,
+        payload: `There was an error loading ${dataName} data...`,
       });
     }
   }
@@ -35,7 +35,7 @@ export const fetchItem = async (
   dispatch,
   successType,
   currentId,
-  dataType,
+  dataName,
   transformData = (data) => data
 ) => {
   const controller = new AbortController();
@@ -54,7 +54,7 @@ export const fetchItem = async (
     if (error.name !== "AbortError") {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading the ${dataType}.`,
+        payload: `There was an error loading the ${dataName}.`,
       });
     }
   }
@@ -64,6 +64,7 @@ export const fetchItem = async (
   };
 };
 
+// Separate logic for POST user and POST comment to avoid complexity
 // POST item: user
 export const createUserApi = async (url, newUser, dispatch) => {
   dispatch({ type: "loading" });
@@ -162,6 +163,71 @@ export const createCommentApi = async (
     return {
       success: false,
       message: "There was an error creating the comment.",
+    };
+  }
+};
+
+// PUT item:
+export const editDataApi = async (
+  updatedItem,
+  dispatch,
+  url,
+  successType,
+  dataName
+) => {
+  dispatch({ type: "loading" });
+
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    // PUT edited data
+    const res = await fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(updatedItem),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      const errorMessage =
+        res.status === 401
+          ? "Wrong password."
+          : error.message || `There was an error updating the ${dataName}.`;
+      dispatch({
+        type: "rejected",
+        payload: errorMessage,
+      });
+      return { success: false, message: errorMessage };
+    }
+
+    // GET updated item
+    const updatedRes = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!updatedRes.ok)
+      throw new Error(`Failed to fetch updated ${dataName} data`);
+
+    const updatedData = await updatedRes.json();
+    dispatch({ type: successType, payload: updatedData });
+
+    return {
+      success: true,
+      message: `${dataName} updated successfully.`,
+      data: updatedData,
+    };
+  } catch (error) {
+    dispatch({
+      type: "rejected",
+      payload: `There was an error updating the ${dataName}.`,
+    });
+    return {
+      success: false,
+      message: `There was an error updating the ${dataName}.`,
     };
   }
 };
