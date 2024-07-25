@@ -48,6 +48,10 @@ function Hotel() {
   } = currentHotel;
 
   function handleAddComment() {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     setIsModalOpen(true);
   }
 

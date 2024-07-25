@@ -7,10 +7,11 @@ import { useKey } from "../../hooks/useKey";
 import PasswordModal from "../modal/PasswordModal";
 // import { useUsers } from "../contexts/UsersContext";
 import CommentModal from "../modal/CommentModal";
+import { useNavigate } from "react-router-dom";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
-  const { user, validatePassword } = useAuth();
+  const { user, validatePassword, isAuthenticated } = useAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
@@ -18,6 +19,8 @@ function CommentItem({ comment, userName }) {
   const [password, setPassword] = useState("");
   const [editedComment, setEditedComment] = useState("");
   const [charCount, setCharCount] = useState(0);
+
+  const navigate = useNavigate();
 
   function openDeleteModal() {
     setIsDeleteModalOpen(true);
@@ -59,6 +62,10 @@ function CommentItem({ comment, userName }) {
   }
 
   async function handleDelete() {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     try {
       await deleteComment(comment.id);
       closeDeleteModal();
@@ -68,6 +75,10 @@ function CommentItem({ comment, userName }) {
   }
 
   function handleCommentSubmit() {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     setIsPasswordModalOpen(true);
   }
 

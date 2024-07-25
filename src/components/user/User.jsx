@@ -6,7 +6,7 @@ import Modal from "../modal/Modal";
 import Profile from "../../pages/Profile";
 
 function User() {
-  const { user, logout } = useAuth();
+  const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,6 +16,10 @@ function User() {
 
   function openProfile(e) {
     e.preventDefault();
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     navigate("profile", { state: { modal: true } });
     setIsModalOpen(true);
   }

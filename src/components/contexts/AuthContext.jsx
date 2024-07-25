@@ -64,16 +64,21 @@ function AuthProvider({ children }) {
   );
 
   // to persist state: get info from local storage
-  useEffect(() => {
+  useEffect(function () {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const accessToken = localStorage.getItem("accessToken");
-
-    // console.log(storedUser);
-
     if (storedUser && accessToken) {
       dispatch({ type: "login", payload: storedUser });
     }
   }, []);
+
+  useEffect(
+    function () {
+      const token = localStorage.getItem("accessToken");
+      if (!token) logout();
+    },
+    [logout]
+  );
 
   // Login
   const login = useCallback(async (credentials) => {
