@@ -14,6 +14,8 @@ function AppLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // console.log(user);
+
   useEffect(
     function () {
       if (!isAuthenticated && location.pathname === "/profile") {

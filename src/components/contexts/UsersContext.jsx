@@ -27,8 +27,6 @@ function reducer(state, action) {
       return { ...state, isLoadingUsers: true, error: null, success: null };
     case "users/loaded":
       return { ...state, isLoadingUsers: false, users: action.payload };
-    case "user/loaded":
-      return { ...state, isLoadingUsers: false, currentUser: action.payload };
     case "user/created":
       return {
         ...state,
@@ -47,13 +45,6 @@ function reducer(state, action) {
         currentUser: action.payload,
         success: "The user was updated successfully",
         error: null,
-      };
-    case "user/deleted":
-      return {
-        ...state,
-        isLoadingUsers: false,
-        users: state.users.filter((user) => user.id !== action.payload),
-        currentUser: { email: "", password: "", avatar: "", id: "", name: "" },
       };
     case "reset":
       return initialState;

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../modal/Modal";
 import Profile from "../../pages/Profile";
 
@@ -9,13 +9,13 @@ function User() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const accessToken = localStorage.getItem("accessToken");
+  // const accessToken = localStorage.getItem("accessToken");
 
-  useEffect(() => {
-    if (!accessToken) {
-      navigate("/login");
-    }
-  }, [accessToken, navigate]);
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     navigate("/login");
+  //   }
+  // }, [accessToken, navigate]);
 
   function closeModal() {
     setIsModalOpen(false);

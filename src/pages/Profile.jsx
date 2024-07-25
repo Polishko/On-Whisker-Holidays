@@ -8,8 +8,8 @@ import { useKey } from "../hooks/useKey";
 import PasswordModal from "../components/modal/PasswordModal";
 
 function Profile({ onClose }) {
-  const { user, logout } = useAuth();
-  const { editUser, validatePassword, fetchUsers } = useUsers();
+  const { user, logout, validatePassword } = useAuth();
+  const { editUser, fetchUsers } = useUsers();
   const [selectedAvatar, setSelectedAvatar] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState("");
@@ -39,7 +39,7 @@ function Profile({ onClose }) {
   async function handleSaveChanges() {
     try {
       const credentials = { email: user.email, password: password };
-      const { isValid, message } = await validatePassword(credentials);
+      const { success, message } = await validatePassword(credentials);
 
       if (!password) {
         passwordFieldReset();
@@ -47,7 +47,7 @@ function Profile({ onClose }) {
         return;
       }
 
-      if (!isValid) {
+      if (!success) {
         passwordFieldReset();
         alert(message);
         return;

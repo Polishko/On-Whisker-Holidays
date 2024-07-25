@@ -6,6 +6,8 @@ import {
   useReducer,
 } from "react";
 
+import { loginApi, validatePasswordApi } from "../../utils/api";
+
 const BASE_URL = "http://localhost:3000";
 
 const AuthContext = createContext();
@@ -62,42 +64,35 @@ function AuthProvider({ children }) {
   );
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     const accessToken = localStorage.getItem("accessToken");
 
-    if (user && accessToken) {
-      dispatch({ type: "login", payload: user });
+    // console.log(storedUser);
+
+    if (storedUser && accessToken) {
+      dispatch({ type: "login", payload: storedUser });
     }
   }, []);
 
   const login = useCallback(async (credentials) => {
-    try {
-      const res = await fetch(`${BASE_URL}/login`, {
-        method: "POST",
-        body: JSON.stringify(credentials),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (!res.ok) {
-        const error = await res.json();
-        dispatch({
-          type: "rejected",
-          payload: error.message || "Login failed.",
-        });
-        return;
-      }
-
-      const data = await res.json();
-      const { accessToken, user } = data;
-      dispatch({ type: "login", payload: user });
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("user", JSON.stringify(user));
-    } catch (error) {
+    const result = await loginApi(credentials, `${BASE_URL}/login`);
+    if (result.success) {
+      const user = result.user;
       dispatch({
-        type: "rejected",
-        payload: "There was an error logging the user.",
+        type: "login",
+        payload: user,
       });
+      localStorage.setItem("accessToken", result.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
+    } else {
+      dispatch({ type: "rejected", payload: result.message });
     }
+    return result;
+  }, []);
+
+  const validatePassword = useCallback(async (credentials) => {
+    const result = await validatePasswordApi(credentials, `${BASE_URL}/login`);
+    return result;
   }, []);
 
   function logout() {
@@ -126,6 +121,7 @@ function AuthProvider({ children }) {
         success,
         resetError,
         updateAuthUser,
+        validatePassword,
       }}
     >
       {children}

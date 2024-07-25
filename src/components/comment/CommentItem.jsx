@@ -5,13 +5,12 @@ import { useState } from "react";
 import DeleteModal from "../modal/DeleteModal";
 import { useKey } from "../../hooks/useKey";
 import PasswordModal from "../modal/PasswordModal";
-import { useUsers } from "../contexts/UsersContext";
+// import { useUsers } from "../contexts/UsersContext";
 import CommentModal from "../modal/CommentModal";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
-  const { user } = useAuth();
-  const { validatePassword } = useUsers();
+  const { user, validatePassword } = useAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
@@ -75,7 +74,7 @@ function CommentItem({ comment, userName }) {
   async function handleSaveChanges() {
     try {
       const credentials = { email: user.email, password: password };
-      const { isValid, message } = await validatePassword(credentials);
+      const { success, message } = await validatePassword(credentials);
 
       if (!password) {
         passwordFieldReset();
@@ -83,7 +82,7 @@ function CommentItem({ comment, userName }) {
         return;
       }
 
-      if (!isValid) {
+      if (!success) {
         passwordFieldReset();
         alert(message);
         return;

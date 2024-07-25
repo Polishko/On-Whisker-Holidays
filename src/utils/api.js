@@ -231,3 +231,56 @@ export const editDataApi = async (
     };
   }
 };
+
+// Login API
+export const loginApi = async (credentials, url) => {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(credentials),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      return {
+        success: false,
+        message: error.message || "Authentication failed.",
+      };
+    }
+
+    const data = await res.json();
+    return { success: true, token: data.accessToken, user: data.user };
+  } catch (error) {
+    return {
+      success: false,
+      message: "There was an error authenticating the user.",
+    };
+  }
+};
+
+// Password Validation API
+export const validatePasswordApi = async (credentials, url) => {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(credentials),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      return {
+        success: false,
+        message: error.message || "Password validation failed.",
+      };
+    }
+
+    return { success: true };
+  } catch (error) {
+    return {
+      success: false,
+      message: "There was an error validating the password.",
+    };
+  }
+};
