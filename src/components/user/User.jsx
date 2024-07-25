@@ -9,13 +9,6 @@ function User() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const accessToken = localStorage.getItem("accessToken");
-
-  // useEffect(() => {
-  //   if (!accessToken) {
-  //     navigate("/login");
-  //   }
-  // }, [accessToken, navigate]);
 
   function closeModal() {
     setIsModalOpen(false);

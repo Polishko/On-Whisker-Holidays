@@ -6,7 +6,7 @@ import {
   useReducer,
 } from "react";
 
-import { loginApi, validatePasswordApi } from "../../utils/api";
+import { authenticateApi } from "../../utils/api";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -63,6 +63,7 @@ function AuthProvider({ children }) {
     initialState
   );
 
+  // to persist state get info from local storage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const accessToken = localStorage.getItem("accessToken");
@@ -75,7 +76,11 @@ function AuthProvider({ children }) {
   }, []);
 
   const login = useCallback(async (credentials) => {
-    const result = await loginApi(credentials, `${BASE_URL}/login`);
+    const result = await authenticateApi(
+      credentials,
+      `${BASE_URL}/login`,
+      true
+    );
     if (result.success) {
       const user = result.user;
       dispatch({
@@ -91,7 +96,7 @@ function AuthProvider({ children }) {
   }, []);
 
   const validatePassword = useCallback(async (credentials) => {
-    const result = await validatePasswordApi(credentials, `${BASE_URL}/login`);
+    const result = await authenticateApi(credentials, `${BASE_URL}/login`);
     return result;
   }, []);
 

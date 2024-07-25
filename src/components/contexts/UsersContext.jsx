@@ -96,37 +96,6 @@ function UsersProvider({ children }) {
     [updateAuthUser]
   );
 
-  // Credential validate
-  async function validatePassword(credentials) {
-    try {
-      const res = await fetch(`${BASE_URL}/login`, {
-        method: "POST",
-        body: JSON.stringify(credentials),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (!res.ok) {
-        const error = await res.json();
-        dispatch({
-          type: "rejected",
-          payload: error.message || "Wrong password.",
-        });
-        return { isValid: false, message: error.message || "Wrong password." };
-      }
-
-      return { isValid: true };
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: "There was error changing the avatar.",
-      });
-      return {
-        isValid: false,
-        message: "There was error changing the avatar.",
-      };
-    }
-  }
-
   function resetState() {
     dispatch({ type: "reset" });
   }
@@ -142,7 +111,6 @@ function UsersProvider({ children }) {
         createUser,
         resetState,
         editUser,
-        validatePassword,
         fetchUsers,
       }}
     >

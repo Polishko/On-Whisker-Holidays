@@ -113,39 +113,6 @@ function CommentsProvider({ children }) {
     );
   }, []);
 
-  // Credential validate
-  async function validatePassword(credentials) {
-    try {
-      const res = await fetch(`${BASE_URL}/login`, {
-        method: "POST",
-        body: JSON.stringify(credentials),
-        headers: { "Content-Type": "application/json" },
-      });
-      // console.log(res);
-
-      if (!res.ok) {
-        const error = await res.json();
-        dispatch({
-          type: "rejected",
-          payload: error.message || "Wrong password.",
-        });
-        return { isValid: false, message: error.message || "Wrong password." };
-      }
-
-      return { isValid: true };
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: "There was error editing the comment.",
-      });
-      return {
-        isValid: false,
-        message: "There was error editing the comment.",
-      };
-    }
-  }
-  // TODO
-
   // delete comment
   const deleteComment = useCallback(
     async (id) => {
@@ -186,7 +153,6 @@ function CommentsProvider({ children }) {
         fetchComments,
         createComment,
         editComment,
-        validatePassword,
         deleteComment,
       }}
     >
