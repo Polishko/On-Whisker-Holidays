@@ -34,6 +34,13 @@
       "avatar": "/avatar/dog2.png",
       "id": 19,
       "password": "$2a$10$UOPAlbc1a0HzOkYr3D22AuFl8q7JleXdidgJKveehB/93lBe6tBCi"
+    },
+    {
+      "email": "loki@loki.com",
+      "password": "$2a$10$six3cUOYX0AvVvVIbuxfnueCrdbT9aVAzJAI7DG6jAoFeezFVv/yq",
+      "name": "loki",
+      "avatar": "/avatar/dog1.png",
+      "id": 20
     }
   ],
   "comments": [
@@ -95,6 +102,14 @@
       "hotelId": "Green Village Lake",
       "timestamp": "2024-07-25T16:58:20.573Z",
       "id": 10
+    },
+    {
+      "text": "I had a great adventure here with Mori!",
+      "userId": 20,
+      "userName": "loki",
+      "hotelId": "Hija Rila Lakes",
+      "timestamp": "2024-07-25T17:40:37.487Z",
+      "id": 11
     }
   ],
   "posts": [

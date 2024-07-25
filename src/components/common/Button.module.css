@@ -29,7 +29,6 @@
   bottom: 4rem;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--color-brand--2);
   color: var(--color-dark--1);
   box-shadow: 0 0.4rem 1.2rem rgba(36, 42, 46, 0.16);
 }

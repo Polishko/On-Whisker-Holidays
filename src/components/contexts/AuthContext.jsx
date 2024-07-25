@@ -72,13 +72,10 @@ function AuthProvider({ children }) {
     }
   }, []);
 
-  useEffect(
-    function () {
-      const token = localStorage.getItem("accessToken");
-      if (!token) logout();
-    },
-    [logout]
-  );
+  useEffect(function () {
+    const token = localStorage.getItem("accessToken");
+    if (!token) logout();
+  }, []);
 
   // Login
   const login = useCallback(async (credentials) => {
