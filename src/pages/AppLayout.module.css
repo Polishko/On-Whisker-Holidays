@@ -14,9 +14,9 @@
 .container {
   display: flex;
   max-height: 75vh;
-  display: flex;
   flex: 1;
   gap: 2em;
+  overflow: hidden;
 }
 
 .left,
@@ -24,26 +24,22 @@
   display: flex;
   flex-direction: column;
   border-radius: 0.9rem;
-  overflow: scroll;
+  overflow: auto;
   position: relative;
+  height: 100%;
 }
 
-.left::-webkit-scrollbar,
-.left::-webkit-scrollbar,
-.right::-webkit-scrollbar,
-.right::-webkit-scrollbar {
+.left::-webkit-scrollbar {
   display: none;
   scroll-behavior: smooth;
 }
 
 .left {
-  display: flex;
   background-color: var(--color-light-4);
   flex-basis: 40%;
 }
 
 .right {
-  display: flex;
   flex-direction: column;
   gap: 1em;
   flex-basis: 60%;
@@ -55,4 +51,20 @@
 
 .profileClose {
   padding: 4em;
+}
+
+.right::-webkit-scrollbar {
+  width: 1.6em;
+}
+
+.right::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 1em;
+  border: 3px solid #fff3e6;
+}
+
+.right::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 1em;
+  border: 3px solid #fff3e6;
 }

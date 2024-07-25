@@ -7,8 +7,8 @@
   padding: 1em;
   margin: 0 1em 1em 1em;
   list-style: none;
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
@@ -19,8 +19,8 @@
   padding: 1em;
   margin: 1em;
   list-style: none;
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
