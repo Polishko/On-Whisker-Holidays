@@ -1,4 +1,4 @@
-import { flagemojiToPNG } from "../../helpers/flagemojiToPNG";
+import { flagemojiToPNG } from "../../utils/emoji.js";
 
 function EmojiRenderer({ emoji }) {
   const src = flagemojiToPNG(emoji);

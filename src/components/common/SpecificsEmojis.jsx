@@ -1,4 +1,4 @@
-import { specificsToEmoji } from "../../helpers/specificsToEmoji";
+import { specificsToEmoji } from "../../utils/emoji.js";
 
 function SpecificsEmojis({ specifics }) {
   return <span>{specificsToEmoji(specifics)}</span>;

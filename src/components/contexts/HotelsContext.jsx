@@ -8,8 +8,7 @@ import {
 
 import { useLocation, useParams } from "react-router-dom";
 
-import { containsAllKeywords } from "../../helpers/keywordContainCheck.js";
-
+import { containsAllKeywords } from "../../utils/string.js";
 import { fetchData, fetchItem } from "../../utils/api";
 
 const HotelsContext = createContext();
