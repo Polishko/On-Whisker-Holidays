@@ -1,6 +1,7 @@
-import styles from "./Weather.module.css";
 import { useEffect, useState } from "react";
+import styles from "./Weather.module.css";
 import Spinner from "./Spinner.jsx";
+import { fetchWeatherData } from "../../utils/api.js";
 
 function getWeatherIcon(wmoCode) {
   const icons = new Map([
@@ -25,18 +26,11 @@ function Weather({ latitude, longitude }) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function fetchWeather() {
+    async function getWeather() {
       try {
         setIsLoading(true);
-        const weatherRes = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&timezone=auto&current_weather=true`
-        );
-
-        if (!weatherRes.ok)
-          throw new Error("Something went wrong with weather fetch");
-
-        const weatherData = await weatherRes.json();
-        setCurrentWeather(weatherData.current_weather);
+        const weather = await fetchWeatherData(latitude, longitude);
+        setCurrentWeather(weather);
       } catch (err) {
         console.log(err);
       } finally {
@@ -44,7 +38,7 @@ function Weather({ latitude, longitude }) {
       }
     }
 
-    fetchWeather();
+    getWeather();
   }, [latitude, longitude]);
 
   if (isLoading) return <Spinner />;
