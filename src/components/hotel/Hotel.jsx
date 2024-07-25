@@ -69,12 +69,13 @@ function Hotel() {
       const result = await createComment(comment, id);
       if (result.success) {
         handleCloseModal();
-        fetchComments();
+        alert("Comment added successfully.");
+        await fetchComments();
       } else {
         console.error(result.message);
       }
     } catch (error) {
-      console.error(error);
+      alert("There was an error adding the comment.");
     }
   }
 

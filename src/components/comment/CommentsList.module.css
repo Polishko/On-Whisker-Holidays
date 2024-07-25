@@ -5,7 +5,7 @@
   overflow: hidden;
   height: calc(100% - 2em);
   padding: 1em;
-  margin: 1em;
+  margin: 0 1em 1em 1em;
   list-style: none;
   overflow-y: auto;
   overflow-x: hidden;

@@ -67,10 +67,15 @@ function CommentItem({ comment, userName }) {
       return;
     }
     try {
-      await deleteComment(comment.id);
-      closeDeleteModal();
+      const result = await deleteComment(comment.id);
+      if (result.success) {
+        alert("Comment deleted successfully");
+        await fetchComments();
+      } else {
+        alert(result.message);
+      }
     } catch (error) {
-      console.error("Failed to delete comment:", error);
+      alert("Failed to delete comment.");
     }
   }
 
@@ -110,20 +115,17 @@ function CommentItem({ comment, userName }) {
       };
       const result = await editComment(updatedComment);
 
-      console.log("Edit Comment Result:", result);
-
       if (result.success) {
         alert("Comment updated successfully!");
         setIsPasswordModalOpen(false);
         closeCommentModal();
-        await fetchComments(); // Fetch comments after updating the comment
+        await fetchComments();
       } else {
         alert(result.message);
       }
 
       passwordFieldReset("");
     } catch (currentError) {
-      console.error("Unexpected Error in handleSaveChanges:", currentError);
       alert("There was an error updating the comment.");
     }
   }

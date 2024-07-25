@@ -8,7 +8,12 @@ import {
 
 import { useAuth } from "./AuthContext";
 
-import { fetchData, createCommentApi, editDataApi } from "../../utils/api";
+import {
+  fetchData,
+  createCommentApi,
+  editDataApi,
+  deleteDataApi,
+} from "../../utils/api";
 
 const CommentsContext = createContext();
 const BASE_URL = "http://localhost:3000";
@@ -114,34 +119,15 @@ function CommentsProvider({ children }) {
   }, []);
 
   // delete comment
-  const deleteComment = useCallback(
-    async (id) => {
-      dispatch({ type: "loading" });
-
-      try {
-        const token = localStorage.getItem("accessToken");
-
-        const res = await fetch(`${BASE_URL}/comments/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!res.ok) throw new Error("Failed to delete comment");
-
-        dispatch({ type: "comment/deleted", payload: id });
-        fetchComments();
-      } catch (error) {
-        dispatch({
-          type: "rejected",
-          payload: "There was an error deleting the comment.",
-        });
-      }
-    },
-    [fetchComments]
-  );
+  const deleteComment = useCallback(async (id) => {
+    return await deleteDataApi(
+      `${BASE_URL}/comments`,
+      id,
+      dispatch,
+      "comment/deleted",
+      "comment"
+    );
+  }, []);
 
   return (
     <CommentsContext.Provider

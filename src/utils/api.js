@@ -272,6 +272,44 @@ export const authenticateApi = async (
   }
 };
 
+// DELETE request
+export const deleteDataApi = async (
+  url,
+  id,
+  dispatch,
+  successType,
+  dataName
+) => {
+  dispatch({ type: "loading" });
+
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    const res = await fetch(`${url}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) throw new Error(`Failed to delete ${dataName}`);
+
+    dispatch({ type: successType, payload: id });
+
+    return { success: true, message: `${dataName} deleted successfully` };
+  } catch (error) {
+    dispatch({
+      type: "rejected",
+      payload: `There was an error deleting the ${dataName}.`,
+    });
+    return {
+      success: false,
+      message: `There was an error deleting the ${dataName}.`,
+    };
+  }
+};
+
 // Weather API
 export const fetchWeatherData = async (latitude, longitude) => {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&timezone=auto&current_weather=true`;

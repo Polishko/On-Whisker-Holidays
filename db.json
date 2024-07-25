@@ -110,6 +110,14 @@
       "hotelId": "Hija Rila Lakes",
       "timestamp": "2024-07-25T17:40:37.487Z",
       "id": 11
+    },
+    {
+      "text": "I liked the fireplace.",
+      "userId": 20,
+      "userName": "loki",
+      "hotelId": "Sunanini House",
+      "timestamp": "2024-07-25T18:19:22.592Z",
+      "id": 12
     }
   ],
   "posts": [
