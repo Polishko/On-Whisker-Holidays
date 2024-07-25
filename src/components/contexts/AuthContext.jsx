@@ -63,7 +63,7 @@ function AuthProvider({ children }) {
     initialState
   );
 
-  // to persist state get info from local storage
+  // to persist state: get info from local storage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const accessToken = localStorage.getItem("accessToken");
@@ -75,6 +75,7 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  // Login
   const login = useCallback(async (credentials) => {
     const result = await authenticateApi(
       credentials,
@@ -95,17 +96,20 @@ function AuthProvider({ children }) {
     return result;
   }, []);
 
+  // password validation for editing
   const validatePassword = useCallback(async (credentials) => {
     const result = await authenticateApi(credentials, `${BASE_URL}/login`);
     return result;
   }, []);
 
+  // logout
   function logout() {
     dispatch({ type: "logout" });
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
   }
 
+  // update user after editing auth user data
   function updateAuthUser(updatedUser) {
     dispatch({ type: "updateUser", payload: updatedUser });
     localStorage.setItem("user", JSON.stringify(updatedUser));
