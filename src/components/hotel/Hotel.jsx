@@ -65,6 +65,7 @@ function Hotel() {
 
   async function handleCommentSubmit(e) {
     e.preventDefault();
+    if (!comment) alert("Please add a comment to submit!");
     try {
       const result = await createComment(comment, id);
       if (result.success) {
