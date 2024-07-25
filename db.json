@@ -27,6 +27,13 @@
       "name": "toti",
       "avatar": "/avatar/dog3.png",
       "id": 18
+    },
+    {
+      "email": "mori@mori.com",
+      "name": "mori",
+      "avatar": "/avatar/dog2.png",
+      "id": 19,
+      "password": "$2a$10$UOPAlbc1a0HzOkYr3D22AuFl8q7JleXdidgJKveehB/93lBe6tBCi"
     }
   ],
   "comments": [

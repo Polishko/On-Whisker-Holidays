@@ -132,3 +132,10 @@
   right: 1rem;
   cursor: pointer;
 }
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 1em;
+  font-size: 150%;
+}

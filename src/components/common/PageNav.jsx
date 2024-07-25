@@ -20,6 +20,17 @@ function PageNav({ style }) {
     <nav className={styles.nav}>
       <Logo background={currentPath === "/" ? "dark" : "light"} />
       <ul>
+      {currentPath !== "/" && (
+          <li>
+            <NavLink
+              style={appliedStyle}
+              to="/"
+              className={`${styles.ctaLink} ${styles.navButton}`}
+            >
+              Home
+            </NavLink>
+          </li>
+        )}
         {currentPath !== "/login" && !user && (
           <li>
             <NavLink

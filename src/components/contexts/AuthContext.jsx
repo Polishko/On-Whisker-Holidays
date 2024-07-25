@@ -92,6 +92,7 @@ function AuthProvider({ children }) {
       localStorage.setItem("user", JSON.stringify(result.user));
     } else {
       dispatch({ type: "rejected", payload: result.message });
+      console.log(result.message);
     }
     return result;
   }, []);

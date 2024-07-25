@@ -137,3 +137,10 @@
   color: inherit;
   margin-left: 0.5em;
 }
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 1em;
+  font-size: 150%;
+}

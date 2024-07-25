@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
 import styles from "./Login.module.css";
@@ -11,19 +12,17 @@ function Login() {
   const { login, error, isAuthenticated, resetError } = useAuth();
   const navigate = useNavigate();
   const [modalMessage, setModalMessage] = useState("");
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    trigger,
+  } = useForm({
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
-
-  // console.log(isAuthenticated);
-
-  useEffect(() => {
-    resetForm();
-    if (error) {
-      setModalMessage(error);
-    }
-  }, [error, setModalMessage]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -32,17 +31,16 @@ function Login() {
   }, [isAuthenticated, navigate]);
 
   useEffect(() => {
+    if (error) {
+      setModalMessage(error);
+    }
+  }, [error]);
+
+  useEffect(() => {
     return () => {
       resetError();
     };
   }, [resetError]);
-
-  function resetForm() {
-    setFormData({
-      email: "",
-      password: "",
-    });
-  }
 
   function closeModal() {
     setModalMessage("");
@@ -50,12 +48,12 @@ function Login() {
 
   useKey("Escape", closeModal);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function onSubmit(data) {
     try {
-      await login({ email: formData.email, password: formData.password });
+      await login({ email: data.email, password: data.password });
+      reset();
     } catch (error) {
-      // console.error("Login failed:", error);
+      // Handle error if needed
     }
   }
 
@@ -65,7 +63,8 @@ function Login() {
 
       <form
         className={`${styles.form} ${styles["login-form"]}`}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
       >
         <div className={styles["login-header"]}>
           <span>Have an account?</span>
@@ -80,14 +79,20 @@ function Login() {
               type="email"
               id="email"
               placeholder="Email"
-              value={formData.email}
               autoComplete="off"
-              name={`search_${Math.random().toString(36).substring(2)}`}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Invalid email address",
+                },
+              })}
+              onKeyUp={() => trigger("email")}
             />
           </div>
+          {errors.email && (
+            <p className={styles.error}>{errors.email.message}</p>
+          )}
         </div>
 
         <div className={styles.row}>
@@ -98,17 +103,17 @@ function Login() {
               type="password"
               id="password"
               placeholder="Password"
-              value={formData.password}
               autoComplete="new-password"
-              name={`search_${Math.random().toString(36).substring(2)}`}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
+              {...register("password", { required: "Password is required" })}
+              onKeyUp={() => trigger("password")}
             />
           </div>
+          {errors.password && (
+            <p className={styles.error}>{errors.password.message}</p>
+          )}
         </div>
 
-        <Button type={"submit"} className={styles["button-style"]}>
+        <Button type="submit" className={styles["button-style"]}>
           Login
         </Button>
 
