@@ -118,6 +118,14 @@
       "hotelId": "Sunanini House",
       "timestamp": "2024-07-25T18:19:22.592Z",
       "id": 12
+    },
+    {
+      "text": "I made lot's of friends here!",
+      "userId": 19,
+      "userName": "mori",
+      "hotelId": "The Wooden Village",
+      "timestamp": "2024-07-26T05:00:59.263Z",
+      "id": 13
     }
   ],
   "posts": [

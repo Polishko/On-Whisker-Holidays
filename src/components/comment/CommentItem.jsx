@@ -19,6 +19,7 @@ function CommentItem({ comment, userName }) {
   const [password, setPassword] = useState("");
   const [editedComment, setEditedComment] = useState("");
   const [charCount, setCharCount] = useState(0);
+  const [oldComment, setOldComment] = useState("");
 
   const navigate = useNavigate();
 
@@ -32,6 +33,7 @@ function CommentItem({ comment, userName }) {
 
   function handleEditClick() {
     setEditedComment(comment.text);
+    setOldComment(comment.text);
     setCharCount(comment.text.length);
     setIsCommentModalOpen(true);
   }
@@ -82,6 +84,10 @@ function CommentItem({ comment, userName }) {
   function handleCommentSubmit() {
     if (!isAuthenticated) {
       navigate("/login");
+      return;
+    }
+    if (oldComment === editedComment) {
+      alert("Make changes to edit old comment.");
       return;
     }
     setIsPasswordModalOpen(true);
