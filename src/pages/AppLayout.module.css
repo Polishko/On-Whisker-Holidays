@@ -30,7 +30,7 @@
 .container {
   display: flex;
   /* padding: 2rem; */
-  max-height: 80vh;
+  max-height: 75vh;
   flex: 1;
   gap: 2em;
   overflow: hidden;
