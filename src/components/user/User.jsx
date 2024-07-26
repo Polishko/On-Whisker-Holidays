@@ -4,6 +4,7 @@ import styles from "./User.module.css";
 import { useState } from "react";
 import Modal from "../modal/Modal";
 import Profile from "../../pages/Profile";
+import Button from "../common/Button";
 
 function User() {
   const { user, logout, isAuthenticated } = useAuth();
@@ -28,7 +29,7 @@ function User() {
     <div className={styles.user}>
       <img src={user.avatar} alt="User Avatar" />
       <p>{user.name}</p>
-      <button onClick={logout}>Logout</button>
+      <Button onClick={logout}>Logout</Button>
       <NavLink
         to="/profile"
         onClick={openProfile}

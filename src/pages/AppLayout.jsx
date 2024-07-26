@@ -7,14 +7,13 @@ import Details from "../components/details/Details";
 import User from "../components/user/User";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import Button from "../components/common/Button";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-
-  // console.log(user);
 
   useEffect(
     function () {
@@ -29,6 +28,9 @@ function AppLayout() {
     <div className={styles.appLayout}>
       <PageNav />
       <div className={styles.app}>
+        <NavLink to="/map">
+          <Button className={`${styles.mapButton}`}>Search on Map</Button>
+        </NavLink>
         <div className={styles.container}>
           <div className={styles.left}>
             <SearchBar />

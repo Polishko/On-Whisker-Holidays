@@ -9,7 +9,7 @@ function PageNav({ style }) {
   const { user } = useAuth();
 
   const defaultStyle = {
-    backgroundColor: "#ffb000",
+    backgroundColor: "#ffd657",
     color: "#21413f",
     fontWeight: "bold",
   };
@@ -50,17 +50,6 @@ function PageNav({ style }) {
               className={`${styles.ctaLink} ${styles.navButton}`}
             >
               Register
-            </NavLink>
-          </li>
-        )}
-        {currentPath !== "/map" && (
-          <li>
-            <NavLink
-              style={appliedStyle}
-              to="/map"
-              className={`${styles.ctaLink} ${styles.navButton}`}
-            >
-              Map
             </NavLink>
           </li>
         )}

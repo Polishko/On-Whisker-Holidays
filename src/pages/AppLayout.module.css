@@ -3,17 +3,33 @@
 }
 
 .app {
-  padding: 0 0 2em 0;
+  margin: 2rem;
   overscroll-behavior-y: none;
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   color: var(--color-brown-1);
+  position: relative;
+}
+
+.mapButton {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: #f7c0c1;
+  color: var(--color-brown-1);
+  font-weight: bold;
+  font-size: 170%;
+  padding: 0.8em;
+  border-radius: 1em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .container {
   display: flex;
-  padding: 2rem;
+  /* padding: 2rem; */
   max-height: 80vh;
   flex: 1;
   gap: 2em;
