@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Podkova:wght@400..800&display=swap");
+@import url("https://unpkg.com/leaflet@1.9.4/dist/leaflet.css");
 
 :root {
   --color-green-1: #21413f;
