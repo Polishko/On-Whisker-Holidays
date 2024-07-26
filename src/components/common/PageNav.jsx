@@ -20,7 +20,7 @@ function PageNav({ style }) {
     <nav className={styles.nav}>
       <Logo background={currentPath === "/" ? "dark" : "light"} />
       <ul>
-      {currentPath !== "/" && (
+        {currentPath !== "/" && (
           <li>
             <NavLink
               style={appliedStyle}

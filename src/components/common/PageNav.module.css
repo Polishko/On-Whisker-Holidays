@@ -14,8 +14,6 @@
 .nav a:link,
 .nav a:visited {
   text-decoration: none;
-  /* color: var(--color-light-2);
-  background-color: var(--color-orange-2); */
   text-transform: uppercase;
   font-size: 1.5rem;
   font-weight: 600;
@@ -31,9 +29,3 @@ a.ctaLink:visited {
   padding: 0.8rem 2rem;
   border-radius: 7px;
 }
-
-/* .navButton {
-  background-color: var(--color-orange-1);
-  color: #21413f;
-  font-weight: bold;
-} */
