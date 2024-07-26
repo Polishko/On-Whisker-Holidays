@@ -8,6 +8,8 @@
 
 .left {
   flex-basis: 40%;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
 }
 
 .imageContainer {
