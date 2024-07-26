@@ -63,7 +63,7 @@ function AuthProvider({ children }) {
     initialState
   );
 
-  // to persist state: get info from local storage
+  // persist state across sessions if user closes browser by mistake or refreshes
   useEffect(function () {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const accessToken = localStorage.getItem("accessToken");
@@ -72,6 +72,7 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  // if an attempt to do authorized actions after token has expired unmount user component
   useEffect(function () {
     const token = localStorage.getItem("accessToken");
     if (!token) logout();
