@@ -8,12 +8,31 @@
 
 .left {
   flex-basis: 40%;
+}
+
+.imageContainer {
   display: flex;
-  gap: 0.5em;
-  flex-direction: column;
-  border-top-left-radius: 1em;
-  border-bottom-left-radius: 1em;
-  padding: 1em 2em 1em 1em;
+  justify-content: center;
+  align-content: center;
+  padding-top: 56%;
+  margin-left: 1em;
+  margin-top: 1em;
+  position: relative;
+  width: 90%; /* Ensure container takes full width of its parent */
+  height: 90%;
+  overflow: hidden;
+  border-radius: 1em;
+}
+
+.imageContainer img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  border-radius: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .right {
@@ -38,24 +57,26 @@
   object-fit: cover;
 }
 
-.imageContainer {
+/* .imageContainer {
+  display: flex;
+  justify-content: center;
   position: relative;
   padding-top: 56.25%;
   height: 90%;
   width: 100%;
   margin-top: 0.5em;
-}
+} */
 
-.imageContainer img {
+/* .left img {
   position: absolute;
   top: 0;
   left: 0;
-  height: 90%;
+  height: 80%;
   width: auto;
-  object-fit: cover;
+  object-fit: center;
   border-radius: 1em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .location {
   display: flex;
