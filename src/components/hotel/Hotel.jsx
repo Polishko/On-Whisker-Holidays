@@ -1,15 +1,19 @@
-import styles from "./Hotel.module.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { useHotels } from "../contexts/HotelsContext";
 import { useEffect, useState } from "react";
+
+import styles from "./Hotel.module.css";
+
+import { useAuth } from "../contexts/AuthContext";
+import { useComments } from "../contexts/CommentsContext";
+import { useHotels } from "../contexts/HotelsContext";
+import { useKey } from "../../hooks/useKey";
+import { useCheckAuth } from "../../hooks/useCheckTokenValidity";
+
 import Spinner from "../common/Spinner";
 import EmojiRenderer from "../common/EmojiRenderer";
 import Facilities from "../common/Facilities";
 import Message from "../common/Message";
 import Button from "../common/Button";
-import { useAuth } from "../contexts/AuthContext";
-import { useComments } from "../contexts/CommentsContext";
-import { useKey } from "../../hooks/useKey";
 import Weather from "../common/Weather";
 import CommentModal from "../modal/CommentModal";
 
@@ -20,6 +24,8 @@ function Hotel() {
   const { getHotel, currentHotel, isLoading } = useHotels();
   const { isAuthenticated } = useAuth();
   const { createComment, fetchComments } = useComments();
+  const checkAuth = useCheckAuth();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [comment, setComment] = useState("");
   const [charCount, setCharCount] = useState(0);
@@ -48,10 +54,7 @@ function Hotel() {
   } = currentHotel;
 
   function handleAddComment() {
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
+    if (!checkAuth()) return;
     setIsModalOpen(true);
   }
 

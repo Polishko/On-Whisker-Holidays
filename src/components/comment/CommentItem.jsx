@@ -1,18 +1,23 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./CommentItem.module.css";
+
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
-import { useState } from "react";
-import DeleteModal from "../modal/DeleteModal";
 import { useKey } from "../../hooks/useKey";
+import { useCheckAuth } from "../../hooks/useCheckTokenValidity";
+
+import DeleteModal from "../modal/DeleteModal";
 import PasswordModal from "../modal/PasswordModal";
-// import { useUsers } from "../contexts/UsersContext";
 import CommentModal from "../modal/CommentModal";
-import { useNavigate } from "react-router-dom";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
   const { user, validatePassword, isAuthenticated } = useAuth();
+  const checkAuth = useCheckAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
+
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -24,6 +29,7 @@ function CommentItem({ comment, userName }) {
   const navigate = useNavigate();
 
   function openDeleteModal() {
+    if (!checkAuth()) return;
     setIsDeleteModalOpen(true);
   }
 
@@ -32,6 +38,7 @@ function CommentItem({ comment, userName }) {
   }
 
   function handleEditClick() {
+    if (!checkAuth()) return;
     setEditedComment(comment.text);
     setOldComment(comment.text);
     setCharCount(comment.text.length);
@@ -48,6 +55,7 @@ function CommentItem({ comment, userName }) {
   }
 
   function handlePasswordSubmit(e) {
+    if (!checkAuth()) return;
     setPassword(e.target.value);
   }
 

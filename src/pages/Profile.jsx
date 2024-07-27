@@ -1,15 +1,21 @@
+import { useState } from "react";
+
 import styles from "./Profile.module.css";
+
 import { useAuth } from "../components/contexts/AuthContext";
 import { useUsers } from "../components/contexts/UsersContext";
-import { useState } from "react";
+import { useKey } from "../hooks/useKey";
+import { useCheckAuth } from "../hooks/useCheckTokenValidity";
+
 import Button from "../components/common/Button";
 import AvatarSelection from "../components/common/AvatarSelection";
-import { useKey } from "../hooks/useKey";
 import PasswordModal from "../components/modal/PasswordModal";
 
 function Profile({ onClose }) {
   const { user, logout, validatePassword } = useAuth();
+  const checkAuth = useCheckAuth();
   const { editUser, fetchUsers } = useUsers();
+
   const [selectedAvatar, setSelectedAvatar] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState("");
@@ -74,6 +80,7 @@ function Profile({ onClose }) {
   }
 
   function openPasswordModal() {
+    if (!checkAuth()) return;
     const selectedAvatarPath =
       avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
 
@@ -94,6 +101,7 @@ function Profile({ onClose }) {
   }
 
   function handlePasswordSubmit(e) {
+    if (!checkAuth()) return;
     setPassword(e.target.value);
   }
 

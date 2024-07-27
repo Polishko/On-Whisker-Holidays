@@ -1,12 +1,7 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 
 import { authenticateApi } from "../../utils/api";
+import { isTokenExpired } from "../../utils/checkTokenExpiration";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -63,20 +58,15 @@ function AuthProvider({ children }) {
     initialState
   );
 
-  // persist state across sessions if user closes browser by mistake or refreshes
-  useEffect(function () {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const accessToken = localStorage.getItem("accessToken");
-    if (storedUser && accessToken) {
-      dispatch({ type: "login", payload: storedUser });
-    }
-  }, []);
-
-  // if an attempt to do authorized actions after token has expired unmount user component
-  useEffect(function () {
+  // check token expiration
+  const checkTokenValidity = useCallback(() => {
     const token = localStorage.getItem("accessToken");
-    if (!token) logout();
-  }, []);
+    if (isTokenExpired(token)) {
+      dispatch({ type: "logout" });
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("user");
+    }
+  }, [dispatch]);
 
   // Login
   const login = useCallback(async (credentials) => {
@@ -106,18 +96,21 @@ function AuthProvider({ children }) {
     return result;
   }, []);
 
-  // logout
-  function logout() {
+  // Logout
+  const logout = useCallback(() => {
     dispatch({ type: "logout" });
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
-  }
+  }, [dispatch]);
 
-  // update user after editing auth user data
-  function updateAuthUser(updatedUser) {
-    dispatch({ type: "updateUser", payload: updatedUser });
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-  }
+  // Update user after editing auth user data
+  const updateAuthUser = useCallback(
+    (updatedUser) => {
+      dispatch({ type: "updateUser", payload: updatedUser });
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    },
+    [dispatch]
+  );
 
   const resetError = useCallback(() => {
     dispatch({ type: "reset/error" });
@@ -135,6 +128,7 @@ function AuthProvider({ children }) {
         resetError,
         updateAuthUser,
         validatePassword,
+        checkTokenValidity,
       }}
     >
       {children}

@@ -1,28 +1,29 @@
+import { useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
 import styles from "./AppLayout.module.css";
+
+import { useAuth } from "../components/contexts/AuthContext";
+import { useCheckAuth } from "../hooks/useCheckTokenValidity";
+
 import HotelList from "../components/hotel/HotelList";
-// import Map from "../components/map/Map";
 import PageNav from "../components/common/PageNav";
 import SearchBar from "../components/common/SearchBar";
 import Details from "../components/details/Details";
 import User from "../components/user/User";
-import { useAuth } from "../components/contexts/AuthContext";
-import { useEffect } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
-  const location = useLocation();
-  const navigate = useNavigate();
+  const checkAuth = useCheckAuth();
 
-  useEffect(
-    function () {
-      if (!isAuthenticated && location.pathname === "/profile") {
-        navigate("/login");
-      }
-    },
-    [isAuthenticated, navigate, location.pathname]
-  );
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/profile") {
+      if (!checkAuth()) return;
+    }
+  }, [checkAuth, location.pathname]);
 
   return (
     <div className={styles.appLayout}>
