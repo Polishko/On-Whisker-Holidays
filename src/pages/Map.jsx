@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
 import { useHotels } from "../components/contexts/HotelsContext";
+import EmojiRenderer from "../components/common/EmojiRenderer";
 
 function Map() {
   const navigate = useNavigate();
@@ -23,13 +24,14 @@ function Map() {
     <div className={styles.mapContainer}>
       <MapContainer
         center={mapPosition}
-        zoom={13}
+        zoom={8}
         scrollWheelZoom={true}
         className={styles.map}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          attribution='<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+          maxZoom={20}
         />
         {hotels.map((hotel) => (
           <Marker
@@ -37,7 +39,12 @@ function Map() {
             key={hotel.id}
           >
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              <span>{hotel.hotelName}</span>
+              <span>
+                <span>
+                  <EmojiRenderer emoji={hotel.countryCode} />
+                </span>
+              </span>
             </Popup>
           </Marker>
         ))}

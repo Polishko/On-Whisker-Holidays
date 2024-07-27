@@ -11,7 +11,7 @@
 }
 
 :global(.leaflet-popup .leaflet-popup-content-wrapper) {
-  background-color: var(--color-brown-1);
+  background-color: var(--color-green-2);
   color: var(--color-light-2);
   border-radius: 5px;
   padding-right: 0.6rem;

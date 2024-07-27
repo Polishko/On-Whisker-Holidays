@@ -1,13 +1,17 @@
+import { useRef } from "react";
+
 import styles from "./HotelList.module.css";
+
 import { useHotels } from "../contexts/HotelsContext";
+
 import Spinner from "../common/Spinner";
 import Message from "../common/Message";
 import HotelItem from "./HotelItem";
 // import { useEffect, useRef, useState } from "react";
-import { useRef } from "react";
 
-function HotelList() {
-  const { hotels, filteredHotels, isLoading } = useHotels();
+function HotelList({ filteredHotels }) {
+  const { hotels, isLoading } = useHotels();
+
   // const [isItemClicked, setIsItemClicked] = useState(false);
 
   const currHotel = useRef();

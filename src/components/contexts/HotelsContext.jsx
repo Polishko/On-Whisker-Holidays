@@ -6,9 +6,8 @@ import {
   useCallback,
 } from "react";
 
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-import { containsAllKeywords } from "../../utils/string.js";
 import { fetchData, fetchItem } from "../../utils/api";
 
 const HotelsContext = createContext();
@@ -16,7 +15,6 @@ const BASE_URL = "http://localhost:3000";
 
 const initialState = {
   hotels: [],
-  filteredHotels: [],
   isLoading: false,
   currentHotel: {
     hotelName: "",
@@ -43,7 +41,6 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         hotels: action.payload,
-        filteredHotels: action.payload,
       };
     case "hotel/loaded":
       return { ...state, isLoading: false, currentHotel: action.payload };
@@ -55,16 +52,6 @@ function reducer(state, action) {
         hotels: state.hotels.filter((hotel) => hotel.id !== action.payload),
         currentHotel: {},
       };
-    case "hotels/filtered": {
-      const filteredHotels = state.hotels.filter((hotel) =>
-        containsAllKeywords(hotel.keywords, action.payload)
-      );
-      return {
-        ...state,
-        isLoading: false,
-        filteredHotels: filteredHotels,
-      };
-    }
     case "hotel/reset":
       return { ...state, currentHotel: initialState.currentHotel };
     case "rejected":
@@ -75,11 +62,12 @@ function reducer(state, action) {
 }
 
 function HotelsProvider({ children }) {
-  const [{ hotels, filteredHotels, isLoading, currentHotel, error }, dispatch] =
-    useReducer(reducer, initialState);
+  const [{ hotels, isLoading, currentHotel, error }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   const location = useLocation();
-  const { query } = useParams();
 
   // fetch hotels
   const fetchHotels = useCallback(async () => {
@@ -119,15 +107,6 @@ function HotelsProvider({ children }) {
     fetchHotels();
   }, [fetchHotels]);
 
-  // filter hotels when query
-  useEffect(() => {
-    if (query) {
-      filterHotels(query);
-    } else {
-      filterHotels("");
-    }
-  }, [query]);
-
   // Reset currentHotel on location change (force page to forget last rendered hotel)
   useEffect(() => {
     if (!location.pathname.startsWith("/hotels/")) {
@@ -139,7 +118,6 @@ function HotelsProvider({ children }) {
     <HotelsContext.Provider
       value={{
         hotels,
-        filteredHotels,
         isLoading,
         currentHotel,
         error,

@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 
 import styles from "./AppLayout.module.css";
 
@@ -12,18 +12,41 @@ import SearchBar from "../components/common/SearchBar";
 import Details from "../components/details/Details";
 import User from "../components/user/User";
 import Button from "../components/common/Button";
+import { useFilter } from "../hooks/useFilter";
+import { useHotels } from "../components/contexts/HotelsContext";
+// import { useHotels } from "../components/contexts/HotelsContext";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
+  const { hotels } = useHotels();
   const checkAuth = useCheckAuth();
-
   const location = useLocation();
 
+  const { query } = useParams();
+
+  const [currentQuery, setCurrentQuery] = useState("");
+  // const navigate = useNavigate();
+
   useEffect(() => {
+    setCurrentQuery(query);
+  }, [query]);
+
+  const filteredHotels = useFilter(hotels, currentQuery);
+
+  // const memoizedCurrentHotel = useMemo(() => currentHotel, [currentHotel]);
+
+  // console.log(memoizedCurrentHotel);
+  // console.log("sth");
+
+  const checkProfileAuth = useCallback(() => {
     if (location.pathname === "/profile") {
       if (!checkAuth()) return;
     }
   }, [checkAuth, location.pathname]);
+
+  useEffect(() => {
+    checkProfileAuth();
+  }, [checkProfileAuth]);
 
   return (
     <div className={styles.appLayout}>
@@ -34,8 +57,8 @@ function AppLayout() {
         </NavLink>
         <div className={styles.container}>
           <div className={styles.left}>
-            <SearchBar />
-            <HotelList />
+            <SearchBar filteredHotels={filteredHotels} />
+            <HotelList filteredHotels={filteredHotels} />
           </div>
           <div className={styles.right}>
             <Details />

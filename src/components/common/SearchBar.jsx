@@ -1,11 +1,9 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useHotels } from "../contexts/HotelsContext";
 import styles from "./SearchBar.module.css";
 import Button from "./Button";
 
-function SearchBar() {
-  const { filteredHotels, filterHotels } = useHotels();
+function SearchBar({ filteredHotels }) {
   const inputEl = useRef(null);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -14,17 +12,14 @@ function SearchBar() {
     const newQuery = e.target.value;
     setQuery(newQuery);
     if (newQuery.trim() === "") {
-      filterHotels("");
       navigate("/hotels");
     } else {
-      filterHotels(newQuery);
       navigate(`/search/${newQuery}`);
     }
   };
 
   const clearInput = () => {
     setQuery("");
-    filterHotels("");
     inputEl.current.focus();
   };
 
