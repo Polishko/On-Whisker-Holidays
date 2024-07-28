@@ -14,7 +14,6 @@ import User from "../components/user/User";
 import Button from "../components/common/Button";
 import { useFilter } from "../hooks/useFilter";
 import { useHotels } from "../components/contexts/HotelsContext";
-// import { useHotels } from "../components/contexts/HotelsContext";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
@@ -25,18 +24,13 @@ function AppLayout() {
   const { query } = useParams();
 
   const [currentQuery, setCurrentQuery] = useState("");
-  // const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setCurrentQuery(query);
   }, [query]);
 
   const filteredHotels = useFilter(hotels, currentQuery);
-
-  // const memoizedCurrentHotel = useMemo(() => currentHotel, [currentHotel]);
-
-  // console.log(memoizedCurrentHotel);
-  // console.log("sth");
 
   const checkProfileAuth = useCallback(() => {
     if (location.pathname === "/profile") {
@@ -57,8 +51,15 @@ function AppLayout() {
         </NavLink>
         <div className={styles.container}>
           <div className={styles.left}>
-            <SearchBar filteredHotels={filteredHotels} />
-            <HotelList filteredHotels={filteredHotels} />
+            <SearchBar
+              filteredHotels={filteredHotels}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <HotelList
+              filteredHotels={filteredHotels}
+              setSearchQuery={setSearchQuery}
+            />
           </div>
           <div className={styles.right}>
             <Details />

@@ -9,12 +9,16 @@ import Message from "../common/Message";
 import HotelItem from "./HotelItem";
 // import { useEffect, useRef, useState } from "react";
 
-function HotelList({ filteredHotels }) {
+function HotelList({ filteredHotels, setSearchQuery }) {
   const { hotels, isLoading } = useHotels();
 
   // const [isItemClicked, setIsItemClicked] = useState(false);
 
   const currHotel = useRef();
+
+  const handleItemClick = () => {
+    setSearchQuery("");
+  };
 
   // function handleItemClick() {
   //   setIsItemClicked((oldStatus) => !oldStatus);
@@ -48,7 +52,7 @@ function HotelList({ filteredHotels }) {
         <HotelItem
           hotel={hotel}
           key={hotel.id}
-          // handleItemClick={handleItemClick}
+          handleItemClick={handleItemClick}
         />
       ))}
     </ul>
