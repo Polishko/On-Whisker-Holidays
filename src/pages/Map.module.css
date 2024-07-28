@@ -1,7 +1,10 @@
+.mapPage {
+  padding: 1rem 4rem 2rem 4rem;
+}
 .mapContainer {
   flex: 1;
-  height: 80vh;
-  margin: 10rem 6rem 2rem 6rem;
+  height: 70vh;
+  margin: 3rem;
   background-color: var(--color-light-1);
   position: relative;
 }
@@ -12,7 +15,7 @@
 
 .mapButton {
   position: absolute;
-  top: 0%;
+  top: 0;
   right: 0;
   transform: translateY(-110%);
   background-color: #f7c0c1;

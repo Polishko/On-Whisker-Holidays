@@ -9,6 +9,7 @@ import { useHotels } from "../components/contexts/HotelsContext";
 
 import EmojiRenderer from "../components/common/EmojiRenderer";
 import Button from "../components/common/Button";
+import PageNav from "../components/common/PageNav";
 
 function Map() {
   const navigate = useNavigate();
@@ -27,39 +28,42 @@ function Map() {
   };
 
   return (
-    <div className={styles.mapContainer}>
-      <div className={styles.buttonContainer}>
-        <Button className={styles.mapButton} onClick={handleTopButtonClick}>
-          Search Hotel List
-        </Button>
-      </div>
-      <MapContainer
-        center={mapPosition}
-        zoom={8}
-        scrollWheelZoom={true}
-        className={styles.map}
-      >
-        <TileLayer
-          attribution='<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
-          maxZoom={20}
-        />
-        {hotels.map((hotel) => (
-          <Marker
-            position={[hotel.position.lat, hotel.position.lng]}
-            key={hotel.id}
-          >
-            <Popup>
-              <span>{hotel.hotelName}</span>
-              <span>
+    <div className={styles.mapPage}>
+      <PageNav />
+      <div className={styles.mapContainer}>
+        <div className={styles.buttonContainer}>
+          <Button className={styles.mapButton} onClick={handleTopButtonClick}>
+            Search Hotel List
+          </Button>
+        </div>
+        <MapContainer
+          center={mapPosition}
+          zoom={8}
+          scrollWheelZoom={true}
+          className={styles.map}
+        >
+          <TileLayer
+            attribution='<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+            maxZoom={20}
+          />
+          {hotels.map((hotel) => (
+            <Marker
+              position={[hotel.position.lat, hotel.position.lng]}
+              key={hotel.id}
+            >
+              <Popup>
+                <span>{hotel.hotelName}</span>
                 <span>
-                  <EmojiRenderer emoji={hotel.countryCode} />
+                  <span>
+                    <EmojiRenderer emoji={hotel.countryCode} />
+                  </span>
                 </span>
-              </span>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </div>
     </div>
   );
 }

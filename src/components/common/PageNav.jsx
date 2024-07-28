@@ -53,9 +53,7 @@ function PageNav({ style }) {
             </NavLink>
           </li>
         )}
-        {(currentPath === "/map" ||
-          currentPath === "/login" ||
-          currentPath === "/register") && (
+        {(currentPath === "/login" || currentPath === "/register") && (
           <li>
             <NavLink
               style={appliedStyle}
