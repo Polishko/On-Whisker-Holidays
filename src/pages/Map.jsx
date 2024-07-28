@@ -6,7 +6,9 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
 import { useHotels } from "../components/contexts/HotelsContext";
+
 import EmojiRenderer from "../components/common/EmojiRenderer";
+import Button from "../components/common/Button";
 
 function Map() {
   const navigate = useNavigate();
@@ -20,8 +22,17 @@ function Map() {
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
 
+  const handleTopButtonClick = () => {
+    navigate("/hotels");
+  };
+
   return (
     <div className={styles.mapContainer}>
+      <div className={styles.buttonContainer}>
+        <Button className={styles.mapButton} onClick={handleTopButtonClick}>
+          Search Hotel List
+        </Button>
+      </div>
       <MapContainer
         center={mapPosition}
         zoom={8}

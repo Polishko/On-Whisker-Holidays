@@ -1,9 +1,27 @@
 .mapContainer {
   flex: 1;
   height: 80vh;
-  margin: 6rem 6rem 2rem 6rem;
-  background-color: var(--color-brown-1);
+  margin: 10rem 6rem 2rem 6rem;
+  background-color: var(--color-light-1);
   position: relative;
+}
+
+.buttonContainer {
+  position: relative;
+}
+
+.mapButton {
+  position: absolute;
+  top: 0%;
+  right: 0;
+  transform: translateY(-110%);
+  background-color: #f7c0c1;
+  color: var(--color-brown-1);
+  font-weight: bold;
+  font-size: 170%;
+  padding: 0.8em;
+  border-radius: 1em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .map {
