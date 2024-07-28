@@ -2,7 +2,7 @@ import styles from "./Map.module.css";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useState } from "react";
 
 import { useHotels } from "../components/contexts/HotelsContext";
@@ -43,8 +43,8 @@ function Map() {
           className={styles.map}
         >
           <TileLayer
-            attribution='<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
             maxZoom={20}
           />
           {hotels.map((hotel) => (
@@ -52,13 +52,19 @@ function Map() {
               position={[hotel.position.lat, hotel.position.lng]}
               key={hotel.id}
             >
-              <Popup>
-                <span>{hotel.hotelName}</span>
-                <span>
-                  <span>
-                    <EmojiRenderer emoji={hotel.countryCode} />
-                  </span>
-                </span>
+              <Popup className={styles.popup}>
+                <p>{hotel.hotelName}</p>
+                <p>
+                  <EmojiRenderer emoji={hotel.countryCode} />
+                </p>
+
+                <Link
+                  to={`/hotels/${hotel.id}?lat=${hotel.position.lat}&lng=${hotel.position.lng}`}
+                  key={hotel.id}
+                  className={styles.seeDetails}
+                >
+                  <p>See details</p>
+                </Link>
               </Popup>
             </Marker>
           ))}
