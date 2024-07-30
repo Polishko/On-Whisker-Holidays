@@ -32,7 +32,11 @@ function Login() {
 
   async function onSubmit(data) {
     const result = await login({ email: data.email, password: data.password });
-    alert(result.message);
+    if (result.success) {
+      alert("Login successful!");
+    } else {
+      alert(result.message);
+    }
     reset();
   }
 
