@@ -1,20 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import styles from "./Login.module.css";
 
 import { useAuth } from "../components/contexts/AuthContext";
-import { useKey } from "../hooks/useKey";
 
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
-import Modal from "../components/modal/Modal";
 
 function Login() {
-  const { login, error, isAuthenticated, resetError } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const [modalMessage, setModalMessage] = useState("");
 
   const {
     register,
@@ -33,31 +30,10 @@ function Login() {
     }
   }, [isAuthenticated, navigate]);
 
-  useEffect(() => {
-    if (error) {
-      setModalMessage(error);
-    }
-  }, [error]);
-
-  useEffect(() => {
-    return () => {
-      resetError();
-    };
-  }, [resetError]);
-
-  function closeModal() {
-    setModalMessage("");
-  }
-
-  useKey("Escape", closeModal);
-
   async function onSubmit(data) {
-    try {
-      await login({ email: data.email, password: data.password });
-      reset();
-    } catch (error) {
-      // Handle error if needed
-    }
+    const result = await login({ email: data.email, password: data.password });
+    alert(result.message);
+    reset();
   }
 
   return (
@@ -127,10 +103,6 @@ function Login() {
           </span>
         </div>
       </form>
-
-      {modalMessage && (
-        <Modal onClose={closeModal}>{<p>{modalMessage}</p>}</Modal>
-      )}
     </main>
   );
 }

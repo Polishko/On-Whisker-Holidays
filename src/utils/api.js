@@ -259,6 +259,13 @@ export const authenticateApi = async (
 
     const data = await res.json();
 
+    if (!data.user) {
+      return {
+        success: false,
+        message: "User does not exist.",
+      };
+    }
+
     if (needUserData) {
       return { success: true, token: data.accessToken, user: data.user };
     } else {
