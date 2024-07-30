@@ -20,6 +20,6 @@
 }
 
 .hotelList::-webkit-scrollbar-track {
-  background: var(--color-light-2);
+  background: var(--color-orange);
   border: 0.5px solid var(--color-orange);
 }

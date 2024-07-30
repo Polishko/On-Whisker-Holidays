@@ -35,10 +35,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.userComments .top {
-  background-color: var(--color-light-blue);
-}
-
 .bottom {
   display: flex;
   justify-content: space-between;

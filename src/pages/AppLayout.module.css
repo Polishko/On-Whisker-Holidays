@@ -77,6 +77,6 @@
 }
 
 .right::-webkit-scrollbar-track {
-  background: var(--color-light-2);
+  background: var(--color-orange);
   border: 1px solid var(--color-orange);
 }

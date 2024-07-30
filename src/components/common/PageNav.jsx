@@ -9,8 +9,8 @@ function PageNav({ style }) {
   const { user } = useAuth();
 
   const defaultStyle = {
-    backgroundColor: "#b0fff6",
-    color: "#2b3425",
+    backgroundColor: "#a5c981",
+    color: "#544501",
     fontWeight: "bold",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.4)",
   };

@@ -16,7 +16,7 @@
 }
 
 .secondary {
-  background-color: var(--color-green);
+  background-color: var(--color-light-blue);
   color: var(--color-font);
 }
 
@@ -25,28 +25,18 @@
   color: var(--color-dark-blue);
 }
 
-.primary:hover,
-.primary:focus,
-.secondary:hover,
-.secondary:focus {
-  background-color: var(--color-light-blue);
-  color: var(--color-font);
-  cursor: pointer;
-}
-
-.tertiary:hover,
-.tertiary:focus {
+.quaternary {
   background-color: var(--color-green);
   color: var(--color-font);
   cursor: pointer;
 }
 
-.quaternary {
-  background-color: var(--color-light-blue);
-  color: var(--color-font);
-  cursor: pointer;
-}
-
+.primary:focus,
+.primary:hover,
+.secondary:hover,
+.secondary:focus,
+.tertiary:hover,
+.tertiary:focus,
 .quaternary:hover,
 .quaternary:focus {
   background-color: var(--color-dark-blue);

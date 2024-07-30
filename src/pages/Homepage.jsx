@@ -5,7 +5,7 @@ import styles from "./Homepage.module.css";
 
 export default function Homepage() {
   const colorStyle = {
-    backgroundColor: "#b0fff6",
+    backgroundColor: "#a5c981",
     color: "#2b3425",
     fontWeight: "bold",
   };
