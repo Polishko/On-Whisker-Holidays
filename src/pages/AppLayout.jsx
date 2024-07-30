@@ -47,7 +47,9 @@ function AppLayout() {
       <PageNav />
       <div className={styles.app}>
         <NavLink to="/map">
-          <Button className={`${styles.mapButton}`}>Search on Map</Button>
+          <Button type={"secondary"} className={`${styles.mapButton}`}>
+            Search on Map
+          </Button>
         </NavLink>
         <div className={styles.container}>
           <div className={styles.left}>

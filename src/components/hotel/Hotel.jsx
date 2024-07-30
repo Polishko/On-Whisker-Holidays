@@ -150,7 +150,7 @@ function Hotel() {
             {isAuthenticated && (
               <Button
                 className={styles.addComment}
-                type="primary"
+                type="quaternary"
                 onClick={handleAddComment}
               >
                 Add comment

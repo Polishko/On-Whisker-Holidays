@@ -3,7 +3,8 @@
   flex-direction: column;
   gap: 0.5em;
   padding: 1em;
-  background-color: var(--color-light-5);
+  background-color: var(--color-dark-blue);
+  color: var(--color-light-1);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

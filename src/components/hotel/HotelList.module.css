@@ -15,11 +15,11 @@
 }
 
 .hotelList::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  border-radius: 6px;
+  background-color: var(--color-brown);
+  border-radius: 1em;
 }
 
 .hotelList::-webkit-scrollbar-track {
-  background: lightgrey;
-  padding: 0.5em 0;
+  background: var(--color-light-2);
+  border: 0.5px solid var(--color-orange);
 }

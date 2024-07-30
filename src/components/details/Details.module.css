@@ -11,6 +11,7 @@
 }
 
 .details > * {
-  background-color: #f0e6db;
+  background-color: var(--color-light-2);
+  border-radius: 1em;
   margin: 1em;
 }

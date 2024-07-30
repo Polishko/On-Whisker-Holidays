@@ -5,8 +5,8 @@ import styles from "./Homepage.module.css";
 
 export default function Homepage() {
   const colorStyle = {
-    backgroundColor: "#53c0bb",
-    color: "#eee",
+    backgroundColor: "#b0fff6",
+    color: "#2b3425",
     fontWeight: "bold",
   };
 
@@ -28,7 +28,7 @@ export default function Homepage() {
 
         <div className={styles.goToApp}>
           <NavLink to="/hotels">
-            <Button type={"primary"}>Start you adventure now!</Button>
+            <Button type={"secondary"}>Start you adventure now!</Button>
           </NavLink>
         </div>
       </section>

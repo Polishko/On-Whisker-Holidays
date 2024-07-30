@@ -9,16 +9,21 @@ function PageNav({ style }) {
   const { user } = useAuth();
 
   const defaultStyle = {
-    backgroundColor: "#ffd657",
-    color: "#21413f",
+    backgroundColor: "#b0fff6",
+    color: "#2b3425",
     fontWeight: "bold",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.4)",
   };
 
   const appliedStyle = style || defaultStyle;
 
   return (
     <nav className={styles.nav}>
-      <Logo background={currentPath === "/" ? "dark" : "light"} />
+      <Logo
+        background={
+          currentPath === "/" || currentPath === "/login" ? "dark" : "light"
+        }
+      />
       <ul>
         {currentPath !== "/" && (
           <li>

@@ -138,10 +138,10 @@ function Profile({ onClose }) {
       </div>
 
       <div className={styles.buttons}>
-        <Button onClick={openPasswordModal} type="primary">
+        <Button onClick={openPasswordModal} type="tertiary">
           Save Changes
         </Button>
-        <Button onClick={handleLogoutClick} type="primary">
+        <Button onClick={handleLogoutClick} type="tertiary">
           Logout
         </Button>
       </div>

@@ -343,7 +343,7 @@ function Registration() {
           </div>
         </div>
 
-        <Button type="submit" className={styles["button-style"]}>
+        <Button type={"primary"} className={styles["button-style"]}>
           Register
         </Button>
       </form>

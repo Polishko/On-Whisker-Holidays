@@ -29,8 +29,6 @@
   gap: 2rem;
   flex-basis: 30%;
   background: rgba(57, 64, 70, 0.4);
-
-  /* Different from other form */
   width: 48rem;
   margin: 10rem auto;
 }
@@ -62,13 +60,13 @@
 }
 
 .login-form input::placeholder {
-  color: var(--color-light-3);
+  color: var(--color-light-2);
   font-size: 1em;
   font-weight: 150;
 }
 
 .login-form label a {
-  color: #fff;
+  color: var(--color-light-2);
   text-decoration: none;
 }
 
@@ -81,7 +79,7 @@
 .inputContainer .icon {
   position: absolute;
   left: 1.5em;
-  color: var(--color-light-3);
+  color: var(--color-light-2);
 }
 
 .inputContainer input {
@@ -90,11 +88,10 @@
 }
 
 .button-style {
-  background-color: var(--color-light-3);
-  color: var(--color-brown-2);
   border: none;
   border-radius: 1.5em;
   font-size: 1.7em;
+  font-weight: bold;
   outline: none;
   width: 90%;
   align-self: center;
@@ -109,8 +106,7 @@
 .bottom {
   display: flex;
   justify-content: space-between;
-  color: #fff;
-  /* margin-top: 10px; */
+  color: var(--color-light-2);
 }
 
 .bottom label {
@@ -139,7 +135,7 @@
 }
 
 .error {
-  color: red;
+  color: var(--color-orange);
   font-weight: bold;
   margin-top: 1em;
   font-size: 150%;

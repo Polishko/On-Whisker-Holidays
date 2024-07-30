@@ -7,8 +7,7 @@
   font-weight: bold;
   border-radius: 0.7rem;
   transition: all 0.3s;
-  color: var(--color-brown-1);
-  background-color: var(--color-green-3);
+  background-color: var(--color-green);
   padding: 1em;
   display: flex;
   gap: 1em;
@@ -24,14 +23,14 @@
 }
 
 .searchInput::placeholder {
-  color: var(--color-green-2);
+  color: var(--color-font);
 }
 
 .searchInput:focus {
   outline: none;
   box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
-  background-color: #d1f0bd;
+  background-color: var(--color-light-1);
 }
 
 .searchInput {
@@ -48,7 +47,6 @@
   border: none;
   font-size: 1.8em;
   cursor: pointer;
-  color: var(--color-brown-1);
 }
 
 .filterResults {

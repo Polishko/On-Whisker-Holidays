@@ -1,20 +1,17 @@
 .commentItem {
+  background-color: var(--color-comment-light-2);
   display: flex;
   flex-direction: column;
+  color: var(--color-brown);
   gap: 0.2em;
   border: none;
   border-radius: 0.5em;
-  background-color: #fff0ea;
   padding: 0.6em;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.commentItem p {
-  /* padding-right: 2em; */
-}
-
 .userComments {
-  background-color: #ffd5c2;
+  background-color: var(--color-comment-light-1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
 }
@@ -24,18 +21,22 @@
 }
 
 .otherComments {
-  background-color: #fff0ea;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
 }
 
 .commentItem .top {
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
-  background-color: #ffe4d1;
+  color: var(--color-font);
   padding: 0.1em 0.35em;
   border-radius: 0.5em;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.userComments .top {
+  background-color: var(--color-light-blue);
 }
 
 .bottom {

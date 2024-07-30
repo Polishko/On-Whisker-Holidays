@@ -14,8 +14,6 @@
 .homepage section {
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
-  /* height: 85%; */
   align-items: center;
   justify-content: center;
   gap: 2.5rem;

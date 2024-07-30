@@ -126,6 +126,22 @@
       "hotelId": "The Wooden Village",
       "timestamp": "2024-07-26T05:00:59.263Z",
       "id": 13
+    },
+    {
+      "text": "Visited again and still amazing place!",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Sunanini House",
+      "timestamp": "2024-07-30T10:16:36.628Z",
+      "id": 14
+    },
+    {
+      "text": "Forgo to say that there is a graaand garden!",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Sunanini House",
+      "timestamp": "2024-07-30T10:17:36.844Z",
+      "id": 15
     }
   ],
   "posts": [

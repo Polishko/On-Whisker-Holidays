@@ -1,12 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+
+import styles from "./Login.module.css";
+
+import { useAuth } from "../components/contexts/AuthContext";
+import { useKey } from "../hooks/useKey";
+
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
-import styles from "./Login.module.css";
-import { useAuth } from "../components/contexts/AuthContext";
-import { useEffect, useState } from "react";
 import Modal from "../components/modal/Modal";
-import { useKey } from "../hooks/useKey";
 
 function Login() {
   const { login, error, isAuthenticated, resetError } = useAuth();
@@ -113,7 +116,7 @@ function Login() {
           )}
         </div>
 
-        <Button type="submit" className={styles["button-style"]}>
+        <Button type={"primary"} className={styles["button-style"]}>
           Login
         </Button>
 

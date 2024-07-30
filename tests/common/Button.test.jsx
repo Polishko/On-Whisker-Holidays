@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Button from "../../src/components/common/Button";
-import styles from "../../src/components/common/Button.module.css"; // Import the CSS module
+import styles from "../../src/components/common/Button.module.css";
 import "@testing-library/jest-dom";
 
 describe("Button component", () => {
@@ -25,8 +25,8 @@ describe("Button component", () => {
       </Button>
     );
     const buttonElement = screen.getByText(/Click me/i);
-    expect(buttonElement).toHaveClass(styles.btn); // Check for the transformed class name
-    expect(buttonElement).toHaveClass(styles.primary); // Check for the transformed class name
-    expect(buttonElement).toHaveClass("extra-class"); // This remains the same
+    expect(buttonElement).toHaveClass(styles.btn);
+    expect(buttonElement).toHaveClass(styles.primary);
+    expect(buttonElement).toHaveClass("extra-class");
   });
 });

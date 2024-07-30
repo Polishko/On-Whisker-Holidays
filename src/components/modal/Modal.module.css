@@ -11,12 +11,12 @@
 }
 
 .modalContent {
-  background-color: #fefefe;
+  background-color: var(--color-light-1);
+  color: var(--color-font);
   font-size: 2.5em;
   text-align: center;
   margin: 10% auto;
   padding: 1em 0.5em;
-  border: 0.5px solid #c9c6c6;
   border-radius: 0.5em;
   width: 30%;
   display: flex;
@@ -26,8 +26,8 @@
 }
 
 .modalButton {
-  color: #fefefe;
-  background-color: lightblue;
+  color: var(--color-font);
+  background-color: var(--color-orange);
   font-weight: bold;
   align-self: center;
   border-radius: 0.5em;
@@ -37,15 +37,9 @@
 
 .modalButton:hover,
 .modalButton:focus {
-  color: black;
   text-decoration: none;
   cursor: pointer;
 }
-
-/* .customModalButton {
-  padding: 1em 1, 5;
-  font-size: 1em;
-} */
 
 .backdrop {
   position: fixed;

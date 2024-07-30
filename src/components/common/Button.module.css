@@ -1,18 +1,56 @@
 .btn {
-  color: inherit;
   text-transform: uppercase;
   padding: 0.8rem 1.6rem;
   font-family: inherit;
   font-size: 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 1.5em;
   cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .primary {
-  font-weight: 700;
-  background-color: var(--color-orange-2);
-  color: var(--color-brown-2);
+  background-color: var(--color-light-1);
+  color: var(--color-font);
+}
+
+.secondary {
+  background-color: var(--color-green);
+  color: var(--color-font);
+}
+
+.tertiary {
+  background-color: var(--color-orange);
+  color: var(--color-dark-blue);
+}
+
+.primary:hover,
+.primary:focus,
+.secondary:hover,
+.secondary:focus {
+  background-color: var(--color-light-blue);
+  color: var(--color-font);
+  cursor: pointer;
+}
+
+.tertiary:hover,
+.tertiary:focus {
+  background-color: var(--color-green);
+  color: var(--color-font);
+  cursor: pointer;
+}
+
+.quaternary {
+  background-color: var(--color-light-blue);
+  color: var(--color-font);
+  cursor: pointer;
+}
+
+.quaternary:hover,
+.quaternary:focus {
+  background-color: var(--color-dark-blue);
+  color: var(--color-light-1);
 }
 
 .back {

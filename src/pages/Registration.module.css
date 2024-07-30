@@ -89,8 +89,6 @@
 }
 
 .button-style {
-  background-color: var(--color-light-3);
-  color: var(--color-brown-2);
   border: none;
   border-radius: 1.5em;
   font-size: 1.7em;
@@ -134,7 +132,7 @@
 }
 
 .error {
-  color: red;
+  color: var(--color-orange);
   font-weight: bold;
   margin-top: 1em;
   font-size: 150%;

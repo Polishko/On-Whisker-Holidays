@@ -32,7 +32,11 @@ function Map() {
       <PageNav />
       <div className={styles.mapContainer}>
         <div className={styles.buttonContainer}>
-          <Button className={styles.mapButton} onClick={handleTopButtonClick}>
+          <Button
+            type={"secondary"}
+            className={styles.mapButton}
+            onClick={handleTopButtonClick}
+          >
             Search Hotel List
           </Button>
         </div>
