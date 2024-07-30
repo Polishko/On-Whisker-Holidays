@@ -21,14 +21,14 @@ export default function Homepage() {
           together with your belowed furry pals.
         </h1>
         <h2>
-          Find whisker frienly hotels using an intuitive map, check for
-          availability and reserve. <br /> Join the pet humans community to
-          share your adventures, rate places and more...
+          Find whisker frienly hotels, use an intuitive map and check for
+          facilities. <br /> Register and join the pet humans community to share
+          your adventures, rate places and more...
         </h2>
 
         <div className={styles.goToApp}>
           <NavLink to="/hotels">
-            <Button type={"secondary"}>Start you adventure now!</Button>
+            <Button type={"tertiary"}>Start you adventure now!</Button>
           </NavLink>
         </div>
       </section>
