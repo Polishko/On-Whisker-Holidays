@@ -1,12 +1,9 @@
 import styles from "./Map.module.css";
-
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import { useHotels } from "../components/contexts/HotelsContext";
-
+import { useGeolocation } from "../hooks/useGeoLocation";
 import EmojiRenderer from "../components/common/EmojiRenderer";
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
@@ -16,21 +13,32 @@ function Map() {
   const { hotels } = useHotels();
   const location = useLocation();
 
-  const position = location.state?.position;
+  // Passed position from AppLayout
+  const position = location.state?.position || null;
 
+  // Initialized with default to Sofia
   const [mapPosition, setMapPosition] = useState([
     42.70540597995496, 23.328738252150977,
   ]);
 
-  useEffect(
-    function () {
-      if (position) {
-        const [mapLat, mapLng] = position;
-        setMapPosition([mapLat, mapLng]);
-      }
-    },
-    [position]
-  );
+  // Geolocation hook
+  const { position: geoLocationPosition, getPosition } = useGeolocation();
+
+  useEffect(() => {
+    // hotel position
+    if (position) {
+      setMapPosition(position);
+    } else {
+      // use geolocation
+      getPosition();
+    }
+  }, [position, getPosition]);
+
+  useEffect(() => {
+    if (!position && geoLocationPosition) {
+      setMapPosition([geoLocationPosition.lat, geoLocationPosition.lng]);
+    }
+  }, [geoLocationPosition, position]);
 
   const handleTopButtonClick = () => {
     navigate("/hotels");
@@ -56,7 +64,6 @@ function Map() {
           className={styles.map}
         >
           <MapCenter mapPosition={mapPosition} />
-
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
@@ -72,7 +79,6 @@ function Map() {
                 <p>
                   <EmojiRenderer emoji={hotel.countryCode} />
                 </p>
-
                 <Link
                   to={`/hotels/${hotel.id}?lat=${hotel.position.lat}&lng=${hotel.position.lng}`}
                   key={hotel.id}
