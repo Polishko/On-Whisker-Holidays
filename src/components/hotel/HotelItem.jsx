@@ -3,9 +3,12 @@ import styles from "./HotelItem.module.css";
 import { useHotels } from "../contexts/HotelsContext";
 import EmojiRenderer from "../common/EmojiRenderer";
 import SpecificsEmojis from "../common/SpecificsEmojis";
+import { useRef } from "react";
 
 function HotelItem({ hotel, handleItemClick }) {
   const { currentHotel } = useHotels();
+  const itemRef = useRef(null);
+
   const {
     id,
     hotelName,
@@ -16,8 +19,13 @@ function HotelItem({ hotel, handleItemClick }) {
     position,
   } = hotel;
 
+  const handleClick = () => {
+    const itemPosition = itemRef.current.getBoundingClientRect();
+    handleItemClick(itemPosition);
+  };
+
   return (
-    <li style={{ cursor: "pointer" }} onClick={handleItemClick}>
+    <li style={{ cursor: "pointer" }} onClick={handleClick} ref={itemRef}>
       <Link
         className={`${styles.hotelItem} ${
           id === currentHotel.id ? styles["hotelItem--active"] : ""

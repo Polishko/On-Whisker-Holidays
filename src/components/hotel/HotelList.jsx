@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./HotelList.module.css";
 
@@ -11,30 +11,35 @@ import HotelItem from "./HotelItem";
 
 function HotelList({ filteredHotels, setSearchQuery }) {
   const { hotels, isLoading } = useHotels();
+  const listRef = useRef(null);
 
-  // const [isItemClicked, setIsItemClicked] = useState(false);
+  const [lastClickedPosition, setLastClickedPosition] = useState(null); // State for the last clicked item's position
 
-  const currHotel = useRef();
-
-  const handleItemClick = () => {
+  const handleItemClick = (itemPosition) => {
     setSearchQuery("");
+    setLastClickedPosition(itemPosition);
   };
 
-  // function handleItemClick() {
-  //   setIsItemClicked((oldStatus) => !oldStatus);
-  // }
+  const setListRef = useCallback(
+    // Callback to avoid adding listRef to dependency array and avoid unnecessary re-renders
+    (node) => {
+      if (node !== null) {
+        listRef.current = node;
 
-  // useEffect(
-  //   function () {
-  //     if (currHotel.current) {
-  //       console.log(`I am refreshed and I'm ${currHotel.current}`);
-  //       // Move the scroller 2 pixels each time there is a click
-  //       currHotel.current.scrollTop += 2;
-  //       console.log(currHotel.current.scrollTop);
-  //     }
-  //   },
-  //   [isItemClicked, currentHotel.current]
-  // );
+        if (lastClickedPosition) {
+          const listRect = listRef.current.getBoundingClientRect();
+          const offsetTop =
+            lastClickedPosition.top - listRect.top + listRef.current.scrollTop;
+
+          listRef.current.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
+        }
+      }
+    },
+    [lastClickedPosition]
+  );
 
   if (isLoading) return <Spinner />;
 
@@ -47,7 +52,7 @@ function HotelList({ filteredHotels, setSearchQuery }) {
     );
 
   return (
-    <ul className={styles.hotelList} ref={currHotel}>
+    <ul className={styles.hotelList} ref={setListRef}>
       {filteredHotels.map((hotel) => (
         <HotelItem
           hotel={hotel}
