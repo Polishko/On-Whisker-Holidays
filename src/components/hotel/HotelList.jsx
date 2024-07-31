@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import styles from "./HotelList.module.css";
 
@@ -7,13 +7,12 @@ import { useHotels } from "../contexts/HotelsContext";
 import Spinner from "../common/Spinner";
 import Message from "../common/Message";
 import HotelItem from "./HotelItem";
-// import { useEffect, useRef, useState } from "react";
 
 function HotelList({ filteredHotels, setSearchQuery }) {
   const { hotels, isLoading } = useHotels();
   const listRef = useRef(null);
 
-  const [lastClickedPosition, setLastClickedPosition] = useState(null); // State for the last clicked item's position
+  const [lastClickedPosition, setLastClickedPosition] = useState(null);
 
   const handleItemClick = (itemPosition) => {
     setSearchQuery("");
