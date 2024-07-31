@@ -1,9 +1,9 @@
 import styles from "./Map.module.css";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { useHotels } from "../components/contexts/HotelsContext";
 
@@ -14,14 +14,23 @@ import PageNav from "../components/common/PageNav";
 function Map() {
   const navigate = useNavigate();
   const { hotels } = useHotels();
+  const location = useLocation();
+
+  const position = location.state?.position;
 
   const [mapPosition, setMapPosition] = useState([
     42.70540597995496, 23.328738252150977,
   ]);
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
+  useEffect(
+    function () {
+      if (position) {
+        const [mapLat, mapLng] = position;
+        setMapPosition([mapLat, mapLng]);
+      }
+    },
+    [position]
+  );
 
   const handleTopButtonClick = () => {
     navigate("/hotels");
@@ -42,10 +51,12 @@ function Map() {
         </div>
         <MapContainer
           center={mapPosition}
-          zoom={8}
+          zoom={10}
           scrollWheelZoom={true}
           className={styles.map}
         >
+          <MapCenter mapPosition={mapPosition} />
+
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
@@ -76,6 +87,18 @@ function Map() {
       </div>
     </div>
   );
+}
+
+function MapCenter({ mapPosition }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (mapPosition) {
+      map.setView(mapPosition);
+    }
+  }, [map, mapPosition]);
+
+  return null;
 }
 
 export default Map;

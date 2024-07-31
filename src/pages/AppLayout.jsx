@@ -4,7 +4,10 @@ import { NavLink, useLocation, useParams } from "react-router-dom";
 import styles from "./AppLayout.module.css";
 
 import { useAuth } from "../components/contexts/AuthContext";
+import { useHotels } from "../components/contexts/HotelsContext";
 import { useCheckAuth } from "../hooks/useCheckTokenValidity";
+import { useFilter } from "../hooks/useFilter";
+import { useUrlPosition } from "../hooks/useUrlPosition";
 
 import HotelList from "../components/hotel/HotelList";
 import PageNav from "../components/common/PageNav";
@@ -12,8 +15,6 @@ import SearchBar from "../components/common/SearchBar";
 import Details from "../components/details/Details";
 import User from "../components/user/User";
 import Button from "../components/common/Button";
-import { useFilter } from "../hooks/useFilter";
-import { useHotels } from "../components/contexts/HotelsContext";
 
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
@@ -25,6 +26,8 @@ function AppLayout() {
 
   const [currentQuery, setCurrentQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [mapLat, mapLng] = useUrlPosition();
+  const [position, setPosition] = useState("");
 
   useEffect(() => {
     setCurrentQuery(query);
@@ -42,11 +45,23 @@ function AppLayout() {
     checkProfileAuth();
   }, [checkProfileAuth]);
 
+  useEffect(
+    function () {
+      if (mapLat && mapLng) setPosition([mapLat, mapLng]);
+    },
+    [mapLat, mapLng]
+  );
+
   return (
     <div className={styles.appLayout}>
       <PageNav />
       <div className={styles.app}>
-        <NavLink to="/map">
+        <NavLink
+          to={{
+            pathname: "/map",
+          }}
+          state={{ position }}
+        >
           <Button type={"secondary"} className={`${styles.mapButton}`}>
             Search on Map
           </Button>
