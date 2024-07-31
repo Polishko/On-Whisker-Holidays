@@ -32,7 +32,7 @@ server.use((req, res, next) => {
 const rules = auth.rewriter({
   // users: 644, // Everyone can read, but only the owner can write
   comments: 644, // Everyone can read, but only the owner can write
-  hotels: 644, // Everyone can read, but only the owner can write
+  // hotels: 644, // Everyone can read, but only the owner can write
 });
 
 // Apply the auth middleware and custom routes
