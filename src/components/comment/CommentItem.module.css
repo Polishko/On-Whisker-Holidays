@@ -77,6 +77,8 @@
   width: 10em;
   background-color: white;
   color: black;
+  border: 0.2px solid var(--color-comment-light-2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   text-align: center;
   border-radius: 6px;
   padding: 0.5em;

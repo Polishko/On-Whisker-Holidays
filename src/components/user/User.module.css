@@ -32,3 +32,8 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.logoutButton {
+  background-color: var(--color-orange);
+  color: var(--color-dark-blue);
+}

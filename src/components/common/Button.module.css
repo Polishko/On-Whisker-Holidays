@@ -35,12 +35,15 @@
 .primary:hover,
 .secondary:hover,
 .secondary:focus,
-.tertiary:hover,
-.tertiary:focus,
 .quaternary:hover,
 .quaternary:focus {
   background-color: var(--color-dark-blue);
   color: var(--color-light-1);
+}
+
+.tertiary:hover,
+.tertiary:focus {
+  background-color: var(--color-green);
 }
 
 .back {

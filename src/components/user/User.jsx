@@ -29,7 +29,7 @@ function User() {
     <div className={styles.user}>
       <img src={user.avatar} alt="User Avatar" />
       <p>{user.name}</p>
-      <Button type={"tertiary"} onClick={logout}>
+      <Button className={styles.logoutButton} onClick={logout}>
         Logout
       </Button>
       <NavLink
