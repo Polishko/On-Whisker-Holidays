@@ -210,6 +210,14 @@
       "hotelId": "Garni Hotel Zen",
       "timestamp": "2024-07-31T10:32:28.929Z",
       "id": 23
+    },
+    {
+      "text": "Perfect for a romantic getaway.",
+      "userId": 18,
+      "userName": "toti",
+      "hotelId": "Lermontovskiy Hotel",
+      "timestamp": "2024-07-31T11:16:12.283Z",
+      "id": 24
     }
   ],
   "posts": [
