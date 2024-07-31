@@ -5,7 +5,7 @@ function DeleteModal({ closeDeleteModal, handleDelete }) {
   return (
     <Modal
       onClose={closeDeleteModal}
-      customClass="customModalButton"
+      // customClass="customModalButton"
       showCloseButton={false}
     >
       <div>

@@ -7,10 +7,12 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./Registration.module.css";
 
 import { useUsers } from "../components/contexts/UsersContext";
+import { useModal } from "../hooks/useModal";
 
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
 import AvatarSelection from "../components/common/AvatarSelection";
+import Modal from "../components/modal/Modal";
 
 function Registration() {
   const avatars = [
@@ -39,6 +41,8 @@ function Registration() {
     reValidateMode: "onChange",
   });
 
+  const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
+
   const password = watch("password");
 
   const onSubmit = async (data) => {
@@ -48,15 +52,15 @@ function Registration() {
       password: data.password,
       avatar: `/avatar/${data.selectedAvatar}.png`,
     };
+
     const result = await createUser(newUser);
     if (result.success) {
       await fetchUsers();
       setSuccess(true);
-      alert(result.message);
       reset();
     } else {
       setSuccess(false);
-      alert(result.message);
+      openModal(result.message);
       reset();
     }
   };
@@ -187,6 +191,12 @@ function Registration() {
           Register
         </Button>
       </form>
+
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <p>{modalMessage}</p>
+        </Modal>
+      )}
     </main>
   );
 }

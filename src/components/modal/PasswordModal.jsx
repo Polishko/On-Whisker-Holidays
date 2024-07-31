@@ -10,7 +10,7 @@ function PasswordModal({
   return (
     <Modal
       onClose={closePasswordModal}
-      customClass="customModalButton"
+      // customClass="customModalButton"
       showCloseButton={false}
     >
       <div>

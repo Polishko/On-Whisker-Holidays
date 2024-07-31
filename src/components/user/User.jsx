@@ -40,7 +40,7 @@ function User() {
         Edit Profile
       </NavLink>
       {isModalOpen && (
-        <Modal onClose={closeModal} customClass="customModalButton">
+        <Modal onClose={closeModal}>
           <Profile onClose={closeModal} />
         </Modal>
       )}

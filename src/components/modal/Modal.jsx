@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import Button from "../common/Button";
 import styles from "./Modal.module.css";
 
-function Modal({ children, onClose, customClass, showCloseButton = true }) {
+function Modal({ children, onClose, showCloseButton = true }) {
   return ReactDOM.createPortal(
     <>
       <div className={styles.backdrop} onClick={onClose}></div>
@@ -12,9 +12,10 @@ function Modal({ children, onClose, customClass, showCloseButton = true }) {
             <Button
               onClick={onClose}
               type="secondary"
-              className={`${styles.modalButton} ${
-                customClass ? styles[customClass] : ""
-              }`}
+              // className={`${styles.modalButton} ${
+              //   customClass ? styles[customClass] : ""
+              // }`}
+              className={styles.modalButton}
             >
               &times;
             </Button>
