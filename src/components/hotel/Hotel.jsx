@@ -92,7 +92,17 @@ function Hotel() {
     setCharCount(0);
   }
 
-  useKey("Escape", handleCloseModal);
+  useKey("Escape", (e) => {
+    if (isModalOpen) {
+      handleCloseModal(e);
+    }
+  });
+
+  useKey("Enter", (e) => {
+    if (isModalOpen) {
+      handleCommentSubmit(e);
+    }
+  });
 
   if (isLoading) return <Spinner />;
 

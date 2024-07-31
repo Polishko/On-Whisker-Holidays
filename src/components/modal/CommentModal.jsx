@@ -18,7 +18,7 @@ function CommentModal({
           placeholder="Write your comment here..."
         />
         <p>{charCount}/80 characters</p>
-        <Button type="primary" onClick={handleCommentSubmit}>
+        <Button type="secondary" onClick={handleCommentSubmit}>
           Submit
         </Button>
       </div>

@@ -24,7 +24,7 @@ function PasswordModal({
           name={`modal-password_${Math.random().toString(36).substring(2)}`}
         />
         <div>
-          <Button onClick={handleSaveChanges} type="primary">
+          <Button onClick={handleSaveChanges} type="quaternary">
             Submit
           </Button>
           <Button onClick={closePasswordModal} type="secondary">

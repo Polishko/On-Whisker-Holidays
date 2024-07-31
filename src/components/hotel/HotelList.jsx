@@ -11,7 +11,6 @@ import HotelItem from "./HotelItem";
 function HotelList({ filteredHotels, setSearchQuery }) {
   const { hotels, isLoading } = useHotels();
   const listRef = useRef(null);
-
   const [lastClickedPosition, setLastClickedPosition] = useState(null);
 
   const handleItemClick = (itemPosition) => {

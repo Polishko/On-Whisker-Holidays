@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import styles from "./CommentItem.module.css";
-
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
@@ -22,9 +20,8 @@ function CommentItem({ comment, userName }) {
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState("");
-  const [editedComment, setEditedComment] = useState("");
-  const [charCount, setCharCount] = useState(0);
-  const [oldComment, setOldComment] = useState("");
+  const [editedComment, setEditedComment] = useState(comment.text);
+  const [charCount, setCharCount] = useState(comment.text.length);
 
   const navigate = useNavigate();
 
@@ -39,9 +36,6 @@ function CommentItem({ comment, userName }) {
 
   function handleEditClick() {
     if (!checkAuth()) return;
-    setEditedComment(comment.text);
-    setOldComment(comment.text);
-    setCharCount(comment.text.length);
     setIsCommentModalOpen(true);
   }
 
@@ -94,8 +88,8 @@ function CommentItem({ comment, userName }) {
       navigate("/login");
       return;
     }
-    if (oldComment === editedComment) {
-      alert("Make changes to edit old comment.");
+    if (comment.text === editedComment) {
+      alert("Make changes to edit the old comment.");
       return;
     }
     setIsPasswordModalOpen(true);

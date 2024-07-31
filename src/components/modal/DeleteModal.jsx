@@ -11,7 +11,7 @@ function DeleteModal({ closeDeleteModal, handleDelete }) {
       <div>
         <h3>Are you sure you want to delete this comment?</h3>
         <div>
-          <Button onClick={handleDelete} type="primary">
+          <Button onClick={handleDelete} type="quaternary">
             Yes
           </Button>
           <Button onClick={closeDeleteModal} type="secondary">

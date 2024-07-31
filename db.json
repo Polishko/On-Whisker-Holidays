@@ -3,9 +3,9 @@
     {
       "email": "gizmo@gizmo.com",
       "name": "gizmo",
-      "avatar": "/avatar/dog1.png",
+      "avatar": "/avatar/cat3.png",
       "id": 13,
-      "password": "$2a$10$rRwldIgSBWbX/EmP.c6H/eMmC9RQRs/TXkXOBypgVJoS2TxVEzC1i"
+      "password": "$2a$10$DmKGstPUOBRWMC8aQLm/buQDk5dZU6hu5i1bUgX8HgcgKYTTy0wTa"
     },
     {
       "email": "kaju@kaju.com",
@@ -17,9 +17,9 @@
     {
       "email": "badi@badi.com",
       "name": "badi",
-      "avatar": "/avatar/dog2.png",
+      "avatar": "/avatar/dog3.png",
       "id": 17,
-      "password": "$2a$10$OEKcraTrQzbMJ4XGvQqG8..76rBzD6PfbVhmncdbylnBHtwDA11he"
+      "password": "$2a$10$WJVEeq8JHNvikUT3QZartem9FBJPk4RgjW0LrkWRuC6pcAxC004BC"
     },
     {
       "email": "toti@toti.com",
@@ -45,12 +45,13 @@
   ],
   "comments": [
     {
-      "text": "A great place to stay",
+      "text": "I hate traveling but the humans cooked chicken in the barbeque and made my day!",
       "userId": 13,
       "userName": "gizmo",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-15T16:59:05.509Z",
-      "id": 1
+      "timestamp": "2024-07-31T10:35:15.236Z",
+      "id": 1,
+      "password": "gizmo"
     },
     {
       "text": "The bluest sea ever!",
@@ -87,11 +88,11 @@
       "password": "kaju"
     },
     {
-      "text": "Trying something again.",
+      "text": "I met my new friends Loki and Mori here. Played with them all day. ",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Sorrento Sole Mare",
-      "timestamp": "2024-07-22T19:22:51.678Z",
+      "timestamp": "2024-07-31T10:33:26.336Z",
       "id": 9,
       "password": "kaju"
     },
@@ -128,20 +129,87 @@
       "id": 13
     },
     {
-      "text": "Visited again and still amazing place!",
+      "text": "Visited again and still an amazing place!",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-30T10:16:36.628Z",
-      "id": 14
+      "timestamp": "2024-07-31T10:29:41.920Z",
+      "id": 14,
+      "password": "kaju"
     },
     {
-      "text": "Forgo to say that there is a graaand garden!",
+      "text": "Forgot to say that there is a biiig garden!",
       "userId": 16,
       "userName": "kaju",
       "hotelId": "Sunanini House",
-      "timestamp": "2024-07-30T10:17:36.844Z",
-      "id": 15
+      "timestamp": "2024-07-31T10:30:01.236Z",
+      "id": 15,
+      "password": "kaju"
+    },
+    {
+      "text": "I played with other dogs. It was so much fun!",
+      "userId": 17,
+      "userName": "badi",
+      "hotelId": "Green Village Lake",
+      "timestamp": "2024-07-31T09:48:42.201Z",
+      "id": 16
+    },
+    {
+      "text": "I played in the sand with my little human friend Eksi.",
+      "userId": 17,
+      "userName": "badi",
+      "hotelId": "Amalia Center Rooms",
+      "timestamp": "2024-07-31T09:49:46.408Z",
+      "id": 17
+    },
+    {
+      "text": "Fresh air, green views and a kitchen with delicious food.",
+      "userId": 17,
+      "userName": "badi",
+      "hotelId": "The Wooden Village",
+      "timestamp": "2024-07-31T10:00:10.704Z",
+      "id": 18
+    },
+    {
+      "text": "There is a playground for children and their animal friends.",
+      "userId": 17,
+      "userName": "badi",
+      "hotelId": "The Wooden Village",
+      "timestamp": "2024-07-31T10:15:05.924Z",
+      "id": 19,
+      "password": "badi"
+    },
+    {
+      "text": "The beach was like a dream from my childhood memories. Also a little sad.",
+      "userId": 17,
+      "userName": "badi",
+      "hotelId": "Lermontovskiy Hotel",
+      "timestamp": "2024-07-31T10:24:41.225Z",
+      "id": 20
+    },
+    {
+      "text": "This must have been the most beautiful beach I've ever seen!",
+      "userId": 13,
+      "userName": "gizmo",
+      "hotelId": "Lermontovskiy Hotel",
+      "timestamp": "2024-07-31T10:28:18.956Z",
+      "id": 21
+    },
+    {
+      "text": "Delicious breakfast near the seaside. They also serve fried chips and cold beer!",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Datca Lake House Camping",
+      "timestamp": "2024-07-31T10:31:07.645Z",
+      "id": 22
+    },
+    {
+      "text": "A great location in close proximity to many city attractions.",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Garni Hotel Zen",
+      "timestamp": "2024-07-31T10:32:28.929Z",
+      "id": 23
     }
   ],
   "posts": [
@@ -163,7 +231,10 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Sapareva Banya",
-      "type": ["mountain", "nature"],
+      "type": [
+        "mountain",
+        "nature"
+      ],
       "position": {
         "lat": 42.285136416470166,
         "lng": 23.24898059723802
@@ -185,7 +256,11 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": ["wifi", "parking", "airconditioner"]
+      "facilities": [
+        "wifi",
+        "parking",
+        "airconditioner"
+      ]
     },
     {
       "id": "Green Village Lake",
@@ -193,7 +268,10 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Hrabarsko",
-      "type": ["nature", "seaside"],
+      "type": [
+        "nature",
+        "seaside"
+      ],
       "position": {
         "lat": 42.817562946488636,
         "lng": 23.091720435881278
@@ -214,7 +292,12 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": ["wifi", "parking", "airconditioner", "pool"]
+      "facilities": [
+        "wifi",
+        "parking",
+        "airconditioner",
+        "pool"
+      ]
     },
     {
       "id": "Hija Rila Lakes",
@@ -222,7 +305,10 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Borovets",
-      "type": ["nature", "mountain"],
+      "type": [
+        "nature",
+        "mountain"
+      ],
       "position": {
         "lat": 42.219874962786704,
         "lng": 23.32160101072616
@@ -242,7 +328,9 @@
         "nature",
         "wifi"
       ],
-      "facilities": ["wifi"]
+      "facilities": [
+        "wifi"
+      ]
     },
     {
       "id": "Sorrento Sole Mare",
@@ -250,7 +338,9 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Burgas",
-      "type": ["seaside"],
+      "type": [
+        "seaside"
+      ],
       "position": {
         "lat": 42.76414192026019,
         "lng": 27.742814370268487
@@ -272,7 +362,12 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": ["wifi", "parking", "airconditioner", "pool"]
+      "facilities": [
+        "wifi",
+        "parking",
+        "airconditioner",
+        "pool"
+      ]
     },
     {
       "id": "Datca Lake House Camping",
@@ -280,7 +375,9 @@
       "country": "Turkey",
       "countryCode": "🇹🇷",
       "city": "Datca",
-      "type": ["seaside"],
+      "type": [
+        "seaside"
+      ],
       "position": {
         "lat": 36.72005396963961,
         "lng": 27.687009625838925
@@ -288,7 +385,14 @@
       "img": "./datca-lake-house-main.jpeg",
       "web": "https://maps.app.goo.gl/X5NDz6qRjVkZB6pcA",
       "detail": "Camp with your best furry friend near this amazing beach with the bluest water in the world.",
-      "keywords": ["camping", "sea", "beach", "nature", "datca", "turkey"],
+      "keywords": [
+        "camping",
+        "sea",
+        "beach",
+        "nature",
+        "datca",
+        "turkey"
+      ],
       "facilities": []
     },
     {
@@ -297,7 +401,10 @@
       "country": "Turkey",
       "countryCode": "🇹🇷",
       "city": "Datca",
-      "type": ["seaside", "nature"],
+      "type": [
+        "seaside",
+        "nature"
+      ],
       "position": {
         "lat": 36.68589557246077,
         "lng": 27.57105908351027
@@ -317,7 +424,10 @@
         "wifi",
         "airconditioner"
       ],
-      "facilities": ["wifi", "airconditioner"]
+      "facilities": [
+        "wifi",
+        "airconditioner"
+      ]
     },
     {
       "id": "Garni Hotel Zen",
@@ -325,7 +435,9 @@
       "country": "Serbia",
       "countryCode": "🇷🇸",
       "city": "Niš",
-      "type": ["city"],
+      "type": [
+        "city"
+      ],
       "position": {
         "lat": 43.33947206096271,
         "lng": 21.92352216844934
@@ -343,7 +455,12 @@
         "airconditioner",
         "parking"
       ],
-      "facilities": ["wifi", "airconditioner", "pool", "parking"]
+      "facilities": [
+        "wifi",
+        "airconditioner",
+        "pool",
+        "parking"
+      ]
     },
     {
       "id": "Amalia Center Rooms",
@@ -351,7 +468,9 @@
       "country": "Greece",
       "countryCode": "🇬🇷",
       "city": "Nea Vrasna",
-      "type": ["seaside"],
+      "type": [
+        "seaside"
+      ],
       "position": {
         "lat": 40.71174651744706,
         "lng": 23.70179528233691
@@ -369,7 +488,11 @@
         "airconditioner",
         "parking"
       ],
-      "facilities": ["wifi", "airconditioner", "parking"]
+      "facilities": [
+        "wifi",
+        "airconditioner",
+        "parking"
+      ]
     },
     {
       "id": "The Wooden Village",
@@ -377,7 +500,10 @@
       "country": "Greece",
       "countryCode": "🇬🇷",
       "city": "Agkistro",
-      "type": ["nature", "mountain"],
+      "type": [
+        "nature",
+        "mountain"
+      ],
       "position": {
         "lat": 41.36992542114511,
         "lng": 23.433435427887517
@@ -396,7 +522,12 @@
         "parking",
         "pool"
       ],
-      "facilities": ["wifi", "airconditioner", "parking", "pool"]
+      "facilities": [
+        "wifi",
+        "airconditioner",
+        "parking",
+        "pool"
+      ]
     },
     {
       "id": "Lermontovskiy Hotel",
@@ -404,7 +535,9 @@
       "country": "Ukraine",
       "countryCode": "🇺🇦",
       "city": "Odessa",
-      "type": ["seaside"],
+      "type": [
+        "seaside"
+      ],
       "position": {
         "lat": 46.47200334286483,
         "lng": 30.7550886666702
@@ -423,7 +556,11 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": ["wifi", "parking", "airconditioner"]
+      "facilities": [
+        "wifi",
+        "parking",
+        "airconditioner"
+      ]
     }
   ]
 }
