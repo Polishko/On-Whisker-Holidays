@@ -1,15 +1,15 @@
 import { useState } from "react";
-
 import styles from "./Profile.module.css";
-
 import { useAuth } from "../components/contexts/AuthContext";
 import { useUsers } from "../components/contexts/UsersContext";
 import { useKey } from "../hooks/useKey";
 import { useCheckAuth } from "../hooks/useCheckTokenValidity";
+import { useModal } from "../hooks/useModal";
 
 import Button from "../components/common/Button";
 import AvatarSelection from "../components/common/AvatarSelection";
 import PasswordModal from "../components/modal/PasswordModal";
+import Modal from "../components/modal/Modal";
 
 function Profile({ onClose }) {
   const { user, logout, validatePassword } = useAuth();
@@ -17,8 +17,10 @@ function Profile({ onClose }) {
   const { editUser, fetchUsers } = useUsers();
 
   const [selectedAvatar, setSelectedAvatar] = useState("");
-  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState("");
+  const [modalType, setModalType] = useState("");
+
+  const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
   const avatars = [
     { id: "cat1", src: "/avatar/cat1.png" },
@@ -29,10 +31,6 @@ function Profile({ onClose }) {
     { id: "dog3", src: "/avatar/dog3.png" },
   ];
 
-  function passwordFieldReset() {
-    setPassword("");
-  }
-
   function handleAvatarChange(e) {
     setSelectedAvatar(e.target.value);
   }
@@ -42,20 +40,42 @@ function Profile({ onClose }) {
     logout();
   }
 
+  function handleAvatarSelection() {
+    if (!checkAuth()) return;
+    const selectedAvatarPath =
+      avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
+
+    if (selectedAvatarPath === "") {
+      setModalType("message");
+      openModal("Select an avatar!");
+      return;
+    }
+
+    if (selectedAvatarPath === user.avatar) {
+      setModalType("message");
+      openModal("Select a different avatar than the current one!");
+      return;
+    }
+    setModalType("password");
+    openModal();
+  }
+
   async function handleSaveChanges() {
     try {
       const credentials = { email: user.email, password: password };
       const { success, message } = await validatePassword(credentials);
 
       if (!password) {
-        passwordFieldReset();
-        alert("Password field can't be empty");
+        setPassword("");
+        setModalType("message");
+        openModal("Password field can't be empty");
         return;
       }
 
       if (!success) {
-        passwordFieldReset();
-        alert(message);
+        setPassword("");
+        setModalType("message");
+        openModal(message);
         return;
       }
 
@@ -66,38 +86,20 @@ function Profile({ onClose }) {
       const updatedUser = { ...user, avatar: updatedAvatarPath, password };
       const result = await editUser(updatedUser);
 
+      closeModal();
       if (result.success) {
-        alert("Avatar updated successfully!");
-        setIsPasswordModalOpen(false);
-        onClose();
+        setModalType("message");
+        openModal("Avatar updated successfully!");
         await fetchUsers();
       } else {
-        alert(result.message);
+        setModalType("message");
+        openModal(result.message);
       }
     } catch (currentError) {
-      alert("There was an error updating the avatar.");
+      closeModal();
+      setModalType("message");
+      openModal("There was an error updating the avatar.");
     }
-  }
-
-  function openPasswordModal() {
-    if (!checkAuth()) return;
-    const selectedAvatarPath =
-      avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
-
-    if (selectedAvatarPath === "") {
-      alert("Select an avatar!");
-      return;
-    }
-
-    if (selectedAvatarPath === user.avatar) {
-      alert("Select a different avatar than the current one!");
-      return;
-    }
-    setIsPasswordModalOpen(true);
-  }
-
-  function closePasswordModal() {
-    setIsPasswordModalOpen(false);
   }
 
   function handlePasswordSubmit(e) {
@@ -107,15 +109,15 @@ function Profile({ onClose }) {
 
   // key press actions
   useKey("Escape", () => {
-    if (isPasswordModalOpen) {
-      closePasswordModal();
+    if (isModalOpen) {
+      closeModal();
     } else {
       onClose();
     }
   });
 
   useKey("Enter", () => {
-    if (isPasswordModalOpen) handleSaveChanges();
+    if (isModalOpen && modalType === "password") handleSaveChanges();
   });
 
   return (
@@ -138,7 +140,7 @@ function Profile({ onClose }) {
       </div>
 
       <div className={styles.buttons}>
-        <Button onClick={openPasswordModal} type="tertiary">
+        <Button onClick={handleAvatarSelection} type="tertiary">
           Save Changes
         </Button>
         <Button onClick={handleLogoutClick} type="tertiary">
@@ -146,13 +148,19 @@ function Profile({ onClose }) {
         </Button>
       </div>
 
-      {isPasswordModalOpen && (
-        <PasswordModal
-          closePasswordModal={closePasswordModal}
-          handlePasswordSubmit={handlePasswordSubmit}
-          handleSaveChanges={handleSaveChanges}
-          password={password}
-        />
+      {isModalOpen && (
+        <Modal onClose={closeModal} showCloseButton={modalType === "message"}>
+          {modalType === "message" ? (
+            <p>{modalMessage}</p>
+          ) : (
+            <PasswordModal
+              closePasswordModal={closeModal} // Using closeModal directly
+              handlePasswordSubmit={handlePasswordSubmit}
+              handleSaveChanges={handleSaveChanges}
+              password={password}
+            />
+          )}
+        </Modal>
       )}
     </div>
   );

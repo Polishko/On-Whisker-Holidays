@@ -1,5 +1,5 @@
-import Button from "../common/Button";
 import styles from "./PasswordModal.module.css";
+import Button from "../common/Button";
 
 function PasswordModal({
   handlePasswordSubmit,

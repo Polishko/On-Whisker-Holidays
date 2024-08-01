@@ -23,10 +23,10 @@
     },
     {
       "email": "toti@toti.com",
-      "password": "$2a$10$Wc2UrpejS5nFHYgGBQTi7e2fq2pf5XHQpkt8kd23EKNuCSn6G3.4m",
       "name": "toti",
-      "avatar": "/avatar/dog3.png",
-      "id": 18
+      "avatar": "/avatar/dog1.png",
+      "id": 18,
+      "password": "$2a$10$qx25NRl4zlZZLpQb6NjfiO5Bf0E8pG4gP3xAZExYur4.Z4g8N7fu."
     },
     {
       "email": "mori@mori.com",
@@ -242,6 +242,14 @@
       "hotelId": "Datca Lake House Camping",
       "timestamp": "2024-08-01T11:49:03.210Z",
       "id": 28
+    },
+    {
+      "text": "An interesting place, surrounded by nature and near a small beautiful beach. Gre",
+      "userId": 18,
+      "userName": "toti",
+      "hotelId": "Hayit Buku Bungalovs",
+      "timestamp": "2024-08-01T12:35:00.985Z",
+      "id": 29
     }
   ],
   "posts": [
