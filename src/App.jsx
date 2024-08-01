@@ -14,6 +14,7 @@ import { CommentsProvider } from "./components/contexts/CommentsContext";
 import { AuthProvider } from "./components/contexts/AuthContext";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Profile from "./pages/Profile";
+import { RatingsProvider } from "./components/contexts/RatingsContext";
 
 function App() {
   return (
@@ -21,27 +22,29 @@ function App() {
       <AuthProvider>
         <UsersProvider>
           <CommentsProvider>
-            <HotelsProvider>
-              <Routes>
-                <Route index element={<Homepage />} />
+            <RatingsProvider>
+              <HotelsProvider>
+                <Routes>
+                  <Route index element={<Homepage />} />
 
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Registration />} />
-                <Route path="/" element={<AppLayout />}>
-                  <Route index element={<Navigate replace to="hotels" />} />
-                  <Route path="hotels" element={<HotelList />} />
-                  <Route path="hotels/:id" element={<Hotel />} />
-                  <Route path="search/:query" element={<HotelList />} />
-                  <Route element={<ProtectedRoute />}>
-                    <Route path="profile" element={<Profile />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Registration />} />
+                  <Route path="/" element={<AppLayout />}>
+                    <Route index element={<Navigate replace to="hotels" />} />
+                    <Route path="hotels" element={<HotelList />} />
+                    <Route path="hotels/:id" element={<Hotel />} />
+                    <Route path="search/:query" element={<HotelList />} />
+                    <Route element={<ProtectedRoute />}>
+                      <Route path="profile" element={<Profile />} />
+                    </Route>
                   </Route>
-                </Route>
 
-                <Route path="/map" element={<Map />} />
-                {/* <Route path="/about" element={<About />} /> */}
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
-            </HotelsProvider>
+                  <Route path="/map" element={<Map />} />
+                  {/* <Route path="/about" element={<About />} /> */}
+                  <Route path="*" element={<PageNotFound />} />
+                </Routes>
+              </HotelsProvider>
+            </RatingsProvider>
           </CommentsProvider>
         </UsersProvider>
       </AuthProvider>

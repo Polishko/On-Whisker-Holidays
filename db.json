@@ -602,5 +602,25 @@
         "airconditioner"
       ]
     }
+  ],
+  "ratings": [
+    {
+      "userId": 18,
+      "hotelId": "Green Village Lake",
+      "rating": 3,
+      "id": 1
+    },
+    {
+      "userId": 18,
+      "hotelId": "Datca Lake House Camping",
+      "rating": 5,
+      "id": 2
+    },
+    {
+      "userId": 13,
+      "hotelId": "Green Village Lake",
+      "rating": 4,
+      "id": 3
+    }
   ]
 }

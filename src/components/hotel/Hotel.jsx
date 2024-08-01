@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import styles from "./Hotel.module.css";
@@ -6,6 +6,7 @@ import styles from "./Hotel.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
+import { useRatings } from "../contexts/RatingsContext";
 import { useCheckAuth } from "../../hooks/useCheckTokenValidity";
 import { useKey } from "../../hooks/useKey";
 import { useModal } from "../../hooks/useModal";
@@ -23,19 +24,40 @@ import StarRating from "../common/StarRating";
 function Hotel() {
   const { id } = useParams();
   const { getHotel, currentHotel, isLoading } = useHotels();
-  const { isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const { createComment, fetchComments } = useComments();
   const checkAuth = useCheckAuth();
+  const { ratings, addRating, fetchRatings } = useRatings();
 
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
   const [comment, setComment] = useState("");
   const [charCount, setCharCount] = useState(0);
   const [modalType, setModalType] = useState("");
+  const navigate = useNavigate();
+
+  const existingRating = isAuthenticated
+    ? ratings.find(
+        (rating) => rating.userId === user.id && rating.hotelId === id
+      )
+    : null;
+
+  const hotelRatings = ratings
+    .filter((rating) => rating.hotelId === id)
+    .map((rating) => rating.rating);
+
+  const averageRating =
+    hotelRatings.length > 0
+      ? hotelRatings.reduce((sum, rating) => sum + rating, 0) /
+        hotelRatings.length
+      : 0;
 
   useEffect(() => {
-    if (id) getHotel(id);
-  }, [id, getHotel]);
+    if (id) {
+      getHotel(id);
+      fetchRatings();
+    }
+  }, [id, getHotel, fetchRatings]);
 
   const {
     hotelName,
@@ -46,6 +68,28 @@ function Hotel() {
     countryCode: emoji,
     position: { lat: latitude, lng: longitude },
   } = currentHotel;
+
+  // handle add rating
+  async function setUserRating(rating) {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
+    const newRating = {
+      userId: user.id,
+      hotelId: id,
+      rating,
+    };
+
+    const result = await addRating(newRating);
+
+    if (result.success) {
+      await fetchRatings();
+    } else {
+      // console.log(result.message);
+    }
+  }
 
   function handleAddComment() {
     if (!checkAuth()) return;
@@ -146,27 +190,31 @@ function Hotel() {
         </div>
 
         <div className={styles.ratingContainer}>
-          <div className={styles.rateHotel}>
-            {
-              <>
+          <div className={styles.rate}>
+            {isAuthenticated ? (
+              existingRating ? (
+                `Your rating: ${existingRating.rating}`
+              ) : (
                 <StarRating
                   maxRating={5}
                   size={24}
-                  // onSetRating={setUserRating}
+                  onSetRating={setUserRating}
                 />
-                {/* {userRating > 0 && (
-                  <button className="btn-add" onClick={handleAdd}>
-                    + Add to list
-                  </button>
-                )} */}
-              </>
-              // ) : (
-              //   <p>
-              //     You rated this movie {watchedUserRating} <span>⭐</span>
-              //   </p>
-            }
+              )
+            ) : (
+              <Link to="/register">Register to rate</Link>
+            )}
           </div>
-          <div className={styles.aveRating}>ave rating</div>
+
+          {averageRating > 0 ? (
+            <div className={styles.aveRating}>{`/ ${averageRating.toFixed(
+              1
+            )} average rating`}</div>
+          ) : (
+            <div className={styles.rateText}>
+              &larr; Be the first one to rate this hotel!
+            </div>
+          )}
         </div>
 
         <div className={styles.detail}>

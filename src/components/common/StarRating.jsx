@@ -31,13 +31,13 @@ export default function StarRating({
   defaultRating = 0,
   onSetRating,
 }) {
-  const [rating, setRating] = useState(defaultRating);
+  // const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
-  function handleRating(rating) {
-    setRating(rating); // set internal rating
-    onSetRating(rating); // set external rating for customer use
-  }
+  // function handleRating(rating) {
+  //   setRating(rating); // set internal rating
+  //   onSetRating(rating); // set external rating for customer use
+  // }
 
   const textStyle = {
     lineHeigh: "1",
@@ -52,9 +52,9 @@ export default function StarRating({
         {Array.from({ length: maxRating }, (_, i) => (
           <Star
             key={i}
-            full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
+            full={tempRating ? tempRating >= i + 1 : defaultRating >= i + 1}
             onRate={() => {
-              handleRating(i + 1);
+              onSetRating(i + 1);
             }}
             onHoverIn={() => setTempRating(i + 1)}
             onHoverOut={() => setTempRating(0)}
@@ -65,8 +65,8 @@ export default function StarRating({
       </div>
       <p style={textStyle}>
         {messages.length === maxRating
-          ? messages[tempRating ? tempRating - 1 : rating - 1]
-          : tempRating || rating || ""}
+          ? messages[tempRating ? tempRating - 1 : defaultRating - 1]
+          : tempRating || defaultRating || ""}
       </p>
     </div>
   );

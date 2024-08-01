@@ -64,7 +64,7 @@ export const fetchItem = async (
   };
 };
 
-// Separate logic for POST user and POST comment to avoid complexity
+// Separate logic for POST user,  POST comment and POST rating to avoid complexity
 // POST item: user
 export const createUserApi = async (url, newUser, dispatch) => {
   dispatch({ type: "loading" });
@@ -185,6 +185,56 @@ export const createCommentApi = async (
       success: false,
       message: "There was an error creating the comment.",
     };
+  }
+};
+
+// POST item: rating
+export const addRatingApi = async (
+  url,
+  newRating,
+  dispatch,
+  user,
+  successType
+) => {
+  if (!user) {
+    dispatch({
+      type: "rejected",
+      payload: "User not authenticated",
+    });
+    return { success: false, message: "User not authenticated" };
+  }
+
+  dispatch({ type: "loading" });
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(newRating),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      dispatch({
+        type: "rejected",
+        payload: error.message || "There was an error adding the rating.",
+      });
+      return {
+        success: false,
+        message: error.message || "There was an error adding the rating.",
+      };
+    }
+
+    const data = await res.json();
+    dispatch({ type: successType, payload: data });
+
+    return { success: true, message: "Rating added successfully" };
+  } catch (error) {
+    dispatch({
+      type: "rejected",
+      payload: "There was an error adding the rating.",
+    });
+    return { success: false, message: "There was an error adding the rating." };
   }
 };
 
