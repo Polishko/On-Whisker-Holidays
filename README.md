@@ -17,7 +17,7 @@ You can register in order to access functionalities such as adding, editing and 
 - Logo design based on <a href="https://www.canva.com/">Canva templates</a>.
 - The source for the image used for Hotel Lermontovskyi in Odessa is Upslash: Photo by <a href="https://unsplash.com/@chervinska?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Anastasiya Chervinska</a> on <a href="https://unsplash.com/photos/a-woman-standing-on-top-of-a-sandy-beach-next-to-a-black-dog-1CQGY-4xnGE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 - The main app - hotel list layout design and homepage layout as well as ideas on using the map and the weather API are based on samples from <a href="https://www.udemy.com/course/the-ultimate-react-course/">Jonas Schmedtmann's Ultimate React Course in Udemy</a>.
-- The customizable StartRating component is adapted from Jonas Schmedtmann's (@jonasschmedtmann) UsePopcorn App.
+- The customizable StartRating component is adapted from Jonas Schmedtmann's [@jonasschmedtmann] (https://www.github.com/jonasschmedtmann) UsePopcorn App.
 - The paw png path source is: https://github.com/tailwindlabs/heroicons/issues/140
 
 ## TODO
