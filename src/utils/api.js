@@ -70,7 +70,7 @@ export const createUserApi = async (url, newUser, dispatch) => {
   dispatch({ type: "loading" });
 
   try {
-    //new
+    // Existing user check
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error("Failed to fetch users for email check.");
@@ -89,8 +89,8 @@ export const createUserApi = async (url, newUser, dispatch) => {
         message: "User with this email already exists.",
       };
     }
-    //new
 
+    // user creation
     const res = await fetch(url, {
       method: "POST",
       body: JSON.stringify(newUser),
@@ -254,38 +254,96 @@ export const editDataApi = async (
 };
 
 // Authentication for user login and data editing
+
+// export const authenticateApi = async (
+//   credentials,
+//   url,
+//   needUserData = false
+// ) => {
+//   try {
+//     const response = await fetch(url, {
+//       method: "POST",
+//       body: JSON.stringify(credentials),
+//       headers: { "Content-Type": "application/json" },
+//     });
+
+//     if (!response.ok) {
+//       const error = await response.json();
+//       return {
+//         success: false,
+//         message:
+//           error.message ||
+//           (needUserData
+//             ? "Authentication failed."
+//             : "Password validation failed."),
+//       };
+//     }
+
+//     const data = await response.json();
+
+//     if (!data.user) {
+//       return {
+//         success: false,
+//         message: "User does not exist.",
+//       };
+//     }
+
+//     if (needUserData) {
+//       return { success: true, token: data.accessToken, user: data.user };
+//     } else {
+//       return { success: true };
+//     }
+//   } catch (error) {
+//     return {
+//       success: false,
+//       message: "There was an error processing the request.",
+//     };
+//   }
+// };
+
 export const authenticateApi = async (
   credentials,
   url,
+  usersUrl,
   needUserData = false
 ) => {
   try {
-    const res = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(credentials),
+    // user check
+    const usersResponse = await fetch(usersUrl, {
+      method: "GET",
       headers: { "Content-Type": "application/json" },
     });
 
-    if (!res.ok) {
-      const error = await res.json();
-      return {
-        success: false,
-        message:
-          error.message ||
-          (needUserData
-            ? "Authentication failed."
-            : "Password validation failed."),
-      };
+    if (!usersResponse.ok) {
+      throw new Error("Failed to fetch users");
     }
 
-    const data = await res.json();
+    const users = await usersResponse.json();
+    const user = users.find((u) => u.email === credentials.email);
 
-    if (!data.user) {
+    if (!user) {
       return {
         success: false,
         message: "User does not exist.",
       };
     }
+
+    // attempt login
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(credentials),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      return {
+        success: false,
+        message: error.message || "Wrong password.",
+      };
+    }
+
+    const data = await response.json();
 
     if (needUserData) {
       return { success: true, token: data.accessToken, user: data.user };

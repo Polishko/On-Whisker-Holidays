@@ -73,6 +73,7 @@ function AuthProvider({ children }) {
     const result = await authenticateApi(
       credentials,
       `${BASE_URL}/login`,
+      `${BASE_URL}/users`,
       true
     );
     if (result.success) {
@@ -85,7 +86,7 @@ function AuthProvider({ children }) {
       localStorage.setItem("user", JSON.stringify(result.user));
     } else {
       dispatch({ type: "rejected", payload: result.message });
-      console.log(result.message);
+      // console.log(result.message);
     }
     return result;
   }, []);
