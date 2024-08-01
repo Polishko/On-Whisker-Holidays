@@ -70,6 +70,27 @@ export const createUserApi = async (url, newUser, dispatch) => {
   dispatch({ type: "loading" });
 
   try {
+    //new
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch users for email check.");
+    }
+
+    const users = await response.json();
+    const userExists = users.some((user) => user.email === newUser.email);
+
+    if (userExists) {
+      dispatch({
+        type: "rejected",
+        payload: "User with this email already exists.",
+      });
+      return {
+        success: false,
+        message: "User with this email already exists.",
+      };
+    }
+    //new
+
     const res = await fetch(url, {
       method: "POST",
       body: JSON.stringify(newUser),
