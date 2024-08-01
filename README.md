@@ -15,7 +15,7 @@ You can register in order to access functionalities such as adding, editing and 
 
 ## Credits
 - I'm thankful to Elena K., Umit and Justina, and Ausun Oncu for providing me some pictures taken from their holidays with their belowed animal friends.
-- I would like to thank Tanya Dimitrova, for helping me format my logo and Elena K., for making recommendations about my design theme.
+- I would like to thank <a href="https://www.linkedin.com/in/tanya-dimitrova-vd/">Tanya Dimitrova</a>, for helping me format my logo and Elena K., for making recommendations about my design theme.
 - I would like to thank my spouce Genc Oncu, for suggesting possible edge cases to test.
 - Logo design based on <a href="https://www.canva.com/">Canva templates</a>.
 - The source for the image used for Hotel Lermontovskyi in Odessa is Upslash: Photo by <a href="https://unsplash.com/@chervinska?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Anastasiya Chervinska</a> on <a href="https://unsplash.com/photos/a-woman-standing-on-top-of-a-sandy-beach-next-to-a-black-dog-1CQGY-4xnGE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
