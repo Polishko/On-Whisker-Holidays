@@ -8,7 +8,7 @@ export const useCheckAuth = () => {
 
   const checkAuth = useCallback(() => {
     checkTokenValidity();
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
     if (!isAuthenticated) {
       navigate("/login");
       return false;

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useReducer } from "react";
 
-import { authenticateApi } from "../../utils/api";
+import { authenticateApi, validatePasswordForEdit } from "../../utils/api";
 import { isTokenExpired } from "../../utils/checkTokenExpiration";
 
 const BASE_URL = "http://localhost:3000";
@@ -93,7 +93,10 @@ function AuthProvider({ children }) {
 
   // password validation for editing
   const validatePassword = useCallback(async (credentials) => {
-    const result = await authenticateApi(credentials, `${BASE_URL}/login`);
+    const result = await validatePasswordForEdit(
+      credentials,
+      `${BASE_URL}/login`
+    );
     return result;
   }, []);
 

@@ -220,12 +220,28 @@
       "id": 24
     },
     {
+      "text": "There is a pool and you can play around it.",
+      "userId": 18,
+      "userName": "toti",
+      "hotelId": "Sorrento Sole Mare",
+      "timestamp": "2024-08-01T09:20:09.465Z",
+      "id": 26
+    },
+    {
       "text": "So much fun running on the beach and on the grass and playing.",
       "userId": 18,
       "userName": "toti",
       "hotelId": "Datca Lake House Camping",
-      "timestamp": "2024-08-01T09:09:27.284Z",
-      "id": 25
+      "timestamp": "2024-08-01T11:08:55.948Z",
+      "id": 27
+    },
+    {
+      "text": "It was super cool! I really liked it! yes!",
+      "userId": 18,
+      "userName": "toti",
+      "hotelId": "Datca Lake House Camping",
+      "timestamp": "2024-08-01T11:49:03.210Z",
+      "id": 28
     }
   ],
   "posts": [

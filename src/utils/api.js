@@ -253,54 +253,7 @@ export const editDataApi = async (
   }
 };
 
-// Authentication for user login and data editing
-
-// export const authenticateApi = async (
-//   credentials,
-//   url,
-//   needUserData = false
-// ) => {
-//   try {
-//     const response = await fetch(url, {
-//       method: "POST",
-//       body: JSON.stringify(credentials),
-//       headers: { "Content-Type": "application/json" },
-//     });
-
-//     if (!response.ok) {
-//       const error = await response.json();
-//       return {
-//         success: false,
-//         message:
-//           error.message ||
-//           (needUserData
-//             ? "Authentication failed."
-//             : "Password validation failed."),
-//       };
-//     }
-
-//     const data = await response.json();
-
-//     if (!data.user) {
-//       return {
-//         success: false,
-//         message: "User does not exist.",
-//       };
-//     }
-
-//     if (needUserData) {
-//       return { success: true, token: data.accessToken, user: data.user };
-//     } else {
-//       return { success: true };
-//     }
-//   } catch (error) {
-//     return {
-//       success: false,
-//       message: "There was an error processing the request.",
-//     };
-//   }
-// };
-
+// authenticate user for login and PUT requests
 export const authenticateApi = async (
   credentials,
   url,
@@ -350,6 +303,38 @@ export const authenticateApi = async (
     } else {
       return { success: true };
     }
+  } catch (error) {
+    return {
+      success: false,
+      message: "There was an error processing the request.",
+    };
+  }
+};
+
+// password validation for editing comments
+export const validatePasswordForEdit = async (credentials, url) => {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(credentials),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      return {
+        success: false,
+        message: error.message || "Password validation failed.",
+      };
+    }
+
+    const data = await response.json();
+
+    return {
+      success: true,
+      message: "Password validated successfully.",
+      token: data.accessToken,
+    };
   } catch (error) {
     return {
       success: false,

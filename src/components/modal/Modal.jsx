@@ -12,9 +12,6 @@ function Modal({ children, onClose, showCloseButton = true }) {
             <Button
               onClick={onClose}
               type="secondary"
-              // className={`${styles.modalButton} ${
-              //   customClass ? styles[customClass] : ""
-              // }`}
               className={styles.modalButton}
             >
               &times;
