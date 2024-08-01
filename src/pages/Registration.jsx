@@ -8,6 +8,7 @@ import styles from "./Registration.module.css";
 
 import { useUsers } from "../components/contexts/UsersContext";
 import { useModal } from "../hooks/useModal";
+import { useKey } from "../hooks/useKey";
 
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
@@ -64,6 +65,12 @@ function Registration() {
       reset();
     }
   };
+
+  useKey("Escape", () => {
+    if (isModalOpen) {
+      closeModal();
+    }
+  });
 
   useEffect(() => {
     if (success) {

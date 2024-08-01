@@ -5,13 +5,18 @@ import { useForm } from "react-hook-form";
 import styles from "./Login.module.css";
 
 import { useAuth } from "../components/contexts/AuthContext";
+import { useModal } from "../hooks/useModal";
+import { useKey } from "../hooks/useKey";
 
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
+import Modal from "../components/modal/Modal";
 
 function Login() {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
   const {
     register,
@@ -33,12 +38,18 @@ function Login() {
   async function onSubmit(data) {
     const result = await login({ email: data.email, password: data.password });
     if (result.success) {
-      alert("Login successful!");
+      openModal("Login successful!");
     } else {
-      alert(result.message);
+      openModal(result.message);
     }
     reset();
   }
+
+  useKey("Escape", () => {
+    if (isModalOpen) {
+      closeModal();
+    }
+  });
 
   return (
     <main className={styles.login}>
@@ -107,6 +118,12 @@ function Login() {
           </span>
         </div>
       </form>
+
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <p>{modalMessage}</p>
+        </Modal>
+      )}
     </main>
   );
 }
