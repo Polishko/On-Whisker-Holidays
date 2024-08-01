@@ -647,6 +647,12 @@
       "hotelId": "Sunanini House",
       "rating": 5,
       "id": 6
+    },
+    {
+      "userId": 17,
+      "hotelId": "Hija Rila Lakes",
+      "rating": 3,
+      "id": 7
     }
   ]
 }
