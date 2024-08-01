@@ -89,3 +89,9 @@
 .charCount {
   font-size: 0.5em;
 }
+
+.ratingContainer {
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}

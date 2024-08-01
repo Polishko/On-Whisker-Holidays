@@ -18,6 +18,7 @@ import Button from "../common/Button";
 import Weather from "../common/Weather";
 import CommentModal from "../modal/CommentModal";
 import Modal from "../modal/Modal";
+import StarRating from "../common/StarRating";
 
 function Hotel() {
   const { id } = useParams();
@@ -144,9 +145,28 @@ function Hotel() {
           </div>
         </div>
 
-        <div>
+        <div className={styles.ratingContainer}>
+          <div className={styles.rateHotel}>
+            {
+              <>
+                <StarRating
+                  maxRating={5}
+                  size={24}
+                  // onSetRating={setUserRating}
+                />
+                {/* {userRating > 0 && (
+                  <button className="btn-add" onClick={handleAdd}>
+                    + Add to list
+                  </button>
+                )} */}
+              </>
+              // ) : (
+              //   <p>
+              //     You rated this movie {watchedUserRating} <span>⭐</span>
+              //   </p>
+            }
+          </div>
           <div className={styles.aveRating}>ave rating</div>
-          <div className={styles.rate}>rate</div>
         </div>
 
         <div className={styles.detail}>
