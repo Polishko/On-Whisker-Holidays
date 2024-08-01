@@ -250,6 +250,14 @@
       "hotelId": "Hayit Buku Bungalovs",
       "timestamp": "2024-08-01T12:43:55.853Z",
       "id": 29
+    },
+    {
+      "text": "Cool place.",
+      "userId": 13,
+      "userName": "gizmo",
+      "hotelId": "Datca Lake House Camping",
+      "timestamp": "2024-08-01T19:08:51.588Z",
+      "id": 30
     }
   ],
   "posts": [
@@ -621,6 +629,24 @@
       "hotelId": "Green Village Lake",
       "rating": 4,
       "id": 3
+    },
+    {
+      "userId": 13,
+      "hotelId": "Datca Lake House Camping",
+      "rating": 4,
+      "id": 4
+    },
+    {
+      "userId": 13,
+      "hotelId": "Sunanini House",
+      "rating": 4,
+      "id": 5
+    },
+    {
+      "userId": 17,
+      "hotelId": "Sunanini House",
+      "rating": 5,
+      "id": 6
     }
   ]
 }
