@@ -29,6 +29,8 @@ function CommentItem({ comment, userName }) {
 
   function handleEditClick() {
     if (!checkAuth()) return;
+    setEditedComment(comment.text);
+    setCharCount(comment.text.length);
     setModalType("comment");
     openModal();
   }
@@ -177,10 +179,7 @@ function CommentItem({ comment, userName }) {
       </div>
 
       {isModalOpen && (
-        <Modal
-          onClose={closeModal}
-          showCloseButton={modalType === "message" ? true : false}
-        >
+        <Modal onClose={closeModal} showCloseButton={modalType === "message"}>
           {modalType === "comment" ? (
             <CommentModal
               handleCloseModal={closeModal}

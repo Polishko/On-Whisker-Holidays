@@ -154,7 +154,7 @@ function Profile({ onClose }) {
             <p>{modalMessage}</p>
           ) : (
             <PasswordModal
-              closePasswordModal={closeModal} // Using closeModal directly
+              closePasswordModal={closeModal}
               handlePasswordSubmit={handlePasswordSubmit}
               handleSaveChanges={handleSaveChanges}
               password={password}

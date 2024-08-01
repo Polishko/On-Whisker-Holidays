@@ -178,7 +178,7 @@ function Hotel() {
       {isModalOpen && (
         <Modal
           onClose={handleCloseModal}
-          showCloseButton={modalType === "message" ? true : false}
+          showCloseButton={modalType === "message"}
         >
           {modalType === "message" ? (
             <p>{modalMessage}</p>
