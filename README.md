@@ -5,7 +5,10 @@
 - Start Development: npm run dev
 
 ## Short introduction
-A webpage where you can find information on hotels that allow pets. Hotels are listed in alphabetical order based on country. You can also filter based on search criteria (such as wi-fi, beach, nature, city etc) by entering keywords in the search bar. For more detailed information on each hotel, including an image, rating (to be added), short description, facilities (i.e pool, wi-fy, parking), current local temperature, and web-page address click on each hotel in the list.
+A webpage where you can find information on hotels that allow pets. Hotels are listed in alphabetical order based on country. You can also filter based on search criteria (such as wi-fi, beach, nature, city etc) by entering keywords in the search bar. For more detailed information on each hotel, including an image, rating, short description, facilities (i.e pool, wi-fy, parking), current local temperature, and web-page address click on each hotel in the list. You can also search for hotels on an interactive map.
+
+## Back-end
+The back-end: JSON Server is used as a mock API with JSON Server Auth extension used for authentication purposes. This tool provides JWT based authentication flow and the route that was used for this purpose in the project is POST /users. Both user Login as well as editing data/sending PUT requests requires providing a password and an email in the headers. The tool also provides guarded routes such as /664/* used in this project. For more details please check the <a href="https://www.npmjs.com/package/json-server-auth">npm documentation</a>.   
 
 ## Credential information
 You can register in order to access functionalities such as adding, editing and deleting comments as well as editing your user avatar.
