@@ -218,6 +218,14 @@
       "hotelId": "Lermontovskiy Hotel",
       "timestamp": "2024-07-31T11:16:12.283Z",
       "id": 24
+    },
+    {
+      "text": "So much fun running on the beach and on the grass and playing.",
+      "userId": 18,
+      "userName": "toti",
+      "hotelId": "Datca Lake House Camping",
+      "timestamp": "2024-08-01T09:09:27.284Z",
+      "id": 25
     }
   ],
   "posts": [
