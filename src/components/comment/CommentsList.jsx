@@ -4,6 +4,7 @@ import styles from "./CommentsList.module.css";
 
 import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
+import { useAuth } from "../contexts/AuthContext";
 
 import Message from "../common/Message";
 import CommentItem from "./CommentItem";
@@ -11,6 +12,7 @@ import CommentItem from "./CommentItem";
 function CommentsList() {
   const { comments, isLoading } = useComments();
   const { currentHotel } = useHotels();
+  const { isAuthenticated } = useAuth();
 
   if (!currentHotel.hotelName) return;
 
@@ -27,9 +29,11 @@ function CommentsList() {
           message={"Currently there are no comments for this hotel."}
           background={"light"}
         />
-        <p>
-          <Link to="/register">Register to add your first comment!</Link>
-        </p>
+        {!isAuthenticated && (
+          <p>
+            <Link to="/register">Register to add your first comment!</Link>
+          </p>
+        )}
       </div>
     );
 

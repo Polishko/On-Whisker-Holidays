@@ -16,22 +16,18 @@ import User from "../components/user/User";
 import Button from "../components/common/Button";
 
 function AppLayout() {
-  const { user, isAuthenticated } = useAuth();
-  const { hotels } = useHotels();
   const location = useLocation();
   const navigate = useNavigate();
-
   const { query } = useParams();
 
   const [currentQuery, setCurrentQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [mapLat, mapLng] = useUrlPosition();
   const [position, setPosition] = useState("");
 
-  useEffect(() => {
-    setCurrentQuery(query);
-  }, [query]);
+  const { user, isAuthenticated } = useAuth();
+  const { hotels } = useHotels();
 
+  const [mapLat, mapLng] = useUrlPosition();
   const filteredHotels = useFilter(hotels, currentQuery);
 
   const checkProfileAuth = useCallback(() => {
@@ -42,6 +38,10 @@ function AppLayout() {
       }
     }
   }, [isAuthenticated, location.pathname, navigate]);
+
+  useEffect(() => {
+    setCurrentQuery(query);
+  }, [query]);
 
   useEffect(() => {
     checkProfileAuth();
