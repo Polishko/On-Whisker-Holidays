@@ -708,6 +708,12 @@
       "hotelId": "Hayit Buku Bungalovs",
       "rating": 4,
       "id": 8
+    },
+    {
+      "userId": 19,
+      "hotelId": "Hija Rila Lakes",
+      "rating": 5,
+      "id": 9
     }
   ]
 }
