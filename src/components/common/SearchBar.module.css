@@ -47,6 +47,7 @@
   border: none;
   font-size: 1.8em;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .filterResults {
