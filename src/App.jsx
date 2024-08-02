@@ -35,9 +35,9 @@ function App() {
                     <Route path="hotels" element={<HotelList />} />
                     <Route path="hotels/:id" element={<Hotel />} />
                     <Route path="search/:query" element={<HotelList />} />
-                    <Route element={<ProtectedRoute />}>
-                      <Route path="profile" element={<Profile />} />
-                    </Route>
+                  </Route>
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/profile" element={<Profile />} />
                   </Route>
 
                   <Route path="/map" element={<Map />} />

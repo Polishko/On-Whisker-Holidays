@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 
 import styles from "./AppLayout.module.css";
 
@@ -16,8 +16,6 @@ import User from "../components/user/User";
 import Button from "../components/common/Button";
 
 function AppLayout() {
-  // const location = useLocation();
-  // const navigate = useNavigate();
   const { query } = useParams();
 
   const [currentQuery, setCurrentQuery] = useState("");
@@ -30,23 +28,9 @@ function AppLayout() {
   const [mapLat, mapLng] = useUrlPosition();
   const filteredHotels = useFilter(hotels, currentQuery);
 
-  // const checkProfileAuth = useCallback(() => {
-  //   if (location.pathname === "/profile") {
-  //     checkTokenValidity();
-  //     if (!isAuthenticated) {
-  //       navigate("/login");
-  //       return;
-  //     }
-  //   }
-  // }, [isAuthenticated, location.pathname, navigate]);
-
   useEffect(() => {
     setCurrentQuery(query);
   }, [query]);
-
-  // useEffect(() => {
-  //   checkProfileAuth();
-  // }, [checkProfileAuth]);
 
   useEffect(
     function () {

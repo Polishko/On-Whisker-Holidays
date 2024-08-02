@@ -11,7 +11,7 @@ import PasswordModal from "../components/modal/PasswordModal";
 import Modal from "../components/modal/Modal";
 import { useNavigate } from "react-router-dom";
 
-function Profile({ onClose }) {
+function Profile() {
   const {
     user,
     logout,
@@ -42,7 +42,6 @@ function Profile({ onClose }) {
   }
 
   function handleLogoutClick() {
-    onClose();
     logout();
   }
 
@@ -127,8 +126,6 @@ function Profile({ onClose }) {
   useKey("Escape", () => {
     if (isModalOpen) {
       closeModal();
-    } else {
-      onClose();
     }
   });
 
