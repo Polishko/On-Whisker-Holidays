@@ -1,23 +1,15 @@
-import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import styles from "./User.module.css";
 
 import { useAuth } from "../contexts/AuthContext";
 
-import Modal from "../modal/Modal";
-import Profile from "../../pages/Profile";
 import Button from "../common/Button";
 
 function User() {
   const navigate = useNavigate();
 
   const { user, logout, isAuthenticated, checkTokenValidity } = useAuth();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function closeModal() {
-    setIsModalOpen(false);
-  }
 
   function openProfile(e) {
     e.preventDefault();
@@ -26,8 +18,7 @@ function User() {
       navigate("/login");
       return;
     }
-    navigate("profile", { state: { modal: true } });
-    setIsModalOpen(true);
+    navigate("profile");
   }
 
   return (
@@ -44,11 +35,6 @@ function User() {
       >
         Edit Profile
       </NavLink>
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <Profile onClose={closeModal} />
-        </Modal>
-      )}
     </div>
   );
 }
