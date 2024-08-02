@@ -43,11 +43,6 @@
   text-align: center;
 }
 
-.form span {
-  font-size: 0.7em;
-  margin-bottom: 1em;
-}
-
 .form input {
   background-color: rgba(1238, 231, 215, 0.4);
   border: none;
@@ -88,7 +83,7 @@
   width: 100%;
 }
 
-.button-style {
+.buttonStyle {
   border: none;
   border-radius: 1.5em;
   font-size: 1.7em;
@@ -99,15 +94,14 @@
   transition: 0.3s;
 }
 
-.button-style:hover {
+.buttonStyle:hover {
   box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
 
 .bottom {
   display: flex;
   justify-content: space-between;
-  color: #fff;
-  /* margin-top: 10px; */
+  color: var(--color-light-1);
 }
 
 .bottom label {
@@ -129,6 +123,8 @@
   position: absolute;
   right: 1rem;
   cursor: pointer;
+  font-size: 0.7em;
+  margin-bottom: 1em;
 }
 
 .error {
@@ -136,4 +132,17 @@
   font-weight: bold;
   margin-top: 1em;
   font-size: 150%;
+}
+
+.loginInvite {
+  color: var(--color-green);
+  margin-left: 0.5em;
+  font-size: 2em;
+  text-align: center;
+}
+
+.loginInvite a {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--color-orange);
 }

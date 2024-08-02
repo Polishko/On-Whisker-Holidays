@@ -56,11 +56,11 @@ function Login() {
       <PageNav />
 
       <form
-        className={`${styles.form} ${styles["login-form"]}`}
+        className={`${styles.form} ${styles["loginForm"]}`}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
-        <div className={styles["login-header"]}>
+        <div className={styles["loginHeader"]}>
           <span>Have an account?</span>
           <header>Login</header>
         </div>
@@ -107,13 +107,13 @@ function Login() {
           )}
         </div>
 
-        <Button type={"primary"} className={styles["button-style"]}>
+        <Button type={"primary"} className={styles["buttonStyle"]}>
           Login
         </Button>
 
-        <div className={styles["register-invite"]}>
+        <div className={styles["registerInvite"]}>
           <span>
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?
             <Link to="/register">Register here</Link>
           </span>
         </div>

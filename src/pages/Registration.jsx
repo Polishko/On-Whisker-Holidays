@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -98,6 +98,10 @@ function Registration() {
         noValidate
       >
         <header>Register</header>
+        <div className={styles.loginInvite}>
+          <p>Do you already have an account?</p>
+          <Link to="/login">Login here</Link>
+        </div>
 
         <div className={styles.row}>
           <label htmlFor="name">Enter username</label>
@@ -194,7 +198,7 @@ function Registration() {
           </div>
         </div>
 
-        <Button type={"primary"} className={styles["button-style"]}>
+        <Button type={"primary"} className={styles["buttonStyle"]}>
           Register
         </Button>
       </form>
