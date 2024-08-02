@@ -18,10 +18,13 @@ You can register in order to access functionalities such as adding, editing and 
 - I would like to thank <a href="https://www.linkedin.com/in/tanya-dimitrova-vd/">Tanya Dimitrova</a>, for helping me format my logo and Elena K., for making recommendations about my design theme.
 - I would like to thank my spouce Genc Oncu, for suggesting possible edge cases to test.
 - Logo design based on <a href="https://www.canva.com/">Canva templates</a>.
-- The source for the image used for Hotel Lermontovskyi in Odessa is Upslash: Photo by <a href="https://unsplash.com/@chervinska?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Anastasiya Chervinska</a> on <a href="https://unsplash.com/photos/a-woman-standing-on-top-of-a-sandy-beach-next-to-a-black-dog-1CQGY-4xnGE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+- The source for the image used for the Hotel Lermontovskyi hotel card is Upslash: Photo by <a href="https://unsplash.com/@chervinska?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Anastasiya Chervinska</a> on <a href="https://unsplash.com/photos/a-woman-standing-on-top-of-a-sandy-beach-next-to-a-black-dog-1CQGY-4xnGE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>.
+- The source for the image used for the Apartmentos Calypso hotel card is Upslash: Photo by <a href="https://unsplash.com/@salvadorgodoyladrero?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Salvador Godoy</a> on <a href="https://unsplash.com/photos/white-and-black-road-bike-parked-on-brown-wooden-pathway-during-daytime-HaDkUSQqHKc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>.
+- The source for the vacation placeholder image displayed when no hotels are selected yet: Photo by <a href="https://unsplash.com/@zhenhappy?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">PAN XIAOZHEN</a> on <a href="https://unsplash.com/photos/body-of-water-in-beach-qZtSuZvdob0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>.
 - The main app - hotel list layout design and homepage layout as well as ideas on using the map and the weather API are based on samples from <a href="https://www.udemy.com/course/the-ultimate-react-course/">Jonas Schmedtmann's Ultimate React Course in Udemy</a>.
 - The customizable StartRating component is adapted from Jonas Schmedtmann's [<a href="https://www.github.com/jonasschmedtmann">@jonasschmedtmann</a>] UsePopcorn App.
 - The paw png path source is: https://github.com/tailwindlabs/heroicons/issues/140
+- The curvy css design in the About page is adapted from Jessika Aiskel's <a href="https://codepen.io/myjessijess/pen/MWWgMwL">Fancy border radius theme on CodePen</a>.
 
 ## TODO
 More details
