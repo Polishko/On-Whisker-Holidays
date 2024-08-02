@@ -16,7 +16,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 4rem;
   text-align: center;
 }
 
@@ -38,4 +38,9 @@
 
 .goToApp {
   flex-basis: 100%;
+  margin-top: 1.5em;
+}
+
+.goToApp button {
+  font-size: 2.5em;
 }

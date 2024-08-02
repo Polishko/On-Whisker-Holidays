@@ -56,7 +56,9 @@ function PageNav() {
             </NavLink>
           </li>
         )}
-        {(currentPath === "/login" || currentPath === "/register") && (
+        {(currentPath === "/login" ||
+          currentPath === "/register" ||
+          currentPath === "/about") && (
           <li>
             <NavLink style={appliedStyle} to="/hotels">
               Search Hotels

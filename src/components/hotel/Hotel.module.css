@@ -1,5 +1,6 @@
 .hotelCard {
   display: flex;
+  flex-basis: 45%;
 }
 
 .left {
