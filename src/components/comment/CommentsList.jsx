@@ -3,6 +3,7 @@ import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
 import Message from "../common/Message";
 import CommentItem from "./CommentItem";
+import { Link } from "react-router-dom";
 
 function CommentsList() {
   const { comments } = useComments();
@@ -16,10 +17,15 @@ function CommentsList() {
 
   if (filteredComments.length === 0)
     return (
-      <Message
-        message={"Currently there are no comments for this hotel."}
-        background={"light"}
-      />
+      <div className={styles.noCommentsMessage}>
+        <Message
+          message={"Currently there are no comments for this hotel."}
+          background={"light"}
+        />
+        <p>
+          <Link to="/register">Register to add your first comment!</Link>
+        </p>
+      </div>
     );
 
   return (

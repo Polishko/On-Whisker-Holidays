@@ -109,3 +109,24 @@
 .aveRating {
   color: var(--color-brown);
 }
+
+.placeholderImage {
+  padding-top: 56%;
+  margin: 0 auto;
+  position: relative;
+  width: 60%;
+  height: 60%;
+  overflow: hidden;
+  border-radius: 1em;
+}
+
+.placeholderImage img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  border-radius: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

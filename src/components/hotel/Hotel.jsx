@@ -163,6 +163,9 @@ function Hotel() {
           message={"Click a hotel to find out more!"}
           background={"light"}
         />
+        <div className={styles.placeholderImage}>
+          <img src="../../vacation-placeholder.jpg" alt="vacation" />
+        </div>
       </div>
     );
 
