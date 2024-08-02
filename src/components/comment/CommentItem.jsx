@@ -13,7 +13,7 @@ import { useModal } from "../../hooks/useModal";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
-  const { user, validatePassword, isAuthenticated } = useAuth();
+  const { user, validatePassword, isAuthenticated, checkTokenValidity } = useAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
 
   const [editedComment, setEditedComment] = useState(comment.text);
@@ -26,6 +26,7 @@ function CommentItem({ comment, userName }) {
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
   function handleEditClick() {
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;
@@ -45,6 +46,7 @@ function CommentItem({ comment, userName }) {
   }
 
   async function handleDelete() {
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;
@@ -68,6 +70,7 @@ function CommentItem({ comment, userName }) {
   }
 
   function handleCommentSubmit() {
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;

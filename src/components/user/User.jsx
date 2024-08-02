@@ -12,7 +12,7 @@ import Button from "../common/Button";
 function User() {
   const navigate = useNavigate();
 
-  const { user, logout, isAuthenticated } = useAuth();
+  const { user, logout, isAuthenticated, checkTokenValidity } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function closeModal() {
@@ -21,6 +21,7 @@ function User() {
 
   function openProfile(e) {
     e.preventDefault();
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;

@@ -23,7 +23,7 @@ import StarRating from "../common/StarRating";
 function Hotel() {
   const { id } = useParams();
   const { getHotel, currentHotel, isLoading } = useHotels();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, checkTokenValidity } = useAuth();
   const { createComment, fetchComments } = useComments();
   const { ratings, addRating, fetchRatings } = useRatings();
 
@@ -69,6 +69,7 @@ function Hotel() {
 
   // handle add rating
   async function setUserRating(rating) {
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;
@@ -90,6 +91,7 @@ function Hotel() {
   }
 
   function handleAddComment() {
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;

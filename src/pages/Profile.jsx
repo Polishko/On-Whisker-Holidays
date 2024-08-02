@@ -12,7 +12,13 @@ import Modal from "../components/modal/Modal";
 import { useNavigate } from "react-router-dom";
 
 function Profile({ onClose }) {
-  const { user, logout, validatePassword, isAuthenticated } = useAuth();
+  const {
+    user,
+    logout,
+    validatePassword,
+    isAuthenticated,
+    checkTokenValidity,
+  } = useAuth();
   const { editUser, fetchUsers } = useUsers();
   const navigate = useNavigate();
 
@@ -41,6 +47,7 @@ function Profile({ onClose }) {
   }
 
   function handleAvatarSelection() {
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;
@@ -108,6 +115,7 @@ function Profile({ onClose }) {
   }
 
   function handlePasswordSubmit(e) {
+    checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;
