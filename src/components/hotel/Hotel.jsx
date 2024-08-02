@@ -7,7 +7,6 @@ import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
 import { useRatings } from "../contexts/RatingsContext";
-import { useCheckAuth } from "../../hooks/useCheckTokenValidity";
 import { useKey } from "../../hooks/useKey";
 import { useModal } from "../../hooks/useModal";
 
@@ -26,7 +25,6 @@ function Hotel() {
   const { getHotel, currentHotel, isLoading } = useHotels();
   const { user, isAuthenticated } = useAuth();
   const { createComment, fetchComments } = useComments();
-  const checkAuth = useCheckAuth();
   const { ratings, addRating, fetchRatings } = useRatings();
 
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
@@ -92,7 +90,10 @@ function Hotel() {
   }
 
   function handleAddComment() {
-    if (!checkAuth()) return;
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     setModalType("comment");
     openModal();
   }

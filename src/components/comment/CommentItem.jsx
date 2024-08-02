@@ -4,7 +4,6 @@ import styles from "./CommentItem.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
-import { useCheckAuth } from "../../hooks/useCheckTokenValidity";
 
 import DeleteModal from "../modal/DeleteModal";
 import PasswordModal from "../modal/PasswordModal";
@@ -15,7 +14,6 @@ import { useModal } from "../../hooks/useModal";
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
   const { user, validatePassword, isAuthenticated } = useAuth();
-  const checkAuth = useCheckAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
 
   const [editedComment, setEditedComment] = useState(comment.text);
@@ -28,7 +26,10 @@ function CommentItem({ comment, userName }) {
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
   function handleEditClick() {
-    if (!checkAuth()) return;
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     setEditedComment(comment.text);
     setCharCount(comment.text.length);
     setModalType("comment");
@@ -90,6 +91,7 @@ function CommentItem({ comment, userName }) {
       if (!password) {
         setModalType("message");
         openModal("Password field can't be empty");
+        setPassword("");
         return;
       }
 
@@ -99,6 +101,7 @@ function CommentItem({ comment, userName }) {
       if (!success) {
         setModalType("message");
         openModal(message);
+        setPassword("");
         return;
       }
 
@@ -111,7 +114,7 @@ function CommentItem({ comment, userName }) {
         timestamp: newTimestamp,
       };
       const result = await editComment(updatedComment);
-      closeModal();
+
       if (result.success) {
         setModalType("message");
         openModal("Comment updated successfully!");
@@ -120,18 +123,20 @@ function CommentItem({ comment, userName }) {
         setModalType("message");
         openModal(result.message);
       }
-
-      setPassword("");
     } catch (currentError) {
       closeModal();
       setModalType("message");
       openModal("There was an error updating the comment.");
     }
+    setPassword("");
   }
 
   // Modal open close with key actions
   useKey("Escape", () => {
-    if (isModalOpen) closeModal();
+    if (isModalOpen) {
+      closeModal();
+      setPassword("");
+    }
   });
 
   useKey("Enter", () => {

@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
 import { authenticateApi, validatePasswordForEdit } from "../../utils/api";
 import { isTokenExpired } from "../../utils/checkTokenExpiration";
@@ -68,6 +74,11 @@ function AuthProvider({ children }) {
     }
   }, [dispatch]);
 
+  // check for token validity on each render
+  useEffect(() => {
+    checkTokenValidity();
+  }, [checkTokenValidity]);
+
   // Login
   const login = useCallback(async (credentials) => {
     const result = await authenticateApi(
@@ -132,7 +143,6 @@ function AuthProvider({ children }) {
         resetError,
         updateAuthUser,
         validatePassword,
-        checkTokenValidity,
       }}
     >
       {children}

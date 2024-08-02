@@ -1,17 +1,18 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import styles from "./User.module.css";
 import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import styles from "./User.module.css";
+
+import { useAuth } from "../contexts/AuthContext";
+
 import Modal from "../modal/Modal";
 import Profile from "../../pages/Profile";
 import Button from "../common/Button";
-import { useCheckAuth } from "../../hooks/useCheckTokenValidity";
 
 function User() {
   const navigate = useNavigate();
 
-  const { user, logout } = useAuth();
-  const checkAuth = useCheckAuth();
+  const { user, logout, isAuthenticated } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function closeModal() {
@@ -20,7 +21,10 @@ function User() {
 
   function openProfile(e) {
     e.preventDefault();
-    if (!checkAuth()) return;
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     navigate("profile", { state: { modal: true } });
     setIsModalOpen(true);
   }

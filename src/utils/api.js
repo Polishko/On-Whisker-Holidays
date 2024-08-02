@@ -204,13 +204,18 @@ export const addRatingApi = async (
     return { success: false, message: "User not authenticated" };
   }
 
+  const token = localStorage.getItem("accessToken");
+
   dispatch({ type: "loading" });
 
   try {
     const res = await fetch(url, {
       method: "POST",
       body: JSON.stringify(newRating),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Add the Authorization header
+      },
     });
 
     if (!res.ok) {

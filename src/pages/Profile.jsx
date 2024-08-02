@@ -3,18 +3,18 @@ import styles from "./Profile.module.css";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useUsers } from "../components/contexts/UsersContext";
 import { useKey } from "../hooks/useKey";
-import { useCheckAuth } from "../hooks/useCheckTokenValidity";
 import { useModal } from "../hooks/useModal";
 
 import Button from "../components/common/Button";
 import AvatarSelection from "../components/common/AvatarSelection";
 import PasswordModal from "../components/modal/PasswordModal";
 import Modal from "../components/modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 function Profile({ onClose }) {
-  const { user, logout, validatePassword } = useAuth();
-  const checkAuth = useCheckAuth();
+  const { user, logout, validatePassword, isAuthenticated } = useAuth();
   const { editUser, fetchUsers } = useUsers();
+  const navigate = useNavigate();
 
   const [selectedAvatar, setSelectedAvatar] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +41,10 @@ function Profile({ onClose }) {
   }
 
   function handleAvatarSelection() {
-    if (!checkAuth()) return;
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     const selectedAvatarPath =
       avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
 
@@ -86,7 +89,6 @@ function Profile({ onClose }) {
       const updatedUser = { ...user, avatar: updatedAvatarPath, password };
       const result = await editUser(updatedUser);
 
-      closeModal();
       if (result.success) {
         setModalType("message");
         openModal("Avatar updated successfully!");
@@ -95,15 +97,21 @@ function Profile({ onClose }) {
         setModalType("message");
         openModal(result.message);
       }
-    } catch (currentError) {
+      setPassword("");
       closeModal();
+    } catch (currentError) {
+      setPassword("");
       setModalType("message");
       openModal("There was an error updating the avatar.");
+      closeModal();
     }
   }
 
   function handlePasswordSubmit(e) {
-    if (!checkAuth()) return;
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     setPassword(e.target.value);
   }
 

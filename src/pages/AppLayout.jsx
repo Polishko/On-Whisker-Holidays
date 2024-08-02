@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { NavLink, useLocation, useParams } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import styles from "./AppLayout.module.css";
 
 import { useAuth } from "../components/contexts/AuthContext";
 import { useHotels } from "../components/contexts/HotelsContext";
-import { useCheckAuth } from "../hooks/useCheckTokenValidity";
 import { useFilter } from "../hooks/useFilter";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 
@@ -19,8 +18,8 @@ import Button from "../components/common/Button";
 function AppLayout() {
   const { user, isAuthenticated } = useAuth();
   const { hotels } = useHotels();
-  const checkAuth = useCheckAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { query } = useParams();
 
@@ -37,9 +36,12 @@ function AppLayout() {
 
   const checkProfileAuth = useCallback(() => {
     if (location.pathname === "/profile") {
-      if (!checkAuth()) return;
+      if (!isAuthenticated) {
+        navigate("/login");
+        return;
+      }
     }
-  }, [checkAuth, location.pathname]);
+  }, [isAuthenticated, location.pathname, navigate]);
 
   useEffect(() => {
     checkProfileAuth();
