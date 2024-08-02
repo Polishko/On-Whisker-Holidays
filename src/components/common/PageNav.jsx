@@ -31,7 +31,7 @@ function PageNav() {
     <nav className={styles.nav}>
       <Logo
         background={
-          currentPath === "/" || currentPath === "/about" ? "dark" : "light"
+          currentPath === "/" || currentPath === "/login" ? "dark" : "light"
         }
       />
       <ul>

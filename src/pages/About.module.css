@@ -1,10 +1,5 @@
 main {
-  background: linear-gradient(
-    to bottom,
-    rgba(142, 171, 205, 0.9) 0%,
-    /* Darker tone at the top */ var(--color-comment-light-1) 100%
-      /* Lighter tone at the bottom */
-  );
+  background: var(--color-comment-light-2);
   margin: 3rem 3rem 0 3rem;
   padding: 2rem 5rem;
   display: flex;
@@ -16,7 +11,7 @@ main {
 
 .container {
   align-self: center;
-  margin: 30rem 20rem 5rem 20rem;
+  margin: 20rem 20rem 5rem 20rem;
   align-items: center;
   display: flex;
   height: 30%;
@@ -30,8 +25,8 @@ main {
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  top: 20%;
-  left: 23%;
+  top: 26%;
+  left: 21%;
   border-radius: 50% 50% 40% 60% / 50% 40% 60% 50%;
   height: 300px;
   width: 450px;
@@ -46,8 +41,8 @@ main {
     var(--color-light-blue)
   );
   overflow: hidden;
-  top: 52%;
-  left: 62%;
+  top: 60%;
+  left: 60%;
   border-radius: 60% 40% 40% 50% / 50% 40% 60% 50%;
   height: 170px;
   width: 170px;
