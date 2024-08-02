@@ -3,7 +3,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 1em;
   overflow: hidden;
-  height: calc(100% - 2em);
+  /* height: calc(100% - 2em); */
   padding: 1em;
   margin: 0 1em 1em 1em;
   list-style: none;
@@ -13,7 +13,7 @@
 }
 
 .commentsInner {
-  height: calc(100% - 2em);
+  /* height: calc(100% - 2em); */
   padding: 1em;
   margin: 1em;
   list-style: none;

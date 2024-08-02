@@ -19,7 +19,7 @@
 .hotelItem,
 .hotelItem:link,
 .hotelItem:visited {
-  font-size: 140%;
+  font-size: 160%;
   display: flex;
   gap: 2em;
   justify-content: space-between;
