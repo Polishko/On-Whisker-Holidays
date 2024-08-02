@@ -35,7 +35,7 @@
   flex-basis: 60%;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 1em;
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
   padding: 1em;
@@ -108,6 +108,11 @@
 
 .aveRating {
   color: var(--color-brown);
+}
+
+.clickHotelInvitation p {
+  font-size: 1.5em;
+  margin-top: 2em;
 }
 
 .placeholderImage {

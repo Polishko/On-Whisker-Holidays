@@ -12,12 +12,12 @@ export default function Homepage() {
         <h1>
           Enjoy your favorite destinations
           <br />
-          together with your belowed furry pals.
+          together with your beloved furry pals.
         </h1>
         <h2>
-          Find whisker frienly hotels, use an intuitive map and check for
+          Find whisker-friendly hotels, use an intuitive map, and check for
           facilities. <br /> Register and join the pet humans community to share
-          your adventures, rate places and more...
+          your adventures, rate places, and more...
         </h2>
 
         <div className={styles.goToApp}>

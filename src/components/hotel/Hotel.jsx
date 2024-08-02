@@ -158,7 +158,7 @@ function Hotel() {
 
   if (currentHotel.hotelName === "")
     return (
-      <div className={styles.details}>
+      <div className={styles.clickHotelInvitation}>
         <Message
           message={"Click a hotel to find out more!"}
           background={"light"}
