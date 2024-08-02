@@ -57,7 +57,7 @@ main {
     var(--color-orange) 100%
   );
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  height: 600px;
+  height: 650px;
   width: 800px;
   z-index: 5;
 }
@@ -67,7 +67,7 @@ main {
 
   top: 5%;
   left: 24%;
-  max-width: 65%;
+  max-width: 60%;
 }
 
 .text h1 {

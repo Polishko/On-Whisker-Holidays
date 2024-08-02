@@ -1,11 +1,16 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
 import styles from "./SearchBar.module.css";
+
+import { useHotels } from "../contexts/HotelsContext";
+
 import Button from "./Button";
 
 function SearchBar({ filteredHotels, searchQuery, setSearchQuery }) {
   const inputEl = useRef(null);
   const navigate = useNavigate();
+  const { isLoading } = useHotels();
 
   const handleInputChange = (e) => {
     const newQuery = e.target.value;
@@ -22,6 +27,8 @@ function SearchBar({ filteredHotels, searchQuery, setSearchQuery }) {
     navigate("/hotels");
     inputEl.current.focus();
   };
+
+  const hotelCount = filteredHotels.length;
 
   return (
     <div className={styles.searchbar}>
@@ -43,7 +50,11 @@ function SearchBar({ filteredHotels, searchQuery, setSearchQuery }) {
         )}
       </div>
       <span className={styles.filterResults}>
-        {filteredHotels.length} hotels
+        {isLoading
+          ? "Loading hotels..."
+          : hotelCount === 1
+          ? `${hotelCount} hotel`
+          : `${hotelCount} hotels`}
       </span>
     </div>
   );

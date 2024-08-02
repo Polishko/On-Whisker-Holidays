@@ -1,12 +1,15 @@
-import styles from "./CommentsList.module.css";
-import { useComments } from "../contexts/CommentsContext";
-import { useHotels } from "../contexts/HotelsContext";
-import Message from "../common/Message";
-import CommentItem from "./CommentItem";
 import { Link } from "react-router-dom";
 
+import styles from "./CommentsList.module.css";
+
+import { useComments } from "../contexts/CommentsContext";
+import { useHotels } from "../contexts/HotelsContext";
+
+import Message from "../common/Message";
+import CommentItem from "./CommentItem";
+
 function CommentsList() {
-  const { comments } = useComments();
+  const { comments, isLoading } = useComments();
   const { currentHotel } = useHotels();
 
   if (!currentHotel.hotelName) return;
@@ -15,7 +18,9 @@ function CommentsList() {
     (comment) => comment.hotelId === currentHotel.id
   );
 
-  if (filteredComments.length === 0)
+  const commentCount = filteredComments.length;
+
+  if (commentCount === 0)
     return (
       <div className={styles.noCommentsMessage}>
         <Message
@@ -30,7 +35,16 @@ function CommentsList() {
 
   return (
     <div className={styles.commentList}>
-      <h3>Visitors&apos; comments</h3>
+      <div className={styles.commentsHeader}>
+        <h3>Visitors&apos; comments</h3>
+        <p>
+          {isLoading
+            ? "Loading comments..."
+            : commentCount === 1
+            ? `${commentCount} comment`
+            : `${commentCount} comments`}
+        </p>
+      </div>
       <ul>
         {filteredComments.map((comment) => {
           return (

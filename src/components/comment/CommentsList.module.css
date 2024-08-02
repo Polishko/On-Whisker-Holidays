@@ -11,6 +11,17 @@
   gap: 1.4rem;
 }
 
+.commentsHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.7em;
+}
+
+.commentsHeader p {
+  font-weight: bold;
+  color: var(--color-active);
+}
+
 .commentsInner {
   padding: 1em;
   margin: 1em;
