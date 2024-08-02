@@ -15,6 +15,7 @@ import { AuthProvider } from "./components/contexts/AuthContext";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Profile from "./pages/Profile";
 import { RatingsProvider } from "./components/contexts/RatingsContext";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
                   </Route>
 
                   <Route path="/map" element={<Map />} />
-                  {/* <Route path="/about" element={<About />} /> */}
+                  <Route path="/about" element={<About />} />
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>
               </HotelsProvider>

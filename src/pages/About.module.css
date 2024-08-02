@@ -1,0 +1,122 @@
+main {
+  background: linear-gradient(
+    to bottom,
+    rgba(142, 171, 205, 0.9) 0%,
+    /* Darker tone at the top */ var(--color-comment-light-1) 100%
+      /* Lighter tone at the bottom */
+  );
+  margin: 3rem 3rem 0 3rem;
+  padding: 2rem 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 95vh;
+}
+
+.container {
+  align-self: center;
+  margin: 30rem 20rem 5rem 20rem;
+  align-items: center;
+  display: flex;
+  height: 30%;
+  width: 30%;
+  justify-content: center;
+}
+
+.smallShape1 {
+  position: absolute;
+  background-image: url("../public/banner2.JPG?v=1");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  top: 20%;
+  left: 23%;
+  border-radius: 50% 50% 40% 60% / 50% 40% 60% 50%;
+  height: 300px;
+  width: 450px;
+  z-index: 6;
+}
+
+.smallShape2 {
+  position: absolute;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 128, 0, 0.5),
+    var(--color-light-blue)
+  );
+  overflow: hidden;
+  top: 52%;
+  left: 62%;
+  border-radius: 60% 40% 40% 50% / 50% 40% 60% 50%;
+  height: 170px;
+  width: 170px;
+  z-index: 7;
+}
+
+.shape {
+  position: relative;
+  background: linear-gradient(
+    45deg,
+    var(--color-green) 0%,
+    var(--color-orange) 100%
+  );
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  height: 600px;
+  width: 800px;
+  z-index: 5;
+}
+
+.text {
+  position: absolute;
+
+  top: 5%;
+  left: 24%;
+  max-width: 65%;
+}
+
+.text h1 {
+  color: var(--color-font);
+  text-align: center;
+  font-size: 4em;
+  margin-bottom: 1em;
+}
+
+.text p {
+  color: var(--color-dark-blue);
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.happyTravels {
+  font-weight: bold;
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background: linear-gradient(
+      45deg,
+      var(--color-green) 0%,
+      var(--color-orange) 100%
+    );
+  }
+
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    background: linear-gradient(
+      45deg,
+      var(--color-green) 0%,
+      var(--color-orange) 100%
+    );
+  }
+
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background: linear-gradient(
+      45deg,
+      var(--color-green) 0%,
+      var(--color-orange) 100%
+    );
+  }
+}

@@ -31,7 +31,7 @@ function PageNav() {
     <nav className={styles.nav}>
       <Logo
         background={
-          currentPath === "/" || currentPath === "/login" ? "dark" : "light"
+          currentPath === "/" || currentPath === "/about" ? "dark" : "light"
         }
       />
       <ul>
@@ -60,6 +60,13 @@ function PageNav() {
           <li>
             <NavLink style={appliedStyle} to="/hotels">
               Search Hotels
+            </NavLink>
+          </li>
+        )}
+        {currentPath !== "/about" && (
+          <li>
+            <NavLink style={appliedStyle} to="/about">
+              About
             </NavLink>
           </li>
         )}
