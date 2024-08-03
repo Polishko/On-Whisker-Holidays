@@ -45,7 +45,7 @@ function Map() {
   };
 
   return (
-    <div className={styles.mapPage}>
+    <main className={styles.mapPage}>
       <PageNav />
       <div className={styles.mapContainer}>
         <div className={styles.buttonContainer}>
@@ -91,7 +91,7 @@ function Map() {
           ))}
         </MapContainer>
       </div>
-    </div>
+    </main>
   );
 }
 

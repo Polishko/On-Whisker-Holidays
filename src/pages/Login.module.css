@@ -1,34 +1,10 @@
-body {
-  display: flex;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  /* width: 100vw; */
-
-  /* height: 100%; */
-  margin: 0;
-  /* background: linear-gradient(
-      180deg,
-      rgba(190, 215, 233, 0.4) 0%,
-      rgba(148, 124, 91, 0.5) 100%
-    ),
-    url("../loki-mori-beach.jpg");
-  background-size: cover;
-  background-position: center;
-} */
-}
-
 .loginPage {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  /* background: none; */
-  /* margin: 2.5rem; */
-  /* padding: 2rem 5rem; */
-  /* min-height: calc(100vh - 5rem); */
   background: linear-gradient(
       180deg,
       rgba(190, 215, 233, 0.4) 0%,
@@ -40,28 +16,20 @@ body {
 }
 
 .loginPage nav {
-  width: 100%;
-}
-
-.loginHeader {
-  display: flex;
-  flex-direction: column;
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
+  width: 95%;
 }
 
 .form {
-  border-radius: 7px;
-  padding: 5rem 3rem;
-  width: 100%;
+  border-radius: 2em;
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
+  align-self: center;
   gap: 2rem;
-  flex-basis: 30%;
+  width: 25%;
   background: rgba(57, 64, 70, 0.4);
-  width: 48rem;
-  margin: 10rem auto;
+  margin-bottom: 1rem;
+  margin-top: 10rem;
 }
 
 .row {
@@ -75,12 +43,9 @@ body {
 }
 
 .loginForm header {
-  font-size: 1.5em;
-}
-
-.loginForm span {
-  font-size: 0.7em;
-  margin-bottom: 1em;
+  font-size: 3em;
+  text-align: center;
+  font-weight: bold;
 }
 
 .loginForm input {
@@ -111,6 +76,7 @@ body {
   position: absolute;
   left: 1.5em;
   color: var(--color-light-2);
+  font-size: 2em;
 }
 
 .inputContainer input {
@@ -124,10 +90,11 @@ body {
   font-size: 1.7em;
   font-weight: bold;
   outline: none;
-  width: 90%;
+  width: 40%;
   align-self: center;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 1.5em;
 }
 
 .buttonStyle:hover {
@@ -146,6 +113,14 @@ body {
 
 .left {
   display: flex;
+  flex-direction: column;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 1.5em;
 }
 
 .checkbox {
@@ -154,14 +129,15 @@ body {
 }
 
 .registerInvite {
-  font-size: 2.5em;
+  color: var(--color-green);
   text-align: center;
+  font-size: 2em;
+  margin-bottom: 1em;
 }
 
 .registerInvite a {
   font-weight: bold;
-  text-decoration: none;
-  color: inherit;
+  color: var(--color-orange);
   margin-left: 0.5em;
 }
 

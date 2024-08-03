@@ -140,55 +140,57 @@ function Profile() {
   });
 
   return (
-    <div className={styles.profile}>
-      <Button
-        className={styles.backButton}
-        onClick={handleClickBackButton}
-        type="primary"
-      >
-        &larr; Back
-      </Button>
-      <h2>{user.name}</h2>
-
-      <div className={styles.currentAvatar}>
-        <img src={user.avatar} alt="User Avatar" />
-      </div>
-
-      <div className={styles.profileInfo}>
-        <label>
-          <span>Change avatar:</span>
-          <AvatarSelection
-            avatars={avatars}
-            selectedAvatar={selectedAvatar}
-            handleAvatarChange={handleAvatarChange}
-          />
-        </label>
-      </div>
-
-      <div className={styles.buttons}>
-        <Button onClick={handleAvatarSelection} type="tertiary">
-          Save Changes
+    <main className={styles.profilePage}>
+      <div className={styles.profile}>
+        <Button
+          className={styles.backButton}
+          onClick={handleClickBackButton}
+          type="primary"
+        >
+          &larr; Back
         </Button>
-        <Button onClick={handleLogoutClick} type="tertiary">
-          Logout
-        </Button>
-      </div>
+        <h2>{user.name}</h2>
 
-      {isModalOpen && (
-        <Modal onClose={closeModal} showCloseButton={modalType === "message"}>
-          {modalType === "message" ? (
-            <p>{modalMessage}</p>
-          ) : (
-            <PasswordModal
-              closePasswordModal={closeModal}
-              handlePasswordSubmit={handlePasswordSubmit}
-              handleSaveChanges={handleSaveChanges}
-              password={password}
+        <div className={styles.currentAvatar}>
+          <img src={user.avatar} alt="User Avatar" />
+        </div>
+
+        <div className={styles.profileInfo}>
+          <label>
+            <span>Change avatar:</span>
+            <AvatarSelection
+              avatars={avatars}
+              selectedAvatar={selectedAvatar}
+              handleAvatarChange={handleAvatarChange}
             />
-          )}
-        </Modal>
-      )}
-    </div>
+          </label>
+        </div>
+
+        <div className={styles.buttons}>
+          <Button onClick={handleAvatarSelection} type="tertiary">
+            Save Changes
+          </Button>
+          <Button onClick={handleLogoutClick} type="tertiary">
+            Logout
+          </Button>
+        </div>
+
+        {isModalOpen && (
+          <Modal onClose={closeModal} showCloseButton={modalType === "message"}>
+            {modalType === "message" ? (
+              <p>{modalMessage}</p>
+            ) : (
+              <PasswordModal
+                closePasswordModal={closeModal}
+                handlePasswordSubmit={handlePasswordSubmit}
+                handleSaveChanges={handleSaveChanges}
+                password={password}
+              />
+            )}
+          </Modal>
+        )}
+      </div>
+    </main>
   );
 }
 

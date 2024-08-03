@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -89,7 +89,7 @@ function Registration() {
   }, [setValue]);
 
   return (
-    <main className={styles.registration}>
+    <main className={styles.registrationPage}>
       <PageNav />
 
       <form
@@ -97,11 +97,7 @@ function Registration() {
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
-        <header>Register</header>
-        <div className={styles.loginInvite}>
-          <p>Do you already have an account?</p>
-          <Link to="/login">Login here</Link>
-        </div>
+        <header className={styles.registerHeader}>Register</header>
 
         <div className={styles.row}>
           <label htmlFor="name">Enter username</label>
@@ -198,7 +194,7 @@ function Registration() {
           </div>
         </div>
 
-        <Button type={"primary"} className={styles["buttonStyle"]}>
+        <Button type={"primary"} className={styles.buttonStyle}>
           Register
         </Button>
       </form>

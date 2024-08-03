@@ -1,7 +1,10 @@
-.registration {
-  margin: 2.5rem;
-  padding: 2rem 5rem;
-  min-height: calc(100vh - 5rem);
+.registrationPage {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
   background: linear-gradient(
       175deg,
       rgba(192, 212, 237, 0.4) 0%,
@@ -12,33 +15,24 @@
     url("../register.jpeg");
   background-size: cover;
   background-position: center;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
+.registrationPage nav {
+  width: 95%;
 }
 
 .form {
-  border-radius: 7px;
-  padding: 5rem 3rem;
-  width: 100%;
+  border-radius: 2em;
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  /* flex-basis: 100%; */
+  justify-self: flex-start;
+  gap: 1.5rem;
   background: rgba(49, 55, 20, 0.6);
   color: var(--color-light-2);
-
-  /* Different from other form */
-  width: 48rem;
-  margin: 5rem auto;
+  width: 30%;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .form header {
@@ -63,6 +57,7 @@
   color: #fff;
   text-decoration: none;
 }
+
 .row {
   display: flex;
   flex-direction: column;
@@ -79,6 +74,7 @@
   position: absolute;
   left: 1.5em;
   color: var(--color-light-3);
+  font-size: 2em;
 }
 
 .inputContainer input {
@@ -91,10 +87,11 @@
   border-radius: 1.5em;
   font-size: 1.7em;
   outline: none;
-  width: 90%;
+  width: 30%;
   align-self: center;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 0.5em;
 }
 
 .buttonStyle:hover {
@@ -126,26 +123,12 @@
   position: absolute;
   right: 1rem;
   cursor: pointer;
-  font-size: 0.7em;
-  margin-bottom: 1em;
+  font-size: 1.5em;
 }
 
 .error {
   color: var(--color-orange);
   font-weight: bold;
-  margin-top: 1em;
-  font-size: 150%;
-}
-
-.loginInvite {
-  color: var(--color-green);
-  margin-left: 0.5em;
-  font-size: 2em;
-  text-align: center;
-}
-
-.loginInvite a {
-  font-weight: bold;
-  text-decoration: none;
-  color: var(--color-orange);
+  margin-top: 0.5em;
+  font-size: 140%;
 }

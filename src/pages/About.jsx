@@ -3,11 +3,11 @@ import styles from "./About.module.css";
 
 function About() {
   return (
-    <main>
+    <main className={styles.aboutPage}>
       <PageNav />
       <div className={styles.container}>
         <div className={styles.smallShape1}></div>
-        <div className={styles.shape}>
+        <div className={styles.mainShape}>
           <div className={styles.text}>
             <h1>About</h1>
             <p>

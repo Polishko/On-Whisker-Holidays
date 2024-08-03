@@ -1,21 +1,26 @@
-main {
-  background: var(--color-comment-light-2);
-  margin: 3rem 3rem 0 3rem;
-  padding: 2rem 5rem;
+.aboutPage {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
-  height: 95vh;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--color-comment-light-2);
+  padding: 4rem;
+}
+
+.aboutPage nav {
+  width: 95%;
 }
 
 .container {
+  position: relative;
+  margin-top: 3em;
   align-self: center;
-  margin: 20rem 20rem 5rem 20rem;
   align-items: center;
   display: flex;
-  height: 30%;
-  width: 30%;
+  height: 70%;
+  width: 100%;
   justify-content: center;
 }
 
@@ -25,8 +30,8 @@ main {
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  top: 26%;
-  left: 21%;
+  top: 15%;
+  left: 10%;
   border-radius: 50% 50% 40% 60% / 50% 40% 60% 50%;
   height: 300px;
   width: 450px;
@@ -42,32 +47,32 @@ main {
   );
   overflow: hidden;
   top: 60%;
-  left: 60%;
+  left: 67%;
   border-radius: 60% 40% 40% 50% / 50% 40% 60% 50%;
   height: 170px;
   width: 170px;
   z-index: 7;
 }
 
-.shape {
-  position: relative;
+.mainShape {
+  position: absolute;
   background: linear-gradient(
     45deg,
     var(--color-green) 0%,
     var(--color-orange) 100%
   );
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  height: 650px;
-  width: 800px;
+  border-radius: 80% 90% 30% 80% / 90% 80% 100% 90%; /* Adjusted curvature to make the filled part bigger */
+  height: 600px;
+  width: 800px; /* Reduced width */
   z-index: 5;
 }
 
 .text {
   position: absolute;
 
-  top: 5%;
-  left: 24%;
-  max-width: 60%;
+  top: 15%;
+  left: 12%;
+  max-width: 80%;
 }
 
 .text h1 {

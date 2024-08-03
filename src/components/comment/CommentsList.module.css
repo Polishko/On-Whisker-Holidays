@@ -2,13 +2,23 @@
   color: var(--color-dark-blue);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 1em;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 1em;
   margin: 0 1em 1em 1em;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+}
+
+.commentList::-webkit-scrollbar {
+  width: 0.6em;
+}
+
+.commentList::-webkit-scrollbar-thumb {
+  background-color: var(--color-light-blue);
+  border-radius: 1em;
 }
 
 .commentsHeader {

@@ -1,5 +1,7 @@
 .appLayout {
-  padding: 2rem 4rem;
+  height: 100%;
+  width: 100%;
+  padding: 0 4rem;
 }
 
 .app {

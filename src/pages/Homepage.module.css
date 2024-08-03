@@ -1,6 +1,10 @@
 .homepage {
-  height: calc(100vh - 5rem);
-  margin: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
   background-image: linear-gradient(
       rgba(36, 42, 46, 0.8),
       rgba(36, 42, 46, 0.8)
@@ -8,10 +12,16 @@
     url("../public/banner2.JPG?v=1");
   background-size: cover;
   background-position: center;
-  padding: 2.5rem 3rem;
+}
+
+.homepage nav {
+  width: 95%;
 }
 
 .homepage section {
+  margin: 2rem;
+  margin-top: 5rem;
+  padding: 2rem 3rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

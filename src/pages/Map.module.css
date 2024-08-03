@@ -1,6 +1,9 @@
 .mapPage {
   padding: 1rem 4rem 2rem 4rem;
+  height: 100%;
+  width: 100%;
 }
+
 .mapContainer {
   flex: 1;
   height: 70vh;

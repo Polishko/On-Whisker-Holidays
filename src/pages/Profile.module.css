@@ -1,5 +1,15 @@
+.profilePage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
 .profile {
-  margin: 18em auto;
+  margin-top: 5rem;
+  align-self: center;
   width: 30%;
   display: flex;
   flex-direction: column;

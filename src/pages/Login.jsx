@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import styles from "./Login.module.css";
@@ -11,10 +11,12 @@ import { useKey } from "../hooks/useKey";
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
 import Modal from "../components/modal/Modal";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
@@ -28,6 +30,10 @@ function Login() {
     mode: "onChange",
     reValidateMode: "onChange",
   });
+
+  const toggleShowPassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -56,14 +62,11 @@ function Login() {
       <PageNav />
 
       <form
-        className={`${styles.form} ${styles["loginForm"]}`}
+        className={`${styles.form} ${styles.loginForm}`}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
-        <div className={styles["loginHeader"]}>
-          <span>Have an account?</span>
-          <header>Login</header>
-        </div>
+        <header className={styles.loginHeader}>Login</header>
 
         <div className={styles.row}>
           <label htmlFor="email">Enter your email</label>
@@ -101,6 +104,9 @@ function Login() {
               {...register("password", { required: "Password is required" })}
               onKeyUp={() => trigger("password")}
             />
+            <span onClick={toggleShowPassword} className={styles.eyeIcon}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
           {errors.password && (
             <p className={styles.error}>{errors.password.message}</p>
@@ -111,7 +117,7 @@ function Login() {
           Login
         </Button>
 
-        <div className={styles["registerInvite"]}>
+        <div className={styles.registerInvite}>
           <span>
             Don&apos;t have an account?
             <Link to="/register">Register here</Link>
