@@ -16,6 +16,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import Profile from "./pages/Profile";
 import { RatingsProvider } from "./components/contexts/RatingsContext";
 import About from "./pages/About";
+import GuestRoute from "./pages/GuestRoute";
 
 function App() {
   return (
@@ -28,21 +29,24 @@ function App() {
                 <Routes>
                   <Route index element={<Homepage />} />
 
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Registration />} />
                   <Route path="/" element={<AppLayout />}>
                     <Route index element={<Navigate replace to="hotels" />} />
                     <Route path="hotels" element={<HotelList />} />
                     <Route path="hotels/:id" element={<Hotel />} />
                     <Route path="search/:query" element={<HotelList />} />
                   </Route>
-                  <Route element={<ProtectedRoute />}>
-                    <Route path="/profile" element={<Profile />} />
-                  </Route>
-
                   <Route path="/map" element={<Map />} />
                   <Route path="/about" element={<About />} />
                   <Route path="*" element={<PageNotFound />} />
+
+                  <Route element={<GuestRoute />}>
+                    <Route path="/register" element={<Registration />} />
+                    <Route path="/login" element={<Login />} />
+                  </Route>
+
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/profile" element={<Profile />} />
+                  </Route>
                 </Routes>
               </HotelsProvider>
             </RatingsProvider>

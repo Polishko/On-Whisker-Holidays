@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import styles from "./Login.module.css";
@@ -14,8 +14,7 @@ import Modal from "../components/modal/Modal";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
-  const { login, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
@@ -34,12 +33,6 @@ function Login() {
   const toggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/hotels", { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
 
   async function onSubmit(data) {
     const result = await login({ email: data.email, password: data.password });
