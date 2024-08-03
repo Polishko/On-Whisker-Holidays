@@ -52,7 +52,7 @@ function Login() {
   });
 
   return (
-    <main className={styles.login}>
+    <main className={styles.loginPage}>
       <PageNav />
 
       <form

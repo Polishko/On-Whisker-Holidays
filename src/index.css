@@ -16,6 +16,13 @@
   --color-comment-light-3: #bacda6;
 }
 
+#root {
+  width: 90vw;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +33,7 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   font-family: "Happy Monkey";
+  height: 100vh; /*new*/
 }
 
 body {
