@@ -34,7 +34,7 @@ You can register in order to access functionalities such as adding, editing and 
 - Learn and apply more advanced state management tools (such as Redux and React Query) to better manage state and reduce complexity and improve code readability.
 - Remember the user's last search query upon navigating to an individual hotel card, so that the user is able to see their last search results in the left pane hotel list, without having to navigate back.
 - Incorporate a real server.
-- Error boundaries.
+- Add page forward and back functionality for the comments list.
 - Testing.
 
 ## TODO
