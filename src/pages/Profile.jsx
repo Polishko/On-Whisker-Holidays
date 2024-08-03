@@ -122,10 +122,16 @@ function Profile() {
     setPassword(e.target.value);
   }
 
+  function handleClickBackButton() {
+    navigate(-1);
+  }
+
   // key press actions
   useKey("Escape", () => {
     if (isModalOpen) {
       closeModal();
+    } else {
+      handleClickBackButton();
     }
   });
 
@@ -135,6 +141,13 @@ function Profile() {
 
   return (
     <div className={styles.profile}>
+      <Button
+        className={styles.backButton}
+        onClick={handleClickBackButton}
+        type="primary"
+      >
+        &larr; Back
+      </Button>
       <h2>{user.name}</h2>
 
       <div className={styles.currentAvatar}>

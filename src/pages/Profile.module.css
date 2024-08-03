@@ -1,38 +1,62 @@
 .profile {
-  max-width: 50%;
-  margin: 2em auto;
+  margin: 18em auto;
+  width: 30%;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
-  padding: 1em;
+  align-items: center;
+  gap: 3em;
+  padding: 4em;
   background-color: var(--color-dark-blue);
   color: var(--color-light-1);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.profile .currentAvatar img {
-  width: 25%;
+.backButton {
+  align-self: flex-start;
+  font-size: 2em;
+}
+
+.profile h2 {
+  font-size: 4em;
+  margin-bottom: 0.5em;
+  color: var(--color-orange);
+}
+
+.currentAvatar {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+.currentAvatar img {
+  width: 50%;
 }
 
 .profileInfo {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .profileInfo label {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .profileInfo span {
   font-size: 2em;
+  margin: 0.5em 0;
 }
 
 .buttons {
   display: flex;
-  gap: 1em;
-  margin-top: 1em;
+  gap: 2em;
+  margin: 1em 0;
   align-self: center;
+}
+
+.buttons button {
+  font-size: 2em;
 }
