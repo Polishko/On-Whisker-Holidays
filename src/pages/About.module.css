@@ -19,9 +19,15 @@
   align-self: center;
   align-items: center;
   display: flex;
-  height: 70%;
-  width: 100%;
   justify-content: center;
+  height: 80%;
+  width: 40%;
+  background: linear-gradient(
+    45deg,
+    var(--color-green) 0%,
+    var(--color-orange) 100%
+  );
+  border-radius: 50%;
 }
 
 .smallShape1 {
@@ -30,12 +36,12 @@
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  top: 15%;
-  left: 10%;
-  border-radius: 50% 50% 40% 60% / 50% 40% 60% 50%;
-  height: 300px;
-  width: 450px;
-  z-index: 6;
+  top: -7%;
+  left: -10%;
+  border-radius: 50%;
+  height: 40%;
+  width: 40%;
+  z-index: 4;
 }
 
 .smallShape2 {
@@ -46,38 +52,24 @@
     var(--color-light-blue)
   );
   overflow: hidden;
-  top: 60%;
-  left: 67%;
-  border-radius: 60% 40% 40% 50% / 50% 40% 60% 50%;
-  height: 170px;
-  width: 170px;
+  top: 80%;
+  left: 75%;
+  border-radius: 50%;
+  height: 20%;
+  width: 20%;
   z-index: 7;
 }
 
-.mainShape {
-  position: absolute;
-  background: linear-gradient(
-    45deg,
-    var(--color-green) 0%,
-    var(--color-orange) 100%
-  );
-  border-radius: 80% 90% 30% 80% / 90% 80% 100% 90%; /* Adjusted curvature to make the filled part bigger */
-  height: 600px;
-  width: 800px; /* Reduced width */
-  z-index: 5;
-}
-
 .text {
-  position: absolute;
-
-  top: 15%;
-  left: 12%;
-  max-width: 80%;
+  position: relative;
+  z-index: 8;
+  padding: 2.5rem;
+  text-align: center;
+  color: var(--color-font);
+  width: 60%;
 }
 
 .text h1 {
-  color: var(--color-font);
-  text-align: center;
   font-size: 4em;
   margin-bottom: 1em;
 }
@@ -92,31 +84,50 @@
   font-weight: bold;
 }
 
-@keyframes morph {
-  0% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    background: linear-gradient(
-      45deg,
-      var(--color-green) 0%,
-      var(--color-orange) 100%
-    );
+@media (max-width: 1955px) {
+  .text h1 {
+    font-size: 3em;
   }
 
-  50% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-    background: linear-gradient(
-      45deg,
-      var(--color-green) 0%,
-      var(--color-orange) 100%
-    );
+  .text p {
+    font-size: 1.8em;
   }
 
-  100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    background: linear-gradient(
-      45deg,
-      var(--color-green) 0%,
-      var(--color-orange) 100%
-    );
+  .smallShape1 {
+    height: 40%;
+    width: 35%;
+  }
+
+  .smallShape2 {
+    height: 15%;
+    width: 15%;
+  }
+
+  .container {
+    width: 40%;
+  }
+}
+
+@media (max-width: 1803px) {
+  .text h1 {
+    font-size: 3em;
+  }
+
+  .text p {
+    font-size: 1.7em;
+  }
+
+  .smallShape1 {
+    height: 35%;
+    width: 35%;
+  }
+
+  .smallShape2 {
+    height: 15%;
+    width: 15%;
+  }
+
+  .container {
+    width: 40%;
   }
 }
