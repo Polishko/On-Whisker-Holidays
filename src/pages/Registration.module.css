@@ -31,7 +31,6 @@
   background: rgba(49, 55, 20, 0.6);
   color: var(--color-light-2);
   width: 30%;
-  margin-top: 2rem;
 }
 
 .form header {
@@ -104,7 +103,7 @@
 }
 
 .bottom label {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .bottom p {
@@ -128,6 +127,6 @@
 .error {
   color: var(--color-orange);
   font-weight: bold;
-  margin-top: 0.5em;
-  font-size: 140%;
+  margin-top: 0.2em;
+  font-size: 1.2em;
 }
