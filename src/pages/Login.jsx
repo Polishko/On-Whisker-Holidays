@@ -106,7 +106,7 @@ function Login() {
           )}
         </div>
 
-        <Button type={"primary"} className={styles["buttonStyle"]}>
+        <Button type={"primary"} className={styles.buttonStyle}>
           Login
         </Button>
 

@@ -1,5 +1,6 @@
-import PageNav from "../components/common/PageNav";
 import styles from "./About.module.css";
+
+import PageNav from "../components/common/PageNav";
 
 function About() {
   return (
