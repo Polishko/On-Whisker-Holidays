@@ -33,7 +33,6 @@ function App() {
                     <Route index element={<Navigate replace to="hotels" />} />
                     <Route path="hotels" element={<HotelList />} />
                     <Route path="hotels/:id" element={<Hotel />} />
-                    <Route path="search/:query" element={<HotelList />} />
                   </Route>
                   <Route path="/map" element={<Map />} />
                   <Route path="/about" element={<About />} />
