@@ -1,7 +1,12 @@
-const jsonServer = require("json-server");
-const auth = require("json-server-auth");
-const path = require("path");
-const cors = require("cors");
+import jsonServer from "json-server";
+import auth from "json-server-auth";
+import path from "path";
+import cors from "cors";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
