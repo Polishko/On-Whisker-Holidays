@@ -51,7 +51,7 @@ server.use(auth); // Apply the auth middleware
 server.use(router);
 
 // Serve static files from the build directory
-server.use(jsonServer.defaults({ static: path.join(__dirname, "dist") }));
+app.use(express.static(path.join(__dirname, "dist")));
 
 // For any other routes, serve index.html from the build directory
 server.get("*", (req, res) => {
