@@ -35,8 +35,8 @@ function App() {
                     <Route path="hotels/:id" element={<Hotel />} />
                   </Route>
                   <Route path="/map" element={<Map />} />
+
                   <Route path="/about" element={<About />} />
-                  <Route path="*" element={<PageNotFound />} />
 
                   <Route element={<GuestRoute />}>
                     <Route path="/register" element={<Registration />} />
@@ -46,6 +46,8 @@ function App() {
                   <Route element={<ProtectedRoute />}>
                     <Route path="/profile" element={<Profile />} />
                   </Route>
+
+                  <Route path="*" element={<PageNotFound />} />
                 </Routes>
               </HotelsProvider>
             </RatingsProvider>
