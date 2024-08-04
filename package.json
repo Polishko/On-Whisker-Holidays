@@ -2,6 +2,7 @@
   "name": "on-whisker-holidays",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,8 +14,6 @@
   "dependencies": {
     "boxicons": "^2.1.4",
     "cors": "^2.8.5",
-    "json-server": "^1.0.0-beta.1",
-    "json-server-auth": "^2.1.0",
     "leaflet": "^1.9.4",
     "lodash.debounce": "^4.0.8",
     "node-fetch": "^3.3.2",
@@ -24,7 +23,9 @@
     "react-hook-form": "^7.52.1",
     "react-icons": "^5.2.1",
     "react-leaflet": "^4.2.1",
-    "react-router-dom": "^6.24.0"
+    "react-router-dom": "^6.24.0",
+    "json-server": "^0.16.3",
+    "json-server-auth": "^2.1.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.8",
@@ -37,19 +38,9 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "jsdom": "^24.1.1",
-    "json-server": "^1.0.0-beta.1",
+    "json-server": "^0.16.3",
     "json-server-auth": "^2.1.0",
     "vite": "^5.3.1",
     "vitest": "^2.0.4"
-  },
-  "engines": {
-    "node": "16.x"
-  },
-  "description": "- Download the code.\r - Install Node.js and npm.\r - Install dependencies: `npm install`\r - Start the server: `npm run server`\r - Start development: `npm run dev`\r - This app is partially responsive in terms of design but is best viewed on computers with a screen resolution of 1920x1080.",
-  "main": "server.js",
-  "directories": {
-    "test": "tests"
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }

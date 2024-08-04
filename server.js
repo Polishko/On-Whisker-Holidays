@@ -1,9 +1,13 @@
-const jsonServer = require("json-server");
-const auth = require("json-server-auth");
-const path = require("path");
-const cors = require("cors");
+import jsonServer from "json-server";
+import auth from "json-server-auth";
+import path from "path";
+import cors from "cors";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-// Create the server
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
@@ -43,7 +47,6 @@ server.use(rules); // Apply the custom rewriter rules
 server.use(auth); // Apply the auth middleware
 server.use(router);
 
-// Start the server
 server.listen(port, () => {
   console.log("JSON Server is running on port", port);
 });
