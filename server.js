@@ -4,13 +4,10 @@ import path from "path";
 import cors from "cors";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import express from "express"; // You'll need to install express if not already done
 
-// ES module replacement for __filename and __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Create the JSON Server
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
@@ -50,15 +47,6 @@ server.use(rules); // Apply the custom rewriter rules
 server.use(auth); // Apply the auth middleware
 server.use(router);
 
-// Serve static files from the build directory
-server.use(express.static(path.join(__dirname, "dist")));
-
-// For any other routes, serve index.html from the build directory
-server.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-// Start the server
 server.listen(port, () => {
   console.log("JSON Server is running on port", port);
 });
