@@ -8,7 +8,7 @@
 - Start development: `npm run dev`
 - This app is partially responsive in terms of design but is best viewed on computers with a screen resolution above 1800px.
 
-![Screenshot of My App]([https://github.com/Polishko/On-Whisker-Holidays/raw/main/assets/main-app.JPG](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG))
+![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
 
 ## Short Introduction
