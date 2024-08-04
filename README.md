@@ -1,6 +1,7 @@
 # My Project for the SoftUni June 2024 React Course
 
 ## Prerequisites
+
 - Download the code.
 - Install Node.js and npm.
 - Install dependencies: `npm install`
@@ -12,6 +13,7 @@
 
 
 ## Short Introduction
+
 A webpage where you can find information on hotels from different parts of the world (currently focused on a few European countries) that allow pets. The hotels are listed alphabetically by country. All users can filter hotels based on search criteria (such as wi-fi, beach, nature, city, etc.) by entering keywords in the search bar.
 
 For more detailed information on each hotel, including an image, rating, short description, facilities (e.g., pool, wi-fi, parking), current local temperature, and web page address, users can click on each hotel in the list. Additionally, users can search for hotels on an interactive map, which centers based on the user's location (if supported by the browser) when a hotel is not selected.
@@ -19,6 +21,7 @@ For more detailed information on each hotel, including an image, rating, short d
 Registering and logging in as an authenticated user allows users to add comments about a hotel, rate the hotel, as well as edit and delete their own comments. They can also change their avatar for their profile.
 
 ## General project structure
+
 - Dynamic pages
   - /hotels: Dynamically displays a list of hotels based on search queries using query parameters. The displayed hotel list is sorted alphabetically by country. A search bar allows users to enter queries and filter the hotel list. Since the mock back-end supports filtering based on any keywords (rather than all keywords), the filtering is performed on the client side to ensure the search reflects all entered keywords.
 
@@ -45,8 +48,17 @@ Registering and logging in as an authenticated user allows users to add comments
 
 - **Private Part**: Authenticated users can change their avatars. They can also add comments about a hotel, rate a hotel, and edit or delete their own comments. Users are allowed to rate each hotel only once.
 
-## Back-end
-The back-end uses JSON Server as a mock API, and the JSON Server Auth extension is used for authentication purposes. This tool provides a JWT-based authentication flow, and the route used for this purpose in the project is `POST /users`. Both user login and editing data/sending PUT requests require providing a password and an email in the headers. The tool also provides guarded routes, such as the `/664/*` route used in this project. For more details, please check the <a href="https://www.npmjs.com/package/json-server-auth">npm documentation</a>.
+## The Back-end
+
+The back-end uses JSON Server as a mock API, and the JSON Server Auth extension is used for authentication purposes. JSON Server Auth provides a simple way to add JWT-based authentication to JSON Server. In this project, authentication is handled through the `POST /register` and `POST /login` routes. Both user login and editing data (sending PUT requests) require a valid token, which is included in the headers of authenticated requests. JSON Server Auth also provides guarded routes, such as the `/664/*` route, which restricts access based on the user's role. For more details, please check the [npm documentation](https://www.npmjs.com/package/json-server-auth).
+
+In the application, users create records (comments) and interact with the REST API. They can edit and delete their own comments, rate hotels, and the authentication ensures that these actions are secure and tied to the logged-in user's account.
+
+## Error Handling and Data Validation
+
+- **Formik Validation**: Formik is used for validating the login and registration forms, ensuring that user inputs meet the required criteria before submission.
+- **Custom Validation**: Custom validation logic is implemented for actions like adding, editing, and deleting comments. This includes limiting the number of characters in comments, warning users if the comment has not changed, alerting if an avatar is not selected or changed, and validating password entries.
+- **Error Handling**: `try-catch` blocks are utilized throughout the application to handle errors gracefully, providing feedback to the user when something goes wrong.
 
 ## Credits
 - I'm thankful to Elena K., Umit, Justina, and Ausun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
