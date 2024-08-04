@@ -8,7 +8,7 @@
 - Start development: `npm run dev`
 - This app is partially responsive in terms of design but is best viewed on computers with a screen resolution above 1800px.
 
-![Screenshot of My App](assets/main-app.png)
+![Screenshot of My App](assets/main-app.JPG)
 
 ## Short Introduction
 A webpage where you can find information on hotels from different parts of the world (currently focused on a few European countries) that allow pets. The hotels are listed alphabetically by country. All users can filter hotels based on search criteria (such as wi-fi, beach, nature, city, etc.) by entering keywords in the search bar.
