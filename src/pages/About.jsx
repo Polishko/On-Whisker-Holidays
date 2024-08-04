@@ -6,8 +6,10 @@ function About() {
   return (
     <main className={styles.aboutPage}>
       <PageNav />
+
       <div className={styles.container}>
         <div className={styles.smallShape1}></div>
+
         <div className={styles.text}>
           <h1>About</h1>
           <p>
@@ -27,6 +29,7 @@ function About() {
             <span className={styles.happyTravels}> Happy travels!</span>
           </p>
         </div>
+
         <div className={styles.smallShape2}></div>
       </div>
     </main>
