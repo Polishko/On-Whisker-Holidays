@@ -9,7 +9,7 @@
       rgba(36, 42, 46, 0.8),
       rgba(36, 42, 46, 0.8)
     ),
-    url("../public/banner2.JPG?v=1");
+    url("../banner2.JPG?v=1");
   background-size: cover;
   background-position: center;
 }

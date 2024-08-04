@@ -32,7 +32,7 @@
 
 .smallShape1 {
   position: absolute;
-  background-image: url("../public/banner2.JPG?v=1");
+  background-image: url("../banner2.JPG?v=1");
   background-size: cover;
   background-position: center;
   overflow: hidden;
