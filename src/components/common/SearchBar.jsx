@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import styles from "./SearchBar.module.css";
 
@@ -7,24 +7,28 @@ import { useHotels } from "../contexts/HotelsContext";
 
 import Button from "./Button";
 
-function SearchBar({ filteredHotels, searchQuery, setSearchQuery }) {
+function SearchBar({ filteredHotels, setCurrentQuery }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState("");
+
   const inputEl = useRef(null);
-  const navigate = useNavigate();
   const { isLoading } = useHotels();
 
   const handleInputChange = (e) => {
     const newQuery = e.target.value;
     setSearchQuery(newQuery);
-    if (newQuery.trim() === "") {
-      navigate("/hotels");
+    setCurrentQuery(newQuery); // Sync with parent
+    if (newQuery) {
+      setSearchParams({ query: newQuery });
     } else {
-      navigate(`/search/${newQuery}`);
+      setSearchParams({});
     }
   };
 
   const clearInput = () => {
+    setCurrentQuery("");
     setSearchQuery("");
-    navigate("/hotels");
+    setSearchParams({});
     inputEl.current.focus();
   };
 

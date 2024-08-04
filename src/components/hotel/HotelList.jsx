@@ -8,13 +8,12 @@ import Spinner from "../common/Spinner";
 import Message from "../common/Message";
 import HotelItem from "./HotelItem";
 
-function HotelList({ filteredHotels, setSearchQuery }) {
+function HotelList({ filteredHotels, currentQuery }) {
   const { hotels, isLoading } = useHotels();
   const listRef = useRef(null);
   const [lastClickedPosition, setLastClickedPosition] = useState(null);
 
   const handleItemClick = (itemPosition) => {
-    setSearchQuery("");
     setLastClickedPosition(itemPosition);
   };
 
@@ -56,6 +55,7 @@ function HotelList({ filteredHotels, setSearchQuery }) {
           hotel={hotel}
           key={hotel.id}
           handleItemClick={handleItemClick}
+          currentQuery={currentQuery}
         />
       ))}
     </ul>

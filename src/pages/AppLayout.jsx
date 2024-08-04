@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 
 import styles from "./AppLayout.module.css";
 
@@ -16,20 +16,28 @@ import User from "../components/user/User";
 import Button from "../components/common/Button";
 
 function AppLayout() {
-  const { query } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const [currentQuery, setCurrentQuery] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
   const [position, setPosition] = useState("");
 
   const { user, isAuthenticated } = useAuth();
   const { hotels } = useHotels();
 
   const [mapLat, mapLng] = useUrlPosition();
+
+  const query = searchParams.get("query");
   const filteredHotels = useFilter(hotels, currentQuery);
 
   useEffect(() => {
-    setCurrentQuery(query);
+    if (query) {
+      setCurrentQuery(query);
+    } else if (!currentQuery) {
+      navigate("/hotels");
+    } else {
+      setCurrentQuery("");
+    }
   }, [query]);
 
   useEffect(() => {
@@ -56,12 +64,12 @@ function AppLayout() {
           <div className={styles.left}>
             <SearchBar
               filteredHotels={filteredHotels}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
+              setCurrentQuery={setCurrentQuery}
             />
+
             <HotelList
               filteredHotels={filteredHotels}
-              setSearchQuery={setSearchQuery}
+              currentQuery={currentQuery}
             />
           </div>
 

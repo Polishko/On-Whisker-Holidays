@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+
 import styles from "./HotelItem.module.css";
+
 import { useHotels } from "../contexts/HotelsContext";
+
 import EmojiRenderer from "../common/EmojiRenderer";
 import SpecificsEmojis from "../common/SpecificsEmojis";
-import { useRef } from "react";
 
-function HotelItem({ hotel, handleItemClick }) {
+function HotelItem({ hotel, handleItemClick, currentQuery }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { currentHotel } = useHotels();
   const itemRef = useRef(null);
 
@@ -23,6 +28,12 @@ function HotelItem({ hotel, handleItemClick }) {
     const itemPosition = itemRef.current.getBoundingClientRect();
     handleItemClick(itemPosition);
   };
+
+  useEffect(() => {
+    if (currentQuery !== searchParams.get("query") && currentQuery) {
+      setSearchParams({ query: currentQuery });
+    }
+  }, [currentQuery, searchParams, setSearchParams]);
 
   return (
     <li style={{ cursor: "pointer" }} onClick={handleClick} ref={itemRef}>
