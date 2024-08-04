@@ -32,27 +32,26 @@ function AppLayout() {
     setCurrentQuery(query);
   }, [query]);
 
-  useEffect(
-    function () {
-      if (mapLat && mapLng) setPosition([mapLat, mapLng]);
-    },
-    [mapLat, mapLng]
-  );
+  useEffect(() => {
+    if (mapLat && mapLng) setPosition([mapLat, mapLng]);
+  }, [mapLat, mapLng]);
 
   return (
     <div className={styles.appLayout}>
       <PageNav />
+
       <div className={styles.app}>
         <NavLink
           to={{
             pathname: "/map",
           }}
-          state={{ position }}
+          state={{ position }} //pass data to route
         >
           <Button type={"secondary"} className={`${styles.mapButton}`}>
             Search on Map
           </Button>
         </NavLink>
+
         <div className={styles.container}>
           <div className={styles.left}>
             <SearchBar
@@ -65,6 +64,7 @@ function AppLayout() {
               setSearchQuery={setSearchQuery}
             />
           </div>
+
           <div className={styles.right}>
             <Details />
           </div>
