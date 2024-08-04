@@ -3,10 +3,6 @@ const auth = require("json-server-auth");
 const path = require("path");
 const cors = require("cors");
 
-// These variables are not directly available in CommonJS, so we use path to derive them
-const __filename = __filename || path.basename(__filename);
-const __dirname = __dirname || path.resolve();
-
 // Create the server
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
