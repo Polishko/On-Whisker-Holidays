@@ -51,12 +51,12 @@
 //   console.log("JSON Server is running on port", port);
 // });
 
-const jsonServer = require("json-server");
-const auth = require("json-server-auth");
-const path = require("path");
-const cors = require("cors");
-const { fileURLToPath } = require("url");
-const { dirname } = require("path");
+import jsonServer from "json-server";
+import auth from "json-server-auth";
+import path from "path";
+import cors from "cors";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
