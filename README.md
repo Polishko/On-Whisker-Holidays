@@ -6,6 +6,7 @@
 - Install dependencies: `npm install`
 - Start the server: `npm run server`
 - Start development: `npm run dev`
+- This app is partially responsive in terms of design but is best viewed on computers with a screen resolution above 1800px.
 
 ## Short Introduction
 A webpage where you can find information on hotels from different parts of the world (currently focused on a few European countries) that allow pets. The hotels are listed alphabetically by country. All users can filter hotels based on search criteria (such as wi-fi, beach, nature, city, etc.) by entering keywords in the search bar.
@@ -54,8 +55,7 @@ The back-end uses JSON Server as a mock API, and the JSON Server Auth extension 
 - The source for the vacation placeholder image displayed when no hotels are selected yet: Photo by <a href="https://unsplash.com/@zhenhappy?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">PAN XIAOZHEN</a> on <a href="https://unsplash.com/photos/body-of-water-in-beach-qZtSuZvdob0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>.
 - The main app - hotel list layout design and homepage layout, as well as ideas on using the map and the weather API, are based on samples from <a href="https://www.udemy.com/course/the-ultimate-react-course/">Jonas Schmedtmann's Ultimate React Course on Udemy</a>.
 - The customizable StarRating component is adapted from Jonas Schmedtmann's [<a href="https://www.github.com/jonasschmedtmann">@jonasschmedtmann</a>] UsePopcorn App.
-- The paw png path source is: https://github.com/tailwindlabs/heroicons/issues/140.
-- The curvy CSS design in the About page is adapted from Jessika Aiskel's <a href="https://codepen.io/myjessijess/pen/MWWgMwL">Fancy Border Radius theme on CodePen</a>.
+- The paw png (used for the star rating component) path source is: https://github.com/tailwindlabs/heroicons/issues/140.
 
 ## Planned Potential Improvements
 - Prevent the behavior of a previous modal closing upon opening a new one during the process of managing all modals' state with a single `useModal` hook.
