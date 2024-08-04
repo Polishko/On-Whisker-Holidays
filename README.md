@@ -19,8 +19,12 @@ A webpage where you can find information on hotels from different parts of the w
   - /map: A zoomable map that utilizes React Leaflet functionality. It dynamically updates and centers based on the user's location (if supported by the browser) or the selected hotel position (if a hotel is selected); otherwise, it centers on a default position. Interacting with specific hotels marked on the map displays a pop-up with a brief hotel description and allows navigation to the more detailed /hotels/:id route.
 
   - /profile: This page, accessible only to logged-in users, displays personalized information such as the user's name and avatar. It also provides a form that allows users to change their avatar.
-  
 
+- Static pages
+  - Home page: The welcoming page that provides a basic introduction and navigation to the main app.
+  - /about: A brief introduction to the purpose and source of inspiration for the app.
+  - /login: A login form for registered users to log in.
+  - /register: A registration form for new users to sign up.
 
 ## Back-end
 The back-end: JSON Server is used as a mock API and the JSON Server Auth extension is used for authentication purposes. This tool provides a JWT based authentication flow and the route that was used for this purpose in the project is POST /users. Both user Login as well as editing data/sending PUT requests requires providing a password and an email in the headers. The tool also provides guarded routes such as the /664/* route used in this project. For more details please check the <a href="https://www.npmjs.com/package/json-server-auth">npm documentation</a>.   
