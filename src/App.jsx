@@ -12,11 +12,11 @@ import PageNotFound from "./pages/PageNotFound";
 import { UsersProvider } from "./components/contexts/UsersContext";
 import { CommentsProvider } from "./components/contexts/CommentsContext";
 import { AuthProvider } from "./components/contexts/AuthContext";
-import ProtectedRoute from "./pages/ProtectedRoute";
+import PrivateRoute from "./routes/PrivateRoute";
 import Profile from "./pages/Profile";
 import { RatingsProvider } from "./components/contexts/RatingsContext";
 import About from "./pages/About";
-import GuestRoute from "./pages/GuestRoute";
+import GuestRoute from "./routes/GuestRoute";
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                   </Route>
 
-                  <Route element={<ProtectedRoute />}>
+                  <Route element={<PrivateRoute />}>
                     <Route path="/profile" element={<Profile />} />
                   </Route>
 

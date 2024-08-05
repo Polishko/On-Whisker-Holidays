@@ -1,8 +1,9 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../components/contexts/AuthContext";
 import { useEffect } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
-function ProtectedRoute() {
+import { useAuth } from "../components/contexts/AuthContext";
+
+function PrivateRoute() {
   const { isAuthenticated, checkTokenValidity } = useAuth();
 
   useEffect(() => {
@@ -12,4 +13,4 @@ function ProtectedRoute() {
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 }
 
-export default ProtectedRoute;
+export default PrivateRoute;
