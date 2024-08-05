@@ -51,7 +51,7 @@ Registering and logging in as an authenticated user allows users to add comments
 
 ## Public and Private Parts
 
-- **Private and Guarded Routes**:
+- **Private and Guest Routes**:
   - The `/profile` route, which allows users to update their information, is protected against access by unauthorized users. In addition, each time users interact with parts of the app that require authentication, token validity is checked by a custom hook. If the token is expired, users are logged out and redirected to the login page.
   - Access to the `/login` and `/register` pages is restricted to users who are not authenticated.
   - Direct access to these protected routes by typing the address in the URL bar is also restricted.
