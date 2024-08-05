@@ -81,18 +81,46 @@ function UsersProvider({ children }) {
   );
 
   // edit user
+  // const editUser = useCallback(
+  //   async (updatedUser) => {
+  //     const result = await editDataApi(
+  //       updatedUser,
+  //       dispatch,
+  //       `${BASE_URL}/users/${updatedUser.id}`,
+  //       "user/updated",
+  //       "user"
+  //     );
+  //     if (result.success) {
+  //       updateAuthUser(result.data);
+  //     }
+  //     return result;
+  //   },
+  //   [updateAuthUser]
+  // );
+  // edit user
   const editUser = useCallback(
     async (updatedUser) => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user.id;
+
+      // If password is not changed, exclude it from the updatedUser object
+      if (!updatedUser.password) {
+        delete updatedUser.password;
+      }
+
+      // Call the editDataApi function with the necessary parameters
       const result = await editDataApi(
         updatedUser,
         dispatch,
-        `${BASE_URL}/users/${updatedUser.id}`,
+        `${BASE_URL}/users/${userId}`,
         "user/updated",
         "user"
       );
+
       if (result.success) {
         updateAuthUser(result.data);
       }
+
       return result;
     },
     [updateAuthUser]

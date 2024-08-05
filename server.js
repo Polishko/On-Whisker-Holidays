@@ -49,6 +49,38 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+// PUT user route to update user data
+app.put("/api/users/:id", async (req, res) => {
+  const userId = req.params.id;
+  const { email, name, avatar, password } = req.body;
+
+  // Find the user by ID
+  const users = router.db.get("users").value();
+  const user = users.find((u) => u.id === parseInt(userId));
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  // Update user data, check if password is provided and needs to be updated
+  const updatedUser = {
+    ...user,
+    email: email || user.email,
+    name: name || user.name,
+    avatar: avatar || user.avatar,
+    password: password ? await bcrypt.hash(password, 10) : user.password, // Encrypt only if password is provided
+  };
+
+  // Update the user in the database
+  router.db
+    .get("users")
+    .find({ id: parseInt(userId) })
+    .assign(updatedUser)
+    .write();
+
+  res.json({ success: true, user: updatedUser });
+});
+
 server.db = router.db;
 
 // Middleware to check for authorization token on PUT, PATCH, DELETE requests
