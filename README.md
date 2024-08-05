@@ -68,7 +68,7 @@ In the application, users create records (comments) and interact with the REST A
 
 ## Error Handling and Data Validation
 
-- **Formik Validation**: Formik is used for validating the login and registration forms, ensuring that user inputs meet the required criteria before submission.
+- **React Hook Form Validation**: `react-hook-form` is used for validating the login and registration forms, ensuring that user inputs meet the required criteria before submission.
 - **Custom Validation**: Custom validation logic is implemented for actions like adding, editing, and deleting comments. This includes limiting the number of characters in comments, warning users if the comment has not changed, alerting if an avatar is not selected or changed, and validating password entries.
 - **Error Handling**: `try-catch` blocks are utilized throughout the application to handle errors gracefully, providing feedback to the user when something goes wrong.
 
