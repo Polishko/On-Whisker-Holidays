@@ -11,6 +11,14 @@
 
 ![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
+## Live Demo
+
+For the best experience, please install and run the app locally.
+
+Alternatively, you can view a live demo of this project [here](https://on-whisker-holidays-1db1d0811f86.herokuapp.com). Please note that registration on the live demo is currently under maintenance. However, you can log in using the following credentials to experience the app as an authenticated user:
+
+- **Email:** kaju@kaju.com
+- **Password:** kaju
 
 ## Short Introduction
 
