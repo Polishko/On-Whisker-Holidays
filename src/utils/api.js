@@ -315,6 +315,67 @@ export const editDataApi = async (
 };
 
 // authenticate user for login and PUT requests
+// export const authenticateApi = async (
+//   credentials,
+//   url,
+//   usersUrl,
+//   needUserData = false
+// ) => {
+//   try {
+//     // user check
+//     const usersResponse = await fetch(usersUrl, {
+//       method: "GET",
+//       headers: { "Content-Type": "application/json" },
+//     });
+
+//     if (!usersResponse.ok) {
+//       throw new Error("Failed to fetch users");
+//     }
+
+//     const users = await usersResponse.json();
+//     const user = users.find((u) => u.email === credentials.email);
+
+//     if (!user) {
+//       return {
+//         success: false,
+//         message: "User does not exist.",
+//       };
+//     }
+
+//     // attempt login
+//     const response = await fetch(url, {
+//       method: "POST",
+//       body: JSON.stringify(credentials),
+//       headers: { "Content-Type": "application/json" },
+//     });
+
+//     console.log("Login response:", response);
+
+//     if (!response.ok) {
+//       const error = await response.json();
+//       console.log("Login error:", error);
+//       return {
+//         success: false,
+//         message: error.message || "Wrong password.",
+//       };
+//     }
+
+//     const data = await response.json();
+//     console.log("Login data:", data);
+
+//     if (needUserData) {
+//       return { success: true, token: data.accessToken, user: data.user };
+//     } else {
+//       return { success: true };
+//     }
+//   } catch (error) {
+//     return {
+//       success: false,
+//       message: "There was an error processing the request.",
+//     };
+//   }
+// };
+
 export const authenticateApi = async (
   credentials,
   url,
@@ -322,7 +383,6 @@ export const authenticateApi = async (
   needUserData = false
 ) => {
   try {
-    // user check
     const usersResponse = await fetch(usersUrl, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -342,18 +402,14 @@ export const authenticateApi = async (
       };
     }
 
-    // attempt login
     const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: { "Content-Type": "application/json" },
     });
 
-    console.log("Login response:", response);
-
     if (!response.ok) {
       const error = await response.json();
-      console.log("Login error:", error);
       return {
         success: false,
         message: error.message || "Wrong password.",
@@ -364,11 +420,16 @@ export const authenticateApi = async (
     console.log("Login data:", data);
 
     if (needUserData) {
+      console.log("Returning token and user data:", {
+        token: data.accessToken,
+        user: data.user,
+      });
       return { success: true, token: data.accessToken, user: data.user };
     } else {
       return { success: true };
     }
   } catch (error) {
+    console.error("Error during authentication:", error);
     return {
       success: false,
       message: "There was an error processing the request.",
