@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 import bcrypt from "bcrypt"; // Import bcrypt for password comparison
+import jwt from "jsonwebtoken"; // Import jwt for token generation
 
 // ES module replacement for __filename and __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -15,6 +16,9 @@ const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 3000;
+
+const SECRET_KEY = "your-secret-key"; // Replace with a strong secret key
+const TOKEN_EXPIRATION = "1h"; // Set token expiration time
 
 // Enable CORS
 app.use(cors());
@@ -32,8 +36,11 @@ app.post("/api/login", async (req, res) => {
     // Compare the hashed password with the incoming password
     const match = await bcrypt.compare(password, user.password);
     if (match) {
-      // In a real app, you'd generate a JWT here
-      res.json({ success: true, token: "123456", user });
+      // Generate a JWT token
+      const token = jwt.sign({ id: user.id }, SECRET_KEY, {
+        expiresIn: TOKEN_EXPIRATION,
+      });
+      res.json({ success: true, token, user });
     } else {
       res.status(401).json({ success: false, message: "Invalid credentials" });
     }

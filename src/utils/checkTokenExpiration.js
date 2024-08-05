@@ -23,7 +23,7 @@ export const isTokenExpired = (token) => {
       return true;
     }
 
-    const expiry = payload.exp * 1000;
+    const expiry = payload.exp * 1000; // Convert expiration time from seconds to milliseconds
     return Date.now() > expiry;
   } catch (error) {
     console.error("Failed to decode token or check expiration:", error);
