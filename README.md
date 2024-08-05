@@ -11,6 +11,14 @@
 
 ![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
+## Live Demo
+
+For the best experience, please install and run the app locally.
+
+Alternatively, you can view a live demo of this project [here](https://on-whisker-holidays-1db1d0811f86.herokuapp.com). Please note that registration on the live demo is currently under maintenance. However, you can log in using the following credentials to experience the app as an authenticated user:
+
+- **Email:** kaju@kaju.com
+- **Password:** kaju
 
 ## Short Introduction
 
@@ -94,7 +102,7 @@ In the application, users create records (comments) and interact with the REST A
 - Testing.
 
 ## Credits
-- I'm thankful to Elena K., Umit, Justina, and Ausun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
+- I'm thankful to Elena K., Umit, Justina, and Aysun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
 - I would like to thank <a href="https://www.linkedin.com/in/tanya-dimitrova-vd/">Tanya Dimitrova</a> for helping me format my logo, and Elena K. for making recommendations about my design theme.
 - I would like to thank my spouse, Genc Oncu, for suggesting possible edge cases to test.
 - Logo design based on <a href="https://www.canva.com/">Canva templates</a>.
