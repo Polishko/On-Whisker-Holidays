@@ -7,30 +7,16 @@
 // };
 
 export const isTokenExpired = (token) => {
-  if (!token) {
-    console.error("No token provided");
-    return true;
-  }
-
-  console.log("Token received:", token);
+  if (!token) return true;
 
   try {
-    const parts = token.split(".");
-    if (parts.length !== 3) {
-      console.error("Invalid token format: Token should have three parts");
-      return true;
-    }
-
-    const payloadPart = parts[1];
-    console.log("Payload part:", payloadPart);
-
+    const payloadPart = token.split(".")[1];
     if (!payloadPart) {
       console.error("Invalid token format: Missing payload");
       return true;
     }
 
     const payload = JSON.parse(atob(payloadPart));
-    console.log("Decoded payload:", payload);
 
     if (!payload.exp) {
       console.error("Invalid token format: Missing expiration");
