@@ -17,9 +17,7 @@ import {
 
 const CommentsContext = createContext();
 
-const BASE_URL = process.env.NODE_ENV === 'production' 
-  ? process.env.REACT_APP_API_BASE_URL 
-  : "http://localhost:3000";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
 
 const initialState = {
   comments: [],
