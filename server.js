@@ -15,13 +15,13 @@ const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.json()); // Add this line to parse JSON request bodies
+app.use(express.json()); // Parse JSON request bodies
 
 // Custom login route
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
 
-  // Manually validate user credentials (you'll need to replace this with real logic)
+  // Validate user credentials
   const users = router.db.get("users").value(); // Get users from the db.json file
   const user = users.find(
     (u) => u.username === username && u.password === password
