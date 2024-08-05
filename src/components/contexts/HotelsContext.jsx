@@ -14,6 +14,7 @@ const HotelsContext = createContext();
 
 // const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+console.log("BASE_URL:", process.env.REACT_APP_API_BASE_URL);
 
 const initialState = {
   hotels: [],
