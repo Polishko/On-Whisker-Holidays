@@ -14,6 +14,7 @@ import SearchBar from "../components/common/SearchBar";
 import Details from "../components/details/Details";
 import User from "../components/user/User";
 import Button from "../components/common/Button";
+import Spinner from "../components/common/Spinner";
 
 function AppLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +24,7 @@ function AppLayout() {
   const [position, setPosition] = useState("");
 
   const { user, isAuthenticated } = useAuth();
-  const { hotels } = useHotels();
+  const { hotels, isLoading } = useHotels();
   const [mapLat, mapLng] = useUrlPosition();
 
   const query = searchParams.get("query");
@@ -66,10 +67,14 @@ function AppLayout() {
               setCurrentQuery={setCurrentQuery}
             />
 
-            <HotelList
-              filteredHotels={filteredHotels}
-              currentQuery={currentQuery}
-            />
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <HotelList
+                filteredHotels={filteredHotels}
+                currentQuery={currentQuery}
+              />
+            )}
           </div>
 
           <div className={styles.right}>
