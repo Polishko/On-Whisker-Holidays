@@ -9,12 +9,18 @@ export const fetchData = async (
   const controller = new AbortController();
   dispatch({ type: "loading" });
 
+  console.log("Fetching data from URL:", url);
+
   try {
     const response = await fetch(url, { signal: controller.signal });
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
+
+    console.log("Fetched data:", data);
     dispatch({ type: successType, payload: transformData(data) });
   } catch (error) {
+    console.error("Error fetching data:", error);
+
     if (error.name !== "AbortError") {
       dispatch({
         type: "rejected",
