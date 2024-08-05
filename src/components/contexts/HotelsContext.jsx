@@ -11,7 +11,10 @@ import { useLocation } from "react-router-dom";
 import { fetchData, fetchItem } from "../../utils/api";
 
 const HotelsContext = createContext();
-const BASE_URL = "http://localhost:3000";
+
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? process.env.REACT_APP_API_BASE_URL 
+  : "http://localhost:3000";
 
 const initialState = {
   hotels: [],

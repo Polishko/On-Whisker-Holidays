@@ -3,7 +3,10 @@ import { createContext, useCallback, useContext, useReducer } from "react";
 import { authenticateApi, validatePasswordForEdit } from "../../utils/api";
 import { isTokenExpired } from "../../utils/checkTokenExpiration";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_BASE_URL
+    : "http://localhost:3000";
 
 const AuthContext = createContext();
 

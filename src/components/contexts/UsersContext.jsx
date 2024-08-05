@@ -11,7 +11,11 @@ import { useAuth } from "./AuthContext";
 import { fetchData, createUserApi, editDataApi } from "../../utils/api";
 
 const UsersContext = createContext();
-const BASE_URL = "http://localhost:3000";
+
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_BASE_URL
+    : "http://localhost:3000";
 
 const initialState = {
   users: [],
