@@ -17,8 +17,8 @@ import {
 
 const CommentsContext = createContext();
 
-// const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = "http://localhost:3000";
+// const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const initialState = {
   comments: [],
@@ -110,43 +110,14 @@ function CommentsProvider({ children }) {
   );
 
   // edit comment
-  // const editComment = useCallback(async (updatedComment) => {
-  //   return await editDataApi(
-  //     updatedComment,
-  //     dispatch,
-  //     `${BASE_URL}/comments/${updatedComment.id}`,
-  //     "comment/updated",
-  //     "comment"
-  //   );
-  // }, []);
-
   const editComment = useCallback(async (updatedComment) => {
-    console.log("Editing comment:", updatedComment);
-
-    // Fetch token from local storage
-    const token = localStorage.getItem("accessToken");
-    console.log("Token for comment edit:", token);
-
-    // Call editDataApi function with necessary parameters
-    const result = await editDataApi(
+    return await editDataApi(
       updatedComment,
       dispatch,
       `${BASE_URL}/comments/${updatedComment.id}`,
       "comment/updated",
       "comment"
     );
-
-    // Log the result of the edit operation
-    console.log("Edit Comment Result:", result);
-
-    // Handle success or failure
-    if (result.success) {
-      console.log("Comment edited successfully:", result.data);
-    } else {
-      console.error("Failed to edit comment:", result.message);
-    }
-
-    return result;
   }, []);
 
   // delete comment

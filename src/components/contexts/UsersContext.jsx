@@ -12,8 +12,8 @@ import { fetchData, createUserApi, editDataApi } from "../../utils/api";
 
 const UsersContext = createContext();
 
-// const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = "http://localhost:3000";
+// const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const initialState = {
   users: [],
@@ -81,46 +81,18 @@ function UsersProvider({ children }) {
   );
 
   // edit user
-  // const editUser = useCallback(
-  //   async (updatedUser) => {
-  //     const result = await editDataApi(
-  //       updatedUser,
-  //       dispatch,
-  //       `${BASE_URL}/users/${updatedUser.id}`,
-  //       "user/updated",
-  //       "user"
-  //     );
-  //     if (result.success) {
-  //       updateAuthUser(result.data);
-  //     }
-  //     return result;
-  //   },
-  //   [updateAuthUser]
-  // );
-  // edit user
   const editUser = useCallback(
     async (updatedUser) => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const userId = user.id;
-
-      // If password is not changed, exclude it from the updatedUser object
-      if (!updatedUser.password) {
-        delete updatedUser.password;
-      }
-
-      // Call the editDataApi function with the necessary parameters
       const result = await editDataApi(
         updatedUser,
         dispatch,
-        `${BASE_URL}/users/${userId}`,
+        `${BASE_URL}/users/${updatedUser.id}`,
         "user/updated",
         "user"
       );
-
       if (result.success) {
         updateAuthUser(result.data);
       }
-
       return result;
     },
     [updateAuthUser]

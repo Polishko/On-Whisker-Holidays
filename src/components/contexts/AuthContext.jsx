@@ -3,9 +3,9 @@ import { createContext, useCallback, useContext, useReducer } from "react";
 import { authenticateApi, validatePasswordForEdit } from "../../utils/api";
 import { isTokenExpired } from "../../utils/checkTokenExpiration";
 
-// const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
+const BASE_URL = "http://localhost:3000";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AuthContext = createContext();
 
@@ -79,7 +79,7 @@ function AuthProvider({ children }) {
       true
     );
 
-    console.log("Authentication result:", result);
+    // console.log("Authentication result:", result);
 
     if (result.success) {
       const user = result.user;
@@ -87,8 +87,8 @@ function AuthProvider({ children }) {
         type: "login",
         payload: user,
       });
-      console.log(result);
-      console.log("Token to be stored:", result.token);
+      // console.log(result);
+      // console.log("Token to be stored:", result.token);
       localStorage.setItem("accessToken", result.token);
       localStorage.setItem("user", JSON.stringify(result.user));
     } else {
