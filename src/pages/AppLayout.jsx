@@ -24,7 +24,6 @@ function AppLayout() {
 
   const { user, isAuthenticated } = useAuth();
   const { hotels } = useHotels();
-
   const [mapLat, mapLng] = useUrlPosition();
 
   const query = searchParams.get("query");
@@ -53,7 +52,7 @@ function AppLayout() {
           to={{
             pathname: "/map",
           }}
-          state={{ position }} //pass data to route
+          state={{ position }} //passing data to route
         >
           <Button type={"secondary"} className={`${styles.mapButton}`}>
             Search on Map
