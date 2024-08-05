@@ -60,11 +60,14 @@ Registering and logging in as an authenticated user allows users to add comments
 
 - **Private Part**: Authenticated users can change their avatars. They can also add comments about a hotel, rate a hotel, and edit or delete their own comments. Users are allowed to rate each hotel only once.
 
-## The Back-end
+## The Back-End
 
 The back-end uses JSON Server as a mock API, and the JSON Server Auth extension is used for authentication purposes. JSON Server Auth provides a simple way to add JWT-based authentication to JSON Server. In this project, authentication is handled through the `POST /register` and `POST /login` routes. Both user login and editing data (sending PUT requests) require a valid token, which is included in the headers of authenticated requests. JSON Server Auth also provides guarded routes, such as the `/664/*` route, which restricts access based on the user's role. For more details, please check the [npm documentation](https://www.npmjs.com/package/json-server-auth).
 
 In the application, users create records (comments) and interact with the REST API. They can edit and delete their own comments, rate hotels, and the authentication ensures that these actions are secure and tied to the logged-in user's account.
+
+## Services
+Conversion of country code symbols to flags: The flagcdn.com service, which hosts flag images was used.
 
 ## Error Handling and Data Validation
 
@@ -99,6 +102,7 @@ In the application, users create records (comments) and interact with the REST A
 
 ## Potential Improvements
 - Prevent the behavior of a previous modal closing upon opening a new one, as a result of managing all the modals' state with a single `useModal` hook.
+- Improve search query functionality by storing in context (improved back navigation).
 - Apply more advanced state management tools (such as Redux and React Query) to better manage state, reduce complexity, and improve code readability.
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
