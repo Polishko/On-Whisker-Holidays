@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import styles from "./SearchBar.module.css";
 
@@ -9,10 +9,20 @@ import Button from "./Button";
 
 function SearchBar({ filteredHotels, setCurrentQuery }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("query") || ""
+  );
 
   const inputEl = useRef(null);
   const { isLoading } = useHotels();
+
+  // new (remember query upon navigating forward and back)
+  useEffect(() => {
+    const initialQuery = searchParams.get("query") || "";
+    setSearchQuery(initialQuery);
+    setCurrentQuery(initialQuery);
+  }, [searchParams, setCurrentQuery]);
 
   const handleInputChange = (e) => {
     const newQuery = e.target.value;

@@ -125,8 +125,8 @@ function Profile() {
     setPassword(e.target.value);
   };
 
-  const handleClickBackButton = () => {
-    navigate(-1);
+  const handleClicktoHotelList = () => {
+    navigate("/hotels");
   };
 
   // key press actions
@@ -134,7 +134,7 @@ function Profile() {
     if (isModalOpen) {
       closeModal();
     } else {
-      handleClickBackButton();
+      handleClicktoHotelList();
     }
   });
 
@@ -146,11 +146,11 @@ function Profile() {
     <main className={styles.profilePage}>
       <div className={styles.profile}>
         <Button
-          className={styles.backButton}
-          onClick={handleClickBackButton}
+          className={styles.toHotelList}
+          onClick={handleClicktoHotelList}
           type="primary"
         >
-          &larr; Back
+          &larr; To hotel list
         </Button>
         <h2>{user.name}</h2>
 
