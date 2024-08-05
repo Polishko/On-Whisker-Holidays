@@ -7,7 +7,11 @@
 - Install dependencies: `npm install`
 - Start the server: `npm run server`
 - Start development: `npm run dev`
-- This app is partially responsive in terms of design but is best viewed on computers with a screen resolution of 1920x1080.
+- This app is partially responsive but is optimized for viewing on:
+
+  Screen Resolution: 1920x1080
+  Recommended Browsers: Chrome, Microsoft Edge
+  Note: Some features like the scroller and clear buttons may not display correctly on Firefox.
 
 ![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
