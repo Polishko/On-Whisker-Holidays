@@ -84,6 +84,7 @@ function AuthProvider({ children }) {
         type: "login",
         payload: user,
       });
+      console.log("Token to be stored:", result.token);
       localStorage.setItem("accessToken", result.token);
       localStorage.setItem("user", JSON.stringify(result.user));
     } else {

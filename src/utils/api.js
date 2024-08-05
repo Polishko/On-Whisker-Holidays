@@ -349,8 +349,11 @@ export const authenticateApi = async (
       headers: { "Content-Type": "application/json" },
     });
 
+    console.log("Login response:", response);
+
     if (!response.ok) {
       const error = await response.json();
+      console.log("Login error:", error);
       return {
         success: false,
         message: error.message || "Wrong password.",
@@ -358,6 +361,7 @@ export const authenticateApi = async (
     }
 
     const data = await response.json();
+    console.log("Login data:", data);
 
     if (needUserData) {
       return { success: true, token: data.accessToken, user: data.user };
