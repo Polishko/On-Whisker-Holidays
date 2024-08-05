@@ -97,13 +97,13 @@ In the application, users create records (comments) and interact with the REST A
   - **Update**: Components respond to state or prop changes to update the UI dynamically, such as re-fetching data or re-rendering elements based on user actions.
   - **Unmount**: Cleanup logic: Aborting fetch requests.
 
-## Planned Potential Improvements
-- Prevent the behavior of a previous modal closing upon opening a new one during the process of managing all modals' state with a single `useModal` hook.
-- Learn and apply more advanced state management tools (such as Redux and React Query) to better manage state, reduce complexity, and improve code readability.
+## Potential Improvements
+- Prevent the behavior of a previous modal closing upon opening a new one, as a result of managing all the modals' state with a single `useModal` hook.
+- Apply more advanced state management tools (such as Redux and React Query) to better manage state, reduce complexity, and improve code readability.
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
 - Add hotel-adding functionality for authenticated users.
-- Testing.
+- Implement component testing.
 
 ## Credits
 - I'm thankful to Elena K., Umit, Justina, and Aysun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
