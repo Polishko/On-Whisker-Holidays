@@ -78,12 +78,16 @@ function AuthProvider({ children }) {
       `${BASE_URL}/users`,
       true
     );
+
+    console.log("Authentication result:", result);
+
     if (result.success) {
       const user = result.user;
       dispatch({
         type: "login",
         payload: user,
       });
+      console.log(result);
       console.log("Token to be stored:", result.token);
       localStorage.setItem("accessToken", result.token);
       localStorage.setItem("user", JSON.stringify(result.user));
