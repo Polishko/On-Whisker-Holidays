@@ -1,6 +1,7 @@
 import express from "express";
 import jsonServer from "json-server";
 import auth from "json-server-auth";
+import bcrypt from "bcrypt"; // Import bcrypt
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
@@ -18,17 +19,22 @@ app.use(cors());
 app.use(express.json()); // Parse JSON request bodies
 
 // Custom login route
-app.post("/api/login", (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
 
   // Validate user credentials
   const users = router.db.get("users").value(); // Get users from the db.json file
   const user = users.find(
-    (u) => u.username === username && u.password === password
+    (u) => u.username === username || u.email === username
   );
 
   if (user) {
-    res.json({ success: true, token: "123456", user });
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (passwordMatch) {
+      res.json({ success: true, token: "123456", user });
+    } else {
+      res.status(401).json({ success: false, message: "Invalid credentials" });
+    }
   } else {
     res.status(401).json({ success: false, message: "Invalid credentials" });
   }
