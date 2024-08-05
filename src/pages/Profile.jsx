@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./Profile.module.css";
+
 import { useAuth } from "../components/contexts/AuthContext";
 import { useUsers } from "../components/contexts/UsersContext";
 import { useKey } from "../hooks/useKey";
@@ -9,7 +12,6 @@ import Button from "../components/common/Button";
 import AvatarSelection from "../components/common/AvatarSelection";
 import PasswordModal from "../components/modal/PasswordModal";
 import Modal from "../components/modal/Modal";
-import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const {
@@ -37,20 +39,21 @@ function Profile() {
     { id: "dog3", src: "/avatar/dog3.png" },
   ];
 
-  function handleAvatarChange(e) {
+  const handleAvatarChange = (e) => {
     setSelectedAvatar(e.target.value);
-  }
+  };
 
-  function handleLogoutClick() {
+  const handleLogoutClick = () => {
     logout();
-  }
+  };
 
-  function handleAvatarSelection() {
+  const handleAvatarSelection = () => {
     checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;
     }
+
     const selectedAvatarPath =
       avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
 
@@ -67,7 +70,7 @@ function Profile() {
     }
     setModalType("password");
     openModal();
-  }
+  };
 
   async function handleSaveChanges() {
     try {
@@ -113,18 +116,18 @@ function Profile() {
     }
   }
 
-  function handlePasswordSubmit(e) {
+  const handlePasswordSubmit = (e) => {
     checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
       return;
     }
     setPassword(e.target.value);
-  }
+  };
 
-  function handleClickBackButton() {
+  const handleClickBackButton = () => {
     navigate(-1);
-  }
+  };
 
   // key press actions
   useKey("Escape", () => {

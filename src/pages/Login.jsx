@@ -1,3 +1,5 @@
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,12 +13,10 @@ import { useKey } from "../hooks/useKey";
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
 import Modal from "../components/modal/Modal";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
-  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-
+  const { login } = useAuth();
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
   const {

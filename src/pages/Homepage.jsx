@@ -33,6 +33,7 @@ export default function Homepage() {
           </NavLink>
         </div>
       </section>
+
       {user && isAuthenticated && <User />}
     </main>
   );

@@ -66,6 +66,10 @@ function Registration() {
     }
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   useKey("Escape", () => {
     if (isModalOpen) {
       closeModal();
@@ -78,10 +82,6 @@ function Registration() {
     }
     return resetState;
   }, [success, navigate, resetState]);
-
-  const toggleShowPassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
 
   // Ensure selected avatar is set correctly
   useEffect(() => {
