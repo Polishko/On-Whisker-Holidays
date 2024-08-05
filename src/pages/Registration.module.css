@@ -56,6 +56,10 @@
   text-decoration: none;
 }
 
+.loginInvite {
+  color: var(--color-orange);
+}
+
 .row {
   display: flex;
   flex-direction: column;

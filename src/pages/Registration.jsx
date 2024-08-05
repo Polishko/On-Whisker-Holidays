@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -97,7 +97,12 @@ function Registration() {
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
-        <header className={styles.registerHeader}>Register</header>
+        <header className={styles.registerHeader}>
+          Register / or{" "}
+          <NavLink to="/login" className={styles.loginInvite}>
+            Login here
+          </NavLink>
+        </header>
 
         <div className={styles.row}>
           <label htmlFor="name">Enter username</label>
