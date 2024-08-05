@@ -1,8 +1,13 @@
 import styles from "./About.module.css";
 
+import { useAuth } from "../components/contexts/AuthContext";
+
 import PageNav from "../components/common/PageNav";
+import User from "../components/user/User";
 
 function About() {
+  const { user, isAuthenticated } = useAuth();
+
   return (
     <main className={styles.aboutPage}>
       <PageNav />
@@ -32,6 +37,7 @@ function About() {
 
         <div className={styles.smallShape2}></div>
       </div>
+      {user && isAuthenticated && <User />}
     </main>
   );
 }

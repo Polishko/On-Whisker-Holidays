@@ -1,9 +1,16 @@
 import { NavLink } from "react-router-dom";
-import Button from "../components/common/Button";
-import PageNav from "../components/common/PageNav";
+
 import styles from "./Homepage.module.css";
 
+import { useAuth } from "../components/contexts/AuthContext";
+
+import Button from "../components/common/Button";
+import PageNav from "../components/common/PageNav";
+import User from "../components/user/User";
+
 export default function Homepage() {
+  const { user, isAuthenticated } = useAuth();
+
   return (
     <main className={styles.homepage}>
       <PageNav />
@@ -26,6 +33,7 @@ export default function Homepage() {
           </NavLink>
         </div>
       </section>
+      {user && isAuthenticated && <User />}
     </main>
   );
 }

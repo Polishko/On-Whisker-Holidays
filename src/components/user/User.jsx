@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 import styles from "./User.module.css";
 
@@ -8,8 +8,21 @@ import Button from "../common/Button";
 
 function User() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isOnHomePage = location.pathname === "/";
+  const isOnAboutPage = location.pathname === "/about";
+  const isOnMapPage = location.pathname === "/map";
 
   const { user, logout, isAuthenticated, checkTokenValidity } = useAuth();
+
+  const pathClassMap = {
+    "/": styles.onHomePage,
+    "/about": styles.onAboutPage,
+    "/map": "",
+  };
+
+  const sideClass = pathClassMap[location.pathname] || ""; // Get the class from the dictionary or use an empty string if not found
+  const userClassNames = `${styles.user} ${sideClass}`;
 
   function openProfile(e) {
     e.preventDefault();
@@ -22,7 +35,7 @@ function User() {
   }
 
   return (
-    <div className={styles.user}>
+    <div className={userClassNames}>
       <img src={user.avatar} alt="User Avatar" />
       <p>{user.name}</p>
       <Button className={styles.logoutButton} onClick={logout}>

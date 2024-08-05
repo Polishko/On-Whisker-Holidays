@@ -1,16 +1,24 @@
-import styles from "./Map.module.css";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+
 import { useEffect, useState } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+
+import styles from "./Map.module.css";
+
 import { useHotels } from "../components/contexts/HotelsContext";
+import { useAuth } from "../components/contexts/AuthContext";
 import { useGeolocation } from "../hooks/useGeoLocation";
+
 import EmojiRenderer from "../components/common/EmojiRenderer";
 import Button from "../components/common/Button";
 import PageNav from "../components/common/PageNav";
+import User from "../components/user/User";
 
 function Map() {
-  const navigate = useNavigate();
   const { hotels } = useHotels();
+  const { user, isAuthenticated } = useAuth();
+
+  const navigate = useNavigate();
   const location = useLocation();
 
   // Passed position from AppLayout
@@ -91,6 +99,7 @@ function Map() {
           ))}
         </MapContainer>
       </div>
+      {user && isAuthenticated && <User />}
     </main>
   );
 }
