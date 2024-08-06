@@ -1,3 +1,5 @@
+// Adapted slightly from  Jonas Schmedtmann's Ultimate React Course on Udemy
+
 import { useEffect, useState } from "react";
 import styles from "./Weather.module.css";
 import Spinner from "./Spinner.jsx";
