@@ -66,8 +66,8 @@ The back-end uses JSON Server as a mock API, and the JSON Server Auth extension 
 
 In the application, users create records (comments) and interact with the REST API. They can edit and delete their own comments, rate hotels, and the authentication ensures that these actions are secure and tied to the logged-in user's account.
 
-## Services
-Conversion of country code symbols to flags: The flagcdn.com service, which hosts flag images was used.
+## Services and External APIs
+This project uses the flagcdn.com service, which hosts flag images, for the conversion of country code symbols to flags. The Open-Meteo API is used to fetch real-time weather data based on latitude and longitude.
 
 ## Error Handling and Data Validation
 
@@ -81,24 +81,15 @@ Conversion of country code symbols to flags: The flagcdn.com service, which host
 
   - **RatingContext**: Specifically, RatingContext was implemented as a separate collection to handle hotel ratings. This decision was made because JSON Server Auth requires a password for editing data. Implementing hotel ratings as part of the hotel information would require users to enter their password each time they rate a hotel, which would not provide a good user experience. By using a separate collection, ratings can be managed independently without requiring frequent password entries.
 
-- **Component-Level State Management**: In addition to global state management, individual components manage their own state for specific tasks. For example, the HotelList component preserves the scroller position based on the last clicked hotel item.
+## Testing
+This project includes basic tests for simple components to ensure accurate rendering behavior based on props, children, and routing. The tests cover:
 
-- **Custom React Hooks**: Custom hooks are used to encapsulate and manage complex logic. For instance:
-  - `useAuth`: Checks token validity and manages authentication flows.
-  - `useModal`: Simplifies modal management logic, making it easier to handle multiple modals with complex interactions.
+Component Rendering: Verifying that components render the correct content based on the props provided.
+Routing Behavior: Ensuring that components behave correctly under different routing scenarios.
+Event Handling: Checking that event handlers (e.g., onClick, onChange) are called appropriately and perform the expected actions.
+The tests do not cover state management or dynamic state changes but focus on static rendering and interaction behavior.
 
-- **Stateless and Stateful Components**: The application utilizes both stateless and stateful components:
-  - **Stateless components**: These components rely on props passed from parent components and do not manage their own state. They are primarily used for rendering UI elements based on the data provided.
-  - **Stateful components**: These components manage their own state internally. Examples include components that handle forms, manage local UI state, or control the behavior of dynamic elements like modals or search results.
-
-- **Bound Forms**: The forms in the application, such as those for login, registration, and comment management, are bound to state using controlled components. This allows for real-time validation, user feedback, and the ability to handle form submissions efficiently.
-
-- **Synthetic Events**: The application leverages React's synthetic event system to handle user interactions like clicks, form submissions, and other DOM events. This system provides cross-browser compatibility and a consistent API for managing events within components.
-
-- **Component Lifecycle (Mount, Update, Unmount)**: The application makes use of React's component lifecycle methods and hooks:
-  - **Mount**: Components initialize state and perform initial data fetching when they first render.
-  - **Update**: Components respond to state or prop changes to update the UI dynamically, such as re-fetching data or re-rendering elements based on user actions.
-  - **Unmount**: Cleanup logic: Aborting fetch requests.
+To run the tests, use: `npx vitest run`
 
 ## Potential Improvements
 - Prevent the behavior of a previous modal closing upon opening a new one, as a result of managing all the modals' state with a single `useModal` hook.
@@ -107,7 +98,6 @@ Conversion of country code symbols to flags: The flagcdn.com service, which host
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
 - Add hotel-adding functionality for authenticated users.
-- Implement component testing.
 
 ## Credits
 - I'm thankful to Elena K., Umit, Justina, and Aysun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
