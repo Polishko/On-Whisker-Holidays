@@ -1,6 +1,6 @@
-# My Project for the SoftUni June 2024 React Course
+# 🚀 SoftUni June 2024 React Final Project
 
-## Prerequisites
+## 💻 Prerequisites
 
 - Download the code.
 - Install Node.js and npm.
@@ -15,7 +15,7 @@
 
 ![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
-## Live Demo
+## 🔗 Live Demo
 
 For the best experience, please install and run the app locally.
 
@@ -24,7 +24,7 @@ Alternatively, you can view a live demo of this project [here](https://on-whiske
 - **Email:** kaju@kaju.com
 - **Password:** kaju
 
-## Short Introduction
+## 📝 Short Introduction
 
 A webpage where you can find information on hotels from different parts of the world (currently focused on a few European countries) that allow pets. The hotels are listed alphabetically by country. All users can filter hotels based on search criteria (such as wi-fi, beach, nature, city, etc.) by entering keywords in the search bar.
 
@@ -32,7 +32,7 @@ For more detailed information on each hotel, including an image, rating, short d
 
 Registering and logging in as an authenticated user allows users to add comments about a hotel, rate the hotel, as well as edit and delete their own comments. They can also change their avatar for their profile.
 
-## General project structure
+## 📂 General project structure
 
 - Dynamic pages
   - /hotels: Dynamically displays a list of hotels based on search queries using query parameters. The displayed hotel list is sorted alphabetically by country. A search bar allows users to enter queries and filter the hotel list. Since the mock back-end supports filtering based on any keywords (rather than all keywords), the filtering is performed on the client side to ensure the search reflects all entered keywords.
@@ -49,7 +49,7 @@ Registering and logging in as an authenticated user allows users to add comments
   - /login: A login form for registered users to log in.
   - /register: A registration form for new users to sign up.
 
-## Public and Private Parts
+## 🌍/🔒 Public and Private Parts
 
 - **Private and Guest Routes**:
   - The `/profile` route, which allows users to update their information, is protected against access by unauthorized users. In addition, each time users interact with parts of the app that require authentication, token validity is checked by a custom hook. If the token is expired, users are logged out and redirected to the login page.
@@ -60,56 +60,46 @@ Registering and logging in as an authenticated user allows users to add comments
 
 - **Private Part**: Authenticated users can change their avatars. They can also add comments about a hotel, rate a hotel, and edit or delete their own comments. Users are allowed to rate each hotel only once.
 
-## The Back-End
+## 🖥️ Back-End
 
 The back-end uses JSON Server as a mock API, and the JSON Server Auth extension is used for authentication purposes. JSON Server Auth provides a simple way to add JWT-based authentication to JSON Server. In this project, authentication is handled through the `POST /register` and `POST /login` routes. Both user login and editing data (sending PUT requests) require a valid token, which is included in the headers of authenticated requests. JSON Server Auth also provides guarded routes, such as the `/664/*` route, which restricts access based on the user's role. For more details, please check the [npm documentation](https://www.npmjs.com/package/json-server-auth).
 
 In the application, users create records (comments) and interact with the REST API. They can edit and delete their own comments, rate hotels, and the authentication ensures that these actions are secure and tied to the logged-in user's account.
 
-## Services
-Conversion of country code symbols to flags: The flagcdn.com service, which hosts flag images was used.
+## 🌐 Services and External APIs
+This project uses the flagcdn.com service, which hosts flag images, for the conversion of country code symbols to flags. The Open-Meteo API is used to fetch real-time weather data based on latitude and longitude.
 
-## Error Handling and Data Validation
+## ❗ Error Handling and ✅ Data Validation
 
 - **React Hook Form Validation**: `react-hook-form` is used for validating the login and registration forms, ensuring that user inputs meet the required criteria before submission.
 - **Custom Validation**: Custom validation logic is implemented for actions like adding, editing, and deleting comments. This includes limiting the number of characters in comments, warning users if the comment has not changed, alerting if an avatar is not selected or changed, and validating password entries.
 - **Error Handling**: `try-catch` blocks are utilized throughout the application to handle errors gracefully, providing feedback to the user when something goes wrong.
 
-## Some Other Main Functionalities and Implementation of Programming Concepts
+## ✨ Some Main Functionalities and Implementation of Programming Concepts
 
 - **State Management with Context API and Redux**: The application uses the Context API (AuthContext, UsersContext, HotelsContext, CommentsContext, and RatingsContext) in combination with 'useReducer' to manage general state, particularly for handling data affected by REST requests. These contexts help manage authentication status (e.g., isAuthenticated), error handling during requests, and data collection.
 
   - **RatingContext**: Specifically, RatingContext was implemented as a separate collection to handle hotel ratings. This decision was made because JSON Server Auth requires a password for editing data. Implementing hotel ratings as part of the hotel information would require users to enter their password each time they rate a hotel, which would not provide a good user experience. By using a separate collection, ratings can be managed independently without requiring frequent password entries.
 
-- **Component-Level State Management**: In addition to global state management, individual components manage their own state for specific tasks. For example, the HotelList component preserves the scroller position based on the last clicked hotel item.
+## 🧪 Testing
+This project includes basic tests for simple components to ensure accurate rendering behavior based on props, children, and routing. The tests cover:
 
-- **Custom React Hooks**: Custom hooks are used to encapsulate and manage complex logic. For instance:
-  - `useAuth`: Checks token validity and manages authentication flows.
-  - `useModal`: Simplifies modal management logic, making it easier to handle multiple modals with complex interactions.
+Component Rendering: Verifying that components render the correct content based on the props provided.
+Routing Behavior: Ensuring that components behave correctly under different routing scenarios.
+Event Handling: Checking that event handlers (e.g., onClick, onChange) are called appropriately and perform the expected actions.
+The tests do not cover state management or dynamic state changes but focus on static rendering and interaction behavior.
 
-- **Stateless and Stateful Components**: The application utilizes both stateless and stateful components:
-  - **Stateless components**: These components rely on props passed from parent components and do not manage their own state. They are primarily used for rendering UI elements based on the data provided.
-  - **Stateful components**: These components manage their own state internally. Examples include components that handle forms, manage local UI state, or control the behavior of dynamic elements like modals or search results.
+To run the tests, use: `npx vitest run`
 
-- **Bound Forms**: The forms in the application, such as those for login, registration, and comment management, are bound to state using controlled components. This allows for real-time validation, user feedback, and the ability to handle form submissions efficiently.
-
-- **Synthetic Events**: The application leverages React's synthetic event system to handle user interactions like clicks, form submissions, and other DOM events. This system provides cross-browser compatibility and a consistent API for managing events within components.
-
-- **Component Lifecycle (Mount, Update, Unmount)**: The application makes use of React's component lifecycle methods and hooks:
-  - **Mount**: Components initialize state and perform initial data fetching when they first render.
-  - **Update**: Components respond to state or prop changes to update the UI dynamically, such as re-fetching data or re-rendering elements based on user actions.
-  - **Unmount**: Cleanup logic: Aborting fetch requests.
-
-## Potential Improvements
+## 💡 Potential Improvements
 - Prevent the behavior of a previous modal closing upon opening a new one, as a result of managing all the modals' state with a single `useModal` hook.
 - Improve search query functionality by storing in context (improved back navigation).
 - Apply more advanced state management tools (such as Redux and React Query) to better manage state, reduce complexity, and improve code readability.
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
 - Add hotel-adding functionality for authenticated users.
-- Implement component testing.
 
-## Credits
+## 🎉 Credits
 - I'm thankful to Elena K., Umit, Justina, and Aysun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
 - I would like to thank <a href="https://www.linkedin.com/in/tanya-dimitrova-vd/">Tanya Dimitrova</a> for helping me format my logo, and Elena K. for making recommendations about my design theme.
 - I would like to thank my spouse, Genc Oncu, for suggesting possible edge cases to test.
