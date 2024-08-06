@@ -11,7 +11,7 @@
 
   Screen Resolution: 1920x1080
   Recommended Browsers: Chrome, Microsoft Edge
-  Note: Some features like the scroller and clear buttons may not display correctly on Firefox.
+  Note: Some features like the scroller css settings may not display correctly on Firefox.
 
 ![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
