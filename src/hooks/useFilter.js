@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { containsAllKeywords } from "../utils/string";
 
-export const useFilter = (hotels, query) => {
+export const useFilter = (hotels, query, isLoading) => {
   const [filteredHotels, setFilteredHotels] = useState([]);
 
   useEffect(() => {
-    if (query) {
+    if (isLoading) {
+      setFilteredHotels([]); // While loading, keep empty
+    } else if (query) {
       const filtered = hotels.filter((hotel) =>
         containsAllKeywords(hotel.keywords, query)
       );
@@ -13,7 +15,7 @@ export const useFilter = (hotels, query) => {
     } else {
       setFilteredHotels(hotels);
     }
-  }, [hotels, query]);
+  }, [hotels, query, isLoading]);
 
   return filteredHotels;
 };

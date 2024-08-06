@@ -96,14 +96,6 @@ function HotelsProvider({ children }) {
     [currentHotel.id]
   );
 
-  // filter hotel (filtering on client side)
-  const filterHotels = useCallback(
-    (keywords) => {
-      dispatch({ type: "hotels/filtered", payload: keywords });
-    },
-    [dispatch]
-  );
-
   // fetch hotels on mount
   useEffect(() => {
     fetchHotels();
@@ -124,7 +116,6 @@ function HotelsProvider({ children }) {
         currentHotel,
         error,
         getHotel,
-        filterHotels,
       }}
     >
       {children}
