@@ -8,7 +8,7 @@ import { useHotels } from "../contexts/HotelsContext";
 import EmojiRenderer from "../common/EmojiRenderer";
 import SpecificsEmojis from "../common/SpecificsEmojis";
 
-function HotelItem({ hotel, handleItemClick, currentQuery }) {
+function HotelItem({ hotel, currentQuery }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { currentHotel } = useHotels();
@@ -26,7 +26,7 @@ function HotelItem({ hotel, handleItemClick, currentQuery }) {
 
   const handleClick = () => {
     const itemPosition = itemRef.current.getBoundingClientRect();
-    handleItemClick(itemPosition);
+    localStorage.setItem("lastClickedPosition", JSON.stringify(itemPosition)); // Store position in localStorage
   };
 
   useEffect(() => {

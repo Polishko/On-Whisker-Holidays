@@ -45,6 +45,8 @@ export function RatingsProvider({ children }) {
     initialState
   );
 
+  // console.log("Ratings in context:", ratings);
+
   const { user } = useAuth();
 
   // fetch ratings
@@ -79,7 +81,13 @@ export function RatingsProvider({ children }) {
 
   return (
     <RatingsContext.Provider
-      value={{ ratings, isLoading, error, fetchRatings, addRating }}
+      value={{
+        ratings,
+        isLoading,
+        error,
+        fetchRatings,
+        addRating,
+      }}
     >
       {children}
     </RatingsContext.Provider>

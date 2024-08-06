@@ -89,32 +89,6 @@
   font-size: 0.5em;
 }
 
-.ratingContainer {
-  display: flex;
-  gap: 0.5em;
-  margin-bottom: 0.5em;
-  font-size: 110%;
-  font-weight: bold;
-}
-
-.rate,
-.rate a {
-  color: var(--color-active);
-}
-
-.rateText {
-  color: var(--color-dark-blue);
-}
-
-.aveRating {
-  color: var(--color-brown);
-}
-
-.clickHotelInvitation p {
-  font-size: 1.5em;
-  margin-top: 2em;
-}
-
 .placeholderImage {
   padding-top: 56%;
   margin: 0 auto;

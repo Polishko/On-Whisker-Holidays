@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./HotelList.module.css";
 
@@ -13,12 +13,14 @@ function HotelList({ filteredHotels, currentQuery }) {
   const listRef = useRef(null);
   const [lastClickedPosition, setLastClickedPosition] = useState(null);
 
-  const handleItemClick = (itemPosition) => {
-    setLastClickedPosition(itemPosition);
-  };
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("lastClickedPosition");
+    if (storedPosition) {
+      setLastClickedPosition(JSON.parse(storedPosition));
+    }
+  }, []);
 
   const setListRef = useCallback(
-    // Callback to avoid adding listRef to dependency array and avoid unnecessary re-renders
     (node) => {
       if (node !== null) {
         listRef.current = node;
@@ -51,12 +53,7 @@ function HotelList({ filteredHotels, currentQuery }) {
   return (
     <ul className={styles.hotelList} ref={setListRef}>
       {filteredHotels.map((hotel) => (
-        <HotelItem
-          hotel={hotel}
-          key={hotel.id}
-          handleItemClick={handleItemClick}
-          currentQuery={currentQuery}
-        />
+        <HotelItem hotel={hotel} key={hotel.id} currentQuery={currentQuery} />
       ))}
     </ul>
   );

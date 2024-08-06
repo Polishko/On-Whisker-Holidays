@@ -1,3 +1,4 @@
+// adapted this highly customizable component from Jonas Schmedtmann's Ultimate React Course on Udemy
 import { useState } from "react";
 import PropTypes from "prop-types"; // separate from react but included in create-react-app
 

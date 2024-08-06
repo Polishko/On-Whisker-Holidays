@@ -48,6 +48,13 @@
       "avatar": "/avatar/cat3.png",
       "id": 21,
       "password": "$2a$10$mOgW6Z1d38HUs7dUWOmb3Oa6zV1JdPE6YYJ5nYf1W9AdBU9ymFx7q"
+    },
+    {
+      "email": "fufu@fufu.com",
+      "name": "fufu",
+      "avatar": "/avatar/cat3.png",
+      "id": 22,
+      "password": "$2a$10$XfWN7WGW3z7AHQuHdULTIe2meUMevxwI7D3FssxCL5QQ8aHiF7oQS"
     }
   ],
   "comments": [
@@ -273,6 +280,14 @@
       "hotelId": "Hayit Buku Bungalovs",
       "timestamp": "2024-08-02T13:48:14.023Z",
       "id": 31
+    },
+    {
+      "text": "It was nice but it was too hot around the beach, couldn't find a shadow.",
+      "userId": 22,
+      "userName": "fufu",
+      "hotelId": "Amalia Center Rooms",
+      "timestamp": "2024-08-06T13:13:01.744Z",
+      "id": 32
     }
   ],
   "posts": [
@@ -732,6 +747,24 @@
       "hotelId": "The Wooden Village",
       "rating": 5,
       "id": 12
+    },
+    {
+      "userId": 22,
+      "hotelId": "Green Village Lake",
+      "rating": 5,
+      "id": 13
+    },
+    {
+      "userId": 22,
+      "hotelId": "Datca Lake House Camping",
+      "rating": 5,
+      "id": 14
+    },
+    {
+      "userId": 22,
+      "hotelId": "Amalia Center Rooms",
+      "rating": 3,
+      "id": 15
     }
   ]
 }

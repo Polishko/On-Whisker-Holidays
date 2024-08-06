@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import styles from "./Hotel.module.css";
@@ -18,15 +18,13 @@ import Button from "../common/Button";
 import Weather from "../common/Weather";
 import CommentModal from "../modal/CommentModal";
 import Modal from "../modal/Modal";
-import StarRating from "../common/StarRating";
+import HotelRatings from "../ratings/HotelRatings";
 
 function Hotel() {
   const { id } = useParams();
   const { getHotel, currentHotel, isLoading } = useHotels();
   const { user, isAuthenticated, checkTokenValidity } = useAuth();
   const { createComment, fetchComments } = useComments();
-  const { ratings, addRating, fetchRatings } = useRatings();
-
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
   const [comment, setComment] = useState("");
@@ -34,28 +32,9 @@ function Hotel() {
   const [modalType, setModalType] = useState("");
   const navigate = useNavigate();
 
-  const existingRating = isAuthenticated
-    ? ratings.find(
-        (rating) => rating.userId === user.id && rating.hotelId === id
-      )
-    : null;
-
-  const hotelRatings = ratings
-    .filter((rating) => rating.hotelId === id)
-    .map((rating) => rating.rating);
-
-  const averageRating =
-    hotelRatings.length > 0
-      ? hotelRatings.reduce((sum, rating) => sum + rating, 0) /
-        hotelRatings.length
-      : 0;
-
   useEffect(() => {
-    if (id) {
-      getHotel(id);
-      fetchRatings();
-    }
-  }, [id, getHotel, fetchRatings]);
+    if (id) getHotel(id);
+  }, [id, getHotel]);
 
   const {
     hotelName,
@@ -66,29 +45,6 @@ function Hotel() {
     countryCode: emoji,
     position: { lat: latitude, lng: longitude },
   } = currentHotel;
-
-  // handle add rating
-  async function setUserRating(rating) {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-
-    const newRating = {
-      userId: user.id,
-      hotelId: id,
-      rating,
-    };
-
-    const result = await addRating(newRating);
-
-    if (result.success) {
-      await fetchRatings();
-    } else {
-      // console.log(result.message);
-    }
-  }
 
   function handleAddComment() {
     checkTokenValidity();
@@ -195,33 +151,7 @@ function Hotel() {
           </div>
         </div>
 
-        <div className={styles.ratingContainer}>
-          <div className={styles.rate}>
-            {isAuthenticated ? (
-              existingRating ? (
-                `Your rating: ${existingRating.rating}`
-              ) : (
-                <StarRating
-                  maxRating={5}
-                  size={24}
-                  onSetRating={setUserRating}
-                />
-              )
-            ) : (
-              <Link to="/register">Register to rate</Link>
-            )}
-          </div>
-
-          {averageRating > 0 ? (
-            <div className={styles.aveRating}>{`/ ${averageRating.toFixed(
-              1
-            )} average rating`}</div>
-          ) : (
-            <div className={styles.rateText}>
-              &larr; Be the first one to rate this hotel!
-            </div>
-          )}
-        </div>
+        <HotelRatings hotelId={id} />
 
         <div className={styles.detail}>
           <p>{detail}</p>

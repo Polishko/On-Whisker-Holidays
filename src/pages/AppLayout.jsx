@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  NavLink,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 import styles from "./AppLayout.module.css";
 
@@ -19,6 +24,7 @@ import Spinner from "../components/common/Spinner";
 function AppLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [currentQuery, setCurrentQuery] = useState("");
   const [position, setPosition] = useState("");
@@ -31,14 +37,22 @@ function AppLayout() {
   const filteredHotels = useFilter(hotels, currentQuery);
 
   useEffect(() => {
+    // Clear localStorage scroll position when navigating to /hotels (but not /hotels/:id)
+    if (location.pathname === "/hotels") {
+      localStorage.removeItem("lastClickedPosition");
+    }
+  }, []);
+
+  useEffect(() => {
     if (query) {
       setCurrentQuery(query);
-    } else if (!currentQuery) {
+    } else if (!currentQuery && !location.pathname.includes("/hotels/")) {
+      //attempting proper back navigation and query clearing
       navigate("/hotels");
     } else {
       setCurrentQuery("");
     }
-  }, [query]);
+  }, [query, currentQuery, navigate, location.pathname]);
 
   useEffect(() => {
     if (mapLat && mapLng) setPosition([mapLat, mapLng]);

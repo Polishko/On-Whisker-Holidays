@@ -6,10 +6,10 @@ import styles from "./SearchBar.module.css";
 import { useHotels } from "../contexts/HotelsContext";
 
 import Button from "./Button";
+import Spinner from "./Spinner";
 
 function SearchBar({ filteredHotels, setCurrentQuery }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  // const [searchQuery, setSearchQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get("query") || ""
   );
@@ -64,11 +64,13 @@ function SearchBar({ filteredHotels, setCurrentQuery }) {
         )}
       </div>
       <span className={styles.filterResults}>
-        {isLoading
-          ? "Loading hotels..."
-          : hotelCount === 1
-          ? `${hotelCount} hotel`
-          : `${hotelCount} hotels`}
+        {isLoading ? (
+          <Spinner />
+        ) : hotelCount === 1 ? (
+          `${hotelCount} hotel`
+        ) : (
+          `${hotelCount} hotels`
+        )}
       </span>
     </div>
   );

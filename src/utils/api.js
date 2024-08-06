@@ -191,7 +191,7 @@ export const createCommentApi = async (
   }
 };
 
-// POST item: rating
+// POST item: add rating
 export const addRatingApi = async (
   url,
   newRating,
