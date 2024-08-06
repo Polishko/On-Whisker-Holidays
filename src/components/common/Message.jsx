@@ -15,3 +15,4 @@ function Message({ message, background }) {
 }
 
 export default Message;
+
