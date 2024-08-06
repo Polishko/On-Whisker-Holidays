@@ -7,7 +7,8 @@ export const flagemojiToPNG = (flag) => {
   return `https://flagcdn.com/24x18/${countryCode}.png`;
 };
 
-export const specificsToEmoji = (specifics) => {
+export const specificsToEmoji = (specifics = []) => {
+  //handle undefined or null values gracefully
   const emojis = {
     mountain: "🌄",
     seaside: "🌊",
