@@ -13,6 +13,7 @@ function HotelList({ filteredHotels, currentQuery }) {
   const listRef = useRef(null);
   const [lastClickedPosition, setLastClickedPosition] = useState(null);
 
+  // set last clicked hotel position for scroller
   useEffect(() => {
     const storedPosition = localStorage.getItem("lastClickedPosition");
     if (storedPosition) {

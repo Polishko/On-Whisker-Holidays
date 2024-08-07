@@ -4,7 +4,7 @@ export function useKey(key, action) {
   useEffect(() => {
     const callback = (e) => {
       if (e.code && key && e.code.toLowerCase() === key.toLowerCase()) {
-        e.preventDefault();
+        e.preventDefault(); //possibly redundant but safe
         action(e);
       }
     };

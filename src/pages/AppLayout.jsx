@@ -26,7 +26,7 @@ function AppLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [currentQuery, setCurrentQuery] = useState("");
+  const [currentQuery, setCurrentQuery] = useState(""); //This will be better handled in a context since it's global
   const [position, setPosition] = useState("");
 
   const { user, isAuthenticated } = useAuth();
@@ -47,7 +47,7 @@ function AppLayout() {
     if (query) {
       setCurrentQuery(query);
     } else if (!currentQuery && !location.pathname.includes("/hotels/")) {
-      //attempting proper back navigation and query clearing
+      //attempting proper back navigation to hotel item
       navigate("/hotels");
     } else {
       setCurrentQuery("");

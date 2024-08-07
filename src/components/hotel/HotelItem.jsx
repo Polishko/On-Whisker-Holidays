@@ -24,11 +24,12 @@ function HotelItem({ hotel, currentQuery }) {
     position,
   } = hotel;
 
-  const handleClick = () => {
+  const handleClickItem = () => {
     const itemPosition = itemRef.current.getBoundingClientRect();
     localStorage.setItem("lastClickedPosition", JSON.stringify(itemPosition)); // Store position in localStorage
   };
 
+  // maintain filter state when navigating between hotel items
   useEffect(() => {
     if (currentQuery !== searchParams.get("query") && currentQuery) {
       setSearchParams({ query: currentQuery });
@@ -36,7 +37,7 @@ function HotelItem({ hotel, currentQuery }) {
   }, [currentQuery, searchParams, setSearchParams]);
 
   return (
-    <li style={{ cursor: "pointer" }} onClick={handleClick} ref={itemRef}>
+    <li style={{ cursor: "pointer" }} onClick={handleClickItem} ref={itemRef}>
       <Link
         className={`${styles.hotelItem} ${
           id === currentHotel.id ? styles["hotelItem--active"] : ""

@@ -9,6 +9,7 @@ import Button from "./Button";
 import Spinner from "./Spinner";
 
 function SearchBar({ filteredHotels, setCurrentQuery }) {
+  // currentQuery is the global in all App and searchCuery is the local in search bar
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get("query") || ""
@@ -17,17 +18,17 @@ function SearchBar({ filteredHotels, setCurrentQuery }) {
   const inputEl = useRef(null);
   const { isLoading } = useHotels();
 
-  // new (remember query upon navigating forward and back)
+  // new (remember query upon navigating forward and back and if user changes it)
   useEffect(() => {
     const initialQuery = searchParams.get("query") || "";
     setSearchQuery(initialQuery);
     setCurrentQuery(initialQuery);
   }, [searchParams, setCurrentQuery]);
 
-  const handleInputChange = (e) => {
+  const handleSearchInputChange = (e) => {
     const newQuery = e.target.value;
     setSearchQuery(newQuery);
-    setCurrentQuery(newQuery); // Sync with parent
+    setCurrentQuery(newQuery); // Sync with parent immediately; url update might be slightly slower
     if (newQuery) {
       setSearchParams({ query: newQuery });
     } else {
@@ -35,7 +36,7 @@ function SearchBar({ filteredHotels, setCurrentQuery }) {
     }
   };
 
-  const clearInput = () => {
+  const clearSearchInput = () => {
     setCurrentQuery("");
     setSearchQuery("");
     setSearchParams({});
@@ -51,14 +52,14 @@ function SearchBar({ filteredHotels, setCurrentQuery }) {
           className={styles.searchInput}
           placeholder="Enter search keywords"
           value={searchQuery}
-          onChange={handleInputChange}
+          onChange={handleSearchInputChange}
           ref={inputEl}
           autoComplete="off"
           name={`search_${Math.random().toString(36).substring(2)}`}
           id={`search_${Math.random().toString(36).substring(2)}`}
         />
         {searchQuery && (
-          <Button className={styles.clearButton} onClick={clearInput}>
+          <Button className={styles.clearButton} onClick={clearSearchInput}>
             &times;
           </Button>
         )}
