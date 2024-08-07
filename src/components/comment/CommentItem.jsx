@@ -1,21 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import styles from "./CommentItem.module.css";
-
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
-import { useModal } from "../../hooks/useModal";
 
 import DeleteModal from "../modal/DeleteModal";
 import PasswordModal from "../modal/PasswordModal";
 import CommentModal from "../modal/CommentModal";
 import Modal from "../modal/Modal";
+import { useModal } from "../../hooks/useModal";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
-
   const { user, validatePassword, isAuthenticated, checkTokenValidity } =
     useAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
@@ -29,7 +26,7 @@ function CommentItem({ comment, userName }) {
 
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
-  function handleEditCommentClick() {
+  function handleEditClick() {
     checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
@@ -41,17 +38,6 @@ function CommentItem({ comment, userName }) {
     openModal();
   }
 
-  function handleDeleteCommentClick() {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    setModalType("delete");
-    openModal();
-  }
-
-  // triggered in comment modal
   function handleCharChange(e) {
     const value = e.target.value;
     if (value.length <= 80) {
@@ -60,7 +46,30 @@ function CommentItem({ comment, userName }) {
     }
   }
 
-  // triggered in comment modal
+  async function handleDelete() {
+    checkTokenValidity();
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    try {
+      const result = await deleteComment(comment.id);
+      closeModal();
+      if (result.success) {
+        setModalType("message");
+        openModal("Comment deleted successfully.");
+        await fetchComments();
+      } else {
+        setModalType("message");
+        openModal(result.message);
+      }
+    } catch (error) {
+      closeModal();
+      setModalType("message");
+      openModal("Failed to delete comment.");
+    }
+  }
+
   function handleCommentSubmit() {
     checkTokenValidity();
     if (!isAuthenticated) {
@@ -77,12 +86,10 @@ function CommentItem({ comment, userName }) {
     openModal();
   }
 
-  // triggered in password modal
   function handlePasswordSubmit(e) {
     setPassword(e.target.value);
   }
 
-  // triggered in password modal
   async function handleSaveChanges() {
     try {
       if (!password) {
@@ -128,30 +135,6 @@ function CommentItem({ comment, userName }) {
     setPassword("");
   }
 
-  async function handleDeleteComment() {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    try {
-      const result = await deleteComment(comment.id);
-      closeModal();
-      if (result.success) {
-        setModalType("message");
-        openModal("Comment deleted successfully.");
-        await fetchComments();
-      } else {
-        setModalType("message");
-        openModal(result.message);
-      }
-    } catch (error) {
-      closeModal();
-      setModalType("message");
-      openModal("Failed to delete comment.");
-    }
-  }
-
   // Modal open close with key actions
   useKey("Escape", () => {
     if (isModalOpen) {
@@ -163,7 +146,7 @@ function CommentItem({ comment, userName }) {
   useKey("Enter", () => {
     if (modalType === "comment") handleCommentSubmit();
     if (modalType === "password") handleSaveChanges();
-    if (modalType === "delete") handleDeleteComment();
+    if (modalType === "delete") handleDelete();
   });
 
   return (
@@ -185,14 +168,17 @@ function CommentItem({ comment, userName }) {
           <div className={styles.icons}>
             <div
               className={`${styles.edit} ${styles.iconContainer}`}
-              onClick={handleEditCommentClick}
+              onClick={handleEditClick}
             >
               <i className={`fas fa-edit ${styles.icon}`}></i>
               <span className={styles.tooltipText}>Edit comment</span>
             </div>
             <div
               className={`${styles.trash} ${styles.iconContainer}`}
-              onClick={handleDeleteCommentClick}
+              onClick={() => {
+                setModalType("delete");
+                openModal();
+              }}
             >
               <i className={`fa-solid fa-trash-can ${styles.icon}`}></i>
               <span className={styles.tooltipText}>Delete comment</span>
@@ -221,7 +207,7 @@ function CommentItem({ comment, userName }) {
           ) : modalType === "delete" ? (
             <DeleteModal
               closeDeleteModal={closeModal}
-              handleDeleteComment={handleDeleteComment}
+              handleDelete={handleDelete}
             />
           ) : (
             <p>{modalMessage}</p>

@@ -93,15 +93,6 @@
       "id": 7
     },
     {
-      "text": "Great escape from the city's hot summers.",
-      "userId": 16,
-      "userName": "kaju",
-      "hotelId": "Hija Rila Lakes",
-      "timestamp": "2024-07-26T17:33:11.884Z",
-      "id": 8,
-      "password": "kaju"
-    },
-    {
       "text": "I met my new friends Loki and Mori here. Played with them all day. ",
       "userId": 16,
       "userName": "kaju",
@@ -296,6 +287,14 @@
       "hotelId": "Sorrento Sole Mare",
       "timestamp": "2024-08-07T08:10:15.182Z",
       "id": 33
+    },
+    {
+      "text": "It was amazing!",
+      "userId": 16,
+      "userName": "kaju",
+      "hotelId": "Hija Rila Lakes",
+      "timestamp": "2024-08-07T17:33:32.941Z",
+      "id": 35
     }
   ],
   "posts": [
