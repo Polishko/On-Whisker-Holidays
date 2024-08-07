@@ -29,7 +29,7 @@ export default function Homepage() {
 
         <div className={styles.goToApp}>
           <NavLink to="/hotels">
-            <Button type={"tertiary"}>Start you adventure now!</Button>
+            <Button type={"tertiary"}>Start your adventure now!</Button>
           </NavLink>
         </div>
       </section>
