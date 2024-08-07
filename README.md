@@ -92,8 +92,8 @@ The tests do not cover state management or dynamic state changes but focus on st
 To run the tests, use: `npx vitest run`
 
 ## 💡 Potential Improvements
+- Improve search query and filtering functionality by storing in search context (improved back navigation, reduced complexity, consistency, prevent prop drilling).
 - Prevent the behavior of a previous modal closing upon opening a new one, as a result of managing all the modals' state with a single `useModal` hook.
-- Improve search query functionality by storing in context (improved back navigation).
 - Apply more advanced state management tools (such as Redux and React Query) to better manage state, reduce complexity, and improve code readability.
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
