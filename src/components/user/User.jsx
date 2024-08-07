@@ -9,9 +9,6 @@ import Button from "../common/Button";
 function User() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isOnHomePage = location.pathname === "/";
-  const isOnAboutPage = location.pathname === "/about";
-  const isOnMapPage = location.pathname === "/map";
 
   const { user, logout, isAuthenticated, checkTokenValidity } = useAuth();
 
@@ -21,7 +18,7 @@ function User() {
     "/map": "",
   };
 
-  const sideClass = pathClassMap[location.pathname] || ""; // Get the class from the dictionary or use an empty string if not found
+  const sideClass = pathClassMap[location.pathname] || "";
   const userClassNames = `${styles.user} ${sideClass}`;
 
   function openProfile(e) {
