@@ -7,8 +7,7 @@
 - Install dependencies: `npm install`
 - Start the server: `npm run server`
 - Start development: `npm run dev`
-- This app is partially responsive but is designed for viewing on:
-  Screen Resolution: 1920x1080
+- This app is designed for viewing on screen Resolution: 1920x1080 and is partially responsive.
   Recommended Browsers: Chrome, Microsoft Edge
   Note: Some features like the scroller css settings may not display correctly on Firefox.
 
@@ -100,6 +99,7 @@ To run the tests, use: `npx vitest run`
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
 - Add hotel-adding functionality for authenticated users.
+- Adapt design for mobile.
 
 ## 🎉 Credits
 - I'm thankful to Elena K., Umit, Justina, and Aysun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
