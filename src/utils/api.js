@@ -254,7 +254,7 @@ export const editDataApi = async (
 
   try {
     const token = localStorage.getItem("accessToken");
-    console.log("Data being sent in PUT request:", updatedItem);
+    // console.log("Data being sent in PUT request:", updatedItem);
 
     // PUT edited data
     const res = await fetch(url, {
