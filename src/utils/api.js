@@ -1,11 +1,5 @@
 // GET collection
-export const fetchData = async (
-  url,
-  dispatch,
-  successType,
-  dataName,
-  transformData = (data) => data
-) => {
+export const fetchData = async (url, dispatch, successType, dataName) => {
   const controller = new AbortController();
   dispatch({ type: "loading" });
 
@@ -14,7 +8,7 @@ export const fetchData = async (
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
 
-    dispatch({ type: successType, payload: transformData(data) });
+    dispatch({ type: successType, payload: data });
   } catch (error) {
     // console.error("Error fetching data:", error);
 

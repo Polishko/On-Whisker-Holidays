@@ -17,7 +17,7 @@ function User() {
 
   const pathClassMap = {
     "/": styles.onHomePage,
-    "/about": styles.onAboutPage,
+    "/about": "",
     "/map": "",
   };
 

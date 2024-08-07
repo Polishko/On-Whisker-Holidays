@@ -16,22 +16,8 @@
 }
 
 .onHomePage {
-  position: absolute;
-  height: 7%;
-  width: 18%;
-  top: 90rem;
-  left: 78%;
   background-color: var(--color-light-blue);
   color: var(--color-font);
-  text-align: center;
-}
-
-.onAboutPage {
-  position: absolute;
-  height: 7%;
-  width: 18%;
-  top: 90rem;
-  left: 78%;
   text-align: center;
 }
 
