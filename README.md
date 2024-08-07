@@ -75,11 +75,14 @@ This project uses the flagcdn.com service, which hosts flag images, for the conv
 - **Custom Validation**: Custom validation logic is implemented for actions like adding, editing, and deleting comments. This includes limiting the number of characters in comments, warning users if the comment has not changed, alerting if an avatar is not selected or changed, and validating password entries.
 - **Error Handling**: `try-catch` blocks are utilized throughout the application to handle errors gracefully, providing feedback to the user when something goes wrong.
 
-## ✨ Some Main Functionalities and Implementation of Programming Concepts
+## ✨ Other Main Functionalities and Implementation of Programming Concepts
 
-- **State Management with Context API and Redux**: The application uses the Context API (AuthContext, UsersContext, HotelsContext, CommentsContext, and RatingsContext) in combination with 'useReducer' to manage general state, particularly for handling data affected by REST requests. These contexts help manage authentication status (e.g., isAuthenticated), error handling during requests, and data collection.
-
-  - **RatingContext**: Specifically, RatingContext was implemented as a separate collection to handle hotel ratings. This decision was made because JSON Server Auth requires a password for editing data. Implementing hotel ratings as part of the hotel information would require users to enter their password each time they rate a hotel, which would not provide a good user experience. By using a separate collection, ratings can be managed independently without requiring frequent password entries.
+- **State Management with Context API and Redux**: The application uses the Context API (e.g., AuthContext, UsersContext, HotelsContext, CommentsContext, RatingsContext) along with the useReducer hook to manage global state effectively. This setup is particularly useful for handling data affected by REST API requests, managing authentication status (e.g., isAuthenticated), handling errors during requests, and collecting data.
+- **Scroll Position Tracking**: The application implements scroll position tracking for the hotel list using useRef and local storage. When a user clicks on a hotel item, its position is stored. This position is then used to maintain the scroll position when navigating back to the list. If no item is clicked, the stored position in local storage is cleared.
+- **Global Query Handling**: The application remembers the search query across navigation between hotel items. While this is currently managed within components, it can be further optimized by implementing a Context API for global query management. This would centralize query state and make it more consistent across the application.
+- **Interactive Map Integration**: The application integrates an interactive map using React Leaflet. The map dynamically updates and centers based on the user's location or selected hotel, providing an enhanced user experience for location-based searches.
+- **Custom Hooks for Reusable Logic**: The project implements custom hooks (e.g., useKey, useModal, useFilter, useUrlPosition) to encapsulate reusable logic, such as handling keyboard shortcuts, managing modals, filtering lists, and managing URL positions.
+- **Performance Optimization with useCallback**: The application uses useCallback to optimize performance by memoizing some callback functions, preventing unnecessary re-renders and ensuring efficient data handling.
 
 ## 🧪 Testing
 This project includes basic tests for simple components to ensure accurate rendering behavior based on props, children, and routing. The tests cover:
