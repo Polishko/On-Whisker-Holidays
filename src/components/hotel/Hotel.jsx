@@ -6,7 +6,6 @@ import styles from "./Hotel.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
-import { useRatings } from "../contexts/RatingsContext";
 import { useKey } from "../../hooks/useKey";
 import { useModal } from "../../hooks/useModal";
 
@@ -23,7 +22,7 @@ import HotelRatings from "../ratings/HotelRatings";
 function Hotel() {
   const { id } = useParams();
   const { getHotel, currentHotel, isLoading } = useHotels();
-  const { user, isAuthenticated, checkTokenValidity } = useAuth();
+  const { isAuthenticated, checkTokenValidity } = useAuth();
   const { createComment, fetchComments } = useComments();
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
 
@@ -46,7 +45,7 @@ function Hotel() {
     position: { lat: latitude, lng: longitude },
   } = currentHotel;
 
-  function handleAddComment() {
+  function handleAddCommentClick() {
     checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
@@ -56,6 +55,7 @@ function Hotel() {
     openModal();
   }
 
+  // triggered in CommentModal
   function handleCharChange(e) {
     const value = e.target.value;
     if (value.length <= 80) {
@@ -64,6 +64,7 @@ function Hotel() {
     }
   }
 
+  // triggered in CommentModal
   async function handleCommentSubmit(e) {
     e.preventDefault();
     if (!comment.trim()) {
@@ -94,6 +95,7 @@ function Hotel() {
     setModalType("");
   }
 
+  // key press actions
   useKey("Escape", (e) => {
     if (isModalOpen) {
       handleCloseModal(e);
@@ -102,12 +104,7 @@ function Hotel() {
 
   useKey("Enter", (e) => {
     if (isModalOpen && modalType === "comment") {
-      if (comment.trim()) {
-        handleCommentSubmit(e);
-      } else {
-        setModalType("message");
-        openModal("Please add a comment to submit!");
-      }
+      handleCommentSubmit(e);
     } else if (isModalOpen) {
       handleCloseModal();
     }
@@ -170,7 +167,7 @@ function Hotel() {
               <Button
                 className={styles.addComment}
                 type="quaternary"
-                onClick={handleAddComment}
+                onClick={handleAddCommentClick}
               >
                 Add comment
               </Button>

@@ -76,7 +76,7 @@ function AuthProvider({ children }) {
       credentials,
       `${BASE_URL}/login`,
       `${BASE_URL}/users`,
-      true
+      true //need user data? yes/ thought about using also for PUT request password validation without user data but separated for now
     );
 
     // console.log("Authentication result:", result);
@@ -123,6 +123,7 @@ function AuthProvider({ children }) {
     [dispatch]
   );
 
+  // not utilized yet
   const resetError = useCallback(() => {
     dispatch({ type: "reset/error" });
   }, []);

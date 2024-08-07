@@ -288,6 +288,14 @@
       "hotelId": "Amalia Center Rooms",
       "timestamp": "2024-08-06T13:13:01.744Z",
       "id": 32
+    },
+    {
+      "text": "A very calm and relaxing beach.",
+      "userId": 13,
+      "userName": "gizmo",
+      "hotelId": "Sorrento Sole Mare",
+      "timestamp": "2024-08-07T08:10:15.182Z",
+      "id": 33
     }
   ],
   "posts": [
@@ -765,6 +773,12 @@
       "hotelId": "Amalia Center Rooms",
       "rating": 3,
       "id": 15
+    },
+    {
+      "userId": 13,
+      "hotelId": "Sorrento Sole Mare",
+      "rating": 4,
+      "id": 16
     }
   ]
 }

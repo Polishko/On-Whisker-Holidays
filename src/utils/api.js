@@ -5,6 +5,7 @@ export const fetchData = async (url, dispatch, successType, dataName) => {
 
   try {
     const response = await fetch(url, { signal: controller.signal });
+
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
 
@@ -32,8 +33,7 @@ export const fetchItem = async (
   dispatch,
   successType,
   currentId,
-  dataName,
-  transformData = (data) => data
+  dataName
 ) => {
   const controller = new AbortController();
 
@@ -42,11 +42,13 @@ export const fetchItem = async (
 
   try {
     const response = await fetch(url, { signal: controller.signal });
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     const data = await response.json();
-    dispatch({ type: successType, payload: transformData(data) });
+    dispatch({ type: successType, payload: data });
   } catch (error) {
     if (error.name !== "AbortError") {
       dispatch({
@@ -211,7 +213,7 @@ export const addRatingApi = async (
       body: JSON.stringify(newRating),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Add the Authorization header
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -252,6 +254,7 @@ export const editDataApi = async (
 
   try {
     const token = localStorage.getItem("accessToken");
+    console.log("Data being sent in PUT request:", updatedItem);
 
     // PUT edited data
     const res = await fetch(url, {
@@ -305,7 +308,7 @@ export const editDataApi = async (
   }
 };
 
-// authenticate user for login and PUT requests
+// authenticate user for login
 export const authenticateApi = async (
   credentials,
   url,
@@ -333,7 +336,7 @@ export const authenticateApi = async (
       };
     }
 
-    // attempt login
+    // attempt authentication
     const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify(credentials),

@@ -101,7 +101,7 @@ function HotelsProvider({ children }) {
     fetchHotels();
   }, [fetchHotels]);
 
-  // Reset currentHotel on location change (force page to forget last rendered hotel)
+  // Reset currentHotel on location change (force page to forget last rendered hotel) // check for potential issues?
   useEffect(() => {
     if (!location.pathname.startsWith("/hotels/")) {
       dispatch({ type: "hotel/reset" });

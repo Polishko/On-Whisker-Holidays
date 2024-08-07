@@ -80,7 +80,7 @@ function Registration() {
     if (success) {
       navigate("/login");
     }
-    return resetState;
+    return resetState; // clear context upon navigating elsewhere
   }, [success, navigate, resetState]);
 
   // Ensure selected avatar is set correctly
