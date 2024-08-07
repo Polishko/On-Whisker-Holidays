@@ -7,8 +7,7 @@
 - Install dependencies: `npm install`
 - Start the server: `npm run server`
 - Start development: `npm run dev`
-- This app is partially responsive but is optimized for viewing on:
-
+- This app is partially responsive but is designed for viewing on:
   Screen Resolution: 1920x1080
   Recommended Browsers: Chrome, Microsoft Edge
   Note: Some features like the scroller css settings may not display correctly on Firefox.
