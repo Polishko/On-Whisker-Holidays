@@ -28,7 +28,7 @@ function User() {
       navigate("/login");
       return;
     }
-    navigate("profile");
+    navigate("/profile");
   }
 
   return (
