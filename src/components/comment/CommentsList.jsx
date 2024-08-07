@@ -14,6 +14,14 @@ function CommentsList() {
   const { currentHotel } = useHotels();
   const { isAuthenticated } = useAuth();
 
+  if (isLoading) {
+    return (
+      <div className={styles.commentList}>
+        <Spinner />
+      </div>
+    );
+  }
+
   if (!currentHotel.hotelName) return;
 
   const filteredComments = comments.filter(
@@ -42,23 +50,19 @@ function CommentsList() {
       <div className={styles.commentsHeader}>
         <h3>Visitors&apos; comments</h3>
         <p>
-          {isLoading
-            ? "Loading comments..."
-            : commentCount === 1
+          {commentCount === 1
             ? `${commentCount} comment`
             : `${commentCount} comments`}
         </p>
       </div>
       <ul>
-        {filteredComments.map((comment) => {
-          return (
-            <CommentItem
-              comment={comment}
-              key={comment.id}
-              userName={comment.userName}
-            />
-          );
-        })}
+        {filteredComments.map((comment) => (
+          <CommentItem
+            comment={comment}
+            key={comment.id}
+            userName={comment.userName}
+          />
+        ))}
       </ul>
     </div>
   );
