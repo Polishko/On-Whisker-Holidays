@@ -42,7 +42,7 @@ function HotelRatings({ hotelId }) {
     }
 
     if (existingRating) {
-      alert("You have already rated this hotel.");
+      // alert("You have already rated this hotel.");
       return;
     }
 
@@ -55,7 +55,7 @@ function HotelRatings({ hotelId }) {
     const result = await addRating(newRating);
 
     if (result.success) {
-      await fetchRatings(); // Refresh the ratings after successful addition
+      await fetchRatings();
     } else {
       console.error(result.message);
     }
