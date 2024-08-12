@@ -45,11 +45,12 @@ The live demo is not available for now. Please see the screenshots below for vis
 
 - Registration and login pages combining server-side error handling and front-end error handling using React Hook Form
   ![image](https://github.com/user-attachments/assets/84c96f74-fa27-499a-9ac8-9464b9077246)
+  ![image](https://github.com/user-attachments/assets/2204fd7a-9433-47c5-95d5-85e7d1467182)
 
-- Extra functionalities for authenticated users: Add, delete, edit comments; rate hotels
+- Extra functionalities for authenticated users: Add, delete, edit comments; rate hotels; edit avatar
   ![image](https://github.com/user-attachments/assets/78ad53de-a85d-4f6a-a86b-0e6fd7782072)
-  ![image](https://github.com/user-attachments/assets/c72ff8c7-959e-402e-92ba-ee21989ed837)
-
+  ![image](https://github.com/user-attachments/assets/e6f6bdc4-a48c-4d84-8b7b-313f9e2ff49d)
+  ![image](https://github.com/user-attachments/assets/e0ba994b-51fc-4447-b323-d45083e11eb5)
 
 
 ## 📂 General project structure
@@ -122,6 +123,7 @@ To run the tests, use: `npx vitest run`
 - Add page forward and back functionality for the comments list.
 - Add hotel-adding functionality for authenticated users.
 - Adapt design for mobile.
+- Add a "hotels to visit" list for logged-in users.
 
 ## 🎉 Credits
 - I'm thankful to Elena K., Umit, Justina, and Aysun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
