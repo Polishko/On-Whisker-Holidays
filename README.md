@@ -17,10 +17,9 @@
 
 For the best experience, please install and run the app locally.
 
-Alternatively, you can view a live demo of this project [here](https://react-final-project-65e2e7c5597c.herokuapp.com/.). However, since Heroku does not persist registration information with the mock JSON server, the registration functionality is not available on the live site. You can still log in using the following credentials to experience the app as an authenticated user:
+~~Alternatively, you can view a live demo of this project [here](https://react-final-project-65e2e7c5597c.herokuapp.com/.).~~
 
-- **Email:** kaju@kaju.com
-- **Password:** kaju
+The live demo is not available for now.
 
 ## 📝 Short Introduction
 
