@@ -34,7 +34,7 @@ The live demo is not available for now. Please see the screenshots below for vis
 - Homepage
   ![image](https://github.com/user-attachments/assets/1aafadad-ec2f-4d0c-970a-8d90c2bacb7c)
 
-- Public app main page with hotel list, hotel item details including local temperature, global search query to filter hotels based on facilities, comments from other users/visitors
+- Public app main page with hotel list, hotel item details including local temperature, global search query to filter the hotels based on facilities, comments from other users/visitors
   ![image](https://github.com/user-attachments/assets/98093833-2e3f-4c2d-b2fb-9bc5ccb9f3f1)
 
 - Persisted hotel list scroller behavior for a better user experience
