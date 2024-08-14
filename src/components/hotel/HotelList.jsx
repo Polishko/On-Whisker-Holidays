@@ -8,7 +8,7 @@ import Spinner from "../common/Spinner";
 import Message from "../common/Message";
 import HotelItem from "./HotelItem";
 
-function HotelList({ filteredHotels, currentQuery }) {
+function HotelList({ filteredHotels }) {
   const { hotels, isLoading } = useHotels();
   const listRef = useRef(null);
   const [lastClickedPosition, setLastClickedPosition] = useState(null);

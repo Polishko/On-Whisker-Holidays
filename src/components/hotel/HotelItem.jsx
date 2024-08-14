@@ -31,7 +31,6 @@ function HotelItem({ hotel }) {
     localStorage.setItem("lastClickedPosition", JSON.stringify(itemPosition)); // Store position in localStorage
   };
 
-  // Ensure the search query is included in the URL
   useEffect(() => {
     if (currentSearchQuery) {
       searchParams.set("query", currentSearchQuery);
@@ -45,9 +44,7 @@ function HotelItem({ hotel }) {
         className={`${styles.hotelItem} ${
           id === currentHotel.id ? styles["hotelItem--active"] : ""
         }`}
-        to={`hotels/${id}?lat=${position.lat}&lng=${position.lng}&query=${
-          currentSearchQuery || ""
-        }`}
+        to={`hotels/${id}?lat=${position.lat}&lng=${position.lng}`}
       >
         <div className={styles.leftContainer}>
           <h3 className={styles.name}>{hotelName}</h3>
