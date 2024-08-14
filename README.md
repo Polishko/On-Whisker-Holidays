@@ -13,15 +13,6 @@
 
 ![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
-## 🔗 Live Demo
-
-For the best experience, please install and run the app locally.
-
-Alternatively, you can view a live demo of this project [here](https://react-final-project-65e2e7c5597c.herokuapp.com/.). However, since Heroku does not persist registration information with the mock JSON server, the registration functionality is not available on the live site. You can still log in using the following credentials to experience the app as an authenticated user:
-
-- **Email:** kaju@kaju.com
-- **Password:** kaju
-
 ## 📝 Short Introduction
 
 A webpage where you can find information on hotels from different parts of the world (currently focused on a few European countries) that allow pets. The hotels are listed alphabetically by country. All users can filter hotels based on search criteria (such as wi-fi, beach, nature, city, etc.) by entering keywords in the search bar.
@@ -29,6 +20,38 @@ A webpage where you can find information on hotels from different parts of the w
 For more detailed information on each hotel, including an image, rating, short description, facilities (e.g., pool, wi-fi, parking), current local temperature, and web page address, users can click on each hotel in the list. Additionally, users can search for hotels on an interactive map, which centers based on the user's location (if supported by the browser) when a hotel is not selected.
 
 Registering and logging in as an authenticated user allows users to add comments about a hotel, rate the hotel, as well as edit and delete their own comments. They can also change their avatar for their profile.
+
+## 🔗 Live Demo
+
+For the best experience, please install and run the app locally.
+
+~~Alternatively, you can view a live demo of this project [here](https://react-final-project-65e2e7c5597c.herokuapp.com/.).~~
+
+The live demo is not available for now. Please see the screenshots below for visual orientation.
+
+## 🖼️  Screenshots
+
+- Homepage
+  ![image](https://github.com/user-attachments/assets/1aafadad-ec2f-4d0c-970a-8d90c2bacb7c)
+
+- Public app main page with hotel list, hotel item details including local temperature, global search query to filter the hotels based on facilities, comments from other users/visitors
+  ![image](https://github.com/user-attachments/assets/98093833-2e3f-4c2d-b2fb-9bc5ccb9f3f1)
+
+- Persisted hotel list scroller behavior for a better user experience
+![image](https://github.com/user-attachments/assets/fbb30cd1-d930-4d9b-8e41-674cfced9ac2)
+
+- Zoomable map search page linked with the hotels page
+ ![image](https://github.com/user-attachments/assets/70b9276d-9f11-4280-983d-b248b1d89130)
+
+- Registration and login pages combining server-side error handling and front-end error handling using React Hook Form
+  ![image](https://github.com/user-attachments/assets/84c96f74-fa27-499a-9ac8-9464b9077246)
+  ![image](https://github.com/user-attachments/assets/2204fd7a-9433-47c5-95d5-85e7d1467182)
+
+- Extra functionalities for authenticated users: Add, delete, edit comments; rate hotels; edit avatar
+  ![image](https://github.com/user-attachments/assets/78ad53de-a85d-4f6a-a86b-0e6fd7782072)
+  ![image](https://github.com/user-attachments/assets/e6f6bdc4-a48c-4d84-8b7b-313f9e2ff49d)
+  ![image](https://github.com/user-attachments/assets/e0ba994b-51fc-4447-b323-d45083e11eb5)
+
 
 ## 📂 General project structure
 
@@ -100,6 +123,7 @@ To run the tests, use: `npx vitest run`
 - Add page forward and back functionality for the comments list.
 - Add hotel-adding functionality for authenticated users.
 - Adapt design for mobile.
+- Add a "hotels to visit" list for logged-in users.
 
 ## 🎉 Credits
 - I'm thankful to Elena K., Umit, Justina, and Aysun Oncu for providing some of the pictures taken during their holidays with their beloved animal friends.
