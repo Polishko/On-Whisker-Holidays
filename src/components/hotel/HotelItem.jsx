@@ -4,12 +4,14 @@ import { Link, useSearchParams } from "react-router-dom";
 import styles from "./HotelItem.module.css";
 
 import { useHotels } from "../contexts/HotelsContext";
+import { useSearchQuery } from "../contexts/SearchQueryContext";
 
 import EmojiRenderer from "../common/EmojiRenderer";
 import SpecificsEmojis from "../common/SpecificsEmojis";
 
-function HotelItem({ hotel, currentQuery }) {
+function HotelItem({ hotel }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { currentSearchQuery } = useSearchQuery();
 
   const { currentHotel } = useHotels();
   const itemRef = useRef(null);
@@ -29,12 +31,13 @@ function HotelItem({ hotel, currentQuery }) {
     localStorage.setItem("lastClickedPosition", JSON.stringify(itemPosition)); // Store position in localStorage
   };
 
-  // maintain filter state when navigating between hotel items
+  // Ensure the search query is included in the URL
   useEffect(() => {
-    if (currentQuery !== searchParams.get("query") && currentQuery) {
-      setSearchParams({ query: currentQuery });
+    if (currentSearchQuery) {
+      searchParams.set("query", currentSearchQuery);
+      setSearchParams(searchParams);
     }
-  }, [currentQuery, searchParams, setSearchParams]);
+  }, [currentSearchQuery, searchParams, setSearchParams]);
 
   return (
     <li style={{ cursor: "pointer" }} onClick={handleClickItem} ref={itemRef}>
@@ -42,7 +45,9 @@ function HotelItem({ hotel, currentQuery }) {
         className={`${styles.hotelItem} ${
           id === currentHotel.id ? styles["hotelItem--active"] : ""
         }`}
-        to={`hotels/${id}?lat=${position.lat}&lng=${position.lng}`}
+        to={`hotels/${id}?lat=${position.lat}&lng=${position.lng}&query=${
+          currentSearchQuery || ""
+        }`}
       >
         <div className={styles.leftContainer}>
           <h3 className={styles.name}>{hotelName}</h3>

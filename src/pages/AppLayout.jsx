@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   NavLink,
   useLocation,
   useNavigate,
+  useNavigationType,
   useSearchParams,
 } from "react-router-dom";
 
@@ -10,8 +11,10 @@ import styles from "./AppLayout.module.css";
 
 import { useAuth } from "../components/contexts/AuthContext";
 import { useHotels } from "../components/contexts/HotelsContext";
+import { useSearchQuery } from "../components/contexts/SearchQueryContext";
 import { useFilter } from "../hooks/useFilter";
 import { useUrlPosition } from "../hooks/useUrlPosition";
+import { useHandleNavigation } from "../hooks/useHandleNavigation";
 
 import HotelList from "../components/hotel/HotelList";
 import PageNav from "../components/common/PageNav";
@@ -23,36 +26,35 @@ import Spinner from "../components/common/Spinner";
 
 function AppLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigationType = useNavigationType();
+  const navigate = useNavigate();
 
-  const [currentQuery, setCurrentQuery] = useState(""); //This will be better handled in a context since it's global
+  const { currentSearchQuery, clearSearchQuery } = useSearchQuery();
   const [position, setPosition] = useState("");
 
   const { user, isAuthenticated } = useAuth();
   const { hotels, isLoading } = useHotels();
   const [mapLat, mapLng] = useUrlPosition();
 
-  const query = searchParams.get("query");
-  const filteredHotels = useFilter(hotels, currentQuery);
+  const filteredHotels = useFilter(hotels, currentSearchQuery);
 
   useEffect(() => {
-    // Clear localStorage scroll position when navigating to /hotels (but not /hotels/:id)
-    if (location.pathname === "/hotels") {
-      localStorage.removeItem("lastClickedPosition");
-    }
-  }, []);
+    const urlQuery = searchParams.get("query");
+    localStorage.setItem("prevURL", location.path);
 
-  useEffect(() => {
-    if (query) {
-      setCurrentQuery(query);
-    } else if (!currentQuery && !location.pathname.includes("/hotels/")) {
-      //attempting proper back navigation to hotel item
-      navigate("/hotels");
-    } else {
-      setCurrentQuery("");
+    if (!currentSearchQuery) {
+      setSearchParams({}, { replace: true });
+      localStorage.setItem("prevSearchQuery", "");
     }
-  }, [query, currentQuery, navigate, location.pathname]);
+
+    if (currentSearchQuery && currentSearchQuery !== urlQuery) {
+      setSearchParams({ query: currentSearchQuery }, { replace: true });
+      localStorage.setItem("prevSearchQuery", currentSearchQuery);
+    }
+  }, [currentSearchQuery, setSearchParams, searchParams]);
+
+  useHandleNavigation(clearSearchQuery, setSearchParams, currentSearchQuery);
 
   useEffect(() => {
     if (mapLat && mapLng) setPosition([mapLat, mapLng]);
@@ -76,18 +78,12 @@ function AppLayout() {
 
         <div className={styles.container}>
           <div className={styles.left}>
-            <SearchBar
-              filteredHotels={filteredHotels}
-              setCurrentQuery={setCurrentQuery}
-            />
+            <SearchBar filteredHotels={filteredHotels} />
 
             {isLoading ? (
               <Spinner />
             ) : (
-              <HotelList
-                filteredHotels={filteredHotels}
-                currentQuery={currentQuery}
-              />
+              <HotelList filteredHotels={filteredHotels} />
             )}
           </div>
 

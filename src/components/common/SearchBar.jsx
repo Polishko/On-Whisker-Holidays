@@ -1,45 +1,26 @@
-import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useRef } from "react";
 
 import styles from "./SearchBar.module.css";
 
 import { useHotels } from "../contexts/HotelsContext";
+import { useSearchQuery } from "../contexts/SearchQueryContext";
 
 import Button from "./Button";
 import Spinner from "./Spinner";
 
-function SearchBar({ filteredHotels, setCurrentQuery }) {
-  // currentQuery is the global in all App and searchCuery is the local in search bar
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(
-    searchParams.get("query") || ""
-  );
-
+function SearchBar({ filteredHotels }) {
   const inputEl = useRef(null);
   const { isLoading } = useHotels();
-
-  // new (remember query upon navigating forward and back and if user changes it)
-  useEffect(() => {
-    const initialQuery = searchParams.get("query") || "";
-    setSearchQuery(initialQuery);
-    setCurrentQuery(initialQuery);
-  }, [searchParams, setCurrentQuery]);
+  const { currentSearchQuery, setSearchQuery, clearSearchQuery } =
+    useSearchQuery();
 
   const handleSearchInputChange = (e) => {
     const newQuery = e.target.value;
     setSearchQuery(newQuery);
-    setCurrentQuery(newQuery); // Sync with parent immediately; url update might be slightly slower
-    if (newQuery) {
-      setSearchParams({ query: newQuery });
-    } else {
-      setSearchParams({});
-    }
   };
 
-  const clearSearchInput = () => {
-    setCurrentQuery("");
-    setSearchQuery("");
-    setSearchParams({});
+  const handleClearSearchInput = () => {
+    clearSearchQuery();
     inputEl.current.focus();
   };
 
@@ -51,15 +32,18 @@ function SearchBar({ filteredHotels, setCurrentQuery }) {
         <input
           className={styles.searchInput}
           placeholder="Enter search keywords"
-          value={searchQuery}
+          value={currentSearchQuery}
           onChange={handleSearchInputChange}
           ref={inputEl}
           autoComplete="off"
           name={`search_${Math.random().toString(36).substring(2)}`}
           id={`search_${Math.random().toString(36).substring(2)}`}
         />
-        {searchQuery && (
-          <Button className={styles.clearButton} onClick={clearSearchInput}>
+        {currentSearchQuery && (
+          <Button
+            className={styles.clearButton}
+            onClick={handleClearSearchInput}
+          >
             &times;
           </Button>
         )}

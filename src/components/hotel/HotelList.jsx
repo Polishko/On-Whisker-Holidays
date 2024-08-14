@@ -54,7 +54,7 @@ function HotelList({ filteredHotels, currentQuery }) {
   return (
     <ul className={styles.hotelList} ref={setListRef}>
       {filteredHotels.map((hotel) => (
-        <HotelItem hotel={hotel} key={hotel.id} currentQuery={currentQuery} />
+        <HotelItem hotel={hotel} key={hotel.id} />
       ))}
     </ul>
   );

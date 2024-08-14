@@ -24,9 +24,9 @@
     {
       "email": "toti@toti.com",
       "name": "toti",
-      "avatar": "/avatar/dog2.png",
+      "avatar": "/avatar/dog1.png",
       "id": 18,
-      "password": "$2a$10$JWwDFgP2N17YljjjNMlP9OMT6QXqlFEwibqhCU4M2a248i9OvbqNW"
+      "password": "$2a$10$IrVhbB9TgKV4VoXuuqmqtuy.tshXJCf/5tuMBXVSbLwBqj.GYTbCW"
     },
     {
       "email": "mori@mori.com",
@@ -45,9 +45,9 @@
     {
       "email": "polen@polen.com",
       "name": "polen",
-      "avatar": "/avatar/cat3.png",
+      "avatar": "/avatar/cat2.png",
       "id": 21,
-      "password": "$2a$10$mOgW6Z1d38HUs7dUWOmb3Oa6zV1JdPE6YYJ5nYf1W9AdBU9ymFx7q"
+      "password": "$2a$10$IRyOiXAIi5.akoCVPQ.jYePJh1Fh6uvN1cFz.X23GyxyZIZyEBd.u"
     },
     {
       "email": "fufu@fufu.com",
@@ -778,6 +778,18 @@
       "hotelId": "Sorrento Sole Mare",
       "rating": 4,
       "id": 16
+    },
+    {
+      "userId": 18,
+      "hotelId": "Hija Rila Lakes",
+      "rating": 4,
+      "id": 17
+    },
+    {
+      "userId": 21,
+      "hotelId": "Sorrento Sole Mare",
+      "rating": 5,
+      "id": 18
     }
   ]
 }

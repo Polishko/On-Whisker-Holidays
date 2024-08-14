@@ -20,6 +20,7 @@ import About from "./pages/About";
 
 import HotelList from "./components/hotel/HotelList";
 import Hotel from "./components/hotel/Hotel";
+import { SearchQueryProvider } from "./components/contexts/SearchQueryContext";
 
 function App() {
   return (
@@ -28,31 +29,33 @@ function App() {
         <UsersProvider>
           <CommentsProvider>
             <RatingsProvider>
-              <HotelsProvider>
-                <Routes>
-                  <Route index element={<Homepage />} />
+              <SearchQueryProvider>
+                <HotelsProvider>
+                  <Routes>
+                    <Route index element={<Homepage />} />
 
-                  <Route path="/" element={<AppLayout />}>
-                    <Route index element={<Navigate replace to="hotels" />} />
-                    <Route path="hotels" element={<HotelList />} />
-                    <Route path="hotels/:id" element={<Hotel />} />
-                  </Route>
-                  <Route path="/map" element={<Map />} />
+                    <Route path="/" element={<AppLayout />}>
+                      <Route index element={<Navigate replace to="hotels" />} />
+                      <Route path="hotels" element={<HotelList />} />
+                      <Route path="hotels/:id" element={<Hotel />} />
+                    </Route>
+                    <Route path="/map" element={<Map />} />
 
-                  <Route path="/about" element={<About />} />
+                    <Route path="/about" element={<About />} />
 
-                  <Route element={<GuestRoute />}>
-                    <Route path="/register" element={<Registration />} />
-                    <Route path="/login" element={<Login />} />
-                  </Route>
+                    <Route element={<GuestRoute />}>
+                      <Route path="/register" element={<Registration />} />
+                      <Route path="/login" element={<Login />} />
+                    </Route>
 
-                  <Route element={<PrivateRoute />}>
-                    <Route path="/profile" element={<Profile />} />
-                  </Route>
+                    <Route element={<PrivateRoute />}>
+                      <Route path="/profile" element={<Profile />} />
+                    </Route>
 
-                  <Route path="*" element={<PageNotFound />} />
-                </Routes>
-              </HotelsProvider>
+                    <Route path="*" element={<PageNotFound />} />
+                  </Routes>
+                </HotelsProvider>
+              </SearchQueryProvider>
             </RatingsProvider>
           </CommentsProvider>
         </UsersProvider>
