@@ -24,11 +24,12 @@ function Hotel() {
   const { getHotel, currentHotel, isLoading } = useHotels();
   const { isAuthenticated, checkTokenValidity } = useAuth();
   const { createComment, fetchComments } = useComments();
-  const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
+
+  const commentModal = useModal();
+  const messageModal = useModal();
 
   const [comment, setComment] = useState("");
   const [charCount, setCharCount] = useState(0);
-  const [modalType, setModalType] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,11 +52,10 @@ function Hotel() {
       navigate("/login");
       return;
     }
-    setModalType("comment");
-    openModal();
+    commentModal.openModal();
   }
 
-  // triggered in CommentModal
+  // typing in CommentModal
   function handleCharChange(e) {
     const value = e.target.value;
     if (value.length <= 80) {
@@ -64,49 +64,49 @@ function Hotel() {
     }
   }
 
-  // triggered in CommentModal
+  // submitting in CommentModal
   async function handleCommentSubmit(e) {
     e.preventDefault();
     if (!comment.trim()) {
-      setModalType("message");
-      openModal("Please add a comment to submit!");
+      messageModal.openModal("Please add a comment to submit!");
       return;
     }
     try {
       const result = await createComment(comment, id);
       if (result.success) {
-        setModalType("message");
-        openModal("Comment added successfully.");
+        messageModal.openModal("Comment added successfully.");
         await fetchComments();
+        commentModal.closeModal();
       } else {
-        setModalType("message");
-        openModal(result.message);
+        messageModal.openModal(result.message);
       }
     } catch (error) {
-      setModalType("message");
-      openModal("There was an error adding the comment.");
+      messageModal.openModal("There was an error adding the comment.");
     }
   }
 
   function handleCloseModal() {
-    closeModal();
+    if (messageModal.isModalOpen) {
+      messageModal.closeModal();
+    } else if (commentModal.isModalOpen) {
+      commentModal.closeModal();
+    }
     setComment("");
     setCharCount(0);
-    setModalType("");
   }
 
   // key press actions
   useKey("Escape", (e) => {
-    if (isModalOpen) {
+    if (commentModal.isModalOpen || messageModal.isModalOpen) {
       handleCloseModal(e);
     }
   });
 
   useKey("Enter", (e) => {
-    if (isModalOpen && modalType === "comment") {
-      handleCommentSubmit(e);
-    } else if (isModalOpen) {
+    if (messageModal.isModalOpen) {
       handleCloseModal();
+    } else if (commentModal.isModalOpen) {
+      handleCommentSubmit(e);
     }
   });
 
@@ -176,22 +176,21 @@ function Hotel() {
         </div>
       </section>
 
-      {isModalOpen && (
-        <Modal
-          onClose={handleCloseModal}
-          showCloseButton={modalType === "message"}
-        >
-          {modalType === "message" ? (
-            <p>{modalMessage}</p>
-          ) : (
-            <CommentModal
-              handleCloseModal={handleCloseModal}
-              handleCharChange={handleCharChange}
-              handleCommentSubmit={handleCommentSubmit}
-              comment={comment}
-              charCount={charCount}
-            />
-          )}
+      {commentModal.isModalOpen && (
+        <Modal onClose={commentModal.closeModal} showCloseButton={true}>
+          <CommentModal
+            handleCloseModal={commentModal.closeModal}
+            handleCharChange={handleCharChange}
+            handleCommentSubmit={handleCommentSubmit}
+            comment={comment}
+            charCount={charCount}
+          />
+        </Modal>
+      )}
+
+      {messageModal.isModalOpen && (
+        <Modal onClose={messageModal.closeModal} showCloseButton={true}>
+          <p>{messageModal.modalMessage}</p>
         </Modal>
       )}
     </div>
