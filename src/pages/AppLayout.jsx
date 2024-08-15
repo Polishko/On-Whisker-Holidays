@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { NavLink, useLocation, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useSearchParams } from "react-router-dom";
 
 import styles from "./AppLayout.module.css";
 
@@ -19,10 +19,12 @@ import Button from "../components/common/Button";
 import Spinner from "../components/common/Spinner";
 
 function AppLayout() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
+  const [setSearchParams] = useSearchParams();
+  const [isUserTyping, setIsUserTyping] = useState(false);
+  const [isQueryCleared, setIsQueryCleared] = useState(false);
 
-  const { currentSearchQuery, clearSearchQuery } = useSearchQuery();
+  const { currentSearchQuery, clearSearchQuery, setSearchQuery } =
+    useSearchQuery();
   const [position, setPosition] = useState("");
 
   const { user, isAuthenticated } = useAuth();
@@ -31,22 +33,13 @@ function AppLayout() {
 
   const filteredHotels = useFilter(hotels, currentSearchQuery);
 
-  useEffect(() => {
-    const urlQuery = searchParams.get("query");
-    localStorage.setItem("prevURL", location.path);
-
-    if (!currentSearchQuery) {
-      setSearchParams({}, { replace: true });
-      localStorage.setItem("prevSearchQuery", "");
-    }
-
-    if (currentSearchQuery && currentSearchQuery !== urlQuery) {
-      setSearchParams({ query: currentSearchQuery }, { replace: true });
-      localStorage.setItem("prevSearchQuery", currentSearchQuery);
-    }
-  }, [currentSearchQuery, setSearchParams, searchParams]);
-
-  useHandleNavigation(clearSearchQuery, setSearchParams, currentSearchQuery);
+  useHandleNavigation(
+    clearSearchQuery,
+    setSearchParams,
+    currentSearchQuery,
+    isUserTyping,
+    isQueryCleared
+  );
 
   useEffect(() => {
     if (mapLat && mapLng) setPosition([mapLat, mapLng]);
@@ -70,7 +63,11 @@ function AppLayout() {
 
         <div className={styles.container}>
           <div className={styles.left}>
-            <SearchBar filteredHotels={filteredHotels} />
+            <SearchBar
+              filteredHotels={filteredHotels}
+              setIsUserTyping={setIsUserTyping}
+              setIsQueryCleared={setIsQueryCleared}
+            />
 
             {isLoading ? (
               <Spinner />

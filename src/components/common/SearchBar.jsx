@@ -8,18 +8,32 @@ import { useSearchQuery } from "../contexts/SearchQueryContext";
 import Button from "./Button";
 import Spinner from "./Spinner";
 
-function SearchBar({ filteredHotels }) {
+function SearchBar({ filteredHotels, setIsUserTyping, setIsQueryCleared }) {
   const inputEl = useRef(null);
   const { isLoading } = useHotels();
   const { currentSearchQuery, setSearchQuery, clearSearchQuery } =
     useSearchQuery();
+  const typingTimeoutRef = useRef(null);
 
   const handleSearchInputChange = (e) => {
+    setIsQueryCleared(false);
     const newQuery = e.target.value;
     setSearchQuery(newQuery);
+    setIsUserTyping(true);
+
+    // Clear the previous timeout if any
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    // Set a new timeout to reset isTyping after user stops typing for 500ms
+    typingTimeoutRef.current = setTimeout(() => {
+      setIsUserTyping(false);
+    }, 500);
   };
 
   const handleClearSearchInput = () => {
+    setIsQueryCleared(true);
     clearSearchQuery();
     inputEl.current.focus();
   };
