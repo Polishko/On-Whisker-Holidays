@@ -1,0 +1,26 @@
+.tooltipText {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltipText::after {
+  content: attr(title);
+  position: absolute;
+  background-color: var(--color-comment-light-1);
+  color: var(--color-font);
+  padding: 0.5em;
+  border-radius: 1em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.tooltipText:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
