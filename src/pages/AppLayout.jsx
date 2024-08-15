@@ -23,8 +23,7 @@ function AppLayout() {
   const [isUserTyping, setIsUserTyping] = useState(false);
   const [isQueryCleared, setIsQueryCleared] = useState(false);
 
-  const { currentSearchQuery, clearSearchQuery, setSearchQuery } =
-    useSearchQuery();
+  const { currentSearchQuery, clearSearchQuery } = useSearchQuery();
   const [position, setPosition] = useState("");
 
   const { user, isAuthenticated } = useAuth();
