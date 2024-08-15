@@ -19,7 +19,7 @@ import Button from "../components/common/Button";
 import Spinner from "../components/common/Spinner";
 
 function AppLayout() {
-  const [setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isUserTyping, setIsUserTyping] = useState(false);
   const [isQueryCleared, setIsQueryCleared] = useState(false);
 
