@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  NavLink,
-  useLocation,
-  useNavigate,
-  useNavigationType,
-  useSearchParams,
-} from "react-router-dom";
+import { NavLink, useLocation, useSearchParams } from "react-router-dom";
 
 import styles from "./AppLayout.module.css";
 
@@ -27,8 +21,6 @@ import Spinner from "../components/common/Spinner";
 function AppLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const navigationType = useNavigationType();
-  const navigate = useNavigate();
 
   const { currentSearchQuery, clearSearchQuery } = useSearchQuery();
   const [position, setPosition] = useState("");

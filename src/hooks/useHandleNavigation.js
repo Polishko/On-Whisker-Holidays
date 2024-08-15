@@ -11,23 +11,18 @@ export function useHandleNavigation(
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (navigationType === "POP" && !location.pathname.includes("/hotels/")) {
-      clearSearchQuery();
-      setSearchParams({}, { replace: true });
-    } else if (
-      navigationType === "POP" &&
-      location.pathname.includes("/hotels/") &&
-      currentSearchQuery
-    ) {
-      clearSearchQuery();
-      setSearchParams({}, { replace: true });
-      navigate("/hotels");
-    } else if (
-      navigationType === "POP" &&
-      location.pathname.includes("/hotels/") &&
-      localStorage.getItem("prevURL") === location.pathname
-    ) {
-      navigate("/hotels");
+    if (navigationType === "POP") {
+      if (!location.pathname.includes("/hotels/")) {
+        clearSearchQuery();
+        setSearchParams({}, { replace: true });
+      } else {
+        if (currentSearchQuery) {
+          clearSearchQuery();
+          setSearchParams({}, { replace: true });
+          navigate("/hotels");
+        } else if (localStorage.getItem("prevURL") === location.pathname)
+          navigate("/hotels");
+      }
     }
   }, [
     location.pathname,
