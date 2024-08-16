@@ -1,15 +1,17 @@
 import { useState } from "react";
+
 import styles from "./CommentItem.module.css";
+
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
 import { useAuthenticatedAction } from "../../hooks/useAuthenticatedAction";
+import { useModal } from "../../hooks/useModal";
 
 import DeleteModal from "../modal/DeleteModal";
 import PasswordModal from "../modal/PasswordModal";
 import CommentModal from "../modal/CommentModal";
 import Modal from "../modal/Modal";
-import { useModal } from "../../hooks/useModal";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
