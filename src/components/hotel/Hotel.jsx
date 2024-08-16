@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import styles from "./Hotel.module.css";
@@ -8,6 +8,7 @@ import { useComments } from "../contexts/CommentsContext";
 import { useHotels } from "../contexts/HotelsContext";
 import { useKey } from "../../hooks/useKey";
 import { useModal } from "../../hooks/useModal";
+import { useAuthenticatedAction } from "../../hooks/useAuthenticatedAction";
 
 import Spinner from "../common/Spinner";
 import EmojiRenderer from "../common/EmojiRenderer";
@@ -22,15 +23,16 @@ import HotelRatings from "../ratings/HotelRatings";
 function Hotel() {
   const { id } = useParams();
   const { getHotel, currentHotel, isLoading } = useHotels();
-  const { isAuthenticated, checkTokenValidity } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { createComment, fetchComments } = useComments();
+
+  const executeAuthenticatedAction = useAuthenticatedAction();
 
   const commentModal = useModal();
   const messageModal = useModal();
 
   const [comment, setComment] = useState("");
   const [charCount, setCharCount] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) getHotel(id);
@@ -47,12 +49,9 @@ function Hotel() {
   } = currentHotel;
 
   function handleAddCommentClick() {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    commentModal.openModal();
+    executeAuthenticatedAction(() => {
+      commentModal.openModal();
+    });
   }
 
   // typing in CommentModal
@@ -65,24 +64,28 @@ function Hotel() {
   }
 
   // submitting in CommentModal
-  async function handleCommentSubmit(e) {
+  function handleCommentSubmit(e) {
     e.preventDefault();
+
     if (!comment.trim()) {
       messageModal.openModal("Please add a comment to submit!");
       return;
     }
-    try {
-      const result = await createComment(comment, id);
-      if (result.success) {
-        messageModal.openModal("Comment added successfully.");
-        await fetchComments();
-        commentModal.closeModal();
-      } else {
-        messageModal.openModal(result.message);
+
+    executeAuthenticatedAction(async () => {
+      try {
+        const result = await createComment(comment, id);
+        if (result.success) {
+          messageModal.openModal("Comment added successfully.");
+          await fetchComments();
+          commentModal.closeModal();
+        } else {
+          messageModal.openModal(result.message);
+        }
+      } catch (error) {
+        messageModal.openModal("There was an error adding the comment.");
       }
-    } catch (error) {
-      messageModal.openModal("There was an error adding the comment.");
-    }
+    });
   }
 
   function handleCloseModal() {

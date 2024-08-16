@@ -4,6 +4,7 @@ import styles from "./HotelRatings.module.css";
 
 import { useRatings } from "../contexts/RatingsContext";
 import { useAuth } from "../contexts/AuthContext";
+import { useAuthenticatedAction } from "../../hooks/useAuthenticatedAction";
 
 import Spinner from "../common/Spinner";
 import StarRating from "./StarRating";
@@ -16,6 +17,8 @@ function HotelRatings({ hotelId }) {
     fetchRatings,
     isLoading: isRatingsLoading,
   } = useRatings();
+  const executeAuthenticatedAction = useAuthenticatedAction();
+
   const navigate = useNavigate();
 
   const existingRating = isAuthenticated
@@ -34,31 +37,27 @@ function HotelRatings({ hotelId }) {
         hotelRatings.length
       : 0;
 
-  async function setUserRating(rating) {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
+  function setUserRating(rating) {
+    executeAuthenticatedAction(async () => {
+      if (existingRating) {
+        //  console.log("You have already rated this hotel.");
+        return;
+      }
 
-    if (existingRating) {
-      // alert("You have already rated this hotel.");
-      return;
-    }
+      const newRating = {
+        userId: user.id,
+        hotelId: hotelId,
+        rating,
+      };
 
-    const newRating = {
-      userId: user.id,
-      hotelId: hotelId,
-      rating,
-    };
+      const result = await addRating(newRating);
 
-    const result = await addRating(newRating);
-
-    if (result.success) {
-      await fetchRatings();
-    } else {
-      console.error(result.message);
-    }
+      if (result.success) {
+        await fetchRatings();
+      } else {
+        console.error(result.message);
+      }
+    });
   }
 
   if (isRatingsLoading) return <Spinner />;

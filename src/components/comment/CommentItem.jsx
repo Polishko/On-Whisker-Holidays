@@ -4,6 +4,7 @@ import styles from "./CommentItem.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
 import { useKey } from "../../hooks/useKey";
+import { useAuthenticatedAction } from "../../hooks/useAuthenticatedAction";
 
 import DeleteModal from "../modal/DeleteModal";
 import PasswordModal from "../modal/PasswordModal";
@@ -18,6 +19,8 @@ function CommentItem({ comment, userName }) {
     useAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
 
+  const executeAuthenticatedAction = useAuthenticatedAction();
+
   const [editedComment, setEditedComment] = useState(comment.text);
   const [charCount, setCharCount] = useState(comment.text.length);
   const [password, setPassword] = useState("");
@@ -30,23 +33,17 @@ function CommentItem({ comment, userName }) {
   const deleteModal = useModal();
 
   function handleEditClick() {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    setEditedComment(comment.text);
-    setCharCount(comment.text.length);
-    commentModal.openModal();
+    executeAuthenticatedAction(() => {
+      setEditedComment(comment.text);
+      setCharCount(comment.text.length);
+      commentModal.openModal();
+    });
   }
 
   function handleDeleteClick() {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    deleteModal.openModal();
+    executeAuthenticatedAction(() => {
+      deleteModal.openModal();
+    });
   }
 
   function handleCharChange(e) {
@@ -57,91 +54,83 @@ function CommentItem({ comment, userName }) {
     }
   }
 
-  async function handleDelete() {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    try {
-      const result = await deleteComment(comment.id);
-      if (result.success) {
-        messageModal.openModal("Comment deleted successfully.");
-        await fetchComments();
-      } else {
-        messageModal.openModal(result.message);
+  function handleDelete() {
+    executeAuthenticatedAction(async () => {
+      try {
+        const result = await deleteComment(comment.id);
+        if (result.success) {
+          messageModal.openModal("Comment deleted successfully.");
+          await fetchComments();
+        } else {
+          messageModal.openModal(result.message);
+        }
+      } catch (error) {
+        messageModal.openModal("Failed to delete comment.");
       }
-    } catch (error) {
-      messageModal.openModal("Failed to delete comment.");
-    }
+    });
   }
 
   function handleCommentSubmit() {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-
-    if (comment.text === editedComment.trim()) {
-      messageModal.openModal("Make changes to edit the old comment.");
-      return;
-    } else if (editedComment.trim() === "") {
-      messageModal.openModal("Comment can't be empty.");
-      return;
-    }
-    passwordModal.openModal();
+    executeAuthenticatedAction(() => {
+      if (comment.text === editedComment.trim()) {
+        messageModal.openModal("Make changes to edit the old comment.");
+        return;
+      } else if (editedComment.trim() === "") {
+        messageModal.openModal("Comment can't be empty.");
+        return;
+      }
+      passwordModal.openModal();
+    });
   }
 
   function handlePasswordSubmit(e) {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    setPassword(e.target.value);
+    executeAuthenticatedAction(() => {
+      setPassword(e.target.value);
+    });
   }
 
-  async function handleSaveChanges() {
-    try {
-      if (!password) {
-        messageModal.openModal("Password field can't be empty!");
+  function handleSaveChanges() {
+    executeAuthenticatedAction(async () => {
+      try {
+        if (!password) {
+          messageModal.openModal("Password field can't be empty!");
+          setPassword("");
+          return;
+        }
+
+        const credentials = { email: user.email, password: password };
+        const { success } = await validatePassword(credentials);
+
+        if (!success) {
+          messageModal.openModal("Wrong password! Please try again.");
+          setPassword("");
+          return;
+        }
+
+        const currentDate = new Date();
+        const newTimestamp = currentDate.toISOString();
+
+        const updatedComment = {
+          ...comment,
+          text: editedComment,
+          timestamp: newTimestamp,
+        };
+        const result = await editComment(updatedComment);
+
+        if (result.success) {
+          messageModal.openModal("Comment updated successfully!");
+          await fetchComments();
+          passwordModal.closeModal();
+        } else {
+          messageModal.openModal(result.message);
+        }
+      } catch (currentError) {
+        messageModal.openModal("There was an error updating the comment.");
+      } finally {
+        commentModal.closeModal();
         setPassword("");
-        return;
       }
-
-      const credentials = { email: user.email, password: password };
-      const { success } = await validatePassword(credentials);
-
-      if (!success) {
-        messageModal.openModal("Wrong password! Please try again.");
-        setPassword("");
-        return;
-      }
-
-      const currentDate = new Date();
-      const newTimestamp = currentDate.toISOString();
-
-      const updatedComment = {
-        ...comment,
-        text: editedComment,
-        timestamp: newTimestamp,
-      };
-      const result = await editComment(updatedComment);
-
-      if (result.success) {
-        messageModal.openModal("Comment updated successfully!");
-        await fetchComments();
-      } else {
-        messageModal.openModal(result.message);
-      }
-    } catch (currentError) {
-      messageModal.openModal("There was an error updating the comment.");
-    } finally {
-      passwordModal.closeModal();
-      commentModal.closeModal();
-      setPassword("");
-    }
+    });
   }
 
   function handleCloseModal() {
@@ -149,12 +138,12 @@ function CommentItem({ comment, userName }) {
       messageModal.closeModal();
     } else if (passwordModal.isModalOpen) {
       passwordModal.closeModal();
+      setPassword("");
     } else if (deleteModal.isModalOpen) {
       deleteModal.closeModal();
     } else if (commentModal.isModalOpen) {
       commentModal.closeModal();
     }
-    setPassword("");
   }
 
   // key press actions
@@ -171,10 +160,15 @@ function CommentItem({ comment, userName }) {
   });
 
   useKey("Enter", () => {
-    if (commentModal.isModalOpen) handleCommentSubmit();
-    if (passwordModal.isModalOpen) handleSaveChanges();
-    if (deleteModal.isModalOpen) handleDelete();
-    if (messageModal.isModalOpen) handleCloseModal();
+    if (messageModal.isModalOpen) {
+      messageModal.closeModal();
+    } else if (passwordModal.isModalOpen) {
+      handleSaveChanges();
+    } else if (commentModal.isModalOpen) {
+      handleCommentSubmit();
+    } else if (deleteModal.isModalOpen) {
+      handleDelete();
+    }
   });
 
   return (

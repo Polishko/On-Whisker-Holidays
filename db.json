@@ -37,10 +37,10 @@
     },
     {
       "email": "loki@loki.com",
-      "password": "$2a$10$six3cUOYX0AvVvVIbuxfnueCrdbT9aVAzJAI7DG6jAoFeezFVv/yq",
       "name": "loki",
       "avatar": "/avatar/dog1.png",
-      "id": 20
+      "id": 20,
+      "password": "$2a$10$H8oKLFMZGtWDWSA3nQ4sH.JF8VS7Qx99CWB4j.I5qWEJX67/KMc8i"
     },
     {
       "email": "polen@polen.com",
@@ -310,6 +310,14 @@
       "hotelId": "Apartmentos Calypso",
       "timestamp": "2024-08-15T18:22:53.517Z",
       "id": 36
+    },
+    {
+      "text": "Badi told me that this place is really nice. I'm curious.",
+      "userId": 20,
+      "userName": "loki",
+      "hotelId": "Amalia Center Rooms",
+      "timestamp": "2024-08-16T13:58:37.988Z",
+      "id": 37
     }
   ],
   "posts": [

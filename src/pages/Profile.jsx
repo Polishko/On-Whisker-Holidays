@@ -7,6 +7,7 @@ import { useAuth } from "../components/contexts/AuthContext";
 import { useUsers } from "../components/contexts/UsersContext";
 import { useKey } from "../hooks/useKey";
 import { useModal } from "../hooks/useModal";
+import { useAuthenticatedAction } from "../hooks/useAuthenticatedAction";
 
 import Button from "../components/common/Button";
 import AvatarSelection from "../components/common/AvatarSelection";
@@ -21,6 +22,8 @@ function Profile() {
     isAuthenticated,
     checkTokenValidity,
   } = useAuth();
+  const executeAuthenticatedAction = useAuthenticatedAction();
+
   const { editUser, fetchUsers } = useUsers();
   const navigate = useNavigate();
 
@@ -48,72 +51,69 @@ function Profile() {
   };
 
   const handleAvatarSubmission = () => {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
+    executeAuthenticatedAction(() => {
+      const selectedAvatarPath =
+        avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
 
-    const selectedAvatarPath =
-      avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
+      if (selectedAvatarPath === "") {
+        messageModal.openModal("Select an avatar!");
+        return;
+      }
 
-    if (selectedAvatarPath === "") {
-      messageModal.openModal("Select an avatar!");
-      return;
-    }
-
-    if (selectedAvatarPath === user.avatar) {
-      messageModal.openModal("Select a different avatar than the current one!");
-      return;
-    }
-    passwordModal.openModal();
+      if (selectedAvatarPath === user.avatar) {
+        messageModal.openModal(
+          "Select a different avatar than the current one!"
+        );
+        return;
+      }
+      passwordModal.openModal();
+    });
   };
 
   const handlePasswordSubmit = (e) => {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    setPassword(e.target.value);
+    executeAuthenticatedAction(() => {
+      setPassword(e.target.value);
+    });
   };
 
-  async function handleSaveChanges() {
-    try {
-      const credentials = { email: user.email, password: password };
-      const { success } = await validatePassword(credentials);
+  function handleSaveChanges() {
+    executeAuthenticatedAction(async () => {
+      try {
+        const credentials = { email: user.email, password: password };
+        const { success } = await validatePassword(credentials);
 
-      if (!password) {
-        messageModal.openModal("Password field can't be empty!");
+        if (!password) {
+          messageModal.openModal("Password field can't be empty!");
+          setPassword("");
+          return;
+        }
+
+        if (!success) {
+          messageModal.openModal("Wrong password! Please try again.");
+          setPassword("");
+          return;
+        }
+
+        const updatedAvatarPath =
+          avatars.find((avatar) => avatar.id === selectedAvatar)?.src ||
+          user.avatar;
+
+        const updatedUser = { ...user, avatar: updatedAvatarPath, password };
+        const result = await editUser(updatedUser);
+
+        if (result.success) {
+          messageModal.openModal("Avatar updated successfully!");
+          await fetchUsers();
+          passwordModal.closeModal();
+        } else {
+          messageModal.openModal(result.message);
+        }
+      } catch (currentError) {
+        messageModal("There was an error updating the avatar.");
+      } finally {
         setPassword("");
-        return;
       }
-
-      if (!success) {
-        messageModal.openModal("Wrong password! Please try again.");
-        setPassword("");
-        return;
-      }
-
-      const updatedAvatarPath =
-        avatars.find((avatar) => avatar.id === selectedAvatar)?.src ||
-        user.avatar;
-
-      const updatedUser = { ...user, avatar: updatedAvatarPath, password };
-      const result = await editUser(updatedUser);
-
-      if (result.success) {
-        messageModal.openModal("Avatar updated successfully!");
-        await fetchUsers();
-      } else {
-        messageModal.openModal(result.message);
-      }
-    } catch (currentError) {
-      messageModal("There was an error updating the avatar.");
-    } finally {
-      setPassword("");
-      passwordModal.closeModal();
-    }
+    });
   }
 
   function handleCloseModal() {
@@ -121,8 +121,8 @@ function Profile() {
       messageModal.closeModal();
     } else if (passwordModal.isModalOpen) {
       passwordModal.closeModal();
+      setPassword("");
     }
-    setPassword("");
   }
 
   const handleClicktoHotelList = () => {
@@ -131,17 +131,20 @@ function Profile() {
 
   // key press actions
   useKey("Escape", (e) => {
-    if (passwordModal.isModalOpen || messageModal.isModalOpen) {
-      handleCloseModal(e);
+    if (messageModal.isModalOpen) {
+      messageModal.closeModal();
+    } else if (passwordModal.isModalOpen) {
+      passwordModal.closeModal();
       setPassword("");
-    } else {
-      handleClicktoHotelList();
     }
   });
 
   useKey("Enter", () => {
-    if (messageModal.isModalOpen) handleCloseModal();
-    if (passwordModal.isModalOpen) handleSaveChanges();
+    if (messageModal.isModalOpen) {
+      messageModal.closeModal();
+    } else if (passwordModal.isModalOpen) {
+      handleSaveChanges();
+    }
   });
 
   return (
