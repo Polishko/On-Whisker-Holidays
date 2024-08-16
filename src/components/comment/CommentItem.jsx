@@ -94,6 +94,11 @@ function CommentItem({ comment, userName }) {
   }
 
   function handlePasswordSubmit(e) {
+    checkTokenValidity();
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     setPassword(e.target.value);
   }
 
@@ -127,15 +132,16 @@ function CommentItem({ comment, userName }) {
       if (result.success) {
         messageModal.openModal("Comment updated successfully!");
         await fetchComments();
-        passwordModal.closeModal();
-        commentModal.closeModal();
       } else {
         messageModal.openModal(result.message);
       }
     } catch (currentError) {
       messageModal.openModal("There was an error updating the comment.");
+    } finally {
+      passwordModal.closeModal();
+      commentModal.closeModal();
+      setPassword("");
     }
-    setPassword("");
   }
 
   function handleCloseModal() {
@@ -156,7 +162,8 @@ function CommentItem({ comment, userName }) {
     if (
       commentModal.isModalOpen ||
       messageModal.isModalOpen ||
-      deleteModal.isModalOpen
+      deleteModal.isModalOpen ||
+      passwordModal.isModalOpen
     ) {
       handleCloseModal(e);
       setPassword("");

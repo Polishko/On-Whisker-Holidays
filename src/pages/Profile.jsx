@@ -26,9 +26,9 @@ function Profile() {
 
   const [selectedAvatar, setSelectedAvatar] = useState("");
   const [password, setPassword] = useState("");
-  const [modalType, setModalType] = useState("");
 
-  const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
+  const messageModal = useModal();
+  const passwordModal = useModal();
 
   const avatars = [
     { id: "cat1", src: "/avatar/cat1.png" },
@@ -47,7 +47,7 @@ function Profile() {
     logout();
   };
 
-  const handleAvatarSelection = () => {
+  const handleAvatarSubmission = () => {
     checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
@@ -58,36 +58,40 @@ function Profile() {
       avatars.find((avatar) => avatar.id === selectedAvatar)?.src || "";
 
     if (selectedAvatarPath === "") {
-      setModalType("message");
-      openModal("Select an avatar!");
+      messageModal.openModal("Select an avatar!");
       return;
     }
 
     if (selectedAvatarPath === user.avatar) {
-      setModalType("message");
-      openModal("Select a different avatar than the current one!");
+      messageModal.openModal("Select a different avatar than the current one!");
       return;
     }
-    setModalType("password");
-    openModal();
+    passwordModal.openModal();
+  };
+
+  const handlePasswordSubmit = (e) => {
+    checkTokenValidity();
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    setPassword(e.target.value);
   };
 
   async function handleSaveChanges() {
     try {
       const credentials = { email: user.email, password: password };
-      const { success, message } = await validatePassword(credentials);
+      const { success } = await validatePassword(credentials);
 
       if (!password) {
+        messageModal.openModal("Password field can't be empty!");
         setPassword("");
-        setModalType("message");
-        openModal("Password field can't be empty");
         return;
       }
 
       if (!success) {
+        messageModal.openModal("Wrong password! Please try again.");
         setPassword("");
-        setModalType("message");
-        openModal(message);
         return;
       }
 
@@ -99,47 +103,45 @@ function Profile() {
       const result = await editUser(updatedUser);
 
       if (result.success) {
-        setModalType("message");
-        openModal("Avatar updated successfully!");
+        messageModal.openModal("Avatar updated successfully!");
         await fetchUsers();
       } else {
-        setModalType("message");
-        openModal(result.message);
+        messageModal.openModal(result.message);
       }
-      setPassword("");
-      closeModal();
     } catch (currentError) {
+      messageModal("There was an error updating the avatar.");
+    } finally {
       setPassword("");
-      setModalType("message");
-      openModal("There was an error updating the avatar.");
-      closeModal();
+      passwordModal.closeModal();
     }
   }
 
-  const handlePasswordSubmit = (e) => {
-    checkTokenValidity();
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
+  function handleCloseModal() {
+    if (messageModal.isModalOpen) {
+      messageModal.closeModal();
+    } else if (passwordModal.isModalOpen) {
+      passwordModal.closeModal();
     }
-    setPassword(e.target.value);
-  };
+    setPassword("");
+  }
 
   const handleClicktoHotelList = () => {
     navigate("/hotels");
   };
 
   // key press actions
-  useKey("Escape", () => {
-    if (isModalOpen) {
-      closeModal();
+  useKey("Escape", (e) => {
+    if (passwordModal.isModalOpen || messageModal.isModalOpen) {
+      handleCloseModal(e);
+      setPassword("");
     } else {
       handleClicktoHotelList();
     }
   });
 
   useKey("Enter", () => {
-    if (isModalOpen && modalType === "password") handleSaveChanges();
+    if (messageModal.isModalOpen) handleCloseModal();
+    if (passwordModal.isModalOpen) handleSaveChanges();
   });
 
   return (
@@ -170,7 +172,7 @@ function Profile() {
         </div>
 
         <div className={styles.buttons}>
-          <Button onClick={handleAvatarSelection} type="tertiary">
+          <Button onClick={handleAvatarSubmission} type="tertiary">
             Save Changes
           </Button>
           <Button onClick={handleLogoutClick} type="tertiary">
@@ -178,18 +180,20 @@ function Profile() {
           </Button>
         </div>
 
-        {isModalOpen && (
-          <Modal onClose={closeModal} showCloseButton={modalType === "message"}>
-            {modalType === "message" ? (
-              <p>{modalMessage}</p>
-            ) : (
-              <PasswordModal
-                closePasswordModal={closeModal}
-                handlePasswordSubmit={handlePasswordSubmit}
-                handleSaveChanges={handleSaveChanges}
-                password={password}
-              />
-            )}
+        {passwordModal.isModalOpen && (
+          <Modal onClose={passwordModal.closeModal}>
+            <PasswordModal
+              closePasswordModal={handleCloseModal}
+              handlePasswordSubmit={handlePasswordSubmit}
+              handleSaveChanges={handleSaveChanges}
+              password={password}
+            />
+          </Modal>
+        )}
+
+        {messageModal.isModalOpen && (
+          <Modal onClose={messageModal.closeModal} showCloseButton={true}>
+            <p>{messageModal.modalMessage}</p>
           </Modal>
         )}
       </div>
