@@ -15,13 +15,7 @@ import PasswordModal from "../components/modal/PasswordModal";
 import Modal from "../components/modal/Modal";
 
 function Profile() {
-  const {
-    user,
-    logout,
-    validatePassword,
-    isAuthenticated,
-    checkTokenValidity,
-  } = useAuth();
+  const { user, logout, validatePassword } = useAuth();
   const executeAuthenticatedAction = useAuthenticatedAction();
 
   const { editUser, fetchUsers } = useUsers();

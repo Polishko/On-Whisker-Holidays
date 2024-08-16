@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./CommentItem.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useComments } from "../contexts/CommentsContext";
@@ -15,8 +14,7 @@ import { useModal } from "../../hooks/useModal";
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
 
-  const { user, validatePassword, isAuthenticated, checkTokenValidity } =
-    useAuth();
+  const { user, validatePassword } = useAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
 
   const executeAuthenticatedAction = useAuthenticatedAction();
@@ -24,8 +22,6 @@ function CommentItem({ comment, userName }) {
   const [editedComment, setEditedComment] = useState(comment.text);
   const [charCount, setCharCount] = useState(comment.text.length);
   const [password, setPassword] = useState("");
-
-  const navigate = useNavigate();
 
   const commentModal = useModal();
   const messageModal = useModal();

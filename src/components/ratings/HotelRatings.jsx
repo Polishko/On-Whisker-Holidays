@@ -10,7 +10,7 @@ import Spinner from "../common/Spinner";
 import StarRating from "./StarRating";
 
 function HotelRatings({ hotelId }) {
-  const { user, isAuthenticated, checkTokenValidity } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const {
     ratings,
     addRating,
