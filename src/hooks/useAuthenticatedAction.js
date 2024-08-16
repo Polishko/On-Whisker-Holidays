@@ -9,10 +9,10 @@ export function useAuthenticatedAction() {
     checkTokenValidity();
     if (!isAuthenticated) {
       navigate("/login");
-      return false; // Return false to indicate that the action was not executed
+      return false;
     }
 
-    action(); // Action executed if authenticated
+    action();
     return true;
   };
 
