@@ -55,6 +55,13 @@
       "avatar": "/avatar/cat3.png",
       "id": 22,
       "password": "$2a$10$XfWN7WGW3z7AHQuHdULTIe2meUMevxwI7D3FssxCL5QQ8aHiF7oQS"
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$ngizpaHH8xROL98aWEZ7IOemT8nzqmI316svJLeOB9YrRrJy0nZxC",
+      "name": "test",
+      "avatar": "/avatar/dog2.png",
+      "id": 23
     }
   ],
   "comments": [

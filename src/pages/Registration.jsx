@@ -76,6 +76,18 @@ function Registration() {
     }
   });
 
+  useKey("Enter", (e) => {
+    if (isModalOpen) {
+      closeModal();
+      e.preventDefault();
+    } else {
+      const form = document.querySelector("form");
+      if (form) {
+        form.requestSubmit();
+      }
+    }
+  });
+
   useEffect(() => {
     if (success) {
       navigate("/login");
@@ -98,10 +110,11 @@ function Registration() {
         noValidate
       >
         <header className={styles.registerHeader}>
-          Register / or{" "}
+          Register (or{" "}
           <NavLink to="/login" className={styles.loginInvite}>
             Login here
           </NavLink>
+          )
         </header>
 
         <div className={styles.row}>
@@ -205,7 +218,7 @@ function Registration() {
       </form>
 
       {isModalOpen && (
-        <Modal onClose={closeModal}>
+        <Modal onClose={closeModal} showCloseButton={true}>
           <p>{modalMessage}</p>
         </Modal>
       )}

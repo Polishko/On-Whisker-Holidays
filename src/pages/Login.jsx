@@ -36,9 +36,7 @@ function Login() {
 
   async function onSubmit(data) {
     const result = await login({ email: data.email, password: data.password });
-    if (result.success) {
-      openModal("Login successful!");
-    } else {
+    if (!result.success) {
       openModal(result.message);
     }
     reset();
@@ -47,6 +45,18 @@ function Login() {
   useKey("Escape", () => {
     if (isModalOpen) {
       closeModal();
+    }
+  });
+
+  useKey("Enter", (e) => {
+    if (isModalOpen) {
+      closeModal();
+      e.preventDefault();
+    } else {
+      const form = document.querySelector("form");
+      if (form) {
+        form.requestSubmit();
+      }
     }
   });
 
@@ -119,7 +129,7 @@ function Login() {
       </form>
 
       {isModalOpen && (
-        <Modal onClose={closeModal}>
+        <Modal onClose={closeModal} showCloseButton={true}>
           <p>{modalMessage}</p>
         </Modal>
       )}
