@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import Button from "../common/Button";
 import styles from "./Modal.module.css";
 
-function Modal({ children, onClose, showCloseButton = true }) {
+function Modal({ children, onClose, showCloseButton = false }) {
   return ReactDOM.createPortal(
     <>
       <div className={styles.backdrop} onClick={onClose}></div>

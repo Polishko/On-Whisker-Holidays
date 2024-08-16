@@ -13,6 +13,7 @@ import { useModal } from "../../hooks/useModal";
 
 function CommentItem({ comment, userName }) {
   const time = new Date(comment.timestamp);
+
   const { user, validatePassword, isAuthenticated, checkTokenValidity } =
     useAuth();
   const { deleteComment, editComment, fetchComments } = useComments();
@@ -20,11 +21,13 @@ function CommentItem({ comment, userName }) {
   const [editedComment, setEditedComment] = useState(comment.text);
   const [charCount, setCharCount] = useState(comment.text.length);
   const [password, setPassword] = useState("");
-  const [modalType, setModalType] = useState("");
 
   const navigate = useNavigate();
 
-  const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
+  const commentModal = useModal();
+  const messageModal = useModal();
+  const passwordModal = useModal();
+  const deleteModal = useModal();
 
   function handleEditClick() {
     checkTokenValidity();
@@ -34,8 +37,16 @@ function CommentItem({ comment, userName }) {
     }
     setEditedComment(comment.text);
     setCharCount(comment.text.length);
-    setModalType("comment");
-    openModal();
+    commentModal.openModal();
+  }
+
+  function handleDeleteClick() {
+    checkTokenValidity();
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    deleteModal.openModal();
   }
 
   function handleCharChange(e) {
@@ -54,19 +65,14 @@ function CommentItem({ comment, userName }) {
     }
     try {
       const result = await deleteComment(comment.id);
-      closeModal();
       if (result.success) {
-        setModalType("message");
-        openModal("Comment deleted successfully.");
+        messageModal.openModal("Comment deleted successfully.");
         await fetchComments();
       } else {
-        setModalType("message");
-        openModal(result.message);
+        messageModal.openModal(result.message);
       }
     } catch (error) {
-      closeModal();
-      setModalType("message");
-      openModal("Failed to delete comment.");
+      messageModal.openModal("Failed to delete comment.");
     }
   }
 
@@ -77,13 +83,14 @@ function CommentItem({ comment, userName }) {
       return;
     }
 
-    if (comment.text === editedComment) {
-      setModalType("message");
-      openModal("Make changes to edit the old comment.");
+    if (comment.text === editedComment.trim()) {
+      messageModal.openModal("Make changes to edit the old comment.");
+      return;
+    } else if (editedComment.trim() === "") {
+      messageModal.openModal("Comment can't be empty.");
       return;
     }
-    setModalType("password");
-    openModal();
+    passwordModal.openModal();
   }
 
   function handlePasswordSubmit(e) {
@@ -93,18 +100,16 @@ function CommentItem({ comment, userName }) {
   async function handleSaveChanges() {
     try {
       if (!password) {
-        setModalType("message");
-        openModal("Password field can't be empty");
+        messageModal.openModal("Password field can't be empty!");
         setPassword("");
         return;
       }
 
       const credentials = { email: user.email, password: password };
-      const { success, message } = await validatePassword(credentials);
+      const { success } = await validatePassword(credentials);
 
       if (!success) {
-        setModalType("message");
-        openModal(message);
+        messageModal.openModal("Wrong password! Please try again.");
         setPassword("");
         return;
       }
@@ -120,33 +125,49 @@ function CommentItem({ comment, userName }) {
       const result = await editComment(updatedComment);
 
       if (result.success) {
-        setModalType("message");
-        openModal("Comment updated successfully!");
+        messageModal.openModal("Comment updated successfully!");
         await fetchComments();
+        passwordModal.closeModal();
+        commentModal.closeModal();
       } else {
-        setModalType("message");
-        openModal(result.message);
+        messageModal.openModal(result.message);
       }
     } catch (currentError) {
-      closeModal();
-      setModalType("message");
-      openModal("There was an error updating the comment.");
+      messageModal.openModal("There was an error updating the comment.");
     }
     setPassword("");
   }
 
-  // Modal open close with key actions
-  useKey("Escape", () => {
-    if (isModalOpen) {
-      closeModal();
+  function handleCloseModal() {
+    if (messageModal.isModalOpen) {
+      messageModal.closeModal();
+    } else if (passwordModal.isModalOpen) {
+      passwordModal.closeModal();
+    } else if (deleteModal.isModalOpen) {
+      deleteModal.closeModal();
+    } else if (commentModal.isModalOpen) {
+      commentModal.closeModal();
+    }
+    setPassword("");
+  }
+
+  // key press actions
+  useKey("Escape", (e) => {
+    if (
+      commentModal.isModalOpen ||
+      messageModal.isModalOpen ||
+      deleteModal.isModalOpen
+    ) {
+      handleCloseModal(e);
       setPassword("");
     }
   });
 
   useKey("Enter", () => {
-    if (modalType === "comment") handleCommentSubmit();
-    if (modalType === "password") handleSaveChanges();
-    if (modalType === "delete") handleDelete();
+    if (commentModal.isModalOpen) handleCommentSubmit();
+    if (passwordModal.isModalOpen) handleSaveChanges();
+    if (deleteModal.isModalOpen) handleDelete();
+    if (messageModal.isModalOpen) handleCloseModal();
   });
 
   return (
@@ -175,10 +196,7 @@ function CommentItem({ comment, userName }) {
             </div>
             <div
               className={`${styles.trash} ${styles.iconContainer}`}
-              onClick={() => {
-                setModalType("delete");
-                openModal();
-              }}
+              onClick={handleDeleteClick}
             >
               <i className={`fa-solid fa-trash-can ${styles.icon}`}></i>
               <span className={styles.tooltipText}>Delete comment</span>
@@ -187,31 +205,41 @@ function CommentItem({ comment, userName }) {
         )}
       </div>
 
-      {isModalOpen && (
-        <Modal onClose={closeModal} showCloseButton={modalType === "message"}>
-          {modalType === "comment" ? (
-            <CommentModal
-              handleCloseModal={closeModal}
-              handleCharChange={handleCharChange}
-              handleCommentSubmit={handleCommentSubmit}
-              comment={editedComment}
-              charCount={charCount}
-            />
-          ) : modalType === "password" ? (
-            <PasswordModal
-              closePasswordModal={closeModal}
-              handlePasswordSubmit={handlePasswordSubmit}
-              handleSaveChanges={handleSaveChanges}
-              password={password}
-            />
-          ) : modalType === "delete" ? (
-            <DeleteModal
-              closeDeleteModal={closeModal}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <p>{modalMessage}</p>
-          )}
+      {commentModal.isModalOpen && (
+        <Modal onClose={commentModal.closeModal}>
+          <CommentModal
+            handleCloseModal={handleCloseModal}
+            handleCharChange={handleCharChange}
+            handleCommentSubmit={handleCommentSubmit}
+            comment={editedComment}
+            charCount={charCount}
+          />
+        </Modal>
+      )}
+
+      {passwordModal.isModalOpen && (
+        <Modal onClose={passwordModal.closeModal}>
+          <PasswordModal
+            closePasswordModal={handleCloseModal}
+            handlePasswordSubmit={handlePasswordSubmit}
+            handleSaveChanges={handleSaveChanges}
+            password={password}
+          />
+        </Modal>
+      )}
+
+      {deleteModal.isModalOpen && (
+        <Modal onClose={deleteModal.closeModal}>
+          <DeleteModal
+            closeDeleteModal={handleCloseModal}
+            handleDelete={handleDelete}
+          />
+        </Modal>
+      )}
+
+      {messageModal.isModalOpen && (
+        <Modal onClose={messageModal.closeModal} showCloseButton={true}>
+          <p>{messageModal.modalMessage}</p>
         </Modal>
       )}
     </div>

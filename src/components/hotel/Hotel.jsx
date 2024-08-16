@@ -177,9 +177,9 @@ function Hotel() {
       </section>
 
       {commentModal.isModalOpen && (
-        <Modal onClose={commentModal.closeModal} showCloseButton={true}>
+        <Modal onClose={handleCloseModal}>
           <CommentModal
-            handleCloseModal={commentModal.closeModal}
+            handleCloseModal={handleCloseModal}
             handleCharChange={handleCharChange}
             handleCommentSubmit={handleCommentSubmit}
             comment={comment}
@@ -189,7 +189,7 @@ function Hotel() {
       )}
 
       {messageModal.isModalOpen && (
-        <Modal onClose={messageModal.closeModal} showCloseButton={true}>
+        <Modal onClose={handleCloseModal} showCloseButton={true}>
           <p>{messageModal.modalMessage}</p>
         </Modal>
       )}
