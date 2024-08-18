@@ -71,8 +71,7 @@
       "userName": "gizmo",
       "hotelId": "Sunanini House",
       "timestamp": "2024-07-31T10:35:15.236Z",
-      "id": 1,
-      "password": "gizmo"
+      "id": 1
     },
     {
       "text": "The bluest sea ever!",
@@ -339,10 +338,7 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Sapareva Banya",
-      "type": [
-        "mountain",
-        "nature"
-      ],
+      "type": ["mountain", "nature"],
       "position": {
         "lat": 42.285136416470166,
         "lng": 23.24898059723802
@@ -364,11 +360,7 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": [
-        "wifi",
-        "parking",
-        "airconditioner"
-      ]
+      "facilities": ["wifi", "parking", "airconditioner"]
     },
     {
       "id": "Green Village Lake",
@@ -376,10 +368,7 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Hrabarsko",
-      "type": [
-        "nature",
-        "seaside"
-      ],
+      "type": ["nature", "seaside"],
       "position": {
         "lat": 42.817562946488636,
         "lng": 23.091720435881278
@@ -400,12 +389,7 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": [
-        "wifi",
-        "parking",
-        "airconditioner",
-        "pool"
-      ]
+      "facilities": ["wifi", "parking", "airconditioner", "pool"]
     },
     {
       "id": "Hija Rila Lakes",
@@ -413,10 +397,7 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Borovets",
-      "type": [
-        "nature",
-        "mountain"
-      ],
+      "type": ["nature", "mountain"],
       "position": {
         "lat": 42.219874962786704,
         "lng": 23.32160101072616
@@ -436,9 +417,7 @@
         "nature",
         "wifi"
       ],
-      "facilities": [
-        "wifi"
-      ]
+      "facilities": ["wifi"]
     },
     {
       "id": "Sorrento Sole Mare",
@@ -446,9 +425,7 @@
       "country": "Bulgaria",
       "countryCode": "🇧🇬",
       "city": "Burgas",
-      "type": [
-        "seaside"
-      ],
+      "type": ["seaside"],
       "position": {
         "lat": 42.76414192026019,
         "lng": 27.742814370268487
@@ -470,12 +447,7 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": [
-        "wifi",
-        "parking",
-        "airconditioner",
-        "pool"
-      ]
+      "facilities": ["wifi", "parking", "airconditioner", "pool"]
     },
     {
       "id": "Datca Lake House Camping",
@@ -483,9 +455,7 @@
       "country": "Turkey",
       "countryCode": "🇹🇷",
       "city": "Datca",
-      "type": [
-        "seaside"
-      ],
+      "type": ["seaside"],
       "position": {
         "lat": 36.72005396963961,
         "lng": 27.687009625838925
@@ -493,14 +463,7 @@
       "img": "./datca-lake-house-main.jpeg",
       "web": "https://maps.app.goo.gl/X5NDz6qRjVkZB6pcA",
       "detail": "Camp with your best furry friend near this amazing beach with the bluest water in the world.",
-      "keywords": [
-        "camping",
-        "sea",
-        "beach",
-        "nature",
-        "datca",
-        "turkey"
-      ],
+      "keywords": ["camping", "sea", "beach", "nature", "datca", "turkey"],
       "facilities": []
     },
     {
@@ -509,10 +472,7 @@
       "country": "Turkey",
       "countryCode": "🇹🇷",
       "city": "Datca",
-      "type": [
-        "seaside",
-        "nature"
-      ],
+      "type": ["seaside", "nature"],
       "position": {
         "lat": 36.68589557246077,
         "lng": 27.57105908351027
@@ -532,10 +492,7 @@
         "wifi",
         "airconditioner"
       ],
-      "facilities": [
-        "wifi",
-        "airconditioner"
-      ]
+      "facilities": ["wifi", "airconditioner"]
     },
     {
       "id": "Garni Hotel Zen",
@@ -543,9 +500,7 @@
       "country": "Serbia",
       "countryCode": "🇷🇸",
       "city": "Niš",
-      "type": [
-        "city"
-      ],
+      "type": ["city"],
       "position": {
         "lat": 43.33947206096271,
         "lng": 21.92352216844934
@@ -563,12 +518,7 @@
         "airconditioner",
         "parking"
       ],
-      "facilities": [
-        "wifi",
-        "airconditioner",
-        "pool",
-        "parking"
-      ]
+      "facilities": ["wifi", "airconditioner", "pool", "parking"]
     },
     {
       "id": "Amalia Center Rooms",
@@ -576,9 +526,7 @@
       "country": "Greece",
       "countryCode": "🇬🇷",
       "city": "Nea Vrasna",
-      "type": [
-        "seaside"
-      ],
+      "type": ["seaside"],
       "position": {
         "lat": 40.71174651744706,
         "lng": 23.70179528233691
@@ -596,11 +544,7 @@
         "airconditioner",
         "parking"
       ],
-      "facilities": [
-        "wifi",
-        "airconditioner",
-        "parking"
-      ]
+      "facilities": ["wifi", "airconditioner", "parking"]
     },
     {
       "id": "The Wooden Village",
@@ -608,10 +552,7 @@
       "country": "Greece",
       "countryCode": "🇬🇷",
       "city": "Agkistro",
-      "type": [
-        "nature",
-        "mountain"
-      ],
+      "type": ["nature", "mountain"],
       "position": {
         "lat": 41.36992542114511,
         "lng": 23.433435427887517
@@ -630,12 +571,7 @@
         "parking",
         "pool"
       ],
-      "facilities": [
-        "wifi",
-        "airconditioner",
-        "parking",
-        "pool"
-      ]
+      "facilities": ["wifi", "airconditioner", "parking", "pool"]
     },
     {
       "id": "Lermontovskiy Hotel",
@@ -643,9 +579,7 @@
       "country": "Ukraine",
       "countryCode": "🇺🇦",
       "city": "Odessa",
-      "type": [
-        "seaside"
-      ],
+      "type": ["seaside"],
       "position": {
         "lat": 46.47200334286483,
         "lng": 30.7550886666702
@@ -664,11 +598,7 @@
         "parking",
         "airconditioner"
       ],
-      "facilities": [
-        "wifi",
-        "parking",
-        "airconditioner"
-      ]
+      "facilities": ["wifi", "parking", "airconditioner"]
     },
     {
       "id": "Apartmentos Calypso",
@@ -676,9 +606,7 @@
       "country": "Spain",
       "countryCode": "🇪🇸",
       "city": "Punta Umbria",
-      "type": [
-        "seaside"
-      ],
+      "type": ["seaside"],
       "position": {
         "lat": 37.186693867615936,
         "lng": -6.956131246275325
@@ -699,10 +627,7 @@
         "wifi",
         "airconditioner"
       ],
-      "facilities": [
-        "wifi",
-        "airconditioner"
-      ]
+      "facilities": ["wifi", "airconditioner"]
     }
   ],
   "ratings": [
