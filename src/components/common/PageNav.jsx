@@ -41,6 +41,7 @@ function PageNav() {
       />
       <div className={styles.menuContainer}>
         <button
+          title="Menu"
           className={`${styles.menuButton} ${
             currentPath === "/" ? styles.darkBackground : ""
           }`}
