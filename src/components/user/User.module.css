@@ -43,3 +43,19 @@
   background-color: var(--color-orange);
   color: var(--color-dark-blue);
 }
+
+@media (max-width: 840px) {
+  .user,
+  .logoutButton,
+  .profileButton {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .user,
+  .logoutButton,
+  .profileButton {
+    font-size: 4rem;
+  }
+}
