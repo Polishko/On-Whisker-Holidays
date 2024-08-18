@@ -7,9 +7,8 @@
 - Install dependencies: `npm install`
 - Start the server: `npm run server`
 - Start development: `npm run dev`
-- This app is designed for viewing on screen Resolution: 1920x1080 and is partially responsive.
+- This app is responsive and has been designed for viewing on screens with a minimum width of 320px.
   Recommended Browsers: Chrome, Microsoft Edge
-  Note: Some features like the scroller css settings may not display correctly on Firefox.
 
 ![Screenshot of My App](https://github.com/Polishko/On-Whisker-Holidays/blob/main/assets/main-app.JPG)
 
@@ -121,7 +120,6 @@ To run the tests, use: `npx vitest run`
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
 - Add hotel-adding functionality for authenticated users.
-- Adapt design for mobile.
 - Add a "hotels to visit" list for logged-in users.
 
 ## 🎉 Credits
