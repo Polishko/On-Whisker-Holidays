@@ -51,6 +51,9 @@ The live demo is not available for now. Please see the screenshots below for vis
   ![image](https://github.com/user-attachments/assets/e6f6bdc4-a48c-4d84-8b7b-313f9e2ff49d)
   ![image](https://github.com/user-attachments/assets/e0ba994b-51fc-4447-b323-d45083e11eb5)
 
+- Responsive design:
+  ![image](https://github.com/user-attachments/assets/de101674-8d88-4609-9efb-2d22140e4ba3)
+
 
 ## 📂 General project structure
 
