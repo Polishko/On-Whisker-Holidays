@@ -82,3 +82,9 @@
   background: var(--color-orange);
   border: 1px solid var(--color-orange);
 }
+
+@media (max-width: 820px) {
+  .mapButton {
+    right: 40%;
+  }
+}

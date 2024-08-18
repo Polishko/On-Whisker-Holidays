@@ -131,3 +131,17 @@
     width: 40%;
   }
 }
+
+@media (max-width: 995px) {
+  .container {
+    width: 50%;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    width: 65%;
+    padding: 8rem;
+    margin: 10rem;
+  }
+}

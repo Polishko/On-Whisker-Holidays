@@ -18,7 +18,7 @@
 
 #root {
   width: 100%;
-  min-width: 1200px;
+  /* min-width: 1200px; */
   align-self: center;
   justify-self: center;
   display: flex;
@@ -88,4 +88,68 @@ input:focus {
   font-weight: 600;
   padding: 1rem 3rem;
   border-radius: 5px;
+}
+
+@media (max-width: 1490px) {
+  body {
+    height: auto;
+  }
+
+  html {
+    font-size: 50%;
+  }
+
+  main {
+    padding-bottom: 20rem;
+    padding-top: 5rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1160px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (max-width: 995px) {
+  html {
+    font-size: 40%;
+  }
+}
+
+@media (max-width: 820px) {
+  html {
+    font-size: 35%;
+  }
+}
+
+@media (max-width: 670px) {
+  html {
+    font-size: 30%;
+  }
+}
+
+@media (max-width: 560px) {
+  html {
+    font-size: 25%;
+  }
+}
+
+@media (max-width: 467px) {
+  html {
+    font-size: 20%;
+  }
+}
+
+@media (max-width: 402px) {
+  html {
+    font-size: 15%;
+  }
+}
+
+@media (max-width: 390px) {
+  html {
+    font-size: 10%;
+  }
 }

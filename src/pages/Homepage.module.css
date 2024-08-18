@@ -55,3 +55,17 @@
 .goToApp button {
   font-size: 2.5em;
 }
+
+@media (max-width: 965px) {
+  .homepage h1 {
+    font-size: 5em;
+  }
+
+  .homepage h2 {
+    font-size: 2em;
+  }
+
+  .goToApp button {
+    font-size: 2em;
+  }
+}

@@ -109,3 +109,34 @@
   border-radius: 1em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+@media (max-width: 1000px) {
+  .hotelCard {
+    flex-wrap: wrap;
+  }
+
+  .left {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .right {
+    flex-basis: 100%;
+    padding: 2em 3em;
+  }
+
+  .hotelName {
+    font-size: 1.5em;
+  }
+
+  .imageContainer {
+    width: 70%;
+    margin-left: 0;
+    margin-top: 2em;
+  }
+
+  .imageContainer img {
+    width: 100%;
+  }
+}
