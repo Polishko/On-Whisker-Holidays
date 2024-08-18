@@ -1,0 +1,15 @@
+body {
+  height: auto;
+}
+
+.imageContainer {
+  width: 100%;
+}
+
+.pageNotFound {
+  display: block;
+  width: 40%;
+  margin: 13rem auto;
+  border: 0.5em solid var(--color-active);
+  border-radius: 2em;
+}
