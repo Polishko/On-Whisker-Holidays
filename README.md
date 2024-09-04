@@ -123,7 +123,6 @@ The tests do not cover state management or dynamic state changes but focus on st
 To run the tests, use: `npx vitest run`
 
 ## 💡 Potential Improvements
-- Prevent the behavior of a previous modal closing upon opening a new one, as a result of managing all the modals' state with a single `useModal` hook.
 - Apply more advanced state management tools (such as Redux and React Query) to better manage state, reduce complexity, and improve code readability.
 - Incorporate a real server.
 - Add page forward and back functionality for the comments list.
