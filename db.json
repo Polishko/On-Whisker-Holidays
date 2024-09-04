@@ -569,23 +569,25 @@
       "facilities": ["wifi", "airconditioner", "parking", "pool"]
     },
     {
-      "id": "Lermontovskiy Hotel",
-      "hotelName": "Lermontovskiy Hotel",
-      "country": "Ukraine",
-      "countryCode": "🇺🇦",
-      "city": "Odessa",
+      "id": "Allure Beach Venti Club",
+      "hotelName": "Allure Beach Venti Club",
+      "country": "Bulgaria",
+      "countryCode": "🇧🇬",
+      "city": "Primorsko",
       "type": ["seaside"],
       "position": {
-        "lat": 46.47200334286483,
-        "lng": 30.7550886666702
+        "lat": 42.25104771127687,
+        "lng": 27.749419467491595
       },
-      "img": "odessa.jpg",
-      "web": "https://maps.app.goo.gl/x5paoa5hcotc69qL7",
-      "detail": "A small boutique hotel near the romantic beaches of Odessa. Watch the mesmerizing views of the sun sinking into the endless deep blue waters of the Black Sea.",
+      "img": "venti-club-main.jpg",
+      "web": "https://alur-venti-club-apartments.hotelprimorsko.net/en/",
+      "detail": "A very nice, non-crowded beach, amazing sea view, wide terras to be enjoyed both by your animal friends and you!",
       "keywords": [
-        "lermotovskiy",
-        "ukraine",
-        "odessa",
+        "allure beach",
+        "venti club",
+        "bulgaria",
+        "primorsko",
+        "burgas",
         "beach",
         "black sea",
         "blacksea",
@@ -623,6 +625,33 @@
         "airconditioner"
       ],
       "facilities": ["wifi", "airconditioner"]
+    },
+    {
+      "id": "Lermontovskiy Hotel",
+      "hotelName": "Lermontovskiy Hotel",
+      "country": "Ukraine",
+      "countryCode": "🇺🇦",
+      "city": "Odessa",
+      "type": ["seaside"],
+      "position": {
+        "lat": 46.47200334286483,
+        "lng": 30.7550886666702
+      },
+      "img": "odessa.jpg",
+      "web": "https://maps.app.goo.gl/x5paoa5hcotc69qL7",
+      "detail": "A small boutique hotel near the romantic beaches of Odessa. Watch the mesmerizing views of the sun sinking into the endless deep blue waters of the Black Sea.",
+      "keywords": [
+        "lermotovskiy",
+        "ukraine",
+        "odessa",
+        "beach",
+        "black sea",
+        "blacksea",
+        "wifi",
+        "parking",
+        "airconditioner"
+      ],
+      "facilities": ["wifi", "parking", "airconditioner"]
     }
   ],
   "ratings": [
