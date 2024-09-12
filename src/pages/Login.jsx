@@ -1,6 +1,6 @@
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -18,6 +18,8 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const { isModalOpen, modalMessage, openModal, closeModal } = useModal();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -36,9 +38,14 @@ function Login() {
 
   async function onSubmit(data) {
     const result = await login({ email: data.email, password: data.password });
-    if (!result.success) {
+
+    if (result.success) {
+      const redirectTo = location.state?.from?.pathname || "/";
+      navigate(redirectTo, { replace: true });
+    } else {
       openModal(result.message);
     }
+
     reset();
   }
 
